@@ -1,2 +1,2 @@
 # develop_env
-the develop environment that using dockerfile, and needed online internet.
+the develop environment that using dockerfile to build, and needed online internet.
