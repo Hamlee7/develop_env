@@ -15,7 +15,7 @@ RUN yum -y --setopt=install_weak_deps=false --setopt=tsflags=nodocs --setopt=ove
     libssh \
     libtool \
     openssl \
-    openssl-libs \
+    openssl-devel \
     openssh \
     openssh-clients \
     python3 \
@@ -23,7 +23,7 @@ RUN yum -y --setopt=install_weak_deps=false --setopt=tsflags=nodocs --setopt=ove
     wget \
     zlib \
     && yum clean all && rm -fR /var/cache/yum \
-    && echo "Asia/shanghai" > /etc/timezone
+    && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
 
 # Source install tools
 RUN mkdir -p /opt/deps/ && cd /opt/deps/ \
@@ -42,9 +42,7 @@ RUN mkdir -p /opt/deps/ && cd /opt/deps/ \
 
 
 # CentOS
-# RUN echo "Asia/shanghai" > /etc/timezone
-# Ubuntu
-# RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+# RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
 
 # COPY source dest better than ADD source dest
 
