@@ -2,7 +2,7 @@ FROM dmonk/aarch64-centos8:latest
 
 LABEL maintainer=lit
 
-ARG LITDEV_VERSION=1.1
+ARG LITDEV_VERSION=1.2
 
 # 切换root权限
 # USER 0
@@ -33,22 +33,22 @@ RUN mkdir -p /opt/deps/ && cd /opt/deps/ \
     # && mkdir -p ./cmake && pushd ./cmake && wget -q -O cmake-linux.sh https://github.com/Kitware/CMake/releases/download/v3.20.6/cmake-3.20.6-linux-aarch64.sh && sh cmake-linux.sh -- --skip-license --prefix=/usr/local && rm cmake-linux.sh && popd && rm -rf ./cmake \
     # && scl enable devtoolset-7 bash
     # protoc
-    && mkdir -p ./protoc && pushd ./protoc && wget https://github.com/protocolbuffers/protobuf/releases/download/v3.19.0/protobuf-all-3.19.0.tar.gz && tar zvxf protobuf-all-3.19.0.tar.gz && cd protobuf-3.19.0/ && ./autogen.sh && ./configure --prefix=/usr/local/ && make -j 8 && make install && popd && rm -rf ./protoc \
-    # && mkdir -p ./protoc && pushd ./protoc && wget https://github.com/protocolbuffers/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz && tar zvxf protobuf-2.6.1.tar.gz && cd protobuf-2.6.1/ && ./autogen.sh && ./configure --prefix=/usr/local/ && make -j 8 && make install && popd && rm -rf ./protoc \
+    # && mkdir -p ./protoc && pushd ./protoc && wget https://github.com/protocolbuffers/protobuf/releases/download/v3.19.0/protobuf-all-3.19.0.tar.gz && tar zvxf protobuf-all-3.19.0.tar.gz && cd protobuf-3.19.0/ && ./autogen.sh && ./configure --prefix=/usr/local/ && make -j 8 && make install && popd && rm -rf ./protoc \
+    && mkdir -p ./protoc && pushd ./protoc && wget https://github.com/protocolbuffers/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz && tar zvxf protobuf-2.6.1.tar.gz && cd protobuf-2.6.1/ && ./autogen.sh && ./configure --prefix=/usr/local/ && make -j 8 && make install && popd && rm -rf ./protoc \
     # && mkdir -p ./protoc && pushd ./protoc && wget https://github.com/protocolbuffers/protobuf/releases/download/v2.5.0/protobuf-2.5.0.tar.gz && tar zvxf protobuf-2.5.0.tar.gz && cd protobuf-2.5.0/ && ./autogen.sh && ./configure --prefix=/usr/local/ && make -j 8 && make install && popd && rm -rf ./protoc \
     # log
-    && mkdir -p ./log && pushd ./log && git clone --recursive https://github.com/log4cplus/log4cplus.git && pushd ./log4cplus && ./configure --prefix=/usr/local/ && make -j 8 && make install && popd && popd && rm -rf ./log \
+    && mkdir -p ./log && pushd ./log && git clone --recursive https://github.com/log4cplus/log4cplus.git && pushd ./log4cplus && ./configure --prefix=/usr/local/ && make -i -j 8 && make install && popd && popd && rm -rf ./log
     # grpc
     # && mkdir -p ./grpc && pushd ./grpc && wget -q -O grpc-1.41.0.tar.gz https://github.com/grpc/grpc/archive/refs/tags/v1.41.0.tar.gz && tar zxvf grpc-1.41.0.tar.gz && cd grpc-1.41.0 && mkdir -p cmake/build && pushd cmake/build && cmake -DgRPC_INSTALL=ON \
     #   -DgRPC_BUILD_TESTS=OFF \
     #   -DCMAKE_INSTALL_PREFIX=/usr/local \
     #   ../.. && make -j 8 && make install && popd \
     #   && popd && rm -rf ./grpc
-    && mkdir -p ./grpc && pushd ./grpc && git clone --recurse-submodules -b v1.41.0 https://github.com/grpc/grpc ; cd grpc && mkdir -p cmake/build && pushd cmake/build && cmake -DgRPC_INSTALL=ON \
-      -DgRPC_BUILD_TESTS=OFF \
-      -DCMAKE_INSTALL_PREFIX=/usr/local \
-      ../.. && make -j 8 && make install && popd \
-      && popd && rm -rf ./grpc
+    # && mkdir -p ./grpc && pushd ./grpc && git clone --recurse-submodules -b v1.41.0 https://github.com/grpc/grpc ; cd grpc && mkdir -p cmake/build && pushd cmake/build && cmake -DgRPC_INSTALL=ON \
+    #   -DgRPC_BUILD_TESTS=OFF \
+    #   -DCMAKE_INSTALL_PREFIX=/usr/local \
+    #   ../.. && make -j 8 && make install && popd \
+    #   && popd && rm -rf ./grpc
 
 
 
