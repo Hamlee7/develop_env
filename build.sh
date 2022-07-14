@@ -2,11 +2,12 @@
 
 #image_name=centos8_dev
 #iversion=1.1
-image_name=engine_bamp_release
-iversion=1.0
+image_name=engine_uniform_dev
+iversion=1.1
 
 #dockfilename=Dockerfile.devel
-dockerfile=Dockerfile.release
+#dockerfile=Dockerfile.release
+dockerfile=Dockerfile.uniform
 
 
 docker build -t ${image_name}:${iversion} -f ${dockerfile} . \
