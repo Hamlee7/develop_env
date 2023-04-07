@@ -1,0 +1,32 @@
+FROM safarov/freeswitch:latest
+
+# 设置时区
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# COPY source dest better than ADD source dest
+#COPY docker-entrypoint.sh healthcheck.sh sounds_version.txt /
+#COPY scripts /usr/share/freeswitch/
+
+COPY sounds scripts /usr/share/freeswitch/
+COPY entrypoint.sh /
+
+
+# WORKDIR /src
+
+# EXPOSE 8080
+
+# USER daemon
+
+
+HEALTHCHECK --interval=15s --timeout=5s \
+    CMD  /healthcheck.sh
+
+
+# 使用exec格式的 ENTRYPOINT指令 设置固定的默认命令和参数
+# ENTRYPOINT ["/bin/bash", "-c", "tail", "-f", "/dev/null"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+
+# 使用 CMD指令 设置可变的参数
+# CMD [ "executable" ]

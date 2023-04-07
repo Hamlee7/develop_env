@@ -1,0 +1,47 @@
+FROM centos:latest
+
+LABEL maintainer=lit
+
+ARG LIT_RELEASE_VERSION=1.0
+
+# 切换root权限
+#USER 0
+
+# 设置时区
+# CentOS
+# ENV TZ=Asia/Shanghai
+# RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+ENV TZ=Asia/Shanghai
+
+# Base deps
+RUN yum -y --setopt=install_weak_deps=false --setopt=tsflags=nodocs --setopt=override_install_langs=en_US.utf8 install \
+    gdb \
+    python3 \
+    python3-pip \
+    vim \
+    wget \
+    zlib \
+    && ln -s /usr/lib64/libz.so.1.2.11 /usr/lib64/libz.so \
+    && pip3 install websocket-client \
+    && yum clean all && rm -fR /var/cache/yum \
+    && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Source install tools
+
+# COPY source dest better than ADD source dest
+COPY TitAudioProcessingEngines/build/install/TitAudioProcessingEngines /thinkit/TitAudioProcessingEngines
+
+# WORKDIR /src
+WORKDIR /thinkit/TitAudioProcessingEngines/bin
+
+# EXPOSE 8080
+EXPOSE 8900
+
+# USER daemon
+
+# 使用exec格式的 ENTRYPOINT指令 设置固定的默认命令和参数
+# ENTRYPOINT ["/bin/bash", "-c", "tail", "-f", "/dev/null"]
+ENTRYPOINT ["/bin/bash", "run_engine_bamp.sh"]
+
+# 使用 CMD指令 设置可变的参数
+# CMD [ "executable" ]
