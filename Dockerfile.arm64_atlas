@@ -1,0 +1,24 @@
+#基础镜像
+FROM ascendhub.huawei.com/public-ascendhub/ascend-infer:22.0.0-ubuntu18.04
+MAINTAINER guoyutong
+USER root
+RUN apt-get -y update
+
+#安装基本的网络调试工具，和tmxu,git
+RUN apt-get -y install wget \
+&& apt-get -y install net-tools telnet \
+&& apt-get -y install tmux \
+&& apt-get -y install vim \
+&& apt-get -y install curl
+
+
+# 配置文件目录 如果想要增加默认映射目录，在此修改
+#VOLUME /engine/TitSpeechEngineServer/conf/
+#对外暴露的端口
+EXPOSE 2777
+#指定业务程序工作目录,需要根据实际情况修改
+WORKDIR /engine
+#拷贝业务程序到相应的目录,需要根据实际情况修改
+#COPY ./engine/ /engine/
+#容器启动时默认执行的程序,需要根据实际情况修改
+CMD sh run.sh
