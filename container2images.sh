@@ -24,4 +24,4 @@ echo "finished import image"
 
 
 #docker run --rm -it -v /home/work/thinkit/gd/TitSpeechEngineServer:/demo/ --name ${new_container_name} ${image_name}:${iversion} bash
-#docker run --rm -it -v /home/work/thinkit/docker_images/demo:/opt/deps/demo --name ${new_container_name} ${image_name}:${iversion} bash
+#docker run --privileged --rm -it -v /home/work/thinkit/docker_images/demo:/opt/deps/demo --name ${new_container_name} ${image_name}:${iversion} bash

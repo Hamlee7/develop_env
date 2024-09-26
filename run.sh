@@ -17,5 +17,4 @@ docker run --rm -it -p ${container_expose_port}:8900 -v /home/haorp/docker/vcpkg
 
 #docker run --rm -it -v /home/work/thinkit/gd/TitSpeechEngineServer:/demo/ --name ${image_name}_${iversion} ${image_name}:${iversion} bash
 
-#docker run --rm -it -h thinkit00 -v ${host_path}:${container_path} --name lit_${image_name}_${iversion} ${image_name}:${iversion} bash
-
+#docker run --rm --privileged -it -h thinkit00 -v ${host_path}:${container_path} --name lit_${image_name}_${iversion} ${image_name}:${iversion} bash
