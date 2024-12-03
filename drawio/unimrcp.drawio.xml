@@ -155,155 +155,155 @@
     </mxGraphModel>
   </diagram>
   <diagram name="unimrcp" id="lUmGbxC4DVGQc9K3rd7t">
-    <mxGraphModel dx="2389" dy="845" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2389" dy="845" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-0" />
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-1" parent="SvRv9fJ8co_TdmqnAHv0-0" />
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-2" value="&lt;b&gt;&lt;font style=&quot;font-size: 16px;&quot;&gt;UniMRCP Service&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fillColor=#FFF2CC;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-760" y="180" width="800" height="560" as="geometry" />
+          <mxGeometry x="-813" y="177" width="800" height="560" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-3" value="&lt;font style&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Plugins(External Capabilities&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;)&lt;/b&gt;&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fillColor=#E6D0DE;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-750" y="600" width="610" height="125" as="geometry" />
+          <mxGeometry x="-803" y="597" width="610" height="125" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-4" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Platforms(Access)&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fillColor=#D5E8D4;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-750" y="220" width="610" height="130" as="geometry" />
+          <mxGeometry x="-803" y="217" width="610" height="130" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-5" value="&lt;b&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;Modules&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;strokeColor=none;fillColor=#E6D0DE;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-130" y="220" width="160" height="170" as="geometry" />
+          <mxGeometry x="-183" y="217" width="160" height="170" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-6" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Libraries (Core Support)&lt;/b&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fillColor=#A9C4EB;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-750" y="360" width="610" height="230" as="geometry" />
+          <mxGeometry x="-803" y="357" width="610" height="230" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-7" value="&lt;b&gt;UniMRCP-Server&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-440" y="250" width="290" height="80" as="geometry" />
+          <mxGeometry x="-493" y="247" width="290" height="80" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-8" value="MRCP-SofiaSIP" style="rounded=0;whiteSpace=wrap;html=1;align=center;fontStyle=1;verticalAlign=top;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-120" y="250" width="140" height="80" as="geometry" />
+          <mxGeometry x="-173" y="247" width="140" height="80" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-9" value="MRCP-UniRTSP" style="rounded=0;whiteSpace=wrap;html=1;align=center;fontStyle=1;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-120" y="340" width="140" height="40" as="geometry" />
+          <mxGeometry x="-173" y="337" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-10" value="&lt;b&gt;MRCPv2-Transport&lt;br /&gt;（Conection &amp;amp; Channel Control）&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-740" y="390" width="590" height="40" as="geometry" />
+          <mxGeometry x="-793" y="387" width="590" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-11" value="&lt;b&gt;MRCPv2-Signaling&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-740" y="445" width="290" height="80" as="geometry" />
+          <mxGeometry x="-793" y="442" width="290" height="80" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-12" value="&lt;b&gt;MRCP-Engine&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-440" y="445" width="290" height="80" as="geometry" />
+          <mxGeometry x="-493" y="442" width="290" height="80" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-13" value="Session" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-730" y="476" width="120" height="40" as="geometry" />
+          <mxGeometry x="-783" y="473" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-14" value="Channel" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-430" y="475" width="120" height="40" as="geometry" />
+          <mxGeometry x="-483" y="472" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-15" value="Engine" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-280" y="475" width="120" height="40" as="geometry" />
+          <mxGeometry x="-333" y="472" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-16" value="MRCPv1-Server" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-430" y="281" width="120" height="40" as="geometry" />
+          <mxGeometry x="-483" y="278" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-17" value="MRCPv2-Server" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-280" y="281" width="120" height="40" as="geometry" />
+          <mxGeometry x="-333" y="278" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-18" value="SignalingAgent" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-580" y="475" width="120" height="41" as="geometry" />
+          <mxGeometry x="-633" y="472" width="120" height="41" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-19" value="&lt;b&gt;MPF&lt;br /&gt;(Media Processing Framework)&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-740" y="540" width="590" height="40" as="geometry" />
+          <mxGeometry x="-793" y="537" width="590" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-20" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;APR&lt;br style=&quot;font-size: 14px;&quot;&gt;(Apache Portable RT)&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;fontSize=14;fillColor=#E6E6E6;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-130" y="401.25" width="160" height="325" as="geometry" />
+          <mxGeometry x="-183" y="398.25" width="160" height="325" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-21" value="&lt;b&gt;UniMRCP-Client（CLI）&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-740" y="250" width="290" height="80" as="geometry" />
+          <mxGeometry x="-793" y="247" width="290" height="80" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-22" value="MRCPv1-Client" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-730" y="282.5" width="120" height="40" as="geometry" />
+          <mxGeometry x="-783" y="279.5" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-23" value="MRCPv2-Client" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-580" y="282.5" width="120" height="40" as="geometry" />
+          <mxGeometry x="-633" y="279.5" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-24" value="&lt;b&gt;MRCP-Recorder&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-740" y="632.5" width="140" height="80" as="geometry" />
+          <mxGeometry x="-793" y="629.5" width="140" height="80" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-25" value="&lt;b&gt;MRCP-Verifier&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-590" y="632.5" width="140" height="80" as="geometry" />
+          <mxGeometry x="-643" y="629.5" width="140" height="80" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-26" value="Recorder" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-730" y="662.5" width="120" height="40" as="geometry" />
+          <mxGeometry x="-783" y="659.5" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-27" value="&lt;b&gt;Reco Plugin&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;strokeColor=#b85450;fillColor=#f8cecc;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-440" y="632.5" width="140" height="80" as="geometry" />
+          <mxGeometry x="-493" y="629.5" width="140" height="80" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-28" value="&lt;b&gt;Synth Plugin&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;verticalAlign=top;strokeColor=#b85450;fillColor=#f8cecc;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-290" y="632.5" width="140" height="80" as="geometry" />
+          <mxGeometry x="-343" y="629.5" width="140" height="80" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-29" value="&lt;span style=&quot;color: rgb(64, 64, 64); font-family: &amp;quot;PT Sans&amp;quot;, sans-serif; font-size: 13px; font-variant-ligatures: normal; text-align: start;&quot;&gt;Speaker verification and identification&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-580" y="662.5" width="120" height="40" as="geometry" />
+          <mxGeometry x="-633" y="659.5" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-30" value="&lt;b&gt;&lt;i&gt;ASR Proxy&lt;/i&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;fillColor=#FF3333;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-430" y="662.5" width="120" height="40" as="geometry" />
+          <mxGeometry x="-483" y="659.5" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-31" value="&lt;b&gt;&lt;i&gt;TTS Proxy&lt;/i&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;fillColor=#FF3333;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-280" y="662.5" width="120" height="40" as="geometry" />
+          <mxGeometry x="-333" y="659.5" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-32" value="&lt;b&gt;APR-Toolkit&lt;br /&gt;(Task &amp;amp; Life cycle)&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-120" y="465" width="140" height="40" as="geometry" />
+          <mxGeometry x="-173" y="462" width="140" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-33" value="sofia-sip" style="rounded=0;whiteSpace=wrap;html=1;align=center;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-110" y="281" width="120" height="40" as="geometry" />
+          <mxGeometry x="-163" y="278" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-34" value="&lt;b&gt;APR-Util&lt;br /&gt;(uri/xml/&lt;br /&gt;crypto/misc/&lt;br /&gt;buckets/hooks)&lt;br /&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-120" y="520" width="140" height="90" as="geometry" />
+          <mxGeometry x="-173" y="517" width="140" height="90" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-35" value="&lt;b&gt;APR-Base&lt;br /&gt;(memory/locks/&lt;br /&gt;network/poll/&lt;br /&gt;string/time/&lt;br /&gt;thread/file)&lt;br /&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;align=center;strokeColor=none;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-120" y="622.5" width="140" height="90" as="geometry" />
+          <mxGeometry x="-173" y="619.5" width="140" height="90" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-36" value="&lt;b style=&quot;font-size: 16px;&quot;&gt;FreeSWITCH&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fillColor=#FFFFFF;fontSize=16;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-440" y="80" width="290" height="60" as="geometry" />
+          <mxGeometry x="-493" y="77" width="290" height="60" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-37" value="" style="endArrow=classic;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="SvRv9fJ8co_TdmqnAHv0-1" source="SvRv9fJ8co_TdmqnAHv0-36" target="SvRv9fJ8co_TdmqnAHv0-7" diagramCategory="general" diagramName="DirectionalConnector" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-380" y="430" as="sourcePoint" />
-            <mxPoint x="-330" y="380" as="targetPoint" />
+            <mxPoint x="-433" y="427" as="sourcePoint" />
+            <mxPoint x="-383" y="377" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-38" value="&lt;b&gt;第三方 ASR &lt;br /&gt;服务&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fontSize=16;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-440" y="780" width="140" height="60" as="geometry" />
+          <mxGeometry x="-493" y="777" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-39" value="&lt;b&gt;第三方 TTS &lt;br /&gt;服务&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fontSize=16;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-290" y="780" width="140" height="60" as="geometry" />
+          <mxGeometry x="-343" y="777" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-40" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="SvRv9fJ8co_TdmqnAHv0-1" source="SvRv9fJ8co_TdmqnAHv0-30" target="SvRv9fJ8co_TdmqnAHv0-38" diagramCategory="general" diagramName="DirectionalConnector" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-380" y="530" as="sourcePoint" />
-            <mxPoint x="-330" y="480" as="targetPoint" />
+            <mxPoint x="-433" y="527" as="sourcePoint" />
+            <mxPoint x="-383" y="477" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-41" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="SvRv9fJ8co_TdmqnAHv0-1" source="SvRv9fJ8co_TdmqnAHv0-31" target="SvRv9fJ8co_TdmqnAHv0-39" diagramCategory="general" diagramName="DirectionalConnector" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-380" y="530" as="sourcePoint" />
-            <mxPoint x="-330" y="480" as="targetPoint" />
+            <mxPoint x="-433" y="527" as="sourcePoint" />
+            <mxPoint x="-383" y="477" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-42" value="&lt;b&gt;第三方 声纹识别&lt;br /&gt;服务&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fontSize=16;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-590" y="780" width="140" height="60" as="geometry" />
+          <mxGeometry x="-643" y="777" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-43" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="SvRv9fJ8co_TdmqnAHv0-1" source="SvRv9fJ8co_TdmqnAHv0-29" target="SvRv9fJ8co_TdmqnAHv0-42" diagramCategory="general" diagramName="DirectionalConnector" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-570" y="630" as="sourcePoint" />
-            <mxPoint x="-520" y="580" as="targetPoint" />
+            <mxPoint x="-623" y="627" as="sourcePoint" />
+            <mxPoint x="-573" y="577" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-44" value="&lt;b&gt;第三方 存储&lt;br /&gt;服务&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fontSize=16;" parent="SvRv9fJ8co_TdmqnAHv0-1" diagramCategory="general" diagramName="Rectangle" vertex="1">
-          <mxGeometry x="-740" y="780" width="140" height="60" as="geometry" />
+          <mxGeometry x="-793" y="777" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="SvRv9fJ8co_TdmqnAHv0-45" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="SvRv9fJ8co_TdmqnAHv0-1" source="SvRv9fJ8co_TdmqnAHv0-26" target="SvRv9fJ8co_TdmqnAHv0-44" diagramCategory="general" diagramName="DirectionalConnector" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="-570" y="630" as="sourcePoint" />
-            <mxPoint x="-520" y="580" as="targetPoint" />
+            <mxPoint x="-623" y="627" as="sourcePoint" />
+            <mxPoint x="-573" y="577" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
