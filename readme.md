@@ -71,31 +71,107 @@ mrcp和freeswitch
 开发数据库db_keeper模块
 
 
-计算机四级网络工程师
-华为HCIA-AI V3.0
 
 
 
-- 20250313
-调研讯飞API降噪和开源语音降噪算法
-测试并评估降噪+vad_rtc方案效果
-测试并评估降噪+vad_lenovo方案效果
-测试并评估降噪+vad_fsmn方案效果
 
 
 
----
+<!-- ---
 技术方案调研及评估
 - Speech Denoise
+  - [ClearerVoice-Studio](https://stable-learn.com/zh/clearvoice-studio-tutorial)
+
+  - VoiceBank + DEMAND (Noisy speech database for training speech enhancement algorithms and TTS models):https://paperswithcode.com/dataset/demand
+
+  - DNS Challenge (Deep Noise Suppression Challenge):https://paperswithcode.com/dataset/deep-noise-suppression-2020
+
+关于实时降噪功能，目前讯飞开放平台的实时语音转写产品不支持降噪功能。如果您需要降噪相关的解决方案，建议您考虑使用双麦克风阵列开发套件或模块，它们基于科大讯飞双麦阵列算法设计，提供降噪功能，适用于智能硬件设备。您可以访问以下链接了解更多信息：
+[双麦克风阵列开发套件与模块介绍](https://www.xfyun.cn/services/rtasr)
+
+
+speech enhance
+enhancement
+speech denoise
+
+- 实时降噪
+ - based on real time or stream speech denoise，有哪些开源技术算法
+
+在实时或流式语音降噪领域，有许多开源技术和算法可供使用。这些技术通常利用信号处理和机器学习方法来减少背景噪音，提高语音信号的清晰度。以下是一些常见的开源技术和算法：
+RNNoise：
+由Xiph.org基金会开发，结合了经典信号处理和深度学习技术。RNNoise是一个轻量级的实时语音降噪库，适用于低延迟应用。
+Speex DSP：
+Speex项目的一部分，提供了多种音频处理功能，包括回声消除、噪声抑制和自动增益控制。适用于实时音频处理。
+DeepFilterNet：
+基于深度学习的语音降噪模型，专注于实时应用。它利用神经网络来预测和抑制噪音。
+Noisereduce：
+一个基于Python的库，使用频谱减法和其他信号处理技术来实现降噪。虽然主要用于离线处理，但可以调整用于实时应用。
+Wavesplit：
+使用深度学习技术进行语音分离和降噪，适用于实时和离线应用。
+OpenSMILE：
+虽然主要用于音频特征提取，但也包含一些基本的信号处理功能，可以用于降噪。
+Pyroomacoustics：
+提供了一些用于房间声学仿真和信号处理的工具，包括噪声抑制算法。
+这些开源技术和算法各有优缺点，选择时可以根据具体的应用场景、实时性要求和计算资源来决定。通常，结合多种技术可以获得更好的降噪效果。
+
+ - based on real time or stream speech enhance，有哪些开源技术算法
+
+在实时或流式语音增强领域，有许多开源技术和算法可供使用。这些技术通常结合信号处理和深度学习方法，以提高语音信号的质量和可懂度。以下是一些常见的开源技术和算法：
+RNNoise：
+由Xiph.org基金会开发，结合经典信号处理和深度学习技术。RNNoise不仅用于降噪，也能在一定程度上增强语音信号。
+DeepFilterNet：
+基于深度学习的语音增强模型，专注于实时应用。它利用神经网络来增强语音信号的质量。
+Speex DSP：
+Speex项目的一部分，提供了多种音频处理功能，包括回声消除、噪声抑制和自动增益控制，适用于实时音频增强。
+VoiceFixer：
+一个基于深度学习的工具，用于修复和增强语音信号，适用于实时和离线应用。
+AUDIO-DK：
+提供了一些用于音频信号处理的工具和算法，包括语音增强功能。
+Pyroomacoustics：
+提供了一些用于房间声学仿真和信号处理的工具，可以用于语音增强。
+SEGAN (Speech Enhancement Generative Adversarial Network)：
+使用生成对抗网络（GAN）进行语音增强，适用于实时和离线应用。
+Wave-U-Net：
+基于U-Net架构的语音增强模型，适用于实时应用。
+这些开源技术和算法各有优缺点，选择时可以根据具体的应用场景、实时性要求和计算资源来决定。通常，结合多种技术可以获得更好的语音增强效果。
+
+
 
 - do vad_lenovo with enable_noise
 - do de with stream/real time
----
+--- -->
+
+1、讯飞API不支持实时降噪功能
+2、声学所实时降噪，需提供典型应用场景样本语音，用于分析评估效果
+
+
+- 20250314
+编写DE&VAD技术方案调研及评估结果
+调研开源实时降噪算法
+沟通声学所实时降噪技术方案
+调研讯飞流式实时TTS API
+
+
+
+<!--
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+taming-transformers-rom1504 0.0.6 requires pytorch-lightning>=1.0.8, which is not installed.
+xtuner 0.1.23 requires bitsandbytes>=0.40.0.post4, which is not installed.
+xtuner 0.1.23 requires lagent>=0.1.2, which is not installed.
+xtuner 0.1.23 requires mmengine>=0.10.3, which is not installed.
+easyrobust 0.2.4 requires timm==0.5.4, but you have timm 1.0.12 which is incompatible.
+fairseq 0.12.2 requires hydra-core<1.1,>=1.0.7, but you have hydra-core 1.3.2 which is incompatible.
+fairseq 0.12.2 requires omegaconf<2.1, but you have omegaconf 2.3.0 which is incompatible.
+funcodec 0.2.0 requires typeguard==2.13.3, but you have typeguard 4.3.0 which is incompatible.
+pai-easycv 0.11.6 requires timm==0.5.4, but you have timm 1.0.12 which is incompatible. -->
+
+
+
 
 
 ## DE&VAD技术方案调研及评估
 
-|  技术分类  |  技术方案  |  评估效果  |  测试详情  |  语音case详情  |  非实时SE处理  |
+|  技术分类  |  技术方案  |  评估效果  |  测试详情  |  语音case详情  |  非实时DE处理  |
 |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
 |  vad  |  vad_rtc  |  2/6  |  2句人声(丢首字) + 4句噪音  |  2句有效人声  |  否  |
 |  vad  |  vad_lenovo  |  2/22  |  3句人声 + 19句噪音  |  2句有效人声  |  否  |
@@ -107,6 +183,17 @@ mrcp和freeswitch
 
 
 
+- 20250313
+调研讯飞API降噪和开源语音降噪算法
+测试并评估降噪+vad_rtc方案效果
+测试并评估降噪+vad_lenovo方案效果
+测试并评估降噪+vad_fsmn方案效果
+
+
+<!--
+计算机四级网络工程师
+华为HCIA-AI V3.0
+-->
 
 - 20250312
 调试asr-proxy测试程序，排查解决vad分段结果信息异常丢失问题
