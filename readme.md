@@ -72,8 +72,31 @@ mrcp和freeswitch
 
 
 
+通过网盘分享的文件：sample.zip
+链接: https://pan.baidu.com/s/1tG94-o-dU26O9UUVVzaObg 提取码: t6sy
 
 
+PREFIX=/root/miniconda
+
+Do you wish to update your shell profile to automatically initialize conda?
+This will activate conda on startup and change the command prompt when activated.
+If you'd prefer that conda's base environment not be activated on startup,
+   run the following command when conda is activated:
+
+conda config --set auto_activate_base false
+
+You can undo this by running `conda init --reverse $SHELL`? [yes|no]
+[no] >>>
+You have chosen to not have conda modify your shell scripts at all.
+To activate conda's base environment in your current shell session:
+
+eval "$(/root/miniconda3/bin/conda shell.YOUR_SHELL_NAME hook)"
+
+To install conda's shell functions for easier access, first activate, then:
+
+conda init
+
+Thank you for installing Miniconda3!
 
 
 
@@ -143,6 +166,38 @@ Wave-U-Net：
 
 1、讯飞API不支持实时降噪功能
 2、声学所实时降噪，需提供典型应用场景样本语音，用于分析评估效果
+
+
+- 20250316
+调研阿里流式实时TTS API接口
+
+
+- 20250315
+筛选并转码典型场景下带噪样本语音
+分析tts-proxy讯飞模块接口iflytekTtsInst、iflytekRequestParam
+分析mrcp集成tts-proxy模块调用逻辑
+调研讯飞语音合成API cssml使用方式，评估TTS功能支持
+
+
+
+- TTS厂商、发音人、语速、音量、音高四个配置项:
+ - 静态配置1、env::XUNFEI_SPEED;
+ - 动态配置2、fs api(speak):mrcp-client(engine, voiceId, speed, pitch, volume, sessionId, traceId, vadEndTime8个参数);
+
+## 语音合成多音字、静音停顿、数字读法
+`SSML:Speech Synthesis Markup Language`
+
+- 讯飞API在线语音合成如何在指定的文本处标记静音停顿？
+ - [cssml方法](https://developer.xfyun.cn/thread/15340)：
+（1）对于发音人xiaoyan、xiaoyu、xiaofeng、xiaoqi、catherine、mary需使用cssml方法进行静音标记,并且不支持unicode文本编码。
+（2）在business中添加参数ttp值为cssml。
+（3）在指定文本位置添加静音标记，如：风<break time="500ms"/>轻轻摇着树梢。
+ - 简单标记方法：
+（1）“除去”cssml方法列举的发音人以外，均可以使用简单标记法。
+（2）在指定文本位置添加静音标记，如：你好[p500]科大讯飞。
+
+- [阿里语音合成SSML](https://help.aliyun.com/zh/isi/developer-reference/ssml-overview?spm=5176.12061040.J_3140004040.1.33e63871fJljX6)
+
 
 
 - 20250314
