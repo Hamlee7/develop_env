@@ -63,7 +63,26 @@ mrcp和freeswitch
 设计修改sysfunc/intent2
 并发应用安装存在"其他任务正在更新升级中，请稍后再试。"问题
 
+## SED ASSM
 
+## UCIL (I:incremental)
+
+### continual learning
+ - task increased learning: task IL
+ - class increased learning: class IL
+ - domain increased learning: domain IL
+
+### model archtecture for sound event detection
+** independent learning
+** knowledge distillation
+** 无监督学习 with sample selection
+** balanced memory update
+
+### loss function: 损失函数
+
+### evaluation metric
+ - resample to 16k
+ - max clip numbers
 
 
 
@@ -71,10 +90,182 @@ mrcp和freeswitch
 开发数据库db_keeper模块
 
 
+- 20250324
+离线安装deb时查找.desktop文件失败导致安装状态报错
+
+
+
+- 20250321
+调测sysfunc.app.install中deb包下载功能
+排查解决http文件下载时连接服务端抛异常、文件写入时无法打开、获取deb文件具体包名失败等问题
+调测sysfunc.app.install中离线deb包安装功能
+排查修复构建离线安装deb结果异常、离线安装deb接口传参报错问题
+
+
+
+
+03-21,15:20:14 [INFO]: The incoming language is null...
+03-21,15:20:14 [INFO]: Method InstallDebFile and check_local_dep:False, auto_satisfy:True, current_lang: , InstallDebFile sender: test .
+03-21,15:20:14 [INFO]: Will install: /home/lit/995c7baea2434f77be2f7a293a1ed4b1.deb.
+03-21,15:20:14 [INFO]: Verify pkg:/home/lit/995c7baea2434f77be2f7a293a1ed4b1.deb.
+03-21,15:20:15 [INFO]: Signature Verified Ok!
+03-21,15:20:15 [INFO]: Finished: refreshing Cache for System Update Successfully...
+03-21,15:20:15 [INFO]: Install deb_package: check broken: 0.
+03-21,15:20:15 [INFO]: Install deb_package: required changes
+03-21,15:20:15 [WARNING]: Group depend satify, ignore libcurl3-nss.
+03-21,15:20:15 [WARNING]: Group depend satify, ignore libcurl4.
+03-21,15:20:15 [WARNING]: Group depend satify, ignore libcurl3.
+03-21,15:20:15 [WARNING]: Group depend satify, ignore libgtk-4-1.
+03-21,15:20:15 [INFO]: Cache satisfy is True.
+03-21,15:20:15 [INFO]: Application installation control policy not enabled .
+03-21,15:20:15 [INFO]: source name: kt-ktbrowser-stable.
+03-21,15:20:15 [INFO]: Start acquiring Shutdown lock(block)...
+03-21,15:20:15 [INFO]: File(/tmp/lock/) is not exists and will be create
+03-21,15:20:15 [INFO]: Shutdown Has been locked...
+03-21,15:20:15 [INFO]: Emitting InstalldebStatusChanged progress = 9 , status =  ,current_details =
+03-21,15:20:15 [INFO]: Emitting InstalldebStatusChanged progress = 9 , status = 正在等待验证 ,current_details =
+03-21,15:20:15 [INFO]: Emitting InstalldebStatusChanged progress = 9 , status = 正在解决依赖关系 ,current_details =
+03-21,15:20:15 [INFO]: Emitting InstalldebStatusChanged progress = 9 , status = 正在载入软件列表 ,current_details =
+03-21,15:20:16 [INFO]: Emitting InstalldebStatusChanged progress = 9 , status = 正在解决依赖关系 ,current_details =
+03-21,15:20:16 [INFO]: Emitting InstalldebStatusChanged progress = 9 , status = 正在等待服务启动 ,current_details =
+03-21,15:20:16 [INFO]: Emitting InstalldebStatusChanged progress = 9 , status = 正在等待验证 ,current_details =
+03-21,15:20:16 [INFO]: Emitting InstalldebStatusChanged progress = 9 , status = 等待中 ,current_details =
+03-21,15:20:16 [INFO]: Emitting InstalldebStatusChanged progress = 9 , status = 正在运行任务 ,current_details =
+03-21,15:20:16 [INFO]: Emitting InstalldebStatusChanged progress = 11 , status = 正在运行任务 ,current_details =
+03-21,15:20:16 [INFO]: Emitting InstalldebStatusChanged progress = 11 , status = 正在载入软件列表 ,current_details =
+03-21,15:20:16 [INFO]: Emitting InstalldebStatusChanged progress = 11 , status = 正在载入软件列表 ,current_details =
+03-21,15:20:16 [INFO]: Emitting InstalldebStatusChanged progress = 11 , status = 正在载入软件列表 ,current_details =
+03-21,15:20:17 [INFO]: Emitting InstalldebStatusChanged progress = 11 , status = 正在解决依赖关系 ,current_details =
+03-21,15:20:17 [INFO]: Emitting InstalldebStatusChanged progress = 11 , status = 正在应用更改 ,current_details =
+03-21,15:20:17 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details =
+03-21,15:20:17 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 正在安装 kt-ktbrowser-stable
+03-21,15:20:23 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 正在配置 kt-ktbrowser-stable
+03-21,15:20:23 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 运行安装后的触发器 kysec-utils
+03-21,15:20:24 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 运行安装后的触发器 desktop-file-utils
+03-21,15:20:25 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 运行安装后的触发器 bamfdaemon
+03-21,15:20:25 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 运行安装后的触发器 mime-support
+03-21,15:20:25 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 运行安装后的触发器 man-db
+03-21,15:20:29 [ERROR]: Selecting previously unselected package kt-ktbrowser-stable.
+(Reading database ... 216089 files and directories currently installed.)
+Preparing to unpack .../995c7baea2434f77be2f7a293a1ed4b1.deb ...
+Unpacking kt-ktbrowser-stable (1.0.0.2-1) ...
+Setting up kt-ktbrowser-stable (1.0.0.2-1) ...
+update-alternatives: using /usr/bin/kt-ktbrowser-stable to provide /usr/bin/kt-ktbrowser (kt-ktbrowser) in auto mode
+Creating desktop icon...
+cp: '/home/lit//kt-ktbrowser.desktop':
+dpkg: error processing package kt-ktbrowser-stable (--install):
+ installed kt-ktbrowser-stable package post-installation script subprocess returned error exit status 1
+Processing triggers for kysec-utils (3.3.6.1-0k8.18) ...
+Processing triggers for desktop-file-utils (0.24-1kylin2) ...
+Processing triggers for bamfdaemon (0.5.3+18.04.20180207.2-0kylin2) ...
+Rebuilding /usr/share/applications/bamf-2.index...
+Processing triggers for mime-support (3.64kylin1) ...
+Processing triggers for man-db (2.9.1-1kylin0k1.0) ...
+Errors were encountered while processing:
+ kt-ktbrowser-stable
+
+03-21,15:20:29 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 完成 ,current_details = 运行安装后的触发器 man-db
+03-21,15:20:29 [INFO]: Emitting InstalldebStatusChanged progress = 100 , status = 完成 ,current_details = 运行安装后的触发器 man-db
+03-21,15:20:29 [INFO]: Other Action:current_items = 0, total_items = 0, currenty_bytes = 0 kB, total_bytes = 0 kB, current_cps = 0 kB/s
+03-21,15:20:29 [INFO]: Emitting InstalldebStatusChanged progress = 100 , status = 完成 ,current_details = 运行安装后的触发器 man-db
+03-21,15:20:29 [INFO]: Emitting InstalldebStatusChanged progress = 100 , status = 完成 ,current_details = 运行安装后的触发器 man-db
+03-21,15:20:29 [INFO]: Emitting Cancelable: True
+03-21,15:20:29 [ERROR]: Selecting previously unselected package kt-ktbrowser-stable.
+(Reading database ... 216089 files and directories currently installed.)
+Preparing to unpack .../995c7baea2434f77be2f7a293a1ed4b1.deb ...
+Unpacking kt-ktbrowser-stable (1.0.0.2-1) ...
+Setting up kt-ktbrowser-stable (1.0.0.2-1) ...
+update-alternatives: using /usr/bin/kt-ktbrowser-stable to provide /usr/bin/kt-ktbrowser (kt-ktbrowser) in auto mode
+Creating desktop icon...
+cp: '/home/lit//kt-ktbrowser.desktop':
+dpkg: error processing package kt-ktbrowser-stable (--install):
+ installed kt-ktbrowser-stable package post-installation script subprocess returned error exit status 1
+Processing triggers for kysec-utils (3.3.6.1-0k8.18) ...
+Processing triggers for desktop-file-utils (0.24-1kylin2) ...
+Processing triggers for bamfdaemon (0.5.3+18.04.20180207.2-0kylin2) ...
+Rebuilding /usr/share/applications/bamf-2.index...
+Processing triggers for mime-support (3.64kylin1) ...
+Processing triggers for man-db (2.9.1-1kylin0k1.0) ...
+Errors were encountered while processing:
+ kt-ktbrowser-stable
+
+03-21,15:20:29 [INFO]: Emptying the lockPath(/tmp/lock/) is complete...
+03-21,15:20:29 [INFO]: Shutdown Has been unlocked...
+03-21,15:20:29 [INFO]: Emitting InstalldebFinished success = False , error_string = 软件包操作异常,无法安装或移除软件包。 , error_desc =
+03-21,15:20:29 [INFO]: Emitting InstalldebFinishedWithErrCode success = False , error_string = 软件包操作异常,无法安装或移除软件包。 , error_desc =  , error_code = #0200
+
+
+
+
+
+
+I20250321 13:58:32.661221 108697 app_manager.cc:112] app manager download deb from https://kt-software-private-1313580039.cos.ap-beijing.myqcloud.com/private/manage/2025-01-10/995c7baea2434f77be2f7a293a1ed4b1.deb to /home/lit/995c7baea2434f77be2f7a293a1ed4b1.deb
+I20250321 13:58:32.661356 108697 app_manager.cc:129] app manager connect server https://kt-software-private-1313580039.cos.ap-beijing.myqcloud.com to download /private/manage/2025-01-10/995c7baea2434f77be2f7a293a1ed4b1.deb
+I20250321 13:59:22.122764 108697 app_manager.cc:334] app manager deb installing kt-ktbrowser-stable from /home/lit/995c7baea2434f77be2f7a293a1ed4b1.deb
+I20250321 13:59:23.031014 108697 app_manager.cc:353] app manager deb install kt-ktbrowser-stable return: 0 err_msg:
+
+I20250321 13:59:39.814688 108701 app_manager.cc:95] app manager received signal installdeb-finished: ret_flag: 0 package_name: simulative_package_name error_info: 软件包操作异常,无法安装或移除软件包。 error_reason:
+
+
+I20250321 13:59:39.815351 108697 app_manager.cc:215] app manager searching kt-ktbrowser-stable
+I20250321 13:59:39.818853 108697 app_manager.cc:260] app manager search [{"exec":"","icon":"","identity":"","name":"kt-ktbrowser-stable","package":"kt-ktbrowser-stable","status":1,"version":""}]
+
+
+
+app manager deb g_dbus_proxy_call_sync error: Method “InstallDebFile” returned type “(is)”, but expected “(b)”
+
+app manager received signal installdeb-finished: ret_flag: 0 package_name: simulative_package_name error_info: Transaction failed: 无法打开软件包文件 /home/lit/995c7baea2434f77be2f7a293a1ed4b1.deb error_reason:
+app manager received signal installdeb-finished: ret_flag: 0 package_name: simulative_package_name error_info: 无法打开软件包文件,请将该文件复制到您的本地电脑中并检查文件的权限。 error_reason:
+
+
+
+[I20250321 10:38:23.663755 96612 app_manager.cc:333] app manager deb installing kt-ktbrowser-stable from 995c7baea2434f77be2f7a293a1ed4b1.deb
+[I20250321 10:38:23.686916 96616 app_manager.cc:94] app manager received signal installdeb-finished: ret_flag: 0 package_name: simulative_package_name error_info: No such file or directory . error_reason:
+[E20250321 10:38:23.687659 96612 app_manager.cc:345] app manager deb g_dbus_proxy_call_sync error: Method “InstallDebFile” returned type “(is)”, but expected “(b)”
+
+
+- 20250320
+研究麒麟dbus接口InstallDebFile使用
+开发调用dbus接口离线安装本地deb包功能
+开发离线安装本地deb包时信号捕获与异步处理功能
+编写deb包下载及其离线安装测试用例
+
+
+cpp-httplib/httplib.h
+
 
 - 20250319
-新增sysfunc.app.install接口支持deb安装包下载并安装功能
+调研http client网络库
+开发http 文件url下载功能
+修改优化sysfunc.app.install接口调用流程
+开发AppManager模块支持deb安装包下载和安装接口
 
+
+<!--
+  {"id":6,"appCode":"XMind","appName":"XMind","appClass":"效率工具",
+   "appLogo":"https://kt-software-private-1313580039.cos.ap-beijing.myqcloud.com/private/manage/2025-01-10/4595fa8d1d5840d89107229e5ee73f1e.png",
+   "appType":"deb","appVersion":"22.8.2224",
+   "linkUrl":"https://kt-software-private-1313580039.cos.ap-beijing.myqcloud.com/private/manage/2025-01-10/edaf3696bdbf43a1bf52ac7ec0b9f859.deb",
+   "describe":"一款全功能的思维导图和头脑风暴软件。像大脑的瑞士军刀一般，助你理清思路，捕捉创意。","cpu":"x86_64","xtVersion":null,"osVersion":"2403",
+   "packageName":"xmind-vana_22.8.2224-202209010010_amd64.deb",
+   "appDetails":{"age":null,"size":"108.46","language":null,"ranking":null,"developer":null},"preview":[],"comment":[null]},
+
+  {"id":2,"appCode":"开天AI浏览器","appName":"开天AI浏览器","appClass":"AI应用",
+   "appLogo":"https://kt-software-prod-1313580039.cos.ap-beijing.myqcloud.com/private/manage/2025-01-16/038782f9ef434af0b58788bb088783b9.png",
+   "appType":"deb","appVersion":"1.0.0.2",
+   "linkUrl":"https://kt-software-private-1313580039.cos.ap-beijing.myqcloud.com/private/manage/2025-01-10/995c7baea2434f77be2f7a293a1ed4b1.deb",
+   "describe":"一款基于信创生态体系开发的新一代安全浏览器，专为满足中国自主创新需求而设计。采用国密算法，全面保障数据传输与用户信息安全，同时深度集成AI技术，为用户提供智能化的浏览体验。","cpu":"x86_64","xtVersion":null,"osVersion":"2403",
+   "packageName":"kt-ktbrowser-stable_1.0.0.2-1_amd64-signed.deb",
+   "appDetails":{"age":null,"size":"92.81","language":null,"ranking":null,"developer":null},"preview":[],"comment":[null]},
+
+  {"id":1,"appCode":"微信","appName":"微信","appClass":"社交沟通",
+   "appLogo":"https://kt-software-private-1313580039.cos.ap-beijing.myqcloud.com/private/manage/2024-12-30/3425059e85904224b99c14a3c8a2f834.png",
+   "appType":"deb","appVersion":"4.0.1.7",
+   "linkUrl":"https://kt-software-private-1313580039.cos.ap-beijing.myqcloud.com/private/manage/2024-12-30/05520e524c58411eb56851604d65d606.deb",
+   "describe":"一款跨平台的通讯工具，支持文字、语音、视频聊天，可分享生活点滴，还有支付等功能。","cpu":"x86_64","xtVersion":null,"osVersion":"2403",
+   "packageName":"wechat",
+   "appDetails":{"age":null,"size":"224.18","language":null,"ranking":null,"developer":null},"preview":["https://kt-software-private-1313580039.cos.ap-beijing.myqcloud.com/private/manage/2024-12-30/3425059e85904224b99c14a3c8a2f834.png","https://kt-software-private-1313580039.cos.ap-beijing.myqcloud.com/private/manage/2024-12-30/3425059e85904224b99c14a3c8a2f834.png","https://kt-software-private-1313580039.cos.ap-beijing.myqcloud.com/private/manage/2024-12-30/3425059e85904224b99c14a3c8a2f834.png"],"comment":[null]}
+-->
 
 
 通过网盘分享的文件：sample.zip
