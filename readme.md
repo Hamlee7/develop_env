@@ -86,13 +86,51 @@ mrcp和freeswitch
 
 
 
+
+
 设计sysfunc语义路由模块semantic_router
 开发数据库db_keeper模块
 
 
-- 20250324
-离线安装deb时查找.desktop文件失败导致安装状态报错
+kdm_intent
 
+sudo dpkg --remove kt-ktbrowser-stable
+
+
+dpkg -s browser360-cn-stable xmind-vana
+apt search browser360-cn-stable xmind-vana
+
+
+deb包文件名package_name 和 .desktop文件中Name 不对应, 导致ukui search不到应用信息
+
+
+- 20250325
+编写kdm_intent标准化文档design.md
+编写kdm_intent标准化文档README.md
+编写kdm_intent标准化文档kdm.json
+
+
+- 20250324
+定位dbus接口InstallDebFile离线安装个别deb包(kt-ktbrowser-stable)失败报错#0200问题
+自测sysfunc.app.install接口在线源安装功能
+自测sysfunc.app.install接口离线deb包安装功能
+排查离线安装deb包成功，但ukui search查不到对应应用信息问题
+，deb包文件名package_name 和 .desktop文件中Name 不对应, 导致ukui search不到应用信息
+
+
+
+## TODO （外部）麒麟-联想AIPC沟通
+#### Q：@兜兜里面没有糖  hello，咨询个问题哈，调用InstallDebFile方法，安装本地不同deb包(wechat和kt-ktbrowser-stable)，其中wechat包可以正常安装，但安装kt-ktbrowser-stable时，InstalldebFinishedWithErrCode信号会报错#0200，如图，请问这可能是什么原因导致的？
+
+#### A:麒麟技术反馈：执行postinst报错了, 可以看下是不是缺少了环境变量导致的, 接口没有要求哪些环境变量是必要的，得看postinst里怎么写的，比如需要弹窗的得加上DISPLAY
+
+#### Conslution: 1、可能跟kt-ktbrowser-stable离线deb包，构建时相关配置有关，需要协调开天和麒麟共同推进解决
+#### Conslution: 2、deb文件内包名package_name 和 .desktop文件中Name 不对应, 导致ukui search不到应用信息
+
+
+yes: wechat
+no: kt-ktbrowser-stable
+no: xmind-vana
 
 
 - 20250321
@@ -100,6 +138,32 @@ mrcp和freeswitch
 排查解决http文件下载时连接服务端抛异常、文件写入时无法打开、获取deb文件具体包名失败等问题
 调测sysfunc.app.install中离线deb包安装功能
 排查修复构建离线安装deb结果异常、离线安装deb接口传参报错问题
+
+
+I20250321 18:08:41.619684 306457 app_manager.cc:215] app manager searching wechat
+I20250321 18:08:41.687517 306457 app_manager.cc:260] app manager search [{"exec":"/usr/bin/wechat ","icon":"/usr/share/icons/hicolor/256x256/apps/wechat.png","identity":"/usr/share/applications/wechat.desktop","name":"微信","package":"wechat","status":4,"version":""}]
+I20250321 18:08:41.692938 306457 sysfunc.cc:819] sysfunc reply: {"cmd":"sysfunc.app.install","data":[{"exec":"","icon":"","identity":"","name":"qq","package":"qq","status":1,"version":""},{"exec":"/usr/bin/  ","icon":"/usr/share/icons/hicolor/256x256/apps/wechat.png","identity":"/usr/share/applications/wechat.desktop","name":"微信","package":"wechat","status":4,"version":""}],"eot":true,"private":"test sysfunc","sessionId":null,"state":{"code":0,"extend":"","info":"success"},"status":0}
+I20250321 18:08:41.692989 306457 main.cc:46] callback({"cmd":"sysfunc.app.install","data":[{"exec":"","icon":"","identity":"","name":"qq","package":"qq","status":1,"version":""},{"exec":"/usr/bin/wechat ","icon":"/usr/share/icons/hicolor/256x256/apps/wechat.png","identity":"/usr/share/applications/wechat.desktop","name":"微信","package":"wechat","status":4,"version":""}],"eot":true,"private":"test sysfunc","sessionId":null,"state":{"code":0,"extend":"","info":"success"},"status":0})
+
+
+
+03-21,18:08:21 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 正在安装 wechat
+03-21,18:08:33 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 正在配置 wechat
+03-21,18:08:39 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 运行安装后的触发器 kysec-utils
+03-21,18:08:39 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 运行安装后的触发器 desktop-file-utils
+03-21,18:08:40 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 运行安装后的触发器 bamfdaemon
+03-21,18:08:40 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 运行安装后的触发器 mime-support
+03-21,18:08:40 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 正在应用更改 ,current_details = 运行安装后的触发器 hicolor-icon-theme
+03-21,18:08:41 [INFO]: Emitting InstalldebStatusChanged progress = 95 , status = 完成 ,current_details = 运行安装后的触发器 hicolor-icon-theme
+03-21,18:08:41 [INFO]: Emitting InstalldebStatusChanged progress = 100 , status = 完成 ,current_details = 运行安装后的触发器 hicolor-icon-theme
+03-21,18:08:41 [INFO]: Other Action:current_items = 0, total_items = 0, currenty_bytes = 0 kB, total_bytes = 0 kB, current_cps = 0 kB/s
+03-21,18:08:41 [INFO]: Emitting InstalldebStatusChanged progress = 100 , status = 完成 ,current_details = 运行安装后的触发器 hicolor-icon-theme
+03-21,18:08:41 [INFO]: Emitting InstalldebStatusChanged progress = 100 , status = 完成 ,current_details = 运行安装后的触发器 hicolor-icon-theme
+03-21,18:08:41 [INFO]: Emitting Cancelable: True
+03-21,18:08:41 [INFO]: Emptying the lockPath(/tmp/lock/) is complete...
+03-21,18:08:41 [INFO]: Shutdown Has been unlocked...
+03-21,18:08:41 [INFO]: Emitting InstalldebFinished success = True , error_string =  , error_desc =
+03-21,18:08:41 [INFO]: Emitting InstalldebFinishedWithErrCode success = True , error_string =  , error_desc =  , error_code =
 
 
 
