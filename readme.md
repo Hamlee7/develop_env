@@ -103,11 +103,79 @@ apt search browser360-cn-stable xmind-vana
 
 deb包文件名package_name 和 .desktop文件中Name 不对应, 导致ukui search不到应用信息
 
+KDM文档补充：Readme、design、kds.json、API文档
+
+CacheRecorder
+
+
+- 20250328
+设计应用安装任务实例对象结构、历史任务缓存数据结构
+设计开发新增应用安装任务功能接口、应用安装异步处理流程
+转换并更新意图索引向量库
+沟通跟进实时降噪评估效果
+
+
+
+设计前后端交互的删除应用安装任务接口
+设计应用安装任务的删、查的功能接口
+
+
+
+实现一个自定义的数据结构，能同时满足以下要求：
+1、支持缓存自始至终所有历史元素
+2、支持删除所有历史元素的某个元素
+3、支持阻塞队列一样的入队和出队功能
+4、支持遍历当前所有元素
+
+
+- 20250327
+review 标准kdm_intent意图理解模块
+修改优化kdm_intent文档kds.json和README.md
+优化kdm_intent文档design.json
+梳理sysfunc.app.install/install_list接口流程
+
+
+## kdm-intent review
+
+### Design
+Sort model 改成 ranking mode
+架构中的槽位填充，改为槽位抽取
+流程图改为正规的调用流程图，补充对应的异常处理，每个块中断的时候关键的异常补充
+补充说明批量处理的个数限制 为 3组
+架构中三元素：业务、管理、数据
+
+### API
+Domain 可以 填写 AIPC，明确说明咱不支持
+
+
+### 通用建议
+有序才能高效，数据结构至为关键
+架构设计可以通过业务功能、运营管理、数据三部分来体现完整性和清晰度
+C++库是如何发布，比如发布的Linux 版本，可以走源码发布，打tag 说明 release note
+
+
+- 20250326
+迁移intent2代码到标准kdm_intent仓库
+编写kdm_intent标准化文档kdm.json
+编写kdm_intent标准化文档README.md
+编写kdm_intent标准化文档design.md
+
 
 - 20250325
-编写kdm_intent标准化文档design.md
-编写kdm_intent标准化文档README.md
-编写kdm_intent标准化文档kdm.json
+编写sysfunc.app.get/installable/install整体流程测试用例
+调测sysfunc.app.get/installable/install整体流程
+梳理汇总sysfunc.app.get/installable/install整体流程测试情况
+搭建intent kdm标准化工程框架
+
+
+
+|  流程可通  |  name  |  package  |  desktop:Name(ukui search)  |  desktop_name  |
+|:-----:|:-----:|:-----:|:-----:|:-----:|
+|  可通  |  微信  |  wechat  |  wechat / 微信  |  /usr/share/applications/wechat.desktop  |
+|  不通|  360安全浏览器  |  browser360-cn-stable  |  360 Secure Browser / 360安全浏览器  |  /usr/share/applications/browser360-cn.desktop  |
+|  不通  |  QQ  |  linuxqq  |  QQ  |  /usr/share/applications/qq.desktop  |
+|  不通  |  XMind  |  xmind-vana  |  Xmind  |  /usr/share/applications/xmind.desktop  |
+
 
 
 - 20250324
@@ -116,6 +184,8 @@ deb包文件名package_name 和 .desktop文件中Name 不对应, 导致ukui sear
 自测sysfunc.app.install接口离线deb包安装功能
 排查离线安装deb包成功，但ukui search查不到对应应用信息问题
 ，deb包文件名package_name 和 .desktop文件中Name 不对应, 导致ukui search不到应用信息
+
+
 
 
 
