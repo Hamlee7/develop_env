@@ -108,16 +108,95 @@ KDM文档补充：Readme、design、kds.json、API文档
 CacheRecorder
 
 
+sysfunc.app.install 安装应用到本地接口
+sysfunc.app.install_list 获取应用安装列表接口
+sysfunc.app.install_clear 清除所有已完成的应用安装任务接口
+
+
+feat: add recommended_install_app to sysfunc.syscall.intent
+
+image: 865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn/unimrcp:waihu-prod-latest
+
+
+chunk_size = [0, 10, 5] #[0, 10, 5] 600ms, [0, 8, 4] 480ms
+15  600ms
+12  480ms
+3  120ms
+1  40ms
+encoder_chunk_look_back = 4 #number of chunks to lookback for encoder self-attention
+decoder_chunk_look_back = 1 #number of encoder chunks to lookback for decoder cross-attention
+
+wss://172.70.10.210:10096
+
+wss://127.0.0.1:10095
+wss://192.168.40.93:10095
+wss://172.20.224.1:10095
+wss://192.168.176.1:10095
+
+
+
+
+部署联调sysfunc应用管理模块installable/install
+跟进沟通麒麟应用中心查询结果逻辑
+
+
+编写意图体系Excel表格必要数据解析的工具程序
+构建系统调用所用意图资源sqlite数据库
+调研sqlite数据库三方开发框架(sqlite_orm、sqlite3pp、sqlitecpp、easysqlite、sqlSQLite++、sqlite3cc)
+搭建并测试数据库开发框架sqlite_orm环境
+
+
+
+
+
+- 20250402
+调试意图体系Excel表格必要数据解析的工具程序
+测试意图槽位体系数据库kt.db
+设计sysfunc语义路由模块semantic_router
+修改sysfunc.app.exec打开应用时以后台的方式运行
+
+
+- 20250401
+添加sysfunc.syscall.intent老接口支持recommended_install_app字段逻辑
+合并sysfunc/app_manager代码，提交git仓库
+定位解决太原热力项目线上mrcp中asr识别结果为空问题(配置多余按键监听事件)
+排查徐工项目测试asr-proxy服务推送识别结果时kafka报错(网络端口不通导致)
+
+
+
+
+https://github.com/modelscope/FunASR/blob/main/docs/tutorial/README_zh.md
+
+
+使用国内特定python源安装(清华源：-i https://pypi.tuna.tsinghua.edu.cn/simple):
+
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+
+
+## onnxruntime memory leak
+- 使用vargrind查看内存泄漏
+- 使用Massif 查看堆分配
+- 分析发现prepack消耗内存
+- 设置kOrtSessionOptionsConfigDisablePrepacking,减少内存
+- 跟踪到onnxsession内存释放不彻底问题
+- glibc分配缓存未释放机制(系统底层内存管理策略)
+- 尝试使用malloc_trim释放内存()
+
+
+
+- 20250331
+设计前后端交互的清除应用安装任务接口
+设计应用安装任务的删、查的功能接口
+开发清除已完成的应用安装任务功能及其接口
+开发查询当前所有的应用安装任务功能及其接口
+
+
 - 20250328
 设计应用安装任务实例对象结构、历史任务缓存数据结构
 设计开发新增应用安装任务功能接口、应用安装异步处理流程
 转换并更新意图索引向量库
 沟通跟进实时降噪评估效果
-
-
-
-设计前后端交互的删除应用安装任务接口
-设计应用安装任务的删、查的功能接口
 
 
 
