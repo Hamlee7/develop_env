@@ -86,12 +86,6 @@ mrcp和freeswitch
 
 
 
-
-
-设计sysfunc语义路由模块semantic_router
-开发数据库db_keeper模块
-
-
 kdm_intent
 
 sudo dpkg --remove kt-ktbrowser-stable
@@ -147,6 +141,401 @@ wss://192.168.176.1:10095
 
 
 
+## 以下是一个基于 C++ 的智能交互流程接口系统的设计，涵盖了 **意图识别**、**槽位抽取**、**语义路由**、**动作执行** 和 **系统调用** 等环节。每个模块都设计为独立的类或接口，便于扩展和维护。
+
+---
+
+### **系统架构设计**
+1. **意图识别模块**：识别用户输入的意图。
+2. **槽位抽取模块**：从用户输入中提取关键参数（槽位）。
+3. **语义路由模块**：根据意图和槽位信息，路由到对应的动作。
+4. **动作执行模块**：执行具体的业务逻辑。
+5. **系统调用模块**：与外部系统交互（如数据库、API 调用等）。
+
+---
+
+### **代码实现**
+
+以下是各模块的具体实现：
+
+#### **1. 意图识别模块**
+意图识别模块负责分析用户输入并确定用户的意图。
+
+```cpp
+#pragma once
+#include <string>
+#include <unordered_map>
+
+class IntentRecognizer {
+public:
+    // 初始化意图模型（可以加载训练好的模型或规则）
+    void loadModel(const std::string& modelPath);
+
+    // 根据用户输入识别意图
+    std::string recognizeIntent(const std::string& userInput);
+
+private:
+    std::unordered_map<std::string, std::string> intentRules; // 简单规则映射
+};
+```
+
+```cpp
+#include "intent_recognizer.h"
+#include <sstream>
+
+void IntentRecognizer::loadModel(const std::string& modelPath) {
+    // 模拟加载规则模型
+    intentRules["play music"] = "PlayMusic";
+    intentRules["set alarm"] = "SetAlarm";
+    intentRules["weather"] = "GetWeather";
+}
+
+std::string IntentRecognizer::recognizeIntent(const std::string& userInput) {
+    for (const auto& rule : intentRules) {
+        if (userInput.find(rule.first) != std::string::npos) {
+            return rule.second;
+        }
+    }
+    return "UnknownIntent";
+}
+```
+
+---
+
+#### **2. 槽位抽取模块**
+槽位抽取模块负责从用户输入中提取参数（如时间、地点、对象等）。
+
+```cpp
+#pragma once
+#include <string>
+#include <unordered_map>
+
+class SlotExtractor {
+public:
+    // 抽取槽位信息
+    std::unordered_map<std::string, std::string> extractSlots(const std::string& userInput);
+};
+```
+
+```cpp
+#include "slot_extractor.h"
+#include <regex>
+
+std::unordered_map<std::string, std::string> SlotExtractor::extractSlots(const std::string& userInput) {
+    std::unordered_map<std::string, std::string> slots;
+
+    // 示例：提取时间槽位
+    std::regex timeRegex(R"((\d{1,2}:\d{2}))");
+    std::smatch match;
+    if (std::regex_search(userInput, match, timeRegex)) {
+        slots["time"] = match.str(1);
+    }
+
+    // 示例：提取地点槽位
+    std::regex locationRegex(R"(in (\w+))");
+    if (std::regex_search(userInput, match, locationRegex)) {
+        slots["location"] = match.str(1);
+    }
+
+    return slots;
+}
+```
+
+---
+
+#### **3. 语义路由模块**
+语义路由模块根据意图和槽位信息，路由到对应的动作。
+
+```cpp
+#pragma once
+#include <string>
+#include <unordered_map>
+#include <functional>
+
+class SemanticRouter {
+public:
+    // 注册动作
+    void registerAction(const std::string& intent, const std::function<void(const std::unordered_map<std::string, std::string>&)>& action);
+
+    // 路由到对应的动作
+    void route(const std::string& intent, const std::unordered_map<std::string, std::string>& slots);
+
+private:
+    std::unordered_map<std::string, std::function<void(const std::unordered_map<std::string, std::string>&)>> actionMap;
+};
+```
+
+```cpp
+#include "semantic_router.h"
+#include <iostream>
+
+void SemanticRouter::registerAction(const std::string& intent, const std::function<void(const std::unordered_map<std::string, std::string>&)>& action) {
+    actionMap[intent] = action;
+}
+
+void SemanticRouter::route(const std::string& intent, const std::unordered_map<std::string, std::string>& slots) {
+    if (actionMap.find(intent) != actionMap.end()) {
+        actionMap[intent](slots);
+    } else {
+        std::cerr << "No action registered for intent: " << intent << std::endl;
+    }
+}
+```
+
+---
+
+#### **4. 动作执行模块**
+动作执行模块实现具体的业务逻辑。
+
+```cpp
+#pragma once
+#include <unordered_map>
+#include <string>
+#include <iostream>
+
+class Actions {
+public:
+    static void playMusic(const std::unordered_map<std::string, std::string>& slots);
+    static void setAlarm(const std::unordered_map<std::string, std::string>& slots);
+    static void getWeather(const std::unordered_map<std::string, std::string>& slots);
+};
+```
+
+```cpp
+#include "actions.h"
+
+void Actions::playMusic(const std::unordered_map<std::string, std::string>& slots) {
+    std::cout << "Playing music..." << std::endl;
+}
+
+void Actions::setAlarm(const std::unordered_map<std::string, std::string>& slots) {
+    std::cout << "Setting alarm at " << slots.at("time") << std::endl;
+}
+
+void Actions::getWeather(const std::unordered_map<std::string, std::string>& slots) {
+    std::cout << "Fetching weather for location: " << slots.at("location") << std::endl;
+}
+```
+
+---
+
+#### **5. 系统调用模块**
+系统调用模块负责与外部系统交互（如 API 调用、数据库查询等）。这里可以根据具体需求扩展。
+
+---
+
+### **主程序**
+将所有模块整合在一起，形成完整的交互流程。
+
+```cpp
+#include "intent_recognizer.h"
+#include "slot_extractor.h"
+#include "semantic_router.h"
+#include "actions.h"
+
+int main() {
+    // 初始化模块
+    IntentRecognizer intentRecognizer;
+    intentRecognizer.loadModel("");
+
+    SlotExtractor slotExtractor;
+    SemanticRouter router;
+
+    // 注册动作
+    router.registerAction("PlayMusic", Actions::playMusic);
+    router.registerAction("SetAlarm", Actions::setAlarm);
+    router.registerAction("GetWeather", Actions::getWeather);
+
+    // 用户输入
+    std::string userInput = "set alarm at 7:30";
+
+    // 意图识别
+    std::string intent = intentRecognizer.recognizeIntent(userInput);
+
+    // 槽位抽取
+    auto slots = slotExtractor.extractSlots(userInput);
+
+    // 语义路由
+    router.route(intent, slots);
+
+    return 0;
+}
+```
+
+---
+
+### **运行示例**
+输入：`set alarm at 7:30`
+输出：
+```
+Setting alarm at 7:30
+```
+
+输入：`get weather in London`
+输出：
+```
+Fetching weather for location: London
+```
+
+---
+
+### **总结**
+- **模块化设计**：每个功能模块独立实现，便于扩展和维护。
+- **灵活性**：通过注册动作，可以轻松扩展新的意图和功能。
+- **可扩展性**：可以进一步集成外部 API 调用、数据库查询等功能，增强系统能力。
+
+
+设计sysfunc语义路由模块semantic_router
+设计sysfunc语义路由模块semantic_router
+开发数据库db_keeper模块
+
+
+## 设计语义功能路由
+
+lua(va.lua)
+Enter va.lua
+
+
+Null MRCPv2 Connection
+
+
+
+- 20250411
+分析tts-proxy代码，定位session id为空问题
+分析mrcp代码，定位session id为空问题
+定位freeswitch转人工前调用mrcp时未传session id字段
+源码编译安装gm工具
+
+
+
+- 20250410
+分析颐和园线上mrcp日志asr交互流程
+排查颐和园线上mrcp日志asr中ws连接逾期问题
+分析颐和园线上mrcp日志tts交互流程(用的联想tts)
+排查颐和园线上tts session id为空问题
+
+
+
+- 20250409
+新增kt-lib/intent意图规则的截图匹配逻辑
+修复kt-lib/sysfunc.syscall打开截图失败case
+分析颐和园线上mrcp日志sip交互
+分析颐和园线上mrcp日志rtp交互
+
+
+
+
+sysfunc reply: {"cmd":"sysfunc.syscall","data":{"result":"槽值不存在"},"eot":true,"private":null,"sessionId":"28817cac-65f6-4697-bf29-eeaee6f9c46f","state":{"code":0,"extend":"","info":"success"},"status":400}
+
+
+首先，感谢马凯帮导出freeswitch和mrcp日志文件!
+根据线上日志的初步排查，现需要结合颐和园线上runtime环境部署方案及其相关网络配置进行综合分析，烦请相关知情同学帮补充如下信息，以便定位其具体原因，谢谢。
+1、关于颐和园线上runtime环境整体部署方案说明(包含freeswitch服务、mrcp服务、与freeswitch有网络通信的其他服务)
+2、关于颐和园语音网关的网络配置(开放的通信方式tcp/udp、ip、port范围)
+3、freeswtich容器的外网相关网络配置(开放的通信方式tcp/udp、ip、port范围)
+4、freeswtich容器的内网相关网络配置(开放的通信方式tcp/udp、ip、port范围)
+5、与freeswitch有网络通信的其他服务的网络配置(开放的通信方式tcp/udp、ip、port范围)
+6、mrcp容器的网络配置(开放的通信方式tcp/udp、ip、port范围)
+
+
+
+- 20250408
+分析颐和园线上freeswitch日志sip交互
+分析颐和园线上freeswitch日志rtp交互
+分析颐和园线上freeswitch日志mrcp-client交互
+分析颐和园线上mrcp日志mrcp-server交互
+
+
+排查项目线上freeswitch无法连接mrcp无声音问题
+
+FreeSWITCH Version 1.10.5-release+git~20201013T151219Z~2b79ac2f75~64bit (-releasegit 2b79ac2 2020-10-13 15:12:19Z 64bit)
+FreeSWITCH Started
+
+
+Run as Daemon
+UniMRCP Server [1.7.0]
+Open Config File
+
+
+
+fs：
+20次  Starting task thread
+0403: 3(1 restart)
+0404: 10(2 restart)
+0405: 6
+0406: 1
+
+17次  Segmentation fault
+
+
+
+0403:
+414 tts/asr mrcp connet failed NULL
+0404:
+197 tts/asr mrcp connet failed NULL
+
+
+
+sip:
+fs clinet m=application 9 TCP/MRCPv2
+mrcp server m=application 1644 TCP/MRCPv2
+
+
+tts mrcp connect(normal):
+
+Add Control Channel \u003c568d287e33c34b8f@speechsynth\u003e 192.168.6.151:35592 \u003c-\u003e 192.168.6.151:1644 [3]
+...
+Send MRCP Request TTS-123 \u003c568d287e33c34b8f@speechsynth\u003e [1]
+Send MRCPv2 Data 192.168.6.151:35592 \u003c-\u003e 192.168.6.151:1644 [916 bytes]
+MRCP/2.0 916 SPEAK 1
+
+
+
+/usr/local/freeswitch/start.sh: line 100:    44 Segmentation fault      (core dumped) /usr/local/freeswitch/bin/freeswitch -nonat
+
+
+Successfully Loaded
+
+
+
+tts mrcp connect(un-normal):
+Add Control Channel \u003ca409d64e2b444700@speechsynth\u003e 192.168.6.151:46624 \u003c-\u003e 192.168.6.151:1644 [2]
+...
+
+Send MRCP Request TTS-220 \u003ca409d64e2b444700@speechsynth\u003e [1]
+
+Null MRCPv2 Connection \u003ca409d64e2b444700@speechsynth\u003e
+Cancel MRCP Request \u003ca409d64e2b444700@speechsynth\u003e [1]
+
+Raise App MRCP Response TTS-220 \u003ca409d64e2b444700\u003e\n
+
+
+asr mrcp connect:
+Send MRCPv2 Data 192.168.6.151:60486 \u003c-\u003e 192.168.6.151:1644
+Receive MRCPv2 Data 192.168.6.151:60486 \u003c-\u003e 192.168.6.151:1644
+
+
+tts audio:
+fs client recv m=audio 3440 RTP/AVP
+mrcp server send m=audio 45262 RTP/AVP
+
+Open RTP Receiver 192.168.6.151:3440 \u003c- 192.168.6.151:45262
+
+
+asr audio:
+
+
+- 20250407
+更新creator_zone_multi/DimExtract工程代码，适配arm64平台调试编译
+更新creator_zone_multi/PoPipelineTest工程依赖，适配arm64平台编译调试运行
+整理creator_zone_multi环境，并打包提供元月arm64版本安装包
+
+
+- 20250403
+更新creator_zone_multi/Classification工程代码，适配arm64平台调试编译
+更新creator_zone_multi/DimSearch工程代码，适配arm64平台调试编译
+更新creator_zone_multi/DimRec工程代码，适配arm64平台调试编译
+更新creator_zone_multi/PoPipeline工程代码，适配arm64平台调试编译
 
 
 - 20250402
