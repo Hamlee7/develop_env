@@ -396,7 +396,32 @@ lua(va.lua)
 Enter va.lua
 
 
+
+Cannot park channels that are under control already
+
 Null MRCPv2 Connection
+
+
+提供主备用服务切换、压测环境复现、日志导出定位等方法深入排查问题
+bot和转人工流程
+
+
+
+- 20250415
+筛查fs无tts播报或无asr识别的通话录音详情
+分析fs无声tts的控制通道交互流程
+分析fs无asr识别的控制通道交互流程
+分析fs执行park失败报错问题(413)
+
+
+
+
+- 20250414
+分析颐和园线上fs bot交互流程(5 segmentation fault)
+分析颐和园线上fs 人工坐席转接流程
+定位颐和园线上fs 呼入电话tts无声音播报的问题语音(126 null connection)
+支持排查徐工测试环境媒体数据加密问题
+
 
 
 
