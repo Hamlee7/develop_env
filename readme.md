@@ -392,6 +392,18 @@ Fetching weather for location: London
 
 ## 设计语义功能路由
 
+build path:
+/home/.local/lit/kds-freeswitch/freeswitch/docker/examples/ubuntu18
+
+- 20250418
+源码编译signalwire依赖
+源码编译mod_unimrcp模块
+源码编译freeswitch服务
+安装freeswitch及其所需的声音资源文件
+测试freeswitch运行
+
+
+## yhy无声故障问题排查
 lua(va.lua)
 Enter va.lua
 
@@ -406,6 +418,377 @@ Null MRCPv2 Connection
 bot和转人工流程
 
 
+- ulimit -c
+- netstat/ss/lsop
+awk '{print $2}' /proc/net/tcp | cut -d':' -f2 | xargs -I{} printf "%d\n" 0x{}
+
+
+
+[root@SC-prod-vm-yhy151 bin]# cat /proc/43/net/sockstat
+sockets: used 376
+TCP: inuse 67 orphan 0 tw 6 alloc 200 mem 0
+UDP: inuse 15 mem 1088
+UDPLITE: inuse 0
+RAW: inuse 0
+FRAG: inuse 0 memory 0
+
+[root@SC-prod-vm-yhy151 bin]# cat /proc/43/net/sockstat
+sockets: used 374
+TCP: inuse 67 orphan 0 tw 4 alloc 202 mem 0
+UDP: inuse 11 mem 967
+UDPLITE: inuse 0
+RAW: inuse 0
+FRAG: inuse 0 memory 0
+[root@SC-prod-vm-yhy151 bin]# date
+Wed Apr 16 14:25:02 CST 2025
+
+
+[root@SC-prod-vm-yhy151 bin]# cat /proc/43/status
+Name:	freeswitch
+Umask:	0022
+State:	S (sleeping)
+Tgid:	43
+Ngid:	0
+Pid:	43
+PPid:	1
+TracerPid:	0
+Uid:	0	0	0	0
+Gid:	0	0	0	0
+FDSize:	256
+Groups:	0
+NStgid:	43
+NSpid:	43
+NSpgid:	1
+NSsid:	1
+VmPeak:	 4639464 kB
+VmSize:	 4633204 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	  230628 kB
+VmRSS:	  230020 kB
+RssAnon:	  217288 kB
+RssFile:	   12732 kB
+RssShmem:	       0 kB
+VmData:	  349308 kB
+VmStk:	     132 kB
+VmExe:	      24 kB
+VmLib:	   30072 kB
+VmPTE:	    1292 kB
+VmSwap:	       0 kB
+HugetlbPages:	       0 kB
+CoreDumping:	0
+THP_enabled:	1
+Threads:	48
+SigQ:	1/128228
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000000000000
+SigIgn:	0000000010003006
+SigCgt:	0000000180004209
+CapInh:	0000000000000000
+CapPrm:	00000000a80425fb
+CapEff:	00000000a80425fb
+CapBnd:	00000000a80425fb
+CapAmb:	0000000000000000
+NoNewPrivs:	0
+Seccomp:	2
+Seccomp_filters:	1
+Speculation_Store_Bypass:	thread vulnerable
+SpeculationIndirectBranch:	conditional enabled
+Cpus_allowed:	ff
+Cpus_allowed_list:	0-7
+Mems_allowed:	00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001
+Mems_allowed_list:	0
+voluntary_ctxt_switches:	52553
+nonvoluntary_ctxt_switches:	344
+
+[root@SC-prod-vm-yhy151 bin]# ll /proc/43/fdinfo/|wc -l
+79
+92
+
+
+socket connect status time_wait:
+[root@SC-prod-vm-yhy151 freeswitch]# cat /proc/net/tcp|grep " 06 "|wc -l
+17
+
+freeswitch.log*
+12
+
+echo "core.%e.%p" > /proc/sys/kernel/core_pattern
+
+
+
+
+## Ubuntu 上从源码编译 FreeSWITCH，可以按照以下步骤操作：
+
+- reference: https://developer.signalwire.com/freeswitch/FreeSWITCH-Explained/Installation/Linux/Debian_67240088/
+
+### 1. 安装基础开发环境依赖
+
+#### base devel componet
+运行以下命令安装 FreeSWITCH 所需的基础依赖项：
+```bash
+# base
+sudo apt update && apt install -y vim git build-essential cmake automake \
+    autoconf 'libtool-bin|libtool' pkg-config \
+    libssl-dev zlib1g-dev libdb-dev unixodbc-dev libncurses5-dev libexpat1-dev \
+    libgdbm-dev bison erlang-dev libtpl-dev libtiff5-dev uuid-dev \
+    libpcre3-dev libedit-dev libsqlite3-dev libcurl4-openssl-dev nasm \
+    libogg-dev libspeex-dev libspeexdsp-dev libldns-dev python3-dev \
+    libavformat-dev libswscale-dev 'libswresample-dev|libavresample-dev' \
+    liblua5.2-dev libopus-dev libpq-dev libsndfile1-dev libflac-dev libvorbis-dev
+
+# libavformat-dev failed to build
+# priv_data_size
+# ticks_per_frame
+
+
+# # sofia-sip.git
+# git clone https://github.com/freeswitch/sofia-sip.git
+# ./bootstrap.sh -j
+# ./configure
+# make -j
+# sudo make install
+
+# # spandsp
+# git clone https://github.com/freeswitch/spandsp.git
+# ./bootstrap.sh -j
+# ./configure
+# make -j
+# sudo make install
+```
+
+#### 3rd dependence componet
+
+```bash
+git clone https://github.com/signalwire/libks
+git clone https://github.com/freeswitch/sofia-sip
+git clone https://github.com/freeswitch/spandsp
+git clone https://github.com/signalwire/signalwire-c
+
+cd libks
+cmake . -DCMAKE_INSTALL_PREFIX=/usr -DWITH_LIBBACKTRACE=1
+sudo make install
+cd ..
+
+cd sofia-sip
+./bootstrap.sh
+# ./configure CFLAGS="-g -ggdb" --with-pic --with-glib=no --without-doxygen --disable-stun --prefix=/usr
+./configure
+make -j`nproc --all`
+sudo make install
+cd ..
+
+cd spandsp
+./bootstrap.sh
+./configure CFLAGS="-g -ggdb" --with-pic --prefix=/usr
+make -j`nproc --all`
+sudo make install
+cd ..
+
+cd signalwire-c
+PKG_CONFIG_PATH=/usr/lib/pkgconfig cmake . -DCMAKE_INSTALL_PREFIX=/usr
+sudo make install
+cd ..
+```
+
+#### unimrcp(option)
+
+```bash
+sudo apt-get install wget tar
+wget https://www.unimrcp.org/project/component-view/unimrcp-deps-1-6-0-tar-gz/download -O unimrcp-deps-1.6.0.tar.gz
+tar xvzf unimrcp-deps-1.6.0.tar.gz
+cd unimrcp-deps-1.6.0
+cd libs/apr
+./configure --prefix=/usr/local/apr
+make
+sudo make install
+cd ..
+cd apr-util
+./configure --prefix=/usr/local/apr
+make
+sudo make install
+cd ..
+git clone https://github.com/unispeech/unimrcp.git
+cd unimrcp
+./bootstrap
+./configure
+make
+sudo make install
+cd ..
+```
+
+
+### 2. 克隆源码
+从官方仓库克隆 FreeSWITCH 源码：
+
+```bash
+git clone -b v1.10 https://github.com/signalwire/freeswitch.git
+cd freeswitch
+
+# Because we're in a branch that will go through many rebases, it's
+# better to set this one, or you'll get CONFLICTS when pulling (update).
+git config pull.rebase true
+
+#### mod_unimrcp
+cd src/mod/asr_tts
+git clone https://github.com/freeswitch/mod_unimrcp.git
+# cd mod_unimrcp
+# export PKG_CONFIG_PATH=/usr/local/freeswitch/lib/pkgconfig:/usr/local/unimrcp/lib/pkgconfig
+# ./bootstrap.sh
+# ./configure
+# make
+# sudo make install
+# cd ..
+```
+
+#### Building
+
+Add asr_tts/mod_unimrcp to build/modules.conf.in
+Build FreeSWITCH with 'make install'
+
+#### Configuration
+
+Edit conf/autoload_config/unimrcp.conf.xml
+Add MRCP profiles to conf/mrcp_profiles/
+Add <load module="mod_unimrcp"/> to autoload_configs/modules.conf.xml
+
+- [reference](https://developer.signalwire.com/freeswitch/FreeSWITCH-Explained/Modules/mod_unimrcp_6586728/)
+
+
+### 3. 运行引导脚本
+运行 bootstrap.sh 脚本以生成配置文件：
+```bash
+./bootstrap.sh -j
+```
+
+### 4. 配置编译选项
+运行 `configure` 脚本以配置编译选项：
+```bash
+./configure
+```
+
+如果需要自定义安装路径，可以使用 `--prefix` 参数，例如：
+```bash
+./configure --prefix=/usr/local/freeswitch
+```
+<!--
+v1.10.12
+-------------------------- FreeSWITCH configuration --------------------------
+
+  Locations:
+
+      prefix:          /usr/local/freeswitch
+      exec_prefix:     /usr/local/freeswitch
+      bindir:          ${exec_prefix}/bin
+      confdir:         /usr/local/freeswitch/conf
+      libdir:          ${exec_prefix}/lib
+      datadir:         /usr/local/freeswitch
+      localstatedir:   /usr/local/freeswitch
+      includedir:      /usr/local/freeswitch/include/freeswitch
+
+      certsdir:        /usr/local/freeswitch/certs
+      dbdir:           /usr/local/freeswitch/db
+      grammardir:      /usr/local/freeswitch/grammar
+      htdocsdir:       /usr/local/freeswitch/htdocs
+      fontsdir:        /usr/local/freeswitch/fonts
+      logfiledir:      /usr/local/freeswitch/log
+      modulesdir:      /usr/local/freeswitch/mod
+      pkgconfigdir:    ${exec_prefix}/lib/pkgconfig
+      recordingsdir:   /usr/local/freeswitch/recordings
+      imagesdir:       /usr/local/freeswitch/images
+      runtimedir:      /usr/local/freeswitch/run
+      scriptdir:       /usr/local/freeswitch/scripts
+      soundsdir:       /usr/local/freeswitch/sounds
+      storagedir:      /usr/local/freeswitch/storage
+      cachedir:        /usr/local/freeswitch/cache
+
+------------------------------------------------------------------------------
+master
+-------------------------- FreeSWITCH configuration --------------------------
+
+  Locations:
+
+      prefix:          /usr/local/freeswitch
+      exec_prefix:     /usr/local/freeswitch
+      bindir:          ${exec_prefix}/bin
+      confdir:         /usr/local/freeswitch/conf
+      libdir:          ${exec_prefix}/lib
+      datadir:         /usr/local/freeswitch
+      localstatedir:   /usr/local/freeswitch
+      includedir:      /usr/local/freeswitch/include/freeswitch
+
+      certsdir:        /usr/local/freeswitch/certs
+      dbdir:           /usr/local/freeswitch/db
+      grammardir:      /usr/local/freeswitch/grammar
+      htdocsdir:       /usr/local/freeswitch/htdocs
+      fontsdir:        /usr/local/freeswitch/fonts
+      logfiledir:      /usr/local/freeswitch/log
+      modulesdir:      /usr/local/freeswitch/mod
+      pkgconfigdir:    ${exec_prefix}/lib/pkgconfig
+      recordingsdir:   /usr/local/freeswitch/recordings
+      imagesdir:       /usr/local/freeswitch/images
+      runtimedir:      /usr/local/freeswitch/run
+      scriptdir:       /usr/local/freeswitch/scripts
+      soundsdir:       /usr/local/freeswitch/sounds
+      storagedir:      /usr/local/freeswitch/storage
+      cachedir:        /usr/local/freeswitch/cache
+
+------------------------------------------------------------------------------
+ -->
+
+
+### 5. 编译源码
+使用 `make` 命令编译源码：
+```bash
+make -j$(nproc)
+```
+
+### 6. 安装 FreeSWITCH
+运行以下命令安装 FreeSWITCH：
+```bash
+sudo make install
+```
+
+### 7. 安装声音文件
+安装 FreeSWITCH 所需的声音文件：
+```bash
+sudo make sounds-install
+sudo make moh-install
+```
+
+### 8. 验证安装
+运行以下命令启动 FreeSWITCH：
+```bash
+/usr/local/freeswitch/bin/freeswitch
+```
+
+### 9. 可选：配置服务
+如果需要将 FreeSWITCH 配置为系统服务，可以参考官方文档或使用 `systemd` 配置文件。
+
+完成后，您可以通过 `fs_cli` 连接到 FreeSWITCH 控制台：
+```bash
+/usr/local/freeswitch/bin/fs_cli
+```
+
+### 参考
+您可以查看源码中的 `README` 或 INSTALL 文件获取更多详细信息。
+
+
+
+- 20250417
+搭建freeswitch编译开发环境
+源码编译libk依赖
+源码编译sofia-sip依赖
+源码编译spandsp依赖
+
+
+- 20250416
+分析颐和园预发环境fs网络资源占用情况
+熟悉并配置跳板机访问颐和园线上环境
+分析颐和园线上环境fs所用网络资源及其配置
+分析颐和园线上环境fs所用内存和磁盘资源及配置
+
 
 - 20250415
 筛查fs无tts播报或无asr识别的通话录音详情
@@ -413,7 +796,7 @@ bot和转人工流程
 分析fs无asr识别的控制通道交互流程
 分析fs执行park失败报错问题(413)
 
-
+5i9rdUgHPitakzkG
 
 
 - 20250414

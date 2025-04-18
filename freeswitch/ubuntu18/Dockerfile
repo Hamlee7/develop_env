@@ -44,11 +44,13 @@ RUN cd /usr/src/libs/signalwire-c && PKG_CONFIG_PATH=/usr/lib/pkgconfig cmake . 
 
 # Enable modules
 # RUN sed -i 's|#formats/mod_shout|formats/mod_shout|' /usr/src/freeswitch/build/modules.conf.in
-RUN sed -i 's|#asr_tts/mod_unimrcp|asr_tts/mod_unimrcp|' /usr/src/freeswitch/build/modules.conf.in
+RUN sed -i 's|#say/mod_say_zh|say/mod_say_zh|' /usr/src/freeswitch/build/modules.conf.in
+RUN echo -i 'asr_tts/mod_unimrcp' >> /usr/src/freeswitch/build/modules.conf.in
 
 RUN cd /usr/src/freeswitch && ./bootstrap.sh -j
 RUN cd /usr/src/freeswitch && ./configure
 RUN cd /usr/src/freeswitch && make -j`nproc` && make install
+RUN make cd-sounds-install && make cd-moh-install
 
 # Cleanup the image
 RUN apt-get clean
