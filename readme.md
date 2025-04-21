@@ -57,11 +57,25 @@ rtp端口号范围太小时，服务启动log提示端口配置不合理并自�
 修改sysfunc中intent调用流程与逻辑，因抽槽模块更新，sysfunc解析槽位信息无法兼容
 
 mrcp和freeswitch
-
-
+测试freeswitch服务功能
+构建freeswitch docker镜像
 
 设计修改sysfunc/intent2
-并发应用安装存在"其他任务正在更新升级中，请稍后再试。"问题
+开发数据库db_keeper模块
+
+
+
+
+
+- 20250421
+设计sysfunc语义路由模块
+设计sysfunc意图语义结构
+设计sysfunc动作执行模块
+设计sysfunc语义与动作执行映射表
+
+
+
+
 
 ## SED ASSM
 
@@ -141,7 +155,8 @@ wss://192.168.176.1:10095
 
 
 
-## 以下是一个基于 C++ 的智能交互流程接口系统的设计，涵盖了 **意图识别**、**槽位抽取**、**语义路由**、**动作执行** 和 **系统调用** 等环节。每个模块都设计为独立的类或接口，便于扩展和维护。
+## 设计语义功能路由
+以下是一个基于 C++ 的智能交互流程接口系统的设计，涵盖了 **意图识别**、**槽位抽取**、**语义路由**、**动作执行** 和 **系统调用** 等环节。每个模块都设计为独立的类或接口，便于扩展和维护。
 
 ---
 
@@ -380,27 +395,43 @@ Fetching weather for location: London
 ---
 
 ### **总结**
+
 - **模块化设计**：每个功能模块独立实现，便于扩展和维护。
 - **灵活性**：通过注册动作，可以轻松扩展新的意图和功能。
 - **可扩展性**：可以进一步集成外部 API 调用、数据库查询等功能，增强系统能力。
 
 
-设计sysfunc语义路由模块semantic_router
-设计sysfunc语义路由模块semantic_router
-开发数据库db_keeper模块
 
 
-## 设计语义功能路由
+
 
 build path:
 /home/.local/lit/kds-freeswitch/freeswitch/docker/examples/ubuntu18
+
+
+
+
 
 - 20250418
 源码编译signalwire依赖
 源码编译mod_unimrcp模块
 源码编译freeswitch服务
 安装freeswitch及其所需的声音资源文件
-测试freeswitch运行
+
+
+## 个税排名城市
+
+上海
+北京
+深圳
+杭州
+广州
+
+苏州
+宁波
+成都
+南京
+天津
 
 
 ## yhy无声故障问题排查
