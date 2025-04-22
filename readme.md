@@ -65,6 +65,11 @@ mrcp和freeswitch
 
 
 
+- 20250422
+开发sysfunc语义路由模块
+开发sysfunc动作执行模块
+修改sysfunc语义与动作执行映射表和意图语义结构
+编译调试语义路由和动作执行模块
 
 
 - 20250421
@@ -72,9 +77,6 @@ mrcp和freeswitch
 设计sysfunc意图语义结构
 设计sysfunc动作执行模块
 设计sysfunc语义与动作执行映射表
-
-
-
 
 
 ## SED ASSM
