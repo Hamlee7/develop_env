@@ -65,6 +65,23 @@ mrcp和freeswitch
 
 
 
+
+- 20250423
+参会需求工程会议
+排查解决编译时declare无效和运行时sqlite3依赖缺失问题
+编写语义路由流程的测试程序
+搭建流程测试环境，调试语义路由功能
+
+
+undefined symbol: sqlite3_open
+调用以下代码时报错"sysfunc.cc:826:18: error: declaration does not declare anything [-fpermissive]
+  826 | std::unordered_map<std::string, std::string> slots;"
+            std::string intent_code;
+            std::unordered_map<std::string, std::string> slots;
+            kdm_sysfunc::SemanticRouter::GetInstance().Route(intent_code, slots);
+
+
+
 - 20250422
 开发sysfunc语义路由模块
 开发sysfunc动作执行模块
