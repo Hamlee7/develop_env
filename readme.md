@@ -45,11 +45,18 @@ https://github.com/microsoft/vcpkg-tool/releases/download/2024-08-01/vcpkg-glibc
 
 
 
-
-
 kd-asr-proxy
 rtp端口号范围太小时，服务启动log提示端口配置不合理并自动退出
 (max-min)/4 < 1
+
+windows 磁盘清理
+
+调试coredump文件工具：
+coredumpctl
+fs/mod_unimrcp/apt_timer_queue.c:
+
+apt_timer_queue_advance
+apt_timer_set/apt_timers_reschedule
 
 
 
@@ -60,12 +67,43 @@ mrcp和freeswitch
 测试freeswitch服务功能
 构建freeswitch docker镜像
 
-设计修改sysfunc/intent2
-开发数据库db_keeper模块
+
+libglibmm-2.4-dev \
+libgiomm-2.4-dev
+${GIOMM_LIBRARIES} Qt5::Gui
 
 
+- 20250430
+开发sysfunc设置主音量功能
+开发sysfunc选择背景图片功能
+开发sysfunc设置透明度功能
+开发sysfunc设置字体大小功能
+开发sysfunc设置屏保等待时间功能
+开发sysfunc打开本地类应用功能
+
+
+- 20250429
+开发sysfunc打开我的电脑、我的文档、我的图片功能
+开发sysfunc打开我的音乐、我的视频、我的下载功能
+开发sysfunc设置显示器关闭时间功能
+开发sysfunc设置系统进入睡眠时间功能
+
+
+- 20250428
+开发sysfunc修改用户密码、用户头像、密码时效、免密自动登录、查询配置信息功能
+开发sysfunc同步网络时间、设置手动更改时间、设置手动更改时区功能
+开发sysfunc设置自定义时间服务器、添加其它时区时间、货币格式功能
+开发sysfunc切换农历或公历、切换一周的第一天、修改日期格式、切换12或24时制度功能
+
+
+
+
+查看并分析颐和园线上环境今天上午播报无声问题(20分钟内fs崩溃2次，手动重启2次)
 - 20250427
-开发sysfunc设置提示音开关、音效主题功能
+开发sysfunc设置提示音开关、音效主题、特效模式功能
+开发sysfunc切换系统主题、窗口外观、系统图标、系统光标功能
+开发sysfunc设置打印机、锁屏壁纸、字体类型、屏保、锁屏功能
+开发sysfunc设置有线网络、显示可用网络、WIFI开关功能
 
 
 - 20250425
