@@ -73,13 +73,37 @@ libgiomm-2.4-dev
 ${GIOMM_LIBRARIES} Qt5::Gui
 
 
+
+15000
+基本:24%(12%+12%) 3600(1800)
+补充:30%          4500
+共计:             8100
+
+宋Pro DM-i
+宋Plus DM-i
+宋L DM-i
+
+
+## FreeSWITCH高可用部署与云原生集群部署
+### 主备双机HA
+[LiveVideoStack](https://cloud.tencent.com/developer/article/2208126)
+
+FreeSWITCH的主备切换原理：首先主机包含一个Param，参数为：<params name=“track-calls” value=“true”/>，如果我们开启此参数，它就会实时的将通话数据写入数据库当中。当然这个会有一定的开销，因为需要实时的写入数据库，比如每秒有一千路通话、一万路通话，它的开销就会很大，所以这种双机切换会对系统的吞吐量有一定影响。但在一些必要的场景下，我们往往是需要牺牲一些性能来更好的实现高可用的。
+
+当备机发生切换的时候，备机会执行一个 sofia recover 命令，从数据库中取得数据重建通话的场景，向A和B发送 reINVITE。前面我们说A和B感知不到，其实也能感知到，因为A和B收到了重新建连的邀请，继续进行通话。一般这个通话过程大概在1-3秒内解决，A和B只是觉得会短暂的卡顿，不用挂断重新呼叫。
+
+### 三机HA
+
+### 自动弹性伸缩HA
+
+
+
+
 - 20250430
-开发sysfunc设置主音量功能
-开发sysfunc选择背景图片功能
-开发sysfunc设置透明度功能
-开发sysfunc设置字体大小功能
-开发sysfunc设置屏保等待时间功能
-开发sysfunc打开本地类应用功能
+开发sysfunc设置主音量、背景图片功能
+开发sysfunc设置透明度、字体大小功能
+开发sysfunc设置屏保等待时间、打开本地类应用功能
+编译调试action模块和ukui manager模块
 
 
 - 20250429
