@@ -43,6 +43,8 @@ https://github.com/microsoft/vcpkg-tool/releases/download/2024-08-01/vcpkg-glibc
 编写KDM ASR设计说明
 
 
+马上金融
+华夏基金
 
 
 kd-asr-proxy
@@ -74,10 +76,6 @@ ${GIOMM_LIBRARIES} Qt5::Gui
 
 
 
-15000
-基本:24%(12%+12%) 3600(1800)
-补充:30%          4500
-共计:             8100
 
 宋Pro DM-i
 宋Plus DM-i
@@ -95,6 +93,494 @@ FreeSWITCH的主备切换原理：首先主机包含一个Param，参数为：<p
 ### 三机HA
 
 ### 自动弹性伸缩HA
+
+
+mod_xml_curl
+
+
+- 20250506
+调研新版FS集成mod_unimrcp方式
+搭建开发环境，源码编译安装mod_unimrcp依赖
+源码编译mod_unimrcp
+编写mod_unimrcp配置文件
+
+
+
+构建unimrcp-deps-1.6.0
+
+
+<configuration name="xml_curl.conf" description="cURL XML Gateway">
+  <bindings>
+    <binding name="example">
+      <!-- Allow to bind on a particular IP for requests sent -->
+      <!--<param name="bind-local" value="$${local_ip_v4}" />-->
+      <!-- The url to a gateway cgi that can generate xml similar to
+           what's in this file only on-the-fly (leave it commented if you dont
+           need it) -->
+      <!-- one or more |-delim of configuration|directory|dialplan -->
+      <param name="gateway-url" value="http://192.168.6.151:20207/acl/directory/xml" bindings="directory"/>
+    </binding>
+  </bindings>
+</configuration>
+
+
+
+
+
+### freeswitch 1.10.5
+[root@SC-prod-vm-yhy151 bin]# ldd freeswitch
+	linux-vdso.so.1 =>  (0x00007ffcd3163000)
+	libodbc.so.2 => /usr/local/freeswitch/lib/libodbc.so.2 (0x00007f298ed8a000)
+	libfreeswitch.so.1 => /usr/local/freeswitch/lib/libfreeswitch.so.1 (0x00007f298e714000)
+	libpq.so.5 => /usr/local/freeswitch/lib/libpq.so.5 (0x00007f298e4e5000)
+	libsqlite3.so.0 => /lib64/libsqlite3.so.0 (0x00007f298e230000)
+	libcurl.so.4 => /lib64/libcurl.so.4 (0x00007f298dfc6000)
+	libpcre.so.1 => /lib64/libpcre.so.1 (0x00007f298dd64000)
+	libspeex.so.1 => /usr/local/freeswitch/lib/libspeex.so.1 (0x00007f298db4b000)
+	libspeexdsp.so.1 => /usr/local/freeswitch/lib/libspeexdsp.so.1 (0x00007f298d938000)
+	libedit.so.0 => /usr/local/freeswitch/lib/libedit.so.0 (0x00007f298d6fb000)
+	libtinfo.so.5 => /lib64/libtinfo.so.5 (0x00007f298d4d1000)
+	libspandsp.so.3 => /usr/local/freeswitch/lib/libspandsp.so.3 (0x00007f298d1c1000)
+	libm.so.6 => /lib64/libm.so.6 (0x00007f298cebf000)
+	libtiff.so.5 => /usr/local/freeswitch/lib/libtiff.so.5 (0x00007f298cc4b000)
+	libjpeg.so.62 => /usr/local/freeswitch/lib/libjpeg.so.62 (0x00007f298c9f6000)
+	libsofia-sip-ua.so.0 => /usr/local/freeswitch/lib/libsofia-sip-ua.so.0 (0x00007f298c619000)
+	libz.so.1 => /lib64/libz.so.1 (0x00007f298c403000)
+	libuuid.so.1 => /lib64/libuuid.so.1 (0x00007f298c1fe000)
+	librt.so.1 => /lib64/librt.so.1 (0x00007f298bff6000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00007f298bdf2000)
+	libcrypt.so.1 => /lib64/libcrypt.so.1 (0x00007f298bbbb000)
+	libpthread.so.0 => /lib64/libpthread.so.0 (0x00007f298b99f000)
+	libssl.so.10 => /lib64/libssl.so.10 (0x00007f298b72d000)
+	libcrypto.so.10 => /lib64/libcrypto.so.10 (0x00007f298b2ca000)
+	libc.so.6 => /lib64/libc.so.6 (0x00007f298aefc000)
+	libltdl.so.7 => /usr/local/freeswitch/lib/libltdl.so.7 (0x00007f298acf2000)
+	libstdc++.so.6 => /lib64/libstdc++.so.6 (0x00007f298a9ea000)
+	libgcc_s.so.1 => /lib64/libgcc_s.so.1 (0x00007f298a7d4000)
+	libkrb5.so.3 => /lib64/libkrb5.so.3 (0x00007f298a4eb000)
+	libcom_err.so.2 => /lib64/libcom_err.so.2 (0x00007f298a2e7000)
+	libgssapi_krb5.so.2 => /lib64/libgssapi_krb5.so.2 (0x00007f298a09a000)
+	libldap_r-2.4.so.2 => /lib64/libldap_r-2.4.so.2 (0x00007f2989e3b000)
+	libidn.so.11 => /lib64/libidn.so.11 (0x00007f2989c08000)
+	libssh2.so.1 => /lib64/libssh2.so.1 (0x00007f29899db000)
+	libssl3.so => /lib64/libssl3.so (0x00007f298977e000)
+	libsmime3.so => /lib64/libsmime3.so (0x00007f2989556000)
+	libnss3.so => /lib64/libnss3.so (0x00007f2989222000)
+	libnssutil3.so => /lib64/libnssutil3.so (0x00007f2988ff2000)
+	libplds4.so => /lib64/libplds4.so (0x00007f2988dee000)
+	libplc4.so => /lib64/libplc4.so (0x00007f2988be9000)
+	libnspr4.so => /lib64/libnspr4.so (0x00007f29889ab000)
+	libk5crypto.so.3 => /lib64/libk5crypto.so.3 (0x00007f2988778000)
+	liblber-2.4.so.2 => /lib64/liblber-2.4.so.2 (0x00007f2988569000)
+	libldap-2.4.so.2 => /lib64/libldap-2.4.so.2 (0x00007f2988314000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f298eff2000)
+	libjbig.so.2.0 => /usr/local/freeswitch/lib/libjbig.so.2.0 (0x00007f2988108000)
+	libfreebl3.so => /lib64/libfreebl3.so (0x00007f2987f05000)
+	libkrb5support.so.0 => /lib64/libkrb5support.so.0 (0x00007f2987cf5000)
+	libkeyutils.so.1 => /lib64/libkeyutils.so.1 (0x00007f2987af1000)
+	libresolv.so.2 => /lib64/libresolv.so.2 (0x00007f29878d7000)
+	libsasl2.so.3 => /lib64/libsasl2.so.3 (0x00007f29876ba000)
+	libselinux.so.1 => /lib64/libselinux.so.1 (0x00007f2987493000)
+[root@SC-prod-vm-yhy151 freeswitch]# ll lib/lib*.so
+-rwxr-xr-x 1 root root  235064 Oct 13  2023 lib/libedit.so
+lrwxrwxrwx 1 root root      22 Oct 13  2023 lib/libfreeswitch.so -> libfreeswitch.so.1.0.0
+-rwxr-xr-x 1 root root  285328 Oct 13  2023 lib/libjpeg.so
+-rwxr-xr-x 1 root root  429736 Oct 13  2023 lib/libodbc.so
+-rwxr-xr-x 1 root root   44816 Oct 13  2023 lib/libodbccr.so
+-rwxr-xr-x 1 root root    7032 Oct 13  2023 lib/libodbcdrvcfg1S.so
+-rwxr-xr-x 1 root root    6944 Oct 13  2023 lib/libodbcdrvcfg2S.so
+-rwxr-xr-x 1 root root   74640 Oct 13  2023 lib/libodbcinst.so
+-rwxr-xr-x 1 root root    7040 Oct 13  2023 lib/libodbcminiS.so
+-rwxr-xr-x 1 root root   11168 Oct 13  2023 lib/libodbcmyS.so
+-rwxr-xr-x 1 root root    7040 Oct 13  2023 lib/libodbcnnS.so
+-rwxr-xr-x 1 root root   11216 Oct 13  2023 lib/libodbcpsqlS.so
+-rwxr-xr-x 1 root root   11176 Oct 13  2023 lib/libodbctxtS.so
+-rwxr-xr-x 1 root root   28360 Oct 13  2023 lib/libogg.so
+-rwxr-xr-x 1 root root  197552 Oct 13  2023 lib/libpq.so
+-rwxr-xr-x 1 root root  378880 Oct 13  2023 lib/libsndfile.so
+-rwxr-xr-x 1 root root 1224600 Oct 13  2023 lib/libspandsp.so
+-rwxr-xr-x 1 root root  102832 Oct 13  2023 lib/libspeex.so
+-rwxr-xr-x 1 root root   79192 Oct 13  2023 lib/libspeexdsp.so
+-rwxr-xr-x 1 root root  479456 Oct 13  2023 lib/libtiff.so
+-rwxr-xr-x 1 root root   11424 Oct 13  2023 lib/libtiffxx.so
+-rwxr-xr-x 1 root root  185280 Oct 13  2023 lib/libvorbis.so
+-rwxr-xr-x 1 root root 2944200 Oct 13  2023 lib/libvorbisenc.so
+[root@SC-prod-vm-yhy151 freeswitch]# ll mod/mod_*
+-rwxr-xr-x 1 root root    1291 Oct 13  2023 mod/mod_amr.la
+-rwxr-xr-x 1 root root   62272 Oct 13  2023 mod/mod_amr.so
+-rwxr-xr-x 1 root root    1291 Oct 13  2023 mod/mod_b64.la
+-rwxr-xr-x 1 root root   63000 Oct 13  2023 mod/mod_b64.so
+-rwxr-xr-x 1 root root    1315 Oct 13  2023 mod/mod_cdr_csv.la
+-rwxr-xr-x 1 root root   89032 Oct 13  2023 mod/mod_cdr_csv.so
+-rwxr-xr-x 1 root root    1333 Oct 13  2023 mod/mod_cdr_sqlite.la
+-rwxr-xr-x 1 root root   71768 Oct 13  2023 mod/mod_cdr_sqlite.so
+-rwxr-xr-x 1 root root    1321 Oct 13  2023 mod/mod_commands.la
+-rwxr-xr-x 1 root root  598584 Oct 13  2023 mod/mod_commands.so
+-rwxr-xr-x 1 root root  599440 Oct 13  2023 mod/mod_commands.so.old
+-rwxr-xr-x 1 root root  597760 Oct 13  2023 mod/mod_commands.so_bak
+-rwxr-xr-x 1 root root    1333 Oct 13  2023 mod/mod_conference.la
+-rwxr-xr-x 1 root root 1536528 Oct 13  2023 mod/mod_conference.so
+-rwxr-xr-x 1 root root    1315 Oct 13  2023 mod/mod_console.la
+-rwxr-xr-x 1 root root   85984 Oct 13  2023 mod/mod_console.so
+-rwxr-xr-x 1 root root    1285 Oct 13  2023 mod/mod_db.la
+-rwxr-xr-x 1 root root   95384 Oct 13  2023 mod/mod_db.so
+-rwxr-xr-x 1 root root    1375 Oct 13  2023 mod/mod_dialplan_asterisk.la
+-rwxr-xr-x 1 root root   77792 Oct 13  2023 mod/mod_dialplan_asterisk.so
+-rwxr-xr-x 1 root root    1345 Oct 13  2023 mod/mod_dialplan_xml.la
+-rwxr-xr-x 1 root root  115328 Oct 13  2023 mod/mod_dialplan_xml.so
+-rwxr-xr-x 1 root root    1315 Oct 13  2023 mod/mod_dptools.la
+-rwxr-xr-x 1 root root  526776 Oct 13  2023 mod/mod_dptools.so
+-rwxr-xr-x 1 root root    1304 Oct 13  2023 mod/mod_enum.la
+-rwxr-xr-x 1 root root  118744 Oct 13  2023 mod/mod_enum.so
+-rwxr-xr-x 1 root root    1291 Oct 13  2023 mod/mod_esf.la
+-rwxr-xr-x 1 root root   84208 Oct 13  2023 mod/mod_esf.so
+-rwxr-xr-x 1 root root    1345 Oct 13  2023 mod/mod_event_socket.la
+-rwxr-xr-x 1 root root  225792 Oct 13  2023 mod/mod_event_socket.so
+-rwxr-xr-x 1 root root    1297 Oct 13  2023 mod/mod_expr.la
+-rwxr-xr-x 1 root root  163480 Oct 13  2023 mod/mod_expr.so
+-rwxr-xr-x 1 root root    1297 Oct 13  2023 mod/mod_fifo.la
+-rwxr-xr-x 1 root root  342928 Oct 13  2023 mod/mod_fifo.so
+-rwxr-xr-x 1 root root    1291 Oct 13  2023 mod/mod_fsv.la
+-rwxr-xr-x 1 root root  115368 Oct 13  2023 mod/mod_fsv.so
+-rwxr-xr-x 1 root root    1309 Oct 13  2023 mod/mod_g723_1.la
+-rwxr-xr-x 1 root root   60448 Oct 13  2023 mod/mod_g723_1.so
+-rwxr-xr-x 1 root root    1297 Oct 13  2023 mod/mod_g729.la
+-rwxr-xr-x 1 root root   59960 Oct 13  2023 mod/mod_g729.so
+-rwxr-xr-x 1 root root    1297 Oct 13  2023 mod/mod_h26x.la
+-rwxr-xr-x 1 root root   63560 Oct 13  2023 mod/mod_h26x.so
+-rwxr-xr-x 1 root root    1297 Oct 13  2023 mod/mod_hash.la
+-rwxr-xr-x 1 root root  262232 Oct 13  2023 mod/mod_hash.so
+-rwxr-xr-x 1 root root    1309 Oct 13  2023 mod/mod_httapi.la
+-rwxr-xr-x 1 root root  307984 Oct 13  2023 mod/mod_httapi.so
+-rwxr-xr-x 1 root root    1293 Oct 13  2023 mod/mod_java.la
+-rwxr-xr-x 1 root root  524936 Oct 13  2023 mod/mod_java.so
+-rwxr-xr-x 1 root root    1345 Oct 13  2023 mod/mod_local_stream.la
+-rwxr-xr-x 1 root root  136816 Oct 13  2023 mod/mod_local_stream.so
+-rwxr-xr-x 1 root root    1315 Oct 13  2023 mod/mod_logfile.la
+-rwxr-xr-x 1 root root   87848 Oct 13  2023 mod/mod_logfile.so
+-rwxr-xr-x 1 root root    1321 Oct 13  2023 mod/mod_loopback.la
+-rwxr-xr-x 1 root root  177680 Oct 13  2023 mod/mod_loopback.so
+-rwxr-xr-x 1 root root    1293 Oct 13  2023 mod/mod_lua.la
+-rwxr-xr-x 1 root root  798768 Oct 13  2023 mod/mod_lua.so
+-rwxr-xr-x 1 root root    1339 Oct 13  2023 mod/mod_native_file.la
+-rwxr-xr-x 1 root root   61200 Oct 13  2023 mod/mod_native_file.so
+-rwxr-xr-x 1 root root    1316 Oct 13  2023 mod/mod_pgsql.la
+-rwxr-xr-x 1 root root  100864 Oct 13  2023 mod/mod_pgsql.so
+-rwxr-xr-x 1 root root    1291 Oct 13  2023 mod/mod_png.la
+-rwxr-xr-x 1 root root   82144 Oct 13  2023 mod/mod_png.so
+-rwxr-xr-x 1 root root    1291 Oct 13  2023 mod/mod_rtc.la
+-rwxr-xr-x 1 root root   85728 Oct 13  2023 mod/mod_rtc.so
+-rwxr-xr-x 1 root root    1309 Oct 13  2023 mod/mod_say_en.la
+-rwxr-xr-x 1 root root   95984 Oct 13  2023 mod/mod_say_en.so
+-rwxr-xr-x 1 root root    1309 Oct 13  2023 mod/mod_skinny.la
+-rwxr-xr-x 1 root root  677720 Oct 13  2023 mod/mod_skinny.so
+-rwxr-xr-x 1 root root    1291 Oct 13  2023 mod/mod_sms.la
+-rwxr-xr-x 1 root root  103664 Oct 13  2023 mod/mod_sms.so
+-rwxr-xr-x 1 root root    1325 Oct 13  2023 mod/mod_sndfile.la
+-rwxr-xr-x 1 root root   97720 Oct 13  2023 mod/mod_sndfile.so
+-rwxr-xr-x 1 root root    1303 Oct 13  2023 mod/mod_sofia.la
+-rwxr-xr-x 1 root root 2481248 Oct 13  2023 mod/mod_sofia.so
+-rwxr-xr-x 1 root root    1315 Oct 13  2023 mod/mod_spandsp.la
+-rwxr-xr-x 1 root root  631520 Oct 13  2023 mod/mod_spandsp.so
+-rwxr-xr-x 1 root root    1309 Oct 13  2023 mod/mod_syslog.la
+-rwxr-xr-x 1 root root   63816 Oct 13  2023 mod/mod_syslog.so
+-rwxr-xr-x 1 root root    1339 Oct 13  2023 mod/mod_tone_stream.la
+-rwxr-xr-x 1 root root   64136 Oct 13  2023 mod/mod_tone_stream.so
+lrwxrwxrwx 1 root root      17 Oct 13  2023 mod/mod_unimrcp.la -> ../mod_unimrcp.la
+-rw-r--r-- 1 root root    1400 Oct 13  2023 mod/mod_unimrcp.lai
+-rwxr-xr-x 1 root root 2074136 Oct 13  2023 mod/mod_unimrcp.so
+-rw-r--r-- 1 root root  482016 Oct 13  2023 mod/mod_unimrcp_la-mod_unimrcp.o
+-rwxr-xr-x 1 root root    1351 Oct 13  2023 mod/mod_valet_parking.la
+-rwxr-xr-x 1 root root  116000 Oct 13  2023 mod/mod_valet_parking.so
+-rwxr-xr-x 1 root root    1303 Oct 13  2023 mod/mod_verto.la
+-rwxr-xr-x 1 root root  529272 Oct 13  2023 mod/mod_verto.so
+-rwxr-xr-x 1 root root    1327 Oct 13  2023 mod/mod_voicemail.la
+-rwxr-xr-x 1 root root  464632 Oct 13  2023 mod/mod_voicemail.so
+-rwxr-xr-x 1 root root    1315 Oct 13  2023 mod/mod_xml_cdr.la
+-rwxr-xr-x 1 root root  115832 Oct 13  2023 mod/mod_xml_cdr.so
+-rwxr-xr-x 1 root root    1321 Oct 13  2023 mod/mod_xml_curl.la
+-rwxr-xr-x 1 root root  106744 Oct 13  2023 mod/mod_xml_curl.so
+-rwxr-xr-x 1 root root    1315 Oct 13  2023 mod/mod_xml_rpc.la
+-rwxr-xr-x 1 root root 1642536 Oct 13  2023 mod/mod_xml_rpc.so
+-rwxr-xr-x 1 root root    1321 Oct 13  2023 mod/mod_xml_scgi.la
+-rwxr-xr-x 1 root root  108944 Oct 13  2023 mod/mod_xml_scgi.so
+
+### mod_unimrcp:
+Makefile:847: *** You must install libunimrcp and libunimrcp-dev to build this module.  Stop.
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/freeswitch/mod
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+make[1]: Leaving directory '/usr/src/freeswitch/src/mod/asr_tts/mod_unimrcp'
+
+
+
+
+
+
+###　unimrcp and it`s deps:
+****************************** REPORT ******************************
+
+UniMRCP version............... : 1.8.0
+
+APR version................... : 1.5.2
+APR-util version.............. : 1.5.4
+Sofia-SIP version............. : 1.12.11-239-g54ef3e2
+
+Compiler...................... : gcc
+Compiler flags................ : -g -O2 -pthread
+Preprocessor definitions...... : -DLINUX -D_REENTRANT -D_GNU_SOURCE
+Linker flags.................. :
+
+UniMRCP client lib............ : no
+Sample UniMRCP client app..... : no
+Sample UMC C++ client app..... : no
+Misc ASR client lib and app... : yes
+
+UniMRCP server lib............ : yes
+UniMRCP server app............ : yes
+
+Demo synthesizer plugin....... : yes
+Demo recognizer plugin........ : yes
+Demo verifier plugin.......... : no
+Recorder plugin............... : no
+
+Installation layout........... : classic
+Installation directory........ : /usr/local/unimrcp
+
+********************************************************************
+
+****************************** REPORT ******************************
+
+UniMRCP version............... : 1.8.0
+
+APR version................... : 1.5.2
+APR-util version.............. : 1.5.4
+Sofia-SIP version............. : 1.12.11-239-g54ef3e2
+
+Compiler...................... : gcc
+Compiler flags................ : -g -O2 -pthread
+Preprocessor definitions...... : -DLINUX -D_REENTRANT -D_GNU_SOURCE
+Linker flags.................. :
+
+UniMRCP client lib............ : yes
+Sample UniMRCP client app..... : yes
+Sample UMC C++ client app..... : yes
+Misc ASR client lib and app... : yes
+
+UniMRCP server lib............ : yes
+UniMRCP server app............ : yes
+
+Demo synthesizer plugin....... : yes
+Demo recognizer plugin........ : yes
+Demo verifier plugin.......... : no
+Recorder plugin............... : no
+
+Installation layout........... : classic
+Installation directory........ : /usr/local/unimrcp
+
+********************************************************************
+
+
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/unimrcp/plugin
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+make[3]: Leaving directory '/usr/src/unimrcp/plugins/demo-synth'
+make[2]: Leaving directory '/usr/src/unimrcp/plugins/demo-synth'
+Making install in demo-recog
+make[2]: Entering directory '/usr/src/unimrcp/plugins/demo-recog'
+make[3]: Entering directory '/usr/src/unimrcp/plugins/demo-recog'
+make[3]: Nothing to be done for 'install-exec-am'.
+ /bin/mkdir -p '/usr/local/unimrcp/plugin'
+ /bin/bash ../../libtool   --mode=install /usr/bin/install -c   demorecog.la '/usr/local/unimrcp/plugin'
+libtool: install: /usr/bin/install -c .libs/demorecog.so.0.8.0 /usr/local/unimrcp/plugin/demorecog.so.0.8.0
+libtool: install: (cd /usr/local/unimrcp/plugin && { ln -s -f demorecog.so.0.8.0 demorecog.so.0 || { rm -f demorecog.so.0 && ln -s demorecog.so.0.8.0 demorecog.so.0; }; })
+libtool: install: (cd /usr/local/unimrcp/plugin && { ln -s -f demorecog.so.0.8.0 demorecog.so || { rm -f demorecog.so && ln -s demorecog.so.0.8.0 demorecog.so; }; })
+libtool: install: /usr/bin/install -c .libs/demorecog.lai /usr/local/unimrcp/plugin/demorecog.la
+libtool: install: /usr/bin/install -c .libs/demorecog.a /usr/local/unimrcp/plugin/demorecog.a
+libtool: install: chmod 644 /usr/local/unimrcp/plugin/demorecog.a
+libtool: install: ranlib /usr/local/unimrcp/plugin/demorecog.a
+libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sbin" ldconfig -n /usr/local/unimrcp/plugin
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/unimrcp/plugin
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+make[3]: Leaving directory '/usr/src/unimrcp/plugins/demo-recog'
+make[2]: Leaving directory '/usr/src/unimrcp/plugins/demo-recog'
+make[2]: Entering directory '/usr/src/unimrcp/plugins'
+make[3]: Entering directory '/usr/src/unimrcp/plugins'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/usr/src/unimrcp/plugins'
+make[2]: Leaving directory '/usr/src/unimrcp/plugins'
+make[1]: Leaving directory '/usr/src/unimrcp/plugins'
+Making install in platforms
+make[1]: Entering directory '/usr/src/unimrcp/platforms'
+Making install in libunimrcp-server
+make[2]: Entering directory '/usr/src/unimrcp/platforms/libunimrcp-server'
+make[3]: Entering directory '/usr/src/unimrcp/platforms/libunimrcp-server'
+ /bin/mkdir -p '/usr/local/unimrcp/lib'
+ /bin/bash ../../libtool   --mode=install /usr/bin/install -c   libunimrcpserver.la '/usr/local/unimrcp/lib'
+libtool: install: /usr/bin/install -c .libs/libunimrcpserver.so.0.8.0 /usr/local/unimrcp/lib/libunimrcpserver.so.0.8.0
+libtool: install: (cd /usr/local/unimrcp/lib && { ln -s -f libunimrcpserver.so.0.8.0 libunimrcpserver.so.0 || { rm -f libunimrcpserver.so.0 && ln -s libunimrcpserver.so.0.8.0 libunimrcpserver.so.0; }; })
+libtool: install: (cd /usr/local/unimrcp/lib && { ln -s -f libunimrcpserver.so.0.8.0 libunimrcpserver.so || { rm -f libunimrcpserver.so && ln -s libunimrcpserver.so.0.8.0 libunimrcpserver.so; }; })
+libtool: install: /usr/bin/install -c .libs/libunimrcpserver.lai /usr/local/unimrcp/lib/libunimrcpserver.la
+libtool: install: /usr/bin/install -c .libs/libunimrcpserver.a /usr/local/unimrcp/lib/libunimrcpserver.a
+libtool: install: chmod 644 /usr/local/unimrcp/lib/libunimrcpserver.a
+libtool: install: ranlib /usr/local/unimrcp/lib/libunimrcpserver.a
+libtool: finish: PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sbin" ldconfig -n /usr/local/unimrcp/lib
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/unimrcp/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the '-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the 'LD_RUN_PATH' environment variable
+     during linking
+   - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+ /bin/mkdir -p '/usr/local/unimrcp/include'
+ /usr/bin/install -c -m 644 include/unimrcp_server.h '/usr/local/unimrcp/include'
+make[3]: Leaving directory '/usr/src/unimrcp/platforms/libunimrcp-server'
+make[2]: Leaving directory '/usr/src/unimrcp/platforms/libunimrcp-server'
+Making install in unimrcp-server
+make[2]: Entering directory '/usr/src/unimrcp/platforms/unimrcp-server'
+make[3]: Entering directory '/usr/src/unimrcp/platforms/unimrcp-server'
+ /bin/mkdir -p '/usr/local/unimrcp/bin'
+  /bin/bash ../../libtool   --mode=install /usr/bin/install -c unimrcpserver '/usr/local/unimrcp/bin'
+libtool: install: /usr/bin/install -c .libs/unimrcpserver /usr/local/unimrcp/bin/unimrcpserver
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/usr/src/unimrcp/platforms/unimrcp-server'
+make[2]: Leaving directory '/usr/src/unimrcp/platforms/unimrcp-server'
+make[2]: Entering directory '/usr/src/unimrcp/platforms'
+make[3]: Entering directory '/usr/src/unimrcp/platforms'
+make[3]: Nothing to be done for 'install-exec-am'.
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/usr/src/unimrcp/platforms'
+make[2]: Leaving directory '/usr/src/unimrcp/platforms'
+make[1]: Leaving directory '/usr/src/unimrcp/platforms'
+make[1]: Entering directory '/usr/src/unimrcp'
+make[2]: Entering directory '/usr/src/unimrcp'
+make[2]: Nothing to be done for 'install-exec-am'.
+test -d /usr/local/unimrcp/log || /bin/bash /usr/src/unimrcp/build/install-sh -d /usr/local/unimrcp/log
+test -d /usr/local/unimrcp/var || /bin/bash /usr/src/unimrcp/build/install-sh -d /usr/local/unimrcp/var
+make[2]: Leaving directory '/usr/src/unimrcp'
+make[1]: Leaving directory '/usr/src/unimrcp'
+
+
+
+### unimrcp-deps-1.6.0 install：
+
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/local/unimrcp-deps/lib
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,-rpath -Wl,LIBDIR' linker flag
+   - have your system administrator add LIBDIR to `/etc/ld.so.conf'
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+make[3]: Nothing to be done for 'install-data-am'.
+make[3]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/libsofia-sip-ua'
+make[2]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/libsofia-sip-ua'
+make[1]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/libsofia-sip-ua'
+Making install in utils
+make[1]: Entering directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/utils'
+make[2]: Entering directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/utils'
+test -z "/usr/local/unimrcp-deps/bin" || /bin/mkdir -p "/usr/local/unimrcp-deps/bin"
+  /bin/bash ../libtool   --mode=install /usr/bin/install -c sip-options sip-date sip-dig '/usr/local/unimrcp-deps/bin'
+libtool: install: /usr/bin/install -c .libs/sip-options /usr/local/unimrcp-deps/bin/sip-options
+libtool: install: /usr/bin/install -c .libs/sip-date /usr/local/unimrcp-deps/bin/sip-date
+libtool: install: /usr/bin/install -c .libs/sip-dig /usr/local/unimrcp-deps/bin/sip-dig
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/utils'
+make[1]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/utils'
+Making install in packages
+make[1]: Entering directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/packages'
+make[2]: Entering directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/packages'
+make[2]: Nothing to be done for 'install-exec-am'.
+test -z "/usr/local/unimrcp-deps/lib/pkgconfig" || /bin/mkdir -p "/usr/local/unimrcp-deps/lib/pkgconfig"
+ /usr/bin/install -c -m 644 sofia-sip-ua.pc '/usr/local/unimrcp-deps/lib/pkgconfig'
+make[2]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/packages'
+make[1]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/packages'
+Making install in tests
+make[1]: Entering directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/tests'
+make[2]: Entering directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/tests'
+make[2]: Nothing to be done for 'install-exec-am'.
+make[2]: Nothing to be done for 'install-data-am'.
+make[2]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/tests'
+make[1]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip/tests'
+make[1]: Entering directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip'
+mkdir -p man man/man1 2> /dev/null
+touch man/man1/sip-date.1 man/man1/sip-options.1 man/man1/localinfo.1 man/man1/addrinfo.1 man/man1/stunc.1 man/man1/sip-dig.1
+make[2]: Entering directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip'
+make[2]: Nothing to be done for 'install-exec-am'.
+mkdir -p man man/man1 2> /dev/null
+touch man/man1/sip-date.1 man/man1/sip-options.1 man/man1/localinfo.1 man/man1/addrinfo.1 man/man1/stunc.1 man/man1/sip-dig.1
+test -z "/usr/local/unimrcp-deps/share/man/man1" || /bin/mkdir -p "/usr/local/unimrcp-deps/share/man/man1"
+ /usr/bin/install -c -m 644 man/man1/sip-date.1 man/man1/sip-options.1 man/man1/localinfo.1 man/man1/addrinfo.1 man/man1/stunc.1 man/man1/sip-dig.1 '/usr/local/unimrcp-deps/share/man/man1'
+make[2]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip'
+make[1]: Leaving directory '/usr/src/libs/unimrcp-deps-1.6.0/libs/sofia-sip'
 
 
 
