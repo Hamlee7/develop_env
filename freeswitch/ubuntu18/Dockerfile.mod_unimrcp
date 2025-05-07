@@ -74,7 +74,7 @@ RUN cd /usr/src && git clone https://github.com/unispeech/unimrcp.git && cd unim
 # RUN cd /usr/src && git clone --recurse-submodules http://gitlab.knowdee.com/kds/kd-unimrcp.git && cd kd-unimrcp/unimrcp && sh build_unimrcp.sh
 # RUN cd /usr/src && git clone http://gitlab.knowdee.com/kds/kd-unimrcp.git && cd kd-unimrcp && sh build.sh
 
-RUN cd /usr/src/mod_unimrcp && git clone https://github.com/freeswitch/mod_unimrcp.git \
+RUN cd /usr/src && git clone https://github.com/freeswitch/mod_unimrcp.git && cd mod_unimrcp \
     && export PKG_CONFIG_PATH=/usr/local/freeswitch/lib/pkgconfig:/usr/local/unimrcp/lib/pkgconfig \
     && ./bootstrap.sh \
     && ./configure \
