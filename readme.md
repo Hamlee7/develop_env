@@ -97,13 +97,22 @@ FreeSWITCH的主备切换原理：首先主机包含一个Param，参数为：<p
 
 mod_xml_curl
 
+- 20250508
+mrcp服务
+
+
+- 20250507
+调试新版FS运行时加载mod_unimrcp、mod_say_zh等模块
+排查解决新版FS启动报错问题
+手动构建新版FS docker镜像
+测试新版FS 镜像启动容器运行
+
 
 - 20250506
 调研新版FS集成mod_unimrcp方式
 搭建开发环境，源码编译安装mod_unimrcp依赖
 源码编译mod_unimrcp
 编写mod_unimrcp配置文件
-
 
 
 构建unimrcp-deps-1.6.0
@@ -125,9 +134,27 @@ mod_xml_curl
 
 
 
+fs_cli -x "originate {caller_id_name=Test,caller_id_number=12345}sofia/internal/1010@172.70.10.210 &park()"
 
+fs_cli -x "originate {caller_id_name=Test,caller_id_number=12345}sofia/internal/1001@172.70.10.210 &park()"
+
+fs_cli -x "originate {caller_id_name=Test,caller_id_number=12345}sofia/internal/1001@192.168.1.100 &park()"
 
 ### freeswitch 1.10.12 run
+freeswitch@centos7> sofia status
+                     Name	   Type	                                      Data	State
+=================================================================================================
+            external-ipv6	profile	                  sip:mod_sofia@[::1]:5080	RUNNING (0)
+            172.70.10.210	  alias	                                  internal	ALIASED
+                 external	profile	         sip:mod_sofia@210.14.142.130:5080	RUNNING (0)
+    external::example.com	gateway	                   sip:joeuser@example.com	NOREG
+            internal-ipv6	profile	                  sip:mod_sofia@[::1]:5060	RUNNING (0)
+                 internal	profile	         sip:mod_sofia@210.14.142.130:5060	RUNNING (0)
+=================================================================================================
+4 profiles 1 alias
+
+
+
 
 freeswitch@7f9b168d1065> sofia status
                      Name	   Type	                                      Data	State
