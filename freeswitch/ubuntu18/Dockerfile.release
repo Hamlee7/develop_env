@@ -6,7 +6,7 @@ RUN apt-get update && apt-get -yq install \
 # build
     # build-essential cmake automake autoconf 'libtool-bin|libtool' pkg-config \
 # general
-    libssl-dev zlib1g-dev libdb-dev unixodbc-dev libncurses5-dev libexpat1-dev libgdbm-dev bison erlang-dev libtpl-dev libtiff5-dev uuid-dev \
+    vim libssl-dev zlib1g-dev libdb-dev unixodbc-dev libncurses5-dev libexpat1-dev libgdbm-dev bison erlang-dev libtpl-dev libtiff5-dev uuid-dev \
 # core
     libpcre3-dev libedit-dev libsqlite3-dev libcurl4-openssl-dev nasm \
 # core codecs
@@ -29,17 +29,15 @@ RUN apt-get update && apt-get -yq install \
 # mod_shout
     # libshout3-dev libmpg123-dev libmp3lame-dev
 
-RUN git clone https://github.com/freeswitch/sofia-sip /usr/src/libs/sofia-sip && cd /usr/src/libs/sofia-sip && ./bootstrap.sh && ./configure CFLAGS="-g -ggdb" --with-pic --with-glib=no --without-doxygen --disable-stun --prefix=/usr && make -j`nproc --all` && make install
-# RUN git clone https://github.com/freeswitch/spandsp /usr/src/libs/spandsp && cd /usr/src/libs/spandsp && ./bootstrap.sh && ./configure CFLAGS="-g -ggdb" --with-pic --prefix=/usr && make -j`nproc --all` && make install
-RUN git clone https://github.com/freeswitch/spandsp /usr/src/libs/spandsp && cd /usr/src/libs/spandsp && git reset --hard 67d2455efe02e7ff0d897f3fd5636fed4d54549e && ./bootstrap.sh && ./configure CFLAGS="-g -ggdb" --with-pic --prefix=/usr && make -j`nproc --all` && make install
-
 # Cleanup the image
-RUN apt-get clean &&rm -rf /usr/src/*
+RUN apt-get clean
 
 ARG wordir=/usr/local/freeswitch/bin
 
 COPY freeswitch/ /usr/local/freeswitch/
+COPY libs/ /usr/lib/
 COPY entrypoint.sh ${wordir}/
+COPY uploadWav.py ${wordir}/
 
 WORKDIR ${wordir}
 
