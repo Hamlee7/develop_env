@@ -127,6 +127,64 @@ mod_xml_curl
 
 
 
+### freeswitch 1.10.12 run
+
+freeswitch@7f9b168d1065> sofia status
+                     Name	   Type	                                      Data	State
+=================================================================================================
+            external-ipv6	profile	                  sip:mod_sofia@[::1]:5080	RUNNING (0)
+               172.17.0.2	  alias	                                  internal	ALIASED
+                 external	profile	         sip:mod_sofia@210.14.142.130:5080	RUNNING (0)
+    external::example.com	gateway	                   sip:joeuser@example.com	NOREG
+            internal-ipv6	profile	                  sip:mod_sofia@[::1]:5060	RUNNING (0)
+                 internal	profile	         sip:mod_sofia@210.14.142.130:5060	RUNNING (0)
+=================================================================================================
+freeswitch@7f9b168d1065> sofia status
+                     Name	   Type	                                      Data	State
+=================================================================================================
+            external-ipv6	profile	                  sip:mod_sofia@[::1]:5080	RUNNING (0)
+               172.17.0.2	  alias	                                  internal	ALIASED
+                 external	profile	         sip:mod_sofia@210.14.142.130:5080	RUNNING (0)
+    external::example.com	gateway	                   sip:joeuser@example.com	NOREG
+            internal-ipv6	profile	                  sip:mod_sofia@[::1]:5060	RUNNING (0)
+                 internal	profile	         sip:mod_sofia@210.14.142.130:5060	RUNNING (0)
+=================================================================================================
+4 profiles 1 alias
+
+
+
+root@7f9b168d1065:/usr/local/freeswitch/bin# grep "210.14.142.130" ../log/freeswitch.log
+2025-05-07 03:11:01.065807 0.00% [DEBUG] sofia.c:4727 ext-rtp-ip [210.14.142.130]
+2025-05-07 03:11:01.065811 0.00% [DEBUG] sofia.c:4727 ext-sip-ip [210.14.142.130]
+2025-05-07 03:11:01.066888 0.00% [DEBUG] sofia.c:4727 ext-rtp-ip [210.14.142.130]
+2025-05-07 03:11:01.066894 0.00% [DEBUG] sofia.c:4727 ext-sip-ip [210.14.142.130]
+
+
+root@7f9b168d1065:/usr/local/freeswitch/bin# grep "172.17.0.2" ../log/freeswitch.log
+2025-05-07 03:11:01.065799 0.00% [DEBUG] sofia.c:4727 rtp-ip [172.17.0.2]
+2025-05-07 03:11:01.065803 0.00% [DEBUG] sofia.c:4727 sip-ip [172.17.0.2]
+2025-05-07 03:11:01.066341 0.00% [DEBUG] sofia.c:4727 force-register-domain [172.17.0.2]
+2025-05-07 03:11:01.066346 0.00% [DEBUG] sofia.c:4727 force-register-db-domain [172.17.0.2]
+2025-05-07 03:11:01.066664 0.00% [DEBUG] sofia.c:4727 rtp-ip [172.17.0.2]
+2025-05-07 03:11:01.066669 0.00% [DEBUG] sofia.c:4727 sip-ip [172.17.0.2]
+2025-05-07 03:11:01.066755 0.00% [DEBUG] sofia.c:4727 presence-hosts [172.17.0.2,172.17.0.2]
+2025-05-07 03:11:01.066956 0.00% [DEBUG] sofia.c:4727 force-register-domain [172.17.0.2]
+2025-05-07 03:11:01.066972 0.00% [DEBUG] sofia.c:4727 force-subscription-domain [172.17.0.2]
+2025-05-07 03:11:01.066976 0.00% [DEBUG] sofia.c:4727 force-register-db-domain [172.17.0.2]
+2025-05-07 03:11:01.093059 0.00% [NOTICE] sofia.c:4235 Adding Alias [172.17.0.2] for profile [internal]
+2025-05-07 03:11:02.575493 0.00% [DEBUG] mod_verto.c:5345 default-v4 Bound to 172.17.0.2:8081
+2025-05-07 03:11:02.575500 0.00% [DEBUG] mod_verto.c:5345 default-v4 Bound to 172.17.0.2:8082
+2025-05-07 03:11:03.111348 0.00% [INFO] mod_fifo.c:4647 cool_fifo@172.17.0.2 configured
+2025-05-07 03:11:03.266997 0.00% [DEBUG] mod_unimrcp.c:4394 Loading Param server-ip:172.17.0.2
+2025-05-07 03:11:03.267068 0.00% [NOTICE] mrcp_sofiasip_client_agent.c:107 () Create SofiaSIP Agent [unimrcpserver-mrcp-v2] [1.12.11-239-g54ef3e2] sip:172.17.0.2:5090;transport=udp
+2025-05-07 03:11:03.267084 0.00% [NOTICE] mpf_rtp_termination_factory.c:197 () Create RTP Termination Factory 172.17.0.2:[3000,5000]
+2025-05-07 03:11:03.270083 100.00% [DEBUG] mod_event_socket.c:2982 Socket up listening on 172.17.0.2:8021
+2025-05-07 03:11:03.270539 100.00% [NOTICE] switch_core.c:1546 Adding 172.17.0.2/255.255.0.0 (deny) to list nat.auto
+2025-05-07 03:11:03.270565 100.00% [NOTICE] switch_core.c:1566 Adding 172.17.0.2/255.255.0.0 (allow) to list localnet.auto
+2025-05-07 03:11:03.270629 100.00% [NOTICE] switch_utils.c:665 Adding 192.0.2.0/24 (allow) [brian@172.17.0.2] to list domains
+
+
+
 ### freeswitch 1.10.5
 [root@SC-prod-vm-yhy151 bin]# ldd freeswitch
 	linux-vdso.so.1 =>  (0x00007ffcd3163000)
