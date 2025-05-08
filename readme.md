@@ -94,11 +94,60 @@ FreeSWITCH的主备切换原理：首先主机包含一个Param，参数为：<p
 
 ### 自动弹性伸缩HA
 
+asr engine:AWS、Xunfei、Azure、Lenovo_HTTP、Azure_cont
+tts engine:AWS、Xunfei、Lenovo
+
 
 mod_xml_curl
 
-- 20250508
+
+tts:
+https://learn.microsoft.com/en-us/azure/ai-services/speech-service/text-to-speech
+
+asr:
+https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-to-text
+
+
 mrcp服务
+
+
+
+- 20250509
+修改asr-proxy代码，增加微软asr接口模块
+
+
+- 20250508
+调研微软asr集成方案(CLI、SDK、REST)
+研究微软asr SDK集成方法
+梳理asr-proxy中azureAsrInst和azureContAsrInst模块
+编译调试asr-proxy微软asr模块
+
+
+
+
+说明===诺谛微软azure，tts/asrkey1 :a5b7c31380b642f59a2ac7323e88ca7ckey2 :(0cp-Apim-Subscription-Key)
+ASR(stt):流式websocket: wss://eastasia.stt.speech.microsoft.com/speech/universal/v2https:TTS:httos:https://eastasia,tts,speech,microsoft.com/coanitiveservices/yl或者使用 Azure的相关sdk:cognitive-services-speech-sdk
+httos://eastasia,stt,speech, microsoft,com/speech/recoanition/conversation/coonitiveservices/y1?lanquade-zh-cNafommat detailed
+相关文档:htos: /learn,microsoft .com/en- us/azure/ai-services/spech-service get-started-text-to-spech?tabs windows820temminalspivots=orogramning-lanouade-pvthonhtps:/learn,microsoft .com/en us/azure/ai-servicas/speech-service/get-started speech-to-text?tabs windows2ctemminal&pivots proaraming-lanoage pythor
+
+
+
+
+172.70.10.210:
+(base) [root@centos7 ~]# docker images|grep asr
+865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn/knodi_asr_proxy            xugong-uat-latest                     016884d3434c   2 months ago    391MB
+kd-asr-proxy                                                                latest                                016884d3434c   2 months ago    391MB
+kd-asr-proxy                                                                product3.0                            623ac0e6273d   2 months ago    391MB
+kds_asr_dev                                                                 6.0                                   e7887c475204   4 months ago    2.41GB
+kds_asr_dev                                                                 1.0                                   20c84e7b2bd6   4 months ago    2.23GB
+harbor.knowdee.com/chatbot/knodi_asr_proxy                                  v1.0.0                                422f9bd2050d   6 months ago    297MB
+865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn/knodi_asr_proxy            v1.0.0                                422f9bd2050d   6 months ago    297MB
+(base) [root@centos7 ~]# docker images|grep lit
+lit_dev                                                                     1.10.12                               69a33fbd9725   21 hours ago    1.73GB
+lit_dev                                                                     3.0                                   86e72910d7e2   7 weeks ago     14.3GB
+(base) [root@centos7 ~]# docker images|grep freeswitch
+freeswitch                                                                  0.1.0                                 15b27a114024   23 hours ago    811MB
+
 
 
 - 20250507
@@ -133,6 +182,7 @@ mrcp服务
 </configuration>
 
 
+originate sofia/internal/1001@172.70.10.210 &park()
 
 fs_cli -x "originate {caller_id_name=Test,caller_id_number=12345}sofia/internal/1010@172.70.10.210 &park()"
 
