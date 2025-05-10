@@ -108,12 +108,60 @@ asr:
 https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-to-text
 
 
-mrcp服务
+lua: socket.core
 
+
+港铁POC:
+fs和mrcp环境目录是192.168.109.85:/home/hoicee/freeswitch
+堡垒机地址 ：http://172.70.90.2/
+港铁demo目录下 服务器
+192.168.109.84    bot
+192.168.109.85   db+hoicee
+
+
+
+
+手动构建kd-unimrcp docker镜像
+
+- 20250510
+编译tts-proxy工程，定位解决sudo报错问题；
+编译kd-unimrcp工程，排查解决libtool: link:报错问题；
+定位mrcp服务启动加载tts-proxy和asr-proxy插件报错问题
+基于ubuntu搭建asr-proxy开发环境
+
+
+2025-05-10 07:28:13:455023 [NOTICE] Create RTP Termination Factory 192.168.65.3:[5000,6000]
+2025-05-10 07:28:13:455025 [INFO]   Register RTP Termination Factory [RTP-Factory-1]
+2025-05-10 07:28:13:455028 [INFO]   Load Plugin [Demo-Synth-1] [/work/knowdee/projects/kds/kd-unimrcp/kd-unimrcp/plugin/demosynth.so]
+2025-05-10 07:28:13:639446 [WARN]   Failed to Load DSO: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.22' not found (required by ../lib/libMicrosoft.CognitiveServices.Speech.core.so)
+2025-05-10 07:28:13:639477 [INFO]   Load Plugin [Demo-Recog-1] [/work/knowdee/projects/kds/kd-unimrcp/kd-unimrcp/plugin/demorecog.so]
+2025-05-10 07:28:13:796863 [WARN]   Failed to Load DSO: /lib64/libstdc++.so.6: version `GLIBCXX_3.4.22' not found (required by ../lib/libMicrosoft.CognitiveServices.Speech.core.so)
+2025-05-10 07:28:13:796893 [INFO]   Load Plugin [Demo-Verifier-1] [/work/knowdee/projects/kds/kd-unimrcp/kd-unimrcp/plugin/demoverifier.so]
+2025-05-10 07:28:13:797437 [WARN]   Failed to Load DSO: /work/knowdee/projects/kds/kd-unimrcp/kd-unimrcp/plugin/demoverifier.so: cannot open shared object file: No such file or directory
+2025-05-10 07:28:13:797452 [INFO]   Load Plugin [Recorder-1] [/work/knowdee/projects/kds/kd-unimrcp/kd-unimrcp/plugin/mrcprecorder.so]
+2025-05-10 07:28:13:798867 [WARN]   Failed to Load DSO: /work/knowdee/projects/kds/kd-unimrcp/kd-unimrcp/plugin/mrcprecorder.so: cannot open shared object file: No such file or directory
+2025-05-10 07:28:13:798905 [INFO]   Register RTP Settings [RTP-Settings-1]
+2025-05-10 07:28:13:798922 [NOTICE] Create MRCPv2 Profile [uni2]
+2025-05-10 07:28:13:798936 [INFO]   Register Profile [uni2]
+2025-05-10 07:28:13:798945 [NOTICE] Create MRCPv1 Profile [uni1]
+2025-05-10 07:28:13:798947 [INFO]   Register Profile [uni1]
+2025-05-10 07:28:13:798950 [INFO]   Start Task [MRCP Server]
+2025-05-10 07:28:13:799162 [INFO]   Start Task [SIP-Agent-1]
+>2025-05-10 07:28:13:799851 [INFO]   Start Task [RTSP-Agent-1]
+2025-05-10 07:28:13:799888 [INFO]   Start Task [MRCPv2-Agent-1]
+2025-05-10 07:28:13:799921 [INFO]   Start Task [Media-Engine-1]
+2025-05-10 07:28:13:802238 [NOTICE] MRCP Server Started
+
+
+libtool: link: CURRENT `-L../../../third_party/tts-proxy/install/lib' must be a nonnegative integer
+libtool: link: `-L../../../third_party/tts-proxy/install/lib' is not valid version information
 
 
 - 20250509
 修改asr-proxy代码，增加微软asr接口模块
+修正优化asr-proxy cmake构建流程
+调试解决asr-proxy微软asr模块编译报错问题
+参会讨论颐和园PRE环境压测结论
 
 
 - 20250508
