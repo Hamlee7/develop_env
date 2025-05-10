@@ -26,7 +26,7 @@ RUN apt-get -yq install \
     # libavformat-dev libswscale-dev libavresample-dev \
     libavformat-dev libswscale-dev libswresample-dev \
 # mod_lua
-    liblua5.2-dev \
+    liblua5.2-dev lua-socket lua-cjson\
 # mod_opus
     libopus-dev \
 # mod_pgsql
