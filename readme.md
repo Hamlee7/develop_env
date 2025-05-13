@@ -120,14 +120,330 @@ fs和mrcp环境目录是192.168.109.85:/home/hoicee/freeswitch
 
 
 
+freeswitch:0.1.0
+lua-socket
+apr
+mrcp-deps
 
 手动构建kd-unimrcp docker镜像
+
+支持微软asr/tts(azure sdk)
+
+开会同步港铁POC进展，探讨tts调测支持英文语种问题
+调研确认微软asr/tts支持中文普通话、粤语、英语
+
+
+
+- 20250513
+调试并构建基于centos7 mrcp镜像
+测试mrcp运行加载tts-proxy和asr-proxy报错及其调用tts时崩溃问题
+调研核实线上在用mrcp镜像构建流程
+联调讯飞tts英文单词按照字母发音问题，协助强强解决中文空格异常转换为sss问题
+联调联想tts英文单词按照字母发音问题，协助高宇解决英文单词之间空格丢失问题
+
+
+
+
+
+unimrcp  | Vendor-Specific-Parameters: engine=Xunfei;traceId=cea624c6-5847-4693-9b70-c0836f46c996;vadEndTime=null;volume=50;speed=55;voiceId=x4_EnUs_Lindsay_assist;pitch=50;sessionId=a9e2fcb7-00af-4651-af38-703006f43abe
+unimrcp  | Content-Length: 28
+unimrcp  |
+unimrcp  | Pleasesexpresssyoursquestion
+unimrcp  | 2025-05-13 14:32:34:753373 src/mrcp_server_connection.c:412 139818558285568 [INFO]   Assign Control Channel <40f3f183068249c0@speechsynth> to Connection 192.168.109.85:1644 <-> 192.168.109.85:34082 [0] -> [2]
+unimrcp  | 2025-05-13 14:32:34:753379 src/apt_task.c:263 139818558285568 [DEBUG]  Signal Message to [MRCP Server] [0x7f29fc0049b0;2;3]
+--
+unimrcp  | 2025-05-13 14:32:34:753509 src/demo_synth_engine.c:392 139818665518848 [INFO]   [kd-mrcp-tts] parse tts param: engine = Xunfei, speed = 55, voiceId1 = , voiceId2 = x4_EnUs_Lindsay_assist, pitch = 50, volume = 50, sessionId = a9e2fcb7-00af-4651-af38-703006f43abe, traceId = cea624c6-5847-4693-9b70-c0836f46c996, vadEndTime = null
+unimrcp  | 2025-05-13 14:32:34:753516 src/demo_synth_engine.c:421 139818665518848 [INFO]   TTS engine Xunfei
+unimrcp  | 2025-05-13 14:32:34:753516 src/apt_task.c:335 139818682304256 [DEBUG]  Process Message [MRCP Server] [0x7f29e800aee0;3;4]
+unimrcp  | 2025-05-13 14:32:34:753522 src/demo_synth_engine.c:439 139818665518848 [INFO]   ttsOptions RenderId set to 2, RenderIdGiver set to 1
+unimrcp  | 2025-05-13 14:32:34:753525 src/mrcp_synth_state_machine.c:521 139818682304256 [INFO]   Process SPEAK Response <40f3f183068249c0@speechsynth> [1]
+unimrcp  | 2025-05-13 14:32:34:753527 src/demo_synth_engine.c:471 139818665518848 [INFO]   TTS voiceId = x4_EnUs_Lindsay_assist, voice-name = test
+unimrcp  | 2025-05-13 14:32:34:753530 src/mrcp_synth_state_machine.c:088 139818682304256 [NOTICE] State Transition IDLE -> SPEAKING <40f3f183068249c0@speechsynth>
+unimrcp  | 2025-05-13 14:32:34:753531 src/demo_synth_engine.c:360 139818665518848 [INFO]   [kd-mrcp-tts][tts init] sessionId = a9e2fcb7-00af-4651-af38-703006f43abe, traceId = cea624c6-5847-4693-9b70-c0836f46c996, rederId = 2, voiceId = x4_EnUs_Lindsay_assist
+unimrcp  | -----------ttsParam pCreateTtsProxy pOptions renderID:2, voiceID:x4_EnUs_Lindsay_assist Speed:55, Pitch:50, Volume:50
+unimrcp  | [kd-mrcp-tts] ttsManager TtsMgrSingleton::Instance
+unimrcp  | [kd-mrcp-tts] ttsManager TtsMgrSingleton::CreateTtsManager
+unimrcp  | 2025-05-13 14:32:34:753535 src/apt_task.c:263 139818682304256 [DEBUG]  Signal Message to [MRCPv2-Agent-1] [0x7f2a0c011d80;1;0]
+unimrcp  | [kd-mrcp-tts] create sessionId = a9e2fcb7-00af-4651-af38-703006f43abe, traceId = cea624c6-5847-4693-9b70-c0836f46c996, time = 2025-05-13 14:32:34:753584 src/apt_consumer_task.c:139 139818682304256 [DEBUG]  Wait for Messages [MRCP Server]
+unimrcp  | 2025-05-13 14:32:34:753588
+--
+unimrcp  | Vendor-Specific-Parameters: engine=Xunfei;traceId=4ff47641-5a52-4a67-ab26-b1890960caa3;vadEndTime=1747117971.834434;volume=50;speed=55;voiceId=x4_EnUs_Lindsay_assist;pitch=50;sessionId=a9e2fcb7-00af-4651-af38-703006f43abe
+unimrcp  | Content-Length: 247
+unimrcp  |
+unimrcp  | Itsseemssyousaresexpressingsasstreamsofsthoughtssaboutsyourshometown,strainslines,sandstakingsphotos.sCouldsyouspleasesclarifysyoursspecificsquestionsorsrequestsregardingsthesestopics?sThisswillshelpsmesprovidesasmoresfocusedsandshelpfulsresponse.
+unimrcp  | 2025-05-13 14:32:53:754314 src/mrcp_server_connection.c:412 139818558285568 [INFO]   Assign Control Channel <8c9c574d9b6148a8@speechsynth> to Connection 192.168.109.85:1644 <-> 192.168.109.85:34082 [0] -> [2]
+unimrcp  | 2025-05-13 14:32:53:754316 src/apt_task.c:263 139818558285568 [DEBUG]  Signal Message to [MRCP Server] [0x7f29fc0069c0;2;3]
+--
+unimrcp  | 2025-05-13 14:32:53:754395 src/demo_synth_engine.c:392 139818665518848 [INFO]   [kd-mrcp-tts] parse tts param: engine = Xunfei, speed = 55, voiceId1 = , voiceId2 = x4_EnUs_Lindsay_assist, pitch = 50, volume = 50, sessionId = a9e2fcb7-00af-4651-af38-703006f43abe, traceId = 4ff47641-5a52-4a67-ab26-b1890960caa3, vadEndTime = 1747117971.834434
+unimrcp  | 2025-05-13 14:32:53:754403 src/demo_synth_engine.c:421 139818665518848 [INFO]   TTS engine Xunfei
+unimrcp  | 2025-05-13 14:32:53:754407 src/demo_synth_engine.c:439 139818665518848 [INFO]   ttsOptions RenderId set to 2, RenderIdGiver set to 1
+unimrcp  | 2025-05-13 14:32:53:754412 src/demo_synth_engine.c:471 139818665518848 [INFO]   TTS voiceId = x4_EnUs_Lindsay_assist, voice-name = test
+unimrcp  | 2025-05-13 14:32:53:754416 src/demo_synth_engine.c:360 139818665518848 [INFO]   [kd-mrcp-tts][tts init] sessionId = a9e2fcb7-00af-4651-af38-703006f43abe, traceId = 4ff47641-5a52-4a67-ab26-b1890960caa3, rederId = 2, voiceId = x4_EnUs_Lindsay_assist
+unimrcp  | -----------ttsParam pCreateTtsProxy pOptions renderID:2, voiceID:x4_EnUs_Lindsay_assist Speed:55, Pitch:50, Volume:50
+unimrcp  | [kd-mrcp-tts] ttsManager TtsMgrSingleton::Instance
+unimrcp  | [kd-mrcp-tts] ttsManager TtsMgrSingleton::CreateTtsManager
+unimrcp  | [kd-mrcp-tts] create sessionId = a9e2fcb7-00af-4651-af38-703006f43abe, traceId = 4ff47641-5a52-4a67-ab26-b1890960caa3, time = 2025-05-13 14:32:53:754446
+unimrcp  | [kd-mrcp-tts] iFlyTek Create
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::iflytekTtsInst create
+--
+unimrcp  | =====getFirstFrame ttsParam voiceId:x4_EnUs_Lindsay_assist, speed:55, voiceId:x4_EnUs_Lindsay_assist, pitch:50, volume:50
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::getCommonArgs appid = 65f4da90
+unimrcp  | =====getFirstFrame:{"common":{"app_id":"65f4da90"},"business":{"aue": "raw","tte":"UTF8","vcn":"x4_EnUs_Lindsay_assist","speed": 55,"volume": 50,"pitch": 50,"auf":"audio/L16;rate=8000"},"data": {"status": 2,"text":"SXRzc2VlbXNzeW91c2FyZXNleHByZXNzaW5nc2Fzc3RyZWFtc29mc3Rob3VnaHRzc2Fib3V0c3lvdXJzaG9tZXRvd24sc3RyYWluc2xpbmVzLHNhbmRzdGFraW5nc3Bob3Rvcy5zQ291bGRzeW91c3BsZWFzZXNjbGFyaWZ5c3lvdXJzc3BlY2lmaWNzcXVlc3Rpb25zb3JzcmVxdWVzdHNyZWdhcmRpbmdzdGhlc2VzdG9waWNzP3NUaGlzc3dpbGxzaGVscHNtZXNwcm92aWRlc2FzbW9yZXNmb2N1c2Vkc2FuZHNoZWxwZnVsc3Jlc3BvbnNlLg=="}}
+unimrcp  | [kd-mrcp-tts][try to connect] Uri = ws://tts-api.xfyun.cn/v2/tts?date=Tue%2C+13+May+2025+14%3A32%3A53+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iczhvVTlSajhyQ2FTZWp5MkNRZTNkRjZCWHJ4bmZ2ZHNHK29CUmpzYnFjMT0i
+unimrcp  | Uri is ws://tts-api.xfyun.cn/v2/tts?date=Tue%2C+13+May+2025+14%3A32%3A53+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iczhvVTlSajhyQ2FTZWp5MkNRZTNkRjZCWHJ4bmZ2ZHNHK29CUmpzYnFjMT0i
+unimrcp  | [kd-mrcp-tts] wsConnection::on_socket_init >>> hdl = 0x7f29dc01feb0
+
+
+
+
+
+unimrcp  | Vendor-Specific-Parameters: engine=Lenovo_HTTP;traceId=57536c5c-ae97-4ba9-9320-5f9686fb5873;vadEndTime=1747129414.558103;volume=50;speed=55;voiceId=x4_EnUs_Lindsay_assist;pitch=50;sessionId=5df07351-d064-4188-a2c9-00bd2f6a0bbc
+unimrcp  | Content-Length: 1199
+unimrcp  |
+unimrcp  | Step 1: Analyze the User's Question 1. The user expresses a desire to upgrade subway facilities. 2. The core theme is related to transportation infrastructure enhancement. 3. The user likely seeks information or guidance on how to proceed with this upgrade. Step 2: Evaluate Existing Answers 1. No existing answer provided. 2. Relevant to infrastructure development and urban planning. Step 3: Optimize Answer Quality 1. Content Refinement: The response should directly address the user's intent to upgrade subway facilities. 2. Accuracy: Ensure the information is precise regarding potential steps or considerations for upgrading. 3. Logical Structure:
+
+
+
+
+
+
+20250513_build
+[root@SC-pre-vm-gangtie-demo2 bin]# md5sum unimrcpserver
+5eafccc280ad2b76948f722ecd005c59  unimrcpserver
+
+
+online:
+[root@SC-pre-vm-gangtie-demo2 lib]# md5sum ../bin/unimrcpserver
+156d597bdfdf620b0c4e4e3fcb82ebc0  ../bin/unimrcpserver
+
+
+
+Commit: a26807c01b33bd7e6790d3dc390d662fd2f8d7b5
+Parents: 3767ba0a896aac165566c3985a4be5b8e12d051a
+Author: wangwh <wangwh@knowdee.com>
+Committer: wangwh <wangwh@knowdee.com>
+Date: Thu May 12 2022 15:40:33 GMT+0800 (中国标准时间)
+
+feat:1.add deployment for moli 2,update microsoft cont mode
+
+$ md5sum.exe unimrcpserver
+156d597bdfdf620b0c4e4e3fcb82ebc0 *unimrcpserver
+
+
+
+
+- 20250512
+开会同步港铁POC进度，探讨asr/tts同时支持三个语种方案
+同讯飞技术支持沟通tts同时支持中英粤三个语种的技术实现方案
+调试讯飞tts支持粤语、英语播报功能，排查调用英语播报无声问题
+添加讯飞tts业务参数英文发音方式reg，编译调试asr-proxy、tts-proxy、mrcp，手动构建mrcp镜像
+
+
+
+
+
+docker compose logs -f unimrcp|grep -B5 -A5 "parse tts param"
+docker compose logs -f unimrcp|grep -B5 -A5 "getFirstFrame"
+docker compose logs -f unimrcp|grep -B5 -A5 "Not Using Cache tts"
+docker compose logs -f unimrcp|grep -B5 -A5 "message send error"
+
+docker compose logs -f unimrcp|grep "catch exception when send message error is"
+
+docker compose logs -f unimrcp|grep -B5 -A5 "err is "
+
+
+
+docker compose logs -f unimrcp|grep -B5 -A5 "tts end"
+docker compose logs -f unimrcp|grep -B5 -A5 "tts cb close"
+
+
+
+
+
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> in
+unimrcp  | Get file /tmp/BADC6F150977A87ABFDD57DB520B42B6
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> Using Cache tts = Pleases expresss yours question
+unimrcp  | [kd-mrcp-tts][tts end] sessionId = ef005930-18eb-4e7e-80c8-ecc9b9e0b789, traceId = e22804bf-278d-48cc-a57e-f6cf70bbd11f, tts_duration = 0.104906, asr_tts_duration = 0
+unimrcp  | [kd-mrcp-tts] ttsProxyMsg::recordTime Invalid argument: stod
+unimrcp  | 2025-05-12 14:53:36:923394 src/demo_synth_engine.c:162 140634171709184 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = ef005930-18eb-4e7e-80c8-ecc9b9e0b789, traceId = e22804bf-278d-48cc-a57e-f6cf70bbd11f
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> out
+unimrcp  | 2025-05-12 14:53:36:923398 src/apt_consumer_task.c:139 140634171709184 [DEBUG]  Wait for Messages [Demo Synth Engine]
+unimrcp  | 2025-05-12 14:53:36:923406 src/apt_poller_task.c:259 140634065200896 [DEBUG]  Process Poller Wakeup [MRCPv2-Agent-1]
+unimrcp  | 2025-05-12 14:53:36:923407 src/apt_task.c:335 140634065200896 [DEBUG]  Process Message [MRCPv2-Agent-1] [0x7fe7ec002b90;1;0]
+unimrcp  | 2025-05-12 14:53:36:923411 src/mrcp_server_connection.c:693 140634065200896 [INFO]   Send MRCPv2 Data 192.168.109.85:1644 <-> 192.168.109.85:51774 [83 bytes]
+--
+unimrcp  | 2025-05-12 14:54:22:397622 src/apt_task.c:335 140634188494592 [DEBUG]  Process Message [MRCP Server] [0x7fe7e4006640;1;2]
+unimrcp  | 2025-05-12 14:54:22:397624 src/mrcp_server_session.c:326 140634188494592 [DEBUG]  Push Request to Queue 0x7fe7e4001b80 <10416111cacc4883>
+unimrcp  | 2025-05-12 14:54:22:397626 src/apt_consumer_task.c:139 140634188494592 [DEBUG]  Wait for Messages [MRCP Server]
+unimrcp  | [kd-mrcp-tts] ttsProxyMsg::recordTime _pAsrTime : 1747032830.319358
+unimrcp  | [kd-mrcp-tts][tts end] sessionId = ef005930-18eb-4e7e-80c8-ecc9b9e0b789, traceId = 64ebc7f7-81b1-4ca9-a4e1-a329af49a7b1, tts_duration = 45891.5, asr_tts_duration = 56536.1
+unimrcp  | 2025-05-12 14:54:46:855508 src/demo_synth_engine.c:162 140633368934144 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = ef005930-18eb-4e7e-80c8-ecc9b9e0b789, traceId = 64ebc7f7-81b1-4ca9-a4e1-a329af49a7b1
+unimrcp  | [2025-05-12 14:54:46] [frame_header] Dispatching write containing 1 message(s) containing 6 header bytes and 2 payload bytes
+unimrcp  | [2025-05-12 14:54:46] [frame_header] Header Bytes:
+unimrcp  | [0] (6) 88 82 17 ED B2 C3
+unimrcp  |
+unimrcp  | [2025-05-12 14:54:46] [control] Control frame received with opcode 8
+
+
+
+
+
+unimrcp  | 2025-05-12 14:50:35:043572 src/demo_synth_engine.c:392 140634171709184 [INFO]   [kd-mrcp-tts] parse tts param: engine = Xunfei, speed = 50, voiceId1 = , voiceId2 = x3_xiaoyue, pitch = 50, volume = 50, sessionId = 8620b69a-9d28-42f9-b0f6-fa006eaae88e, traceId = be2be657-8894-49a1-8a82-da500af7f8d6, vadEndTime = 1747032633.516202
+unimrcp  | 2025-05-12 14:50:35:043580 src/demo_synth_engine.c:439 140634171709184 [INFO]   ttsOptions RenderId set to 2, RenderIdGiver set to 1
+unimrcp  | 2025-05-12 14:50:35:043586 src/demo_synth_engine.c:360 140634171709184 [INFO]   [kd-mrcp-tts][tts init] sessionId = 8620b69a-9d28-42f9-b0f6-fa006eaae88e, traceId = be2be657-8894-49a1-8a82-da500af7f8d6, rederId = 2, voiceId = x3_xiaoyue
+unimrcp  | -----------ttsParam pCreateTtsProxy pOptions renderID:2, voiceID:x3_xiaoyue Speed:50, Pitch:50, Volume:50
+unimrcp  | [kd-mrcp-tts] ttsManager TtsMgrSingleton::Instance
+unimrcp  | [kd-mrcp-tts] ttsManager TtsMgrSingleton::CreateTtsManager
+unimrcp  | [kd-mrcp-tts] create sessionId = 8620b69a-9d28-42f9-b0f6-fa006eaae88e, traceId = be2be657-8894-49a1-8a82-da500af7f8d6, time = 2025-05-12 14:50:35:043605 src/mrcp_synth_state_machine.c:088 140634188494592 [NOTICE] State Transition IDLE -> SPEAKING <3c54796d91754743@speechsynth>
+unimrcp  | [kd-mrcp-tts] iFlyTek Create
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::iflytekTtsInst create
+unimrcp  | 2025-05-12 14:50:35:043698 src/demo_synth_engine.c:367 140634171709184 [INFO]   [kd-mrcp-tts][tts speak] content = 抱歉，我是粤语智能助手，无法使用普通话回答您的问题。如果您有任何粤语的问题，请随时问我！
+unimrcp  | [kd-mrcp-tts] ttsManager speak
+unimrcp  | [kd-mrcp-tts] speek, sessionId = 8620b69a-9d28-42f9-b0f6-fa006eaae88e, traceId = be2be657-8894-49a1-8a82-da500af7f8d6, time = 2025-05-12 14:50:35:043704
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> in
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> Not Using Cache tts = 抱歉，我是粤语智能助手，无法使用普通话回答您的问题。如果您有任何粤语的问题，请随时问我！
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::createUrl reg_url = ws://tts-api.xfyun.cn/v2/tts
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::createUrl api_key = c46ba9ab1f793839a6c1bbfde61b8184
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::createUrl api_secret = ZTA5NTM0YTRhOTVlMjMxODA5MzRiMDQz
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::createUrl host = tts-api.xfyun.cn, path = /v2/tts
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::createUrl signature_origin = host: tts-api.xfyun.cn
+unimrcp  | GET /v2/tts HTTP/1.1
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::createUrl authorization_origin = api_key="c46ba9ab1f793839a6c1bbfde61b8184", algorithm="hmac-sha256", headers="host date request-line", signature="R8kRw8CHIbOPpXebxy3GqnziQXbklVZXMfxhydj/x1l="
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::createUrl _finalUrl = ws://tts-api.xfyun.cn/v2/tts?date=Mon%2C+12+May+2025+14%3A50%3A35+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iUjhrUnc4Q0hJYk9QcFhlYnh5M0dxbnppUVhia2xWWlhNZnhoeWRqL3gxbD0i
+unimrcp  | =====getFirstFrame ttsParam voiceId:x3_xiaoyue, speed:50, voiceId:x3_xiaoyue, pitch:50, volume:50
+unimrcp  | [kd-mrcp-tts][try to connect] Uri = ws://tts-api.xfyun.cn/v2/tts?date=Mon%2C+12+May+2025+14%3A50%3A35+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iUjhrUnc4Q0hJYk9QcFhlYnh5M0dxbnppUVhia2xWWlhNZnhoeWRqL3gxbD0i
+unimrcp  | Uri is ws://tts-api.xfyun.cn/v2/tts?date=Mon%2C+12+May+2025+14%3A50%3A35+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iUjhrUnc4Q0hJYk9QcFhlYnh5M0dxbnppUVhia2xWWlhNZnhoeWRqL3gxbD0i
+unimrcp  | [kd-mrcp-tts] wsConnection::on_socket_init >>> hdl = 0x7fe7c8070cd0
+unimrcp  | ================query tcp v4 tts-api.xfyun.cn:80
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::getCommonArgs appid = 65f4da90
+unimrcp  | [2025-05-12 14:50:35] [connect] [kd-mrcp-tts] Successful connection
+unimrcp  | [2025-05-12 14:50:35] [connect] WebSocket Connection 124.172.152.234:80 v-2 "WebSocket++/0.8.2" /v2/tts?date=Mon%2C+12+May+2025+14%3A50%3A35+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iUjhrUnc4Q0hJYk9QcFhlYnh5M0dxbnppUVhia2xWWlhNZnhoeWRqL3gxbD0i 101
+unimrcp  | [kd-mrcp-tts] wsConnection::on_open >>> hdl = 0x7fe7c8070cd0
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> out
+unimrcp  | [kd-mrcp-tts] ttsProxyMsg::recordTime _pAsrTime : 1747032633.516202
+unimrcp  | [kd-mrcp-tts][tts end] sessionId = 8620b69a-9d28-42f9-b0f6-fa006eaae88e, traceId = be2be657-8894-49a1-8a82-da500af7f8d6, tts_duration = 869.911, asr_tts_duration = 2397.4
+unimrcp  | 2025-05-12 14:50:35:913677 src/demo_synth_engine.c:162 140634040022784 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = 8620b69a-9d28-42f9-b0f6-fa006eaae88e, traceId = be2be657-8894-49a1-8a82-da500af7f8d6
+unimrcp  | [kd-mrcp-tts] wsConnection::on_close >>> hdl = 0x7fe7c8070cd0
+
+
+
+
+
+[root@SC-pre-vm-gangtie-demo2 freeswitch]# docker compose logs -f unimrcp|grep -B5 -A5 "iat000d610b@dx196c317cc34a182802"
+unimrcp  | [kd-mrcp-asr] wsConnection::sendMsg 2 vad end, sessionId = 468e6046-06a0-4e8e-805c-1694087fb16a, traceId = c2f7b172-6a74-4eb8-b861-6fbfa3cc6cba, time = 2025-05-12 14:04:10:837794
+unimrcp  | [2025-05-12 14:04:10] [frame_header] Dispatching write containing 1 message(s) containing 6 header bytes and 22 payload bytes
+unimrcp  | [2025-05-12 14:04:10] [frame_header] Header Bytes:
+unimrcp  | [0] (6) 81 96 EE 14 49 21
+unimrcp  |
+unimrcp  | [kd-mrcp-asr] on_message called with hdl = 0x7fe7a000ea20 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d610b@dx196c317cc34a182802"}
+unimrcp  | code is10008err is service instance invalid[kd-mrcp-asr] on_message called with hdl = 0x7fe7a000ea20 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d610b@dx196c317cc34a182802"}
+unimrcp  | code is10008err is service instance invalid[kd-mrcp-asr] on_message called with hdl = 0x7fe7a000ea20 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d610b@dx196c317cc34a182802"}
+unimrcp  | code is10008err is service instance invalid[kd-mrcp-asr] on_message called with hdl = 0x7fe7a000ea20 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d610b@dx196c317cc34a182802"}
+unimrcp  | code is10008err is service instance invalidCatch noinput at 40561440 ms, elapsed 10010 ms
+unimrcp  | [kd-mrcp-asr] recoProxy::processVadRes Get data len 8000
+unimrcp  | [kd-mrcp-asr][warning] iflytekAsrInst::sendFirstMsg iMsgType = 0, recreate_connection_if_timeout = 0
+unimrcp  | CreateMsg Index = 36, point = 0x7fe79c018470
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl reg_url = ws://ws-api.xfyun.cn/v2/iat
+--
+unimrcp  | [2025-05-12 14:04:21] [frame_header] Dispatching write containing 1 message(s) containing 6 header bytes and 87 payload bytes
+unimrcp  | [2025-05-12 14:04:21] [frame_header] Header Bytes:
+unimrcp  | [0] (6) 88 D7 CB E3 BA 07
+unimrcp  |
+unimrcp  | [kd-mrcp-asr] wsConnection::on_close >>> hdl = 0x7fe7a000ea20
+unimrcp  | [2025-05-12 14:04:21] [disconnect] Disconnect close local:[1000,Websocket closed!,sid=iat000d610b@dx196c317cc34a182802!reason=server read msg timeout] remote:[1000,Websocket closed!,sid=iat000d610b@dx196c317cc34a182802!reason=server read msg timeout]
+unimrcp  | [kd-mrcp-asr] wsConnection::wsConnection >>> uri = ws://ws-api.xfyun.cn/v2/iat?date=Mon%2C+12+May+2025+14%3A04%3A19+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iQXM0eDFPMENybkUzMkRzOXhDLzFDY2grR1A2djZWTEk3M0hIZlVBR3R5OT0i
+unimrcp  | [kd-mrcp-asr] wsConnection::init >>> uri = ws://ws-api.xfyun.cn/v2/iat?date=Mon%2C+12+May+2025+14%3A04%3A19+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iQXM0eDFPMENybkUzMkRzOXhDLzFDY2grR1A2djZWTEk3M0hIZlVBR3R5OT0i
+unimrcp  | [kd-mrcp-asr] rreporter::createCon wsConnection ot _allCons.size = 2, url = ws://ws-api.xfyun.cn/v2/iat?date=Mon%2C+12+May+2025+14%3A04%3A19+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iQXM0eDFPMENybkUzMkRzOXhDLzFDY2grR1A2djZWTEk3M0hIZlVBR3R5OT0i
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::getCommonArgs appid = 5e815ba7
+unimrcp  | [kd-mrcp-asr][try to connect] _bClientOpen = 0, _iMaxTry = Get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "iat", "language": "zh_cn", "accent": "mandarin", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"AAD4//j/+P/4/wAAAAAAAPj/8P/w//j/+P/w//D/+P8AAAAACAAAAAAAAADw//D/+P8IAAAAAAAIABAAEAAIAAAAAAAAAPj/AAAAAAAAAAAAAAgACAAIAAgACAAQABAACAAYABgAEAAIAAgAAAAAAAAA8P/4//D/+P8AAPj/+P/w//D/+P8AAAAA+P8AAAAAAAAIAAAA+P/4//j/AAAAAAAAAAAIAAgAAAAAAPj/+P/4//j/CAAIAAgAAAAAAAgAAAAAAAAACAAQAAgAEAAQAAgAAAAAAAAAAADw//j/+P8AAAAACAAAAPj/AAD4/wAAAAAAAAAAAADw//D/AAAAAAgAAAD4/wAA+P8AAAAA+P8AAAgAAAAAAAgAAAAIABAAEAAQABAACAAIABAAEAAYAAgACAAIAAAACAAIAAAA+P8=","encoding": "raw"}}
+
+
+
+unimrcp  | [2025-05-12 14:04:10] [frame_header] Dispatching write containing 1 message(s) containing 6 header bytes and 22 payload bytes
+unimrcp  | [2025-05-12 14:04:10] [frame_header] Header Bytes:
+unimrcp  | [0] (6) 81 96 EE 14 49 21
+unimrcp  |
+unimrcp  | [kd-mrcp-asr] on_message called with hdl = 0x7fe7a000ea20 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d610b@dx196c317cc34a182802"}
+unimrcp  | code is10008err is service instance invalid
+
+[kd-mrcp-asr] on_message called with hdl = 0x7fe7a000ea20 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d610b@dx196c317cc34a182802"}
+
+unimrcp  | code is10008err is service instance invalid[kd-mrcp-asr] on_message called with hdl = 0x7fe7a000ea20 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d610b@dx196c317cc34a182802"}
+unimrcp  | code is10008err is service instance invalid[kd-mrcp-asr] on_message called with hdl = 0x7fe7a000ea20 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d610b@dx196c317cc34a182802"}
+unimrcp  | code is10008err is service instance invalid
+
+
+
+Catch noinput at 40561440 ms, elapsed 10010 ms
+unimrcp  | [kd-mrcp-asr] recoProxy::processVadRes Get data len 8000
+unimrcp  | [kd-mrcp-asr][warning] iflytekAsrInst::sendFirstMsg iMsgType = 0, recreate_connection_if_timeout = 0
+unimrcp  | CreateMsg Index = 36, point = 0x7fe79c018470
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl reg_url = ws://ws-api.xfyun.cn/v2/iat
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl api_key = 18bf3ad418f72b1ee335eb1ec5c1c0bf
+
+
+
+
+
+std::string ret = std::string("{\"common\":") + getCommonArgs() + std::string(",\"business\":") + std::string("{\"aue\": \"raw\",\"tte\":\"UTF8\",\"ttp\":\"" + ttp + "\",\"vcn\":\"" + vcn + "\",\"speed\": " + speed + ",\"volume\": " + volume + ",\"pitch\": " + pitch + ",\"auf\":\"audio/L16;rate=8000\"}") + std::string(",") + getCommonFrame(iType, pBuf, iBufLen) + "}";
+std::cout << "=====getFirstFrame:" << ret.c_str() << std::endl;
+
+unimrcp  | =====getFirstFrame ttsParam voiceId:x4_lingxiaoying_en, speed:55, voiceId:x4_lingxiaoying_en, pitch:50, volume:50
+unimrcp  | =====getFirstFrame:{"common":{"app_id":"65f4da90"},"business":{"aue": "raw","tte":"UTF8","vcn":"x4_lingxiaoying_en","speed": 55,"volume": 50,"pitch": 50,"auf":"audio/L16;rate=8000"},"data": {"status": 2,"text":"MTk5N+W5tOWPr+S7peeUqOS4jeWQjOeahOaXtuaAgeadpeaPj+i/sO+8jOagueaNruWPpeWtkOeahOmcgOimgeOAguS7peS4i+aYr+S4gOS6m+W4uOingeeahOaXtuaAgeWPiuWFtuS9v+eUqOekuuS+i++8mjEuc3N0YXJzdGFy6L+H5Y675pe2c3RhcnN0YXLvvJrnlKjkuo7mj4/ov7AxOTk35bm05Y+R55Sf55qE5LqL5Lu244CCc3NzLXPnpLrkvovvvJpJbnMxOTk3LHN0aGVzbW92aWVzIlRpdGFuaWMic3dhc3NyZWxlYXNlZC4yLnNzdGFyc3RhcueOsOWcqOWujOaIkOaXtnN0YXJzdGFy77ya55So5LqO5o+P6L+w5LuOMTk5N+W5tOWIsOeOsOWcqOeahOW9seWTjeaIlue7k+aenOOAgnNzcy1z56S65L6L77yaU2luY2VzMTk5NyxzdGVjaG5vbG9neXNoYXNzYWR2YW5jZWRzc2lnbmlmaWNhbnRseS4zLnNzdGFyc3RhcuWwhuadpeaXtnN0YXJzdGFy77ya55So5LqO5o+P6L+w5a+5MTk5N+W5tOS5i+WQjueahOmihOa1i+aIluiuoeWIkuOAgnNzcy1z56S65L6L77yaSW5zMTk5OCxzbWFueXNwZW9wbGVzd2lsbHNyZW1lbWJlcnN0aGVzZXZlbnRzc29mczE5OTcu6YCJ5oup5ZCI6YCC55qE5pe25oCB5Y+W5Yaz5LqO5L2g5biM5pyb6KGo6L6+55qE5pe26Ze05qGG5p625ZKM6K+t5aKD44CC"}}
+unimrcp  | =====getFirstFrame ttsParam voiceId:x3_xiaoyue, speed:55, voiceId:x3_xiaoyue, pitch:50, volume:50
+unimrcp  | =====getFirstFrame:{"common":{"app_id":"65f4da90"},"business":{"aue": "raw","tte":"UTF8","vcn":"x3_xiaoyue","speed": 55,"volume": 50,"pitch": 50,"auf":"audio/L16;rate=8000"},"data": {"status": 2,"text":"6aaZ5riv6ZOB6Lev5qyi6L+O5oKo77yM5pmu6YCa6K+d6K+35oyJMe+8jOW5v+S4nOivneivt+aMiTLvvIzoi7Hor63or7fmjIkz"}}
+unimrcp  | =====getFirstFrame ttsParam voiceId:x4_enus_luna_assist, speed:55, voiceId:x4_enus_luna_assist, pitch:50, volume:50
+unimrcp  | =====getFirstFrame:{"common":{"app_id":"65f4da90"},"business":{"aue": "raw","tte":"UTF8","vcn":"x4_enus_luna_assist","speed": 55,"volume": 50,"pitch": 50,"auf":"audio/L16;rate=8000"},"data": {"status": 2,"text":"6aaZ5riv6ZOB6Lev5qyi6L+O5oKo77yM5pmu6YCa6K+d6K+35oyJMe+8jOW5v+S4nOivneivt+aMiTLvvIzoi7Hor63or7fmjIkz"}}
+unimrcp  | =====getFirstFrame ttsParam voiceId:x4_enus_luna_assist, speed:55, voiceId:x4_enus_luna_assist, pitch:50, volume:50
+unimrcp  | =====getFirstFrame:{"common":{"app_id":"65f4da90"},"business":{"aue": "raw","tte":"UTF8","vcn":"x4_enus_luna_assist","speed": 55,"volume": 50,"pitch": 50,"auf":"audio/L16;rate=8000"},"data": {"status": 2,"text":"6aaZ5riv6ZOB6Lev5qyi6L+O5oKo77yM5pmu6YCa6K+d6K+35oyJMe+8jOW5v+S4nOivneivt+aMiTLvvIzoi7Hor63or7fmjIkz"}}
+
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> Not Using Cache tts = 香港铁路欢迎您，普通话请按1，广东话请按2，英语请按3
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> Not Using Cache tts = 香港铁路欢迎您，普通话请按1，广东话请按2，英语请按3
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> Not Using Cache tts = 香港铁路欢迎您，普通话请按1，广东话请按2，英语请按3
+
+
+
+
+unimrcp  | 2025-05-12 10:52:59:574365 src/demo_synth_engine.c:392 140634171709184 [INFO]   [kd-mrcp-tts] parse tts param: engine = Xunfei, speed = 55, voiceId1 = , voiceId2 = x4_lingxiaoying_en, pitch = 50, volume = 50, sessionId = 3e8d5e6a-0637-4bb4-8d11-5cd631831f27, traceId = fa475828-fb0e-4b35-99d3-bd8159190f4e, vadEndTime = 1747018377.488813
+unimrcp  | 2025-05-12 11:10:36:964401 src/demo_synth_engine.c:392 140634171709184 [INFO]   [kd-mrcp-tts] parse tts param: engine = Xunfei, speed = 55, voiceId1 = , voiceId2 = x4_lingxiaoying_en, pitch = 50, volume = 50, sessionId = 1b69519f-083d-4b27-909c-5f8e8329da83, traceId = c95c161d-74c8-4842-936c-ef930d69ede7, vadEndTime = null
+unimrcp  | 2025-05-12 11:10:51:843979 src/demo_synth_engine.c:392 140634171709184 [INFO]   [kd-mrcp-tts] parse tts param: engine = Xunfei, speed = 55, voiceId1 = , voiceId2 = x4_lingxiaoying_en, pitch = 50, volume = 50, sessionId = 1b69519f-083d-4b27-909c-5f8e8329da83, traceId = bfa2ddd7-be26-483a-a793-f21b883ff783, vadEndTime = 1747019449.317773
+
+
+
+unimrcp  | =====getFirstFrame ttsParam voiceId:x4_lingxiaoying_en, speed:55, voiceId:x4_lingxiaoying_en, pitch:50, volume:50
+unimrcp  | =====getFirstFrame:{"common":{"app_id":"65f4da90"},"business":{"aue": "raw","tte":"UTF8","vcn":"x4_lingxiaoying_en","speed": 55,"volume": 50,"pitch": 50,"auf":"audio/L16;rate=8000"},"data": {"status": 2,"text":"5L2g5rKh5pyJ5oyH5a6a6L6T5Ye66K+t6KiA77yM6K+36Zeu5L2g5biM5pyb5oiR55So5ZOq56eN6K+t6KiA5Zue562U5ZGi77yf77yI5Lit5paHL+iLseaWhy/nsqTor63vvIk="}}
+unimrcp  | =====getFirstFrame ttsParam voiceId:x4_lingxiaoying_en, speed:55, voiceId:x4_lingxiaoying_en, pitch:50, volume:50
+unimrcp  | =====getFirstFrame:{"common":{"app_id":"65f4da90"},"business":{"aue": "raw","tte":"UTF8","vcn":"x4_lingxiaoying_en","speed": 55,"volume": 50,"pitch": 50,"auf":"audio/L16;rate=8000"},"data": {"status": 2,"text":"6K+36Zeu5oKo5biM5pyb55So5ZOq56eN6K+t6KiA5Zue562U5ZGi77yf77yI5Lit5paH44CB6Iux5paH5oiW57Kk6K+t77yJ"}}
+unimrcp  | =====getFirstFrame ttsParam voiceId:x4_lingxiaoying_en, speed:55, voiceId:x4_lingxiaoying_en, pitch:50, volume:50
+unimrcp  | =====getFirstFrame:{"common":{"app_id":"65f4da90"},"business":{"aue": "raw","tte":"UTF8","vcn":"x4_lingxiaoying_en","speed": 55,"volume": 50,"pitch": 50,"auf":"audio/L16;rate=8000"},"data": {"status": 2,"text":"6L6T5YWl5paH5qGj77ya5YOP5LuA5LmI5Y2h6YO96IO96Kej5Yazc3PmjIflrprovpPlh7ror63oqIDvvJrnsqTor61zc+i+k+WHuu+8muS/guWRgO+8jOWUlOWQjOWYheWVj+mhjOmAmuW4uOmDveacieWUlOWQjOWYheino+axuuaWueazle+8jOWwseWlveS8vOacieWVsuWNoeWPr+S7peW5q+S9oOino+axuuWUlOWQjOWYhemcgOaxguWSgeOAguS9oOacieWSqeWFt+mrlOWYheWVj+mhjOaDs+ino+axuu+8nw=="}}
+
+
+
 
 - 20250510
 编译tts-proxy工程，定位解决sudo报错问题；
 编译kd-unimrcp工程，排查解决libtool: link:报错问题；
 定位mrcp服务启动加载tts-proxy和asr-proxy插件报错问题
 基于ubuntu搭建asr-proxy开发环境
+
+
+
+Making all in plugins
+make[1]: Entering directory `/test_asr_proxy/.kd-unimrcp/unimrcp/plugins'
+Making all in demo-synth
+make[2]: Entering directory `/test_asr_proxy/.kd-unimrcp/unimrcp/plugins/demo-synth'
+  CCLD     demosynth.la
+libtool: link: CURRENT `-L../../../third_party/tts-proxy/install/lib' must be a nonnegative integer
+libtool: link: `-L../../../third_party/tts-proxy/install/lib' is not valid version information
+make[2]: *** [demosynth.la] Error 1
+make[2]: Leaving directory `/test_asr_proxy/.kd-unimrcp/unimrcp/plugins/demo-synth'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/test_asr_proxy/.kd-unimrcp/unimrcp/plugins'
+
+
+agent:
+TEN
+
 
 
 2025-05-10 07:28:13:455023 [NOTICE] Create RTP Termination Factory 192.168.65.3:[5000,6000]
