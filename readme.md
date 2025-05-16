@@ -133,6 +133,266 @@ mrcp-deps
 调研确认微软asr/tts支持中文普通话、粤语、英语
 
 
+联调讯飞asr支持多种语言识别功能；
+
+unimrcp3  | [kd-mrcp-asr] recoProxy::recoProxy >>>>>>Start unimrcpserver success...
+
+
+
+
+
+apt_log(RECOG_LOG_MARK, APT_PRIO_INFO, "[kd-mrcp-asr] session[%s] choose render[%s][%d] language[%s] accent[%s]",
+                                        sessionId, asrRender, asrOption._iAsrRenderId, asrLanguage, accent);
+
+printf("[kd-mrcp-asr] recoProxy::recoProxy >>>>>> RECO_ASR_IFLYTEK SampleRatio = %d \n", _pVadOptions._iSampleRatio);
+
+
+printf("get request parameter = %s\n", ret.c_str());
+
+
+
+
+
+
+
+echo "core.%e.%p" > /proc/sys/kernel/core_pattern
+
+[kd-mrcp-tts] iflytekTtsInst::speak >>>>>> in
+Get file /tmp/9B3AFEEBD1DE923D71211CB07A0E4726
+[kd-mrcp-tts] iflytekTtsInst::speak >>>>>> Using Cache tts = 请说出您要咨询的问题
+[kd-mrcp-tts] ttsProxyMsg::recordTime _pAsrTime : null
+[kd-mrcp-tts] ttsProxyMsg::recordTime Invalid argument: stod
+[kd-mrcp-tts][tts end] sessionId = f366dcb9-feaf-4e69-a217-a5066cf8f07a, traceId = 959673b8-679a-451c-868e-f78d173d647a, tts_duration = 0.277984, asr_tts_duration = 0
+2025-05-16 10:53:42:974712 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = f366dcb9-feaf-4e69-a217-a5066cf8f07a, traceId = 959673b8-679a-451c-868e-f78d173d647a
+[kd-mrcp-tts] iflytekTtsInst::speak >>>>>> out
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+20250516
+联调港铁POC mrcp支持多语种切换参数和功能
+联调港铁POC asr-proxy支持多语种切换参数和功能
+排查港铁POC tts调用异常问题
+
+
+20250515
+修复kd-unimrcp编译失败问题(libtool)
+修复kd-unimrcp拉取submodule失败问题
+构建kd-unimrcp联调docker镜像
+调试新版kd-unimrcp docker镜像
+
+
+
+
+chmod +x build/get-version.sh
+
+git pull --recurse-submodules
+
+
+
+
+lit_dev4_centos:
+2025-05-15 07:54:51:976845 [NOTICE] Run as Daemon
+2025-05-15 07:54:51:977097 [NOTICE] UniMRCP Server [1.7.0]
+2025-05-15 07:54:51:977127 [INFO]   APR [1.5.2]
+2025-05-15 07:54:51:977179 [NOTICE] Create MRCP Server
+2025-05-15 07:54:51:977256 [NOTICE] Open Config File [/usr/local/unimrcp/conf/unimrcpserver.xml]
+
+
+
+192.168.109.4:443/hoicee/unimrcp:waihu-prod-latest
+unimrcp  | 2025-05-14 19:55:16:793475 src/unimrcp_server.c:092 139896783997056 [NOTICE] UniMRCP Server [1.7.0]
+unimrcp  | 2025-05-14 19:55:16:793480 src/unimrcp_server.c:093 139896783997056 [INFO]   APR [1.2.8]
+unimrcp  | 2025-05-14 19:55:16:793491 src/mrcp_server.c:195 139896783997056 [NOTICE] Create MRCP Server
+
+
+20250515
+[root@a5f218fa2c94 kd-unimrcp]# md5sum plugin/demorecog.*
+d239ec8699da11c46195294cbd4c8b02  plugin/demorecog.a
+f12a52b58bbf49df9bbf6f9e34aac97a  plugin/demorecog.la
+06f81ae266199e0d166d38dc1cc2c169  plugin/demorecog.so
+06f81ae266199e0d166d38dc1cc2c169  plugin/demorecog.so.0
+06f81ae266199e0d166d38dc1cc2c169  plugin/demorecog.so.0.7.0
+[root@a5f218fa2c94 kd-unimrcp]# md5sum lib/libkdm_*
+d60676d28f9b31b2dc03fac44e96124b  lib/libkdm_asr_proxy.so
+116e060407766fb595c32aa9e53e5373  lib/libkdm_tts_proxy.so
+
+
+
+/usr/local/kd-unimrcp:
+[root@a5f218fa2c94 lib]# md5sum libkdm_*
+d60676d28f9b31b2dc03fac44e96124b  libkdm_asr_proxy.so
+116e060407766fb595c32aa9e53e5373  libkdm_tts_proxy.so
+[root@a5f218fa2c94 plugin]# md5sum demorecog.*
+928ffa21c14f17f4c73f08a5fe35a801  demorecog.a
+f12a52b58bbf49df9bbf6f9e34aac97a  demorecog.la
+06f81ae266199e0d166d38dc1cc2c169  demorecog.so
+06f81ae266199e0d166d38dc1cc2c169  demorecog.so.0
+06f81ae266199e0d166d38dc1cc2c169  demorecog.so.0.7.0
+
+
+
+
+
+
+
+
+
+[root@a5f218fa2c94 kd-unimrcp]# md5sum kd-unimrcp/lib/libkdm_*
+c5eb62d9d779b51c547942fda4a2b81a  kd-unimrcp/lib/libkdm_asr_proxy.so
+46fa4ac234d244a35164045cdcf0c5e9  kd-unimrcp/lib/libkdm_tts_proxy.so
+[root@a5f218fa2c94 kd-unimrcp]# md5sum kd-unimrcp/plugin/demorecog.*
+9ae05fcb4464194a3757919c20d3baa0  kd-unimrcp/plugin/demorecog.a
+d4f79287eb3ed74edd393019effa7860  kd-unimrcp/plugin/demorecog.la
+b3c725fed47535431945444f8890c0dd  kd-unimrcp/plugin/demorecog.so
+b3c725fed47535431945444f8890c0dd  kd-unimrcp/plugin/demorecog.so.0
+b3c725fed47535431945444f8890c0dd  kd-unimrcp/plugin/demorecog.so.0.7.0
+
+20250514
+[root@a5f218fa2c94 kd-unimrcp]# md5sum kd-unimrcp/lib/libkdm_*
+b4e68fc8f71befa50dd0e0b07a992d76  kd-unimrcp/lib/libkdm_asr_proxy.so
+46fa4ac234d244a35164045cdcf0c5e9  kd-unimrcp/lib/libkdm_tts_proxy.so
+[root@a5f218fa2c94 kd-unimrcp]# md5sum kd-unimrcp/plugin/demorecog.*
+25d8afbd5f9f9e8112f50be32c64a8ab  kd-unimrcp/plugin/demorecog.a
+d4f79287eb3ed74edd393019effa7860  kd-unimrcp/plugin/demorecog.la
+b3c725fed47535431945444f8890c0dd  kd-unimrcp/plugin/demorecog.so
+b3c725fed47535431945444f8890c0dd  kd-unimrcp/plugin/demorecog.so.0
+b3c725fed47535431945444f8890c0dd  kd-unimrcp/plugin/demorecog.so.0.7.0
+
+
+
+
+- 20250514
+调研讯飞asr同时支持粤语、英语、中文普通话三个语种功能；
+修改讯飞asr API接口参数，调测支持粤语语音识别功能；
+开发mrcp支持多语种切换参数和功能
+开发asr-proxy支持多语种切换参数和功能
+
+
+
+"business":{"domain": "iat", "language": "zh_cn", "accent": "cantonese", "ptt":0, "vinfo":0,"vad_eos":10000},
+
+
+unimrcp  | Get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "xfime-mianqie", "language": "zh_cn", "accent": "mandarin", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAgACAAIAAAAAAD4//j/+P/4/wAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL==","encoding": "raw"}}
+
+
+
+
+unimrcp  | Vendor-Specific-Parameters: accent=mandarin;engine=Xunfei;language=zh_cn;sessionId=dd78beba-341a-4403-a394-2e4fea1b3dd9
+unimrcp  | Get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "xfime-mianqie", "language": "zh_cn", "accent": "mandarin", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"8P/w//j/+P/4/+D/yP/o/wgA8P/A/8j/6P/o/+j/+P8QAAAAyP/Y/+j/4P/o/+j/6P/w//D/+P/4/wAAAAD4//j/+P/4//j/8P/w//j/6P/g/+D/+P8IAAgACAAAAAAAGAAgABgACAD4/xAAIAAgABAAAAAAABAAGAAAAPD/8P8AAAgACAAAAAgAGAAgABgAGAAgACgAIAAYACAAIAAYAL==","encoding": "raw"}}
+unimrcp  | Vendor-Specific-Parameters: accent=mandarin;engine=Xunfei;language=zh_cn;sessionId=dd78beba-341a-4403-a394-2e4fea1b3dd9
+unimrcp  | Vendor-Specific-Parameters: accent=mandarin;engine=Xunfei;language=zh_cn;sessionId=dd78beba-341a-4403-a394-2e4fea1b3dd9
+unimrcp  | Vendor-Specific-Parameters: accent=mandarin;engine=Xunfei;language=zh_cn;sessionId=dd78beba-341a-4403-a394-2e4fea1b3dd9
+unimrcp  | Get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "xfime-mianqie", "language": "zh_cn", "accent": "mandarin", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAgACAAIAAAAAAD4//j/+P/4/wAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL==","encoding": "raw"}}
+unimrcp  | Get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "xfime-mianqie", "language": "zh_cn", "accent": "mandarin", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"AAAAAAAACAAIAAAAAAAAAAAACAAIAAAAAAD4/wAAAAAAAAAAAAAIAAAAAAAAAAAAAAD4/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAD4/wAACAAIAAgAAAAAAAAAAAAAAAAACAAIAAAAAAD4/wAAAAAAAAgACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA+P/4//j/AAAIAAgACAAAAL==","encoding": "raw"}}
+unimrcp  | Get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "xfime-mianqie", "language": "zh_cn", "accent": "mandarin", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"ZPlk+WT5RPhE90T35Pgk/Lz+zAFMA8wBTANcB7wJPA78E/wV/BX8FPwSPA88ClwENP6k+UT3RPdE+ET3RPQE8ATtBOwE7sTxxPd0/cwBnAU8CjwMvAy8CzwJXAacA8wBIAB0/rT8pPqk+ET3xPZE9kT2xPZE9sT2xPfk+OT6FP1s/5QAIACcAzwKPA78EfwW/Bf8FvwU/BE8DdwGrAFU/b==","encoding": "raw"}}
+unimrcp  | Vendor-Specific-Parameters: accent=mandarin;engine=Xunfei;language=zh_cn;sessionId=dd78beba-341a-4403-a394-2e4fea1b3dd9
+unimrcp  | Vendor-Specific-Parameters: accent=cantonese;engine=Xunfei;language=zh_cn;sessionId=67da0d60-f79e-40be-a74d-980bdbd506b2
+
+
+
+
+unimrcp  | 2025-05-14 14:54:42:238128 src/apt_poller_task.c:259 140446814684928 [DEBUG]  Process Poller Wakeup [MRCPv2-Agent-1]
+unimrcp  | 2025-05-14 14:54:42:238130 src/apt_task.c:335 140446814684928 [DEBUG]  Process Message [MRCPv2-Agent-1] [0x7fbc54002b90;1;0]
+unimrcp  | 2025-05-14 14:54:42:238140 src/mrcp_server_connection.c:693 140446814684928 [INFO]   Send MRCPv2 Data 192.168.109.85:1644 <-> 192.168.109.85:46310 [548 bytes]
+unimrcp  | MRCP/2.0 548 RECOGNITION-COMPLETE 1 COMPLETE
+unimrcp  | Channel-Identifier: 46ba803fdef74a3c@speechrecog
+unimrcp  | Completion-Cause: 000 success
+unimrcp  | Content-Type: application/x-nlsml
+unimrcp  | Content-Length: 363
+unimrcp  |
+unimrcp  | <?xml version="1.0"?>
+unimrcp  | <result>
+unimrcp  |   <interpretation confidence="99" index="1">
+unimrcp  |     <session_id>58e0152b-8471-496c-9236-865afa99ca47</session_id>
+unimrcp  |     <trace_id>a4a57e32-f919-4285-a7b9-d4dafc0b1b93</trace_id>
+unimrcp  |     <vad_end_time>1747205682.237936</vad_end_time>
+unimrcp  |     <instance>係基地</instance>
+unimrcp  |     <input mode="speech">係基地</input>
+unimrcp  |   </interpretation>
+unimrcp  | </result>
+unimrcp  |
+
+
+
+
+
+
+
+
+
+"business":{"domain": "iat", "language": "zh_cn", "accent": "cantonese", "ptt":0, "vinfo":0,"vad_eos":10000},
+
+
+
+
+
+
+
+on_message called with hdl
+
+unimrcp  | [kd-mrcp-asr] rreporter::createCon wsConnection ot _allCons.size = 1, url = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+14+May+2025+13%3A22%3A26+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iRElQLzU0Z2hZNlBrWGRUeW1KWG9JcWV3d0NzQkdrYkJNYmdNRk5aZTZJcD0i
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::getCommonArgs appid = 5e815ba7
+unimrcp  | [kd-mrcp-asr][try to connect] _bClientOpen = Get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "xfime-mianqie", "language": "zh_cn", "accent": "mandarin", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"8P8IABgAGAD4/+j/6P/w/+D/yP/I/8j/wP/g/+j/6P/w/wAA+P/g//j/IAAoACgAOAAoABAAGAAoAEAAQAA4ACAAEAAAAPD/4P/Y/+D/8P/w/+j/6P/4//D/2P/g/+D/2P/4//D/2P/Y//D/CAAAACAAKAAQACgAMAAwADAAMAAgABgAIAAQAPj/AAAAAPD/AAAQABgAIAAIAPj/AADw/9j/4P/w/+j/6P8AAPD/8P/4/+j/4P/o/+j/2P/Y/9j/4P/w//D/8P8IAAgA+P8IACAAIAAoAEAAOABAAEgAMAAgABgAEAAAAAAA8P/w//D/+P/4//j/+P/w//j/6P/Y/wAAEAAIAPj/+P/4//D/+P/4//j/CAAQAAAA4P/Y/9j/4P/w//j/EAAgACAAGAAQABAAGAAYACgAGAAQAAgACAA=","encoding": "raw"}}
+unimrcp  | 0, _iMaxTry = 1, Uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+14+May+2025+13%3A22%3A26+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iRElQLzU0Z2hZNlBrWGRUeW1KWG9JcWV3d0NzQkdrYkJNYmdNRk5aZTZJcD0i
+unimrcp  | [kd-mrcp-asr] wsConnection::on_socket_init >>> hdl = 0x7fe1d0003360
+unimrcp  | [kd-mrcp-asr][try to connect] create connection success, connect ... hdl = 0x7fe1d0003360
+unimrcp  | ================query tcp v4
+unimrcp  | [2025-05-14 13:22:28] [connect] [kd-mrcp-asr] Successful connection
+unimrcp  | [2025-05-14 13:22:28] [connect] WebSocket Connection 123.56.17.44:80 v-2 "WebSocket++/0.8.2" /v2/iat?date=Wed%2C+14+May+2025+13%3A22%3A26+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iRElQLzU0Z2hZNlBrWGRUeW1KWG9JcWV3d0NzQkdrYkJNYmdNRk5aZTZJcD0i 101
+unimrcp  | [kd-mrcp-asr] wsConnection::on_open >>> hdl = 0x7fe1d0003360
+unimrcp  | [kd-mrcp-asr] recoProxy::openDbgFile filename: /tmp/vad//c05c1bd0-7642-432f-8993-740ccc612f6c_0002.wav
+
+
+
+
+
+
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::getCommonArgs appid = 5e815ba7
+unimrcp  | Get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "xfime-mianqie", "language": "zh_cn", "accent": "mandarin", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"tPxwAJwEJPncBNT9JPscBsT3DAOc/uT7jAJM/3T9EAAkAeT6XAT0/fj/ZAGU/RwEdP6kAPQAxACw/8wBrAK0/RwEFP6kAOwBlPwsAvT96P9M/zz/aACM/lgAjP4UAWT8jAF0/awBfP+0/RwHJPpcBvT87AKU/ez+bAKk+twGxPW8CUT4mP+cBkT3PAm0/WQB3ANc/yT8HAdE93z/HARE9bwJ5Pr0/LwJJPqMAbwIJPkcBqQAdP1cBaT4BAHU/JT8lAB0/sj/LAL0/EwDaADk+bwIRPfsAZwGRPa8Cjz/NP68CmT87AJcBOT67ALU/ST6zAGk+hT+nAOU/JwDFAEAAJwFJPncBhz/pPg8CuT5SADcBOT6DAJEAST6jAF0/qT4VAFk+tT99AAU/dwDjAKcA1wFHAVcBcQAnARsAmT7LAN=","encoding": "raw"}}
+unimrcp  | [kd-mrcp-asr][try to connect] _bClientOpen = 0, _iMaxTry = 1, Uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+14+May+2025+11%3A08%3A53+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaTErcUlxNFpjczFha0dCbGpQOGxGT0RaRHkyRTZPU3RHdHRzRHErbnRsTj0i
+unimrcp  | [kd-mrcp-asr] wsConnection::on_socket_init >>> hdl = 0x7fe1d0003360
+unimrcp  | [kd-mrcp-asr][try to connect] create connection success, connect ... hdl = 0x7fe1d0003360
+unimrcp  | ================query tcp v4
+unimrcp  | [2025-05-14 11:08:53] [connect] [kd-mrcp-asr] Successful connection
+unimrcp  | [2025-05-14 11:08:53] [connect] WebSocket Connection 39.105.54.181:80 v-2 "WebSocket++/0.8.2" /v2/iat?date=Wed%2C+14+May+2025+11%3A08%3A53+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaTErcUlxNFpjczFha0dCbGpQOGxGT0RaRHkyRTZPU3RHdHRzRHErbnRsTj0i 101
+unimrcp  | [kd-mrcp-asr] wsConnection::on_open >>> hdl = 0x7fe1d0003360
+unimrcp  | [kd-mrcp-asr] recoProxy::openDbgFile filename: /tmp/vad//ff0fed76-e021-4a84-9305-15f819607e63_0000.wav
+unimrcp  | [kd-mrcp-asr] on_message called with hdl = 0x7fe1d0003360 and message = {"code":11200,"message":"licc failed","sid":"iat000d81ec@dx196ccc436eaa11f802"}
+unimrcp  | code is11200err is licc failed[2025-05-14 11:08:53] [control] Control frame received with opcode 8
+unimrcp  | [kd-mrcp-asr] wsConnection::sendMsg message send error, msg: {"data": {"status":1,"format": "audio/L16;rate=8000","audio":"RPbE8MTzFP08CvwU/Bf8D9wE5PrE9cT3pPpk+cTzBOqE3YTZBONE9rwOfCB8JvwbvAus/sT1xPaU/VQB7AE0/mT6JPss/1wHPA/8D7wJVP3E8cTw5Pq8CvwW/Bj8EVwF5PtE+ET4ZPy8/sT3BOqE24TVhNsE71wH/Bp8JPwe/A/0AET2xPRk+2wCHAbMApT8RPhk+twF/A/8EDwLqP9E9Q==","encoding": "raw"}}unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::getCommonArgs appid = 5e815ba7
+unimrcp  | Get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "xfime-mianqie", "language": "zh_cn", "accent": "mandarin", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"tPxwAJwEJPncBNT9JPscBsT3DAOc/uT7jAJM/3T9EAAkAeT6XAT0/fj/ZAGU/RwEdP6kAPQAxACw/8wBrAK0/RwEFP6kAOwBlPwsAvT96P9M/zz/aACM/lgAjP4UAWT8jAF0/awBfP+0/RwHJPpcBvT87AKU/ez+bAKk+twGxPW8CUT4mP+cBkT3PAm0/WQB3ANc/yT8HAdE93z/HARE9bwJ5Pr0/LwJJPqMAbwIJPkcBqQAdP1cBaT4BAHU/JT8lAB0/sj/LAL0/EwDaADk+bwIRPfsAZwGRPa8Cjz/NP68CmT87AJcBOT67ALU/ST6zAGk+hT+nAOU/JwDFAEAAJwFJPncBhz/pPg8CuT5SADcBOT6DAJEAST6jAF0/qT4VAFk+tT99AAU/dwDjAKcA1wFHAVcBcQAnARsAmT7LAN=","encoding": "raw"}}
+unimrcp  | [kd-mrcp-asr][try to connect] _bClientOpen = 0, _iMaxTry = 1, Uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+14+May+2025+11%3A08%3A53+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaTErcUlxNFpjczFha0dCbGpQOGxGT0RaRHkyRTZPU3RHdHRzRHErbnRsTj0i
+unimrcp  | [kd-mrcp-asr] wsConnection::on_socket_init >>> hdl = 0x7fe1d0003360
+unimrcp  | [kd-mrcp-asr][try to connect] create connection success, connect ... hdl = 0x7fe1d0003360
+unimrcp  | ================query tcp v4
+unimrcp  | [2025-05-14 11:08:53] [connect] [kd-mrcp-asr] Successful connection
+unimrcp  | [2025-05-14 11:08:53] [connect] WebSocket Connection 39.105.54.181:80 v-2 "WebSocket++/0.8.2" /v2/iat?date=Wed%2C+14+May+2025+11%3A08%3A53+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaTErcUlxNFpjczFha0dCbGpQOGxGT0RaRHkyRTZPU3RHdHRzRHErbnRsTj0i 101
+unimrcp  | [kd-mrcp-asr] wsConnection::on_open >>> hdl = 0x7fe1d0003360
+unimrcp  | [kd-mrcp-asr] recoProxy::openDbgFile filename: /tmp/vad//ff0fed76-e021-4a84-9305-15f819607e63_0000.wav
+unimrcp  | [kd-mrcp-asr] on_message called with hdl = 0x7fe1d0003360 and message = {"code":11200,"message":"licc failed","sid":"iat000d81ec@dx196ccc436eaa11f802"}
+unimrcp  | code is11200err is licc failed[2025-05-14 11:08:53] [control] Control frame received with opcode 8
+unimrcp  | [kd-mrcp-asr] wsConnection::sendMsg message send error, msg: {"data": {"status":1,"format": "audio/L16;rate=8000","audio":"RPbE8MTzFP08CvwU/Bf8D9wE5PrE9cT3pPpk+cTzBOqE3YTZBONE9rwOfCB8JvwbvAus/sT1xPaU/VQB7AE0/mT6JPss/1wHPA/8D7wJVP3E8cTw5Pq8CvwW/Bj8EVwF5PtE+ET4ZPy8/sT3BOqE24TVhNsE71wH/Bp8JPwe/A/0AET2xPRk+2wCHAbMApT8RPhk+twF/A/8EDwLqP9E9Q==","encoding": "raw"}}
+
+
+
 
 - 20250513
 调试并构建基于centos7 mrcp镜像
@@ -1629,7 +1889,14 @@ freeswitch.log*
 
 echo "core.%e.%p" > /proc/sys/kernel/core_pattern
 
-
+[kd-mrcp-tts] iflytekTtsInst::speak >>>>>> in
+Get file /tmp/9B3AFEEBD1DE923D71211CB07A0E4726
+[kd-mrcp-tts] iflytekTtsInst::speak >>>>>> Using Cache tts = 请说出您要咨询的问题
+[kd-mrcp-tts] ttsProxyMsg::recordTime _pAsrTime : null
+[kd-mrcp-tts] ttsProxyMsg::recordTime Invalid argument: stod
+[kd-mrcp-tts][tts end] sessionId = f366dcb9-feaf-4e69-a217-a5066cf8f07a, traceId = 959673b8-679a-451c-868e-f78d173d647a, tts_duration = 0.277984, asr_tts_duration = 0
+2025-05-16 10:53:42:974712 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = f366dcb9-feaf-4e69-a217-a5066cf8f07a, traceId = 959673b8-679a-451c-868e-f78d173d647a
+[kd-mrcp-tts] iflytekTtsInst::speak >>>>>> out
 
 
 ## Ubuntu 上从源码编译 FreeSWITCH，可以按照以下步骤操作：
