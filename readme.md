@@ -132,14 +132,86 @@ mrcp-deps
 开会同步港铁POC进展，探讨tts调测支持英文语种问题
 调研确认微软asr/tts支持中文普通话、粤语、英语
 
-
-联调讯飞asr支持多种语言识别功能；
-
-unimrcp3  | [kd-mrcp-asr] recoProxy::recoProxy >>>>>>Start unimrcpserver success...
+徐工asr识别问题
 
 
 
+2025-04-24 22:40:38.704254 100.00% [INFO] switch_core.c:2503
+FreeSWITCH Version 1.10.11-release~64bit ( 64bit)
 
+FreeSWITCH Started
+Max Sessions [1000]
+Session Rate [30]
+SQL [Enabled]
+2025-04-24 22:40:38.704258 100.00% [CONSOLE] switch_core.c:2511
+[This app Best viewed at 160x60 or more..]
+2025-04-24 22:40:38.704647 100.00% [WARNING] switch_console.c:1056 We've become an orphan, no more console for us.
+2025-04-24 22:40:38.704683 100.00% [DEBUG] switch_console.c:1088 Editline thread exiting
+45980ece-7528-4739-84a0-e4950cc6a600 2025-04-24 22:40:39.635721 100.00% [NOTICE] switch_channel.c:1142 New Channel sofia/external/15069488567@223.109.89.196 [45980ece-7528-4739-84a0-e4950cc6a600]
+
+
+
+
+
+
+20250520
+研究学习线上运维系统，下载fs、mrcp、kd-asr-proxy服务相关日志
+分析徐工PRD环境fs日志
+分析徐工PRD环境mrcp日志
+分析徐工PRD环境kd-asr-proxy日志
+
+定位分析asr识别丢结果问题
+
+
+
+{service_name="fs-ai"} |= `15161339666`
+
+99680879-d396-4fb5-8186-dccef4f91ce9
+
+2025-04-07 21:24:43.071367 98.70% [NOTICE] switch_channel.c:1142 New Channel sofia/external/+8615161339666@223.109.89.196 [99680879-d396-4fb5-8186-dccef4f91ce9]
+2025-04-07 21:31:55.291393 99.00% [NOTICE] switch_core_session.c:1766 Close Channel sofia/external/+8615161339666@223.109.89.196 [CS_DESTROY]
+
+
+
+
+搜索 "switch_channel.c:1142 New Channel sofia/external/+8615161339666@" （1个文件中匹配到5次，总计查找1次） [普通: 大小写]
+  C:\Users\lit\Downloads\15161339666.txt （匹配5次）
+	行    6: 1744032198449	2025-04-07 21:23:17.571364 99.17% [NOTICE] switch_channel.c:1142 New Channel sofia/external/+8615161339666@nowhere [0d4257c0-a2b2-48ca-a693-35180f225e47]
+	行  109: 1744032216690	2025-04-07 21:23:36.671365 98.90% [NOTICE] switch_channel.c:1142 New Channel sofia/external/+8615161339666@223.109.89.196 [a4d506c8-f871-496b-8ec5-84e9b8cd6161]
+	行 1617: 1744032267878	2025-04-07 21:24:20.711367 98.33% [NOTICE] switch_channel.c:1142 New Channel sofia/external/+8615161339666@nowhere [695c181d-78c6-4c6c-8540-de1151766b66]
+	行 1665: 1744032283079	2025-04-07 21:24:43.071367 98.70% [NOTICE] switch_channel.c:1142 New Channel sofia/external/+8615161339666@223.109.89.196 [99680879-d396-4fb5-8186-dccef4f91ce9]
+	行 2943: 1744032340657	2025-04-07 21:25:38.391370 98.20% [NOTICE] switch_channel.c:1142 New Channel sofia/external/+8615161339666@223.109.89.196 [7f52361b-9d51-432b-93ff-94ea585a5901]
+
+
+
+	行 2176: 1744032314747	2025-04-07 21:25:05.951365 98.47% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30098 sockfd:96
+	行 2179: 1744032314747	2025-04-07 21:25:05.951365 98.47% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30100 sockfd:122
+	行 2306: 1744032318550	2025-04-07 21:25:18.491367 98.63% [INFO] mod_commands.c:4896 uuid::7fda866a-9202-4d89-a5e0-189189d85aec actual_sample_rate:8000
+	行 2326: 1744032318550	2025-04-07 21:25:18.491367 98.63% [INFO] mod_commands.c:4896 uuid::ed7a8d9d-7213-461e-8be4-47d2127283de actual_sample_rate:8000
+	行 2663: 1744032331801	2025-04-07 21:25:30.531365 98.70% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30004 sockfd:123
+	行 2666: 1744032331801	2025-04-07 21:25:30.551363 98.70% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30006 sockfd:138
+	行 2962: 1744032342202	2025-04-07 21:25:40.671365 98.20% [INFO] mod_commands.c:4896 uuid::714f1294-e1e6-4b02-8ffc-6d6724e40b63 actual_sample_rate:8000
+	行 2964: 1744032342202	2025-04-07 21:25:40.691366 98.20% [INFO] mod_commands.c:4896 uuid::0063b2a7-2fab-407e-ae74-86cfa290ab6b actual_sample_rate:8000
+	行 3863: 1744032419014	2025-04-07 21:26:54.551364 99.00% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30008 sockfd:160
+	行 3866: 1744032419014	2025-04-07 21:26:54.551364 99.00% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30010 sockfd:174
+	行 4083: 1744032515080	2025-04-07 21:27:29.451366 99.20% [INFO] mod_commands.c:4896 uuid::a7271e5f-db7e-41b5-a5e2-203e1b64d079 actual_sample_rate:8000
+	行 4084: 1744032515080	2025-04-07 21:27:29.451366 99.20% [INFO] mod_commands.c:4896 uuid::48728339-adf4-451d-9592-235ebd88ae28 actual_sample_rate:8000
+	行 4691: 1744032537634	2025-04-07 21:28:56.091363 98.87% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30016 sockfd:109
+	行 4749: 1744032541074	2025-04-07 21:28:58.011363 98.83% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30018 sockfd:162
+	行 5273: 1744032591956	2025-04-07 21:29:51.671365 99.10% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30012 sockfd:136
+	行 5300: 1744032592273	2025-04-07 21:29:51.971367 99.10% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30014 sockfd:137
+	行 5312: 1744032592273	2025-04-07 21:29:52.131375 99.10% [INFO] mod_commands.c:4896 uuid::d24c6a42-8148-4241-80a5-4848f58be85e actual_sample_rate:8000
+	行 5313: 1744032592273	2025-04-07 21:29:52.131375 99.10% [INFO] mod_commands.c:4896 uuid::7f52361b-9d51-432b-93ff-94ea585a5901 actual_sample_rate:8000
+	行 5358: 1744032659532	2025-04-07 21:29:55.331365 98.90% [INFO] mod_commands.c:4896 uuid::f65e8828-725d-439b-a39c-233d004071e5 actual_sample_rate:8000
+	行 5359: 1744032659532	2025-04-07 21:29:55.331365 98.90% [INFO] mod_commands.c:4896 uuid::3d53690f-448e-479b-86ed-22ff1da86d5c actual_sample_rate:8000
+	行 5376: 1744032659533	2025-04-07 21:30:30.051365 98.37% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30024 sockfd:100
+	行 5379: 1744032659533	2025-04-07 21:30:30.051365 98.37% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30026 sockfd:127
+	行 5654: 1744032678391	2025-04-07 21:31:16.531363 99.33% [INFO] mod_commands.c:4896 uuid::4553393c-251e-4e2e-b075-38b632efc8a3 actual_sample_rate:8000
+	行 5655: 1744032678391	2025-04-07 21:31:16.531363 99.33% [INFO] mod_commands.c:4896 uuid::e30e82f3-e0a9-4641-ae03-1df64571774c actual_sample_rate:8000
+	行 5899: 1744032699551	2025-04-07 21:31:38.871366 98.93% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30028 sockfd:149
+	行 5902: 1744032699551	2025-04-07 21:31:38.871366 98.93% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30030 sockfd:66
+	行 6052: 1744032724471	2025-04-07 21:31:55.291393 99.00% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30020 sockfd:55
+	行 6055: 1744032724471	2025-04-07 21:31:55.291393 99.00% [INFO] mod_commands.c:4693 call process_close, ip:10.188.6.233 port:30022 sockfd:120
 
 apt_log(RECOG_LOG_MARK, APT_PRIO_INFO, "[kd-mrcp-asr] session[%s] choose render[%s][%d] language[%s] accent[%s]",
                                         sessionId, asrRender, asrOption._iAsrRenderId, asrLanguage, accent);
@@ -179,9 +251,232 @@ Get file /tmp/9B3AFEEBD1DE923D71211CB07A0E4726
 
 
 
+mfeSetParam(_pVadObj, PARAM_VOICE_POINT, 80);
+RECOPROXY_VAD_ENERGY_START=60
+RECOPROXY_VAD_PAUSE=60
+echo "RECOPROXY_VAD_ENERGY_START="${RECOPROXY_VAD_ENERGY_START}
+echo "RECOPROXY_VAD_PAUSE="${RECOPROXY_VAD_PAUSE}
+
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init vad iVadEnergyStart = 60
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iVadEnergeStop = 30
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iVoicePoint = 100
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iLRelax = 25
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iRRelax = 30
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iMinSpDuration = 15
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iMaxSpDuration = 100000
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iSleepTimeout = 6000
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iMaxSpPause = 600 ms, iLRelax = 250 ms
+unimrcp5  | [kd-mrcp-asr] recoProxy::recoProxy >>>>>> out
+unimrcp5  | [kd-mrcp-asr] recoProxySetVadIntParam type = 0, value = 1
+
+fs-ai:
+EXECUTE
+detect_speech
 
 
 
+
+unimrcp5  | [kd-mrcp-asr] createVadCbUtil
+unimrcp5  | [kd-mrcp-asr] recoProxyCreateVad >>>>>> RECO_VAD_LENOVO
+unimrcp5  | [kd-mrcp-asr] recoProxyInitVad
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init vad iVadEnergyStart = 85
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iVadEnergeStop = 30
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iVoicePoint = 100
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iLRelax = 25
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iRRelax = 30
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iMinSpDuration = 15
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iMaxSpDuration = 100000
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iSleepTimeout = 6000
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iMaxSpPause = 750 ms, iLRelax = 250 ms
+unimrcp5  | [kd-mrcp-asr] recoProxySetVadIntParam type = 0, value = 1
+unimrcp5  | [kd-mrcp-asr] recoProxySetVadIntParam type = 1, value = 10000
+
+
+
+fs-ai  | 2025-05-19 15:48:16,344 INFO /tmp/servicePool_test_appId/manual/2025-05-19/d9edc431-0f4f-4641-8779-a7769cf14066.wav
+fs-ai  | 2025-05-19 15:48:16,348 INFO 172.26.0.11 - - [19/May/2025 15:48:16] "POST /audio HTTP/1.1" 200 -
+fs-ai  | 2025-05-19 15:48:16,364 INFO /tmp/servicePool_test_appId/robot/2025-05-19/f7530f6e-9d48-444f-9507-1b03fd7e7ce3.wav
+fs-ai  | 2025-05-19 15:48:16,366 INFO 172.26.0.9 - - [19/May/2025 15:48:16] "POST /audio HTTP/1.1" 200
+
+
+
+
+
+fs-ai  | 2025-05-19 15:50:30.462344 97.73% [NOTICE] switch_channel.c:1142 New Channel sofia/external/1001@192.168.109.85:15080 [ec682b32-5a44-4a96-83ad-977c0efd20f9]
+fs-ai  | 2025-05-19 15:50:30.462344 97.73% [INFO] sofia.c:10459 sofia/external/1001@192.168.109.85:15080 receiving invite from 172.70.100.1:2123 version: 1.10.11-release  64bit call-id: YWQ0OWJmMjhhNTliN2U2MThjMWMwZTVmOGUxNmI3MGU.
+fs-ai  | 2025-05-19 15:50:30.462344 97.73% [INFO] mod_dialplan_xml.c:639 Processing 1001 <1001>->7000 in context public
+fs-ai  | EXECUTE [depth=0] sofia/external/1001@192.168.109.85:15080 lua(gangtie_ivr.lua)
+fs-ai  | 2025-05-19 15:50:30.482342 97.73% [NOTICE] sofia_media.c:90 Pre-Answer sofia/external/1001@192.168.109.85:15080!
+fs-ai  | 2025-05-19 15:50:30.482342 97.73% [NOTICE] switch_cpp.cpp:704 Channel [sofia/external/1001@192.168.109.85:15080] has been answered
+fs-ai  | 2025-05-19 15:50:30.762342 97.73% [INFO] switch_rtp.c:7655 Auto Changing audio port from 192.168.40.93:21572 to 172.70.100.1:2089
+fs-ai  | 2025-05-19 15:50:39.062339 97.63% [INFO] switch_channel.c:528 RECV DTMF 1:640
+fs-ai  | 2025-05-19 15:50:39.062339 97.63% [INFO] switch_cpp.cpp:1466 -----callerNumber=1001-----digit=1
+fs-ai  | 2025-05-19 15:50:39.062339 97.63% [INFO] switch_cpp.cpp:1466 -------uuid=ec682b32-5a44-4a96-83ad-977c0efd20f9-------digit=1
+fs-ai  | 2025-05-19 15:50:39.062339 97.63% [NOTICE] switch_channel.c:1142 New Channel sofia/external/50000001@0.0.0.0:15080 [cb5075f2-4e5c-43b3-bcdf-d3b4ac5b4709]
+fs-ai  | 2025-05-19 15:50:39.062339 97.63% [INFO] sofia_glue.c:1659 sofia/external/50000001@0.0.0.0:15080 sending invite call-id: (null)
+fs-ai  | 2025-05-19 15:50:39.062339 97.63% [NOTICE] switch_channel.c:1142 New Channel sofia/external/1001@192.168.109.85 [aab9f6ef-7ad3-445d-be0c-3a91eb95d3bb]
+fs-ai  | 2025-05-19 15:50:39.062339 97.63% [INFO] sofia.c:10459 sofia/external/1001@192.168.109.85 receiving invite from 192.168.109.85:15080 version: 1.10.11-release  64bit call-id: cc2830b0-af28-123e-23b8-525400ef9789
+fs-ai  | 2025-05-19 15:50:39.062339 97.63% [INFO] mod_dialplan_xml.c:639 Processing 1001 <1001>->50000001 in context public
+fs-ai  | EXECUTE [depth=0] sofia/external/1001@192.168.109.85 set(sip_h_X-cc_tenant_id=1)
+fs-ai  | EXECUTE [depth=0] sofia/external/1001@192.168.109.85 set(sip_h_X-cc_work_mode=robot)
+fs-ai  | EXECUTE [depth=0] sofia/external/1001@192.168.109.85 socket(127.0.0.1:13002 async full)
+fs-ai  | 2025-05-19 15:50:39.062339 97.63% [NOTICE] mod_event_socket.c:452 Trying host: 127.0.0.1:13002
+fs-ai  | EXECUTE [depth=0] sofia/external/1001@192.168.109.85 answer()
+fs-ai  | 2025-05-19 15:50:39.082351 97.63% [NOTICE] sofia_media.c:90 Pre-Answer sofia/external/1001@192.168.109.85!
+fs-ai  | 2025-05-19 15:50:39.082351 97.63% [NOTICE] mod_dptools.c:1406 Channel [sofia/external/1001@192.168.109.85] has been answered
+fs-ai  | 2025-05-19 15:50:39.082351 97.63% [INFO] sofia.c:1348 sofia/external/50000001@0.0.0.0:15080 Update Callee ID to "50000001" <sip:50000001@0.0.0.0>
+fs-ai  | 2025-05-19 15:50:39.102335 97.63% [NOTICE] sofia.c:8680 Channel [sofia/external/50000001@0.0.0.0:15080] has been answered
+fs-ai  | EXECUTE [depth=1] sofia/external/1001@192.168.109.85 set(tts_engine=unimrcp)
+fs-ai  | EXECUTE [depth=1] sofia/external/1001@192.168.109.85 set(RECORD_STEREO=true)
+fs-ai  | EXECUTE [depth=1] sofia/external/1001@192.168.109.85 set(RECORD_APPEND=false)
+fs-ai  | EXECUTE [depth=1] sofia/external/1001@192.168.109.85 set(record_waste_resources=true)
+fs-ai  | EXECUTE [depth=1] sofia/external/1001@192.168.109.85 record_session(/tmp/servicePool_test_appId/robot/2025-05-19/aab9f6ef-7ad3-445d-be0c-3a91eb95d3bb.wav)
+fs-ai  | EXECUTE [depth=1] sofia/external/1001@192.168.109.85 break()
+fs-ai  | EXECUTE [depth=1] sofia/external/1001@192.168.109.85 play_and_detect_speech(silence_stream://-1 detect:unimrcp {start-input-timers=false,no-input-timeout=10000,engine=Xunfei,language=zh_cn,accent=mandarin,sessionId=aab9f6ef-7ad3-445d-be0c-3a91eb95d3bb,Speech-Language=en}builtin:grammar/)
+fs-ai  | 2025-05-19 15:50:39.142324 97.63% [INFO] mod_unimrcp.c:3139 asr_handle: name = unimrcp, codec = (null), rate = 8000, grammar = (null), param = (null)
+fs-ai  | 2025-05-19 15:50:39.142324 97.63% [INFO] mod_unimrcp.c:3141 codec = L16, rate = 8000, dest = (null)
+fs-ai  | 2025-05-19 15:50:39.142324 97.63% [NOTICE] mrcp_application.c:117 (ASR-2383) Create MRCP Handle 0x7f8f8821a4f8 [unimrcpserver-mrcp-v2]
+fs-ai  | 2025-05-19 15:50:39.142324 97.63% [INFO] mrcp_client_session.c:131 (ASR-2383) Create Channel ASR-2383 <new>
+fs-ai  | 2025-05-19 15:50:39.142324 97.63% [INFO] mrcp_client_session.c:385 (ASR-2383) Receive App Request ASR-2383 <new> [2]
+fs-ai  | 2025-05-19 15:50:39.142324 97.63% [INFO] mrcp_client.c:697 (ASR-2383) Add MRCP Handle ASR-2383 <new>
+fs-ai  | 2025-05-19 15:50:39.142324 97.63% [NOTICE] mrcp_client_session.c:717 (ASR-2383) Add Control Channel ASR-2383 <new@speechrecog>
+fs-ai  | 2025-05-19 15:50:39.162328 97.63% [INFO] mrcp_client_session.c:409 (ASR-2383) Send Offer ASR-2383 <new> [c:1 a:1 v:0] to 192.168.109.85:6060
+fs-ai  | 2025-05-19 15:50:39.162328 97.63% [INFO] mrcp_sofiasip_client_agent.c:359 (ASR-2383) Local SDP ASR-2383 <new>
+
+
+
+
+
+fs-ai  | 2025-05-19 15:50:39.362350 97.63% [INFO] mpf_rtp_stream.c:331 () Enable RTP Session 192.168.109.85:3768
+fs-ai  | 2025-05-19 15:50:39.362350 97.63% [INFO] mpf_rtp_stream.c:505 () Open RTP Receiver 192.168.109.85:3768 <- 192.168.109.85:15186 playout [0 ms] bounds [0 - 600 ms] adaptive [0] skew detection [1]
+fs-ai  | 2025-05-19 15:50:39.362350 97.63% [INFO] mpf_bridge.c:111 () Media Path TTS-2384 Source->[PCMU/8000/1]->Decoder->[LPCM/8000/1]->Bridge->[LPCM/8000/1]->Sink
+fs-ai  | 2025-05-19 15:50:39.362350 97.63% [INFO] mrcp_client_session.c:453 (TTS-2384) Raise App Response TTS-2384 <2aebfb9495ad4b4d> [2] SUCCESS [0]
+fs-ai  | 2025-05-19 15:50:39.362350 97.63% [INFO] mrcp_client_session.c:390 (TTS-2384) Receive App MRCP Request TTS-2384 <2aebfb9495ad4b4d>
+fs-ai  | 2025-05-19 15:50:39.362350 97.63% [INFO] mrcp_client_session.c:620 (TTS-2384) Send MRCP Request TTS-2384 <2aebfb9495ad4b4d@speechsynth> [1]
+fs-ai  | 2025-05-19 15:50:39.362350 97.63% [INFO] mrcp_client_connection.c:551 (TTS-2384) Send MRCPv2 Data 192.168.109.85:53998 <-> 192.168.109.85:1644 [374 bytes]
+fs-ai  | MRCP/2.0 374 SPEAK 1
+fs-ai  | Channel-Identifier: 2aebfb9495ad4b4d@speechsynth
+fs-ai  | Content-Type: text/plain
+fs-ai  | Voice-Name: test
+fs-ai  | Vendor-Specific-Parameters: engine=Xunfei;traceId=f73883cb-07f6-48f1-98bc-b3073f54c7b7;vadEndTime=null;volume=50;speed=55;voiceId=x4_lingxiaoying_en;pitch=50;sessionId=aab9f6ef-7ad3-445d-be0c-3a91eb95d3bb
+fs-ai  | Content-Length: 30
+fs-ai  |
+fs-ai  | 请说出您要咨询的问题
+fs-ai  | 2025-05-19 15:50:39.362350 97.63% [INFO] mrcp_client_connection.c:656 () Receive MRCPv2 Data 192.168.109.85:53998 <-> 192.168.109.85:1644 [83 bytes]
+fs-ai  | MRCP/2.0 83 1 200 IN-PROGRESS
+fs-ai  | Channel-Identifier: 2aebfb9495ad4b4d@speechsynth
+fs-ai  |
+fs-ai  |
+fs-ai  | 2025-05-19 15:50:39.362350 97.63% [INFO] mrcp_client_session.c:498 (TTS-2384) Raise App MRCP Response TTS-2384 <2aebfb9495ad4b4d>
+fs-ai  | EXECUTE [depth=3] sofia/external/1001@192.168.109.85 detect_speech(resume)
+fs-ai  | 2025-05-19 15:50:43.882347 97.43% [INFO] switch_channel.c:528 RECV DTMF 1:640
+fs-ai  | 2025-05-19 15:50:43.962363 97.43% [INFO] switch_channel.c:528 RECV DTMF 1:640
+fs-ai  | 2025-05-19 15:50:49.762342 97.27% [INFO] mrcp_client_connection.c:656 () Receive MRCPv2 Data 192.168.109.85:53998 <-> 192.168.109.85:1644 [122 bytes]
+fs-ai  | MRCP/2.0 122 SPEAK-COMPLETE 1 COMPLETE
+fs-ai  | Channel-Identifier: 2aebfb9495ad4b4d@speechsynth
+fs-ai  | Completion-Cause: 000 normal
+fs-ai  |
+fs-ai  |
+fs-ai  | 2025-05-19 15:50:49.782336 97.27% [INFO] mrcp_client_session.c:514 (TTS-2384) Raise App MRCP Event TTS-2384 <2aebfb9495ad4b4d>
+fs-ai  | 2025-05-19 15:50:49.802343 97.27% [INFO] mrcp_client_session.c:385 (TTS-2384) Receive App Request TTS-2384 <2aebfb9495ad4b4d> [1]
+fs-ai  | 2025-05-19 15:50:49.802343 97.27% [INFO] mrcp_client_session.c:828 (TTS-2384) Terminate Session TTS-2384 <2aebfb9495ad4b4d>
+fs-ai  | 2025-05-19 15:50:49.802343 97.27% [INFO] mrcp_client_connection.c:480 (TTS-2384) Remove Control Channel <2aebfb9495ad4b4d@speechsynth> [1]
+fs-ai  | 2025-05-19 15:50:49.802343 97.27% [INFO] mrcp_sofiasip_client_agent.c:621 () Receive SIP Event [nua_r_bye] Status 200 OK [unimrcpserver-mrcp-v2]
+fs-ai  | 2025-05-19 15:50:49.802343 97.27% [INFO] mrcp_sofiasip_client_agent.c:621 () Receive SIP Event [nua_i_state] Status 200 to BYE [unimrcpserver-mrcp-v2]
+fs-ai  | 2025-05-19 15:50:49.802343 97.27% [NOTICE] mrcp_sofiasip_client_agent.c:558 (TTS-2384) SIP Call State TTS-2384 [terminated]
+fs-ai  | 2025-05-19 15:50:49.802343 97.27% [INFO] mrcp_client_session.c:207 (TTS-2384) Session Terminated TTS-2384 <2aebfb9495ad4b4d>
+fs-ai  | 2025-05-19 15:52:04,000 INFO /tmp/servicePool_test_appId/manual/2025-05-19/ec682b32-5a44-4a96-83ad-977c0efd20f9.wav
+fs-ai  | 2025-05-19 15:52:04,005 INFO 172.26.0.11 - - [19/May/2025 15:52:04] "POST /audio HTTP/1.1" 200 -
+fs-ai  | 2025-05-19 15:50:49.822350 97.27% [INFO] mpf_rtp_stream.c:537 () Close RTP Receiver 192.168.109.85:3768 <- 192.168.109.85:15186 [r:121 l:0 j:60 p:0 d:1 i:0]
+fs-ai  | 2025-05-19 15:50:49.822350 97.27% [INFO] mpf_rtp_stream.c:418 () Remove RTP Session 192.168.109.85:3768
+fs-ai  | 2025-05-19 15:50:49.822350 97.27% [INFO] mpf_rtp_stream.c:1231 () Generate RTCP RR [ssrc:1666739871 last_seq:121 j:60 lost:0 frac:0]
+fs-ai  | 2025-05-19 15:50:49.822350 97.27% [INFO] mpf_rtp_stream.c:1405 () Send Compound RTCP Packet [BYE] [84 bytes] 192.168.109.85:3769 -> 192.168.109.85:15187
+fs-ai  | 2025-05-19 15:50:49.822350 97.27% [INFO] mrcp_client.c:707 (TTS-2384) Remove MRCP Handle TTS-2384 <2aebfb9495ad4b4d>
+fs-ai  | 2025-05-19 15:50:49.822350 97.27% [INFO] mrcp_client_session.c:453 (TTS-2384) Raise App Response TTS-2384 <2aebfb9495ad4b4d> [1] SUCCESS [0]
+fs-ai  | 2025-05-19 15:50:49.822350 97.27% [NOTICE] mrcp_application.c:211 (TTS-2384) Destroy MRCP Handle TTS-2384
+fs-ai  | EXECUTE [depth=2] sofia/external/1001@192.168.109.85 detect_speech(param start-input-timers true)
+fs-ai  | 2025-05-19 15:51:13.902347 97.30% [WARNING] sofia_reg.c:3210 Can't find user [9898000670004699@192.168.109.85] from 172.70.100.1
+fs-ai  | You must define a domain called '192.168.109.85' in your directory and add a user with the id="9898000670004699" attribute
+fs-ai  | and you must configure your device to use the proper domain in its authentication credentials.
+fs-ai  | 2025-05-19 15:52:03.962346 97.60% [NOTICE] sofia.c:1065 Hangup sofia/external/1001@192.168.109.85:15080 [CS_EXECUTE] [NORMAL_CLEARING]
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [NOTICE] switch_ivr_bridge.c:1027 Hangup sofia/external/50000001@0.0.0.0:15080 [CS_EXCHANGE_MEDIA] [NORMAL_CLEARING]
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [NOTICE] switch_core_session.c:1762 Session 1220 (sofia/external/50000001@0.0.0.0:15080) Ended
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [NOTICE] switch_core_session.c:1766 Close Channel sofia/external/50000001@0.0.0.0:15080 [CS_DESTROY]
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [NOTICE] switch_core_session.c:1762 Session 1219 (sofia/external/1001@192.168.109.85:15080) Ended
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [NOTICE] switch_core_session.c:1766 Close Channel sofia/external/1001@192.168.109.85:15080 [CS_DESTROY]
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [NOTICE] sofia.c:1065 Hangup sofia/external/1001@192.168.109.85 [CS_EXECUTE] [NORMAL_CLEARING]
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [INFO] mrcp_client_session.c:390 (ASR-2383) Receive App MRCP Request ASR-2383 <93a9b16d80a04132>
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [INFO] mrcp_client_session.c:620 (ASR-2383) Send MRCP Request ASR-2383 <93a9b16d80a04132@speechrecog> [3]
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [INFO] mrcp_client_connection.c:551 (ASR-2383) Send MRCPv2 Data 192.168.109.85:53998 <-> 192.168.109.85:1644 [72 bytes]
+fs-ai  | MRCP/2.0 72 STOP 3
+fs-ai  | Channel-Identifier: 93a9b16d80a04132@speechrecog
+fs-ai  |
+fs-ai  |
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [INFO] mrcp_client_connection.c:656 () Receive MRCPv2 Data 192.168.109.85:53998 <-> 192.168.109.85:1644 [108 bytes]
+fs-ai  | MRCP/2.0 108 3 200 COMPLETE
+fs-ai  | Channel-Identifier: 93a9b16d80a04132@speechrecog
+fs-ai  | Active-Request-Id-List: 1
+fs-ai  |
+fs-ai  |
+fs-ai  | 2025-05-19 15:52:03.982348 97.60% [INFO] mrcp_client_session.c:498 (ASR-2383) Raise App MRCP Response ASR-2383 <93a9b16d80a04132>
+fs-ai  | 2025-05-19 15:52:04.002339 97.60% [INFO] mrcp_client_session.c:385 (ASR-2383) Receive App Request ASR-2383 <93a9b16d80a04132> [1]
+fs-ai  | 2025-05-19 15:52:04.002339 97.60% [INFO] mrcp_client_session.c:828 (ASR-2383) Terminate Session ASR-2383 <93a9b16d80a04132>
+fs-ai  | 2025-05-19 15:52:04.002339 97.60% [INFO] mrcp_client_connection.c:480 (ASR-2383) Remove Control Channel <93a9b16d80a04132@speechrecog> [0]
+fs-ai  | 2025-05-19 15:52:04.002339 97.60% [INFO] mrcp_client_connection.c:407 () Close TCP/MRCPv2 Connection 192.168.109.85:53998 <-> 192.168.109.85:1644
+fs-ai  | 2025-05-19 15:52:04.002339 97.60% [INFO] mrcp_sofiasip_client_agent.c:621 () Receive SIP Event [nua_r_bye] Status 200 OK [unimrcpserver-mrcp-v2]
+fs-ai  | 2025-05-19 15:52:04.002339 97.60% [INFO] mrcp_sofiasip_client_agent.c:621 () Receive SIP Event [nua_i_state] Status 200 to BYE [unimrcpserver-mrcp-v2]
+fs-ai  | 2025-05-19 15:52:04,030 INFO /tmp/servicePool_test_appId/robot/2025-05-19/aab9f6ef-7ad3-445d-be0c-3a91eb95d3bb.wav
+
+
+
+
+
+
+20250519
+准备和搭建徐工UAT和PRD环境的VPN等网络基础软件
+分析徐工PRD环境fs日志，排查徐工asr无识别结果问题
+修改港铁POC 切换vad为联想vad，调试打断和asr识别丢首字问题
+定位和修复港铁POC 联想vad送数据时崩溃问题
+
+
+
+定位港铁POC asr识别结果不准问题
+定位港铁POC智能打断不灵敏问题
+
+
+engine=Xunfei;sessionId=03ad9124-31cb-4cb9-ae5c-8d56775dee5c
+服务ID：1909235891742773248
+电话号码：+8615161339666
+呼入时间：2025-04-07 21:24:43
+
+
+
+
+
+宇宙: https://wiki.knowdee.com/bin/view/01%20%E7%AB%8B%E9%A1%B9%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/02-%E4%BA%A4%E4%BB%98%E9%A1%B9%E7%9B%AE/2024/%E5%BE%90%E5%B7%A5400%E6%99%BA%E8%83%BD%E5%91%BC%E5%8F%AB%E4%B8%AD%E5%BF%83%E7%B3%BB%E7%BB%9F%E9%87%8D%E6%9E%84%E9%A1%B9%E7%9B%AE/
+宇宙: [图片]
+宇宙: vpn和服务器
+宇宙: uat环境fs什么的都在 10.188.5.2
+宇宙: /home/project/fs
+/data/project/fs
+
+私有ip:
+10.188.5.2
+root/XcmG#CRM@250205
+
+生产环境：
+10.188.6.233
+
+
+运维监控系统日志：
+http://10.188.6.61:3000  账号admin 密码knowdee
+
+
+zstd -d core.zst -o core
+
+
+var->_iPos:%d iTotal:%d iBeginPos:%d   iBeginTime:%d pOptions->_iSampleRatio:%d",
+    __s=0x7f997a7fb8b0 "var->_iPos:80800 iTotal:8000 iBeginPos:72800   iBeginTime:4550
 
 
 
