@@ -128,12 +128,501 @@ mrcp-deps
 手动构建kd-unimrcp docker镜像
 
 支持微软asr/tts(azure sdk)
-
-开会同步港铁POC进展，探讨tts调测支持英文语种问题
 调研确认微软asr/tts支持中文普通话、粤语、英语
+
+
+
+lsof -i UDP -a -c freeswitch|grep ":26"|wc -l
+
+ss -tulwnp
+ss -unlp | grep "freeswitch"
+
+
+
+
+ss -unlp | grep "freeswitch"|grep ":26*"|wc -l
+ss -unlp | grep "unimrcp"|grep ":15"|wc -l
+ss -unlp | grep "asr"|grep ":30"|wc -l
+
+38
+0
+14
+26
+
+
+
+54
+0
+18
+36
+
+
+300
+60
+
+
+    <!-- <param name="rtp-start-port" value="26184"/> -->
+    <param name="rtp-start-port" value="26424"/>
+    <param name="rtp-end-port" value="26484"/>
+
+
+
 
 徐工asr识别问题
 
+20250526
+定位asr相关代码并修复其结果累加BUG
+
+
+
+
+xugong_prd:
+knodi_asr_proxy  | [kd-mrcp-asr] lenovoVadInst::init vad iVadEnergyStart = 70
+knodi_asr_proxy  | [kd-mrcp-asr] lenovoVadInst::init iVadEnergeStop = 40
+knodi_asr_proxy  | [kd-mrcp-asr] lenovoVadInst::init iMaxSpPause = 500 ms, iLRelax = 250 ms
+
+gongtie_poc:
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init vad iVadEnergyStart = 60
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iVadEnergeStop = 30
+unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iMaxSpPause = 600 ms, iLRelax = 250 ms
+
+
+
+
+aws ecr get-login-password --region cn-north-1 | docker login --username AWS  --password-stdin  865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn
+aws ecr get-login-password --region cn-north-1 | docker login --username AWS  --password-stdin  865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn
+
+devel:
+apt install -y wget gcc gcc-c++ curl librdkafka-dev openssl openssl-devel
+
+runtime:
+apt update && apt install -y libcurl4-gnutls-dev
+
+libcppkafka.so
+librdkafka.so
+librdkafka++.so
+libaws-cpp-sdk-s3.so
+libjrtplib.so
+libyaml-cpp.a
+
+
+172.70.10.210
+
+
+20250527
+编译调试kd-asr-proxy，修改asr-proxy代码，剥离s3模块
+排查解决服务启动时崩溃问题
+构建kd-asr-proxy docker镜像
+调试kd-asr-proxy镜像运行
+
+
+
+20250526
+kd-asr-proxy工程适配ubuntu22.04
+源码编译依赖yaml ubuntu版本
+源码编译依赖kafka ubuntu版本
+源码编译依赖jrtplib ubuntu版本
+
+
+websocket传输音频流
+websocket接收处理后音频
+调试桥接电话功能
+session 连接websocket server
+mod_audio_stream监听音频
+mod_audio_stream监听事件
+mod_audio_fork
+桥接到软电话
+桥接阻塞调试
+联调音频传输和分析
+寻找异步处理方式
+
+
+xugong_prd:
+2025-04-24 22:40:34.641277 0.00% [NOTICE] mrcp_client.c:719 () MRCP Client Started
+2025-04-24 22:40:34.641284 0.00% [DEBUG] apt_consumer_task.c:135 () Wait for Messages [MRCP Client]
+2025-04-24 22:40:34.641290 0.00% [CONSOLE] switch_loadable_module.c:1772 Successfully Loaded [mod_unimrcp]
+2025-04-24 22:40:34.641301 0.00% [NOTICE] switch_loadable_module.c:537 Adding Speech interface 'unimrcp'
+2025-04-24 22:40:34.641320 0.00% [NOTICE] switch_loadable_module.c:565 Adding ASR interface 'unimrcp'
+2025-04-24 22:40:34.641611 0.00% [CONSOLE] switch_loadable_module.c:1772 Successfully Loaded [mod_event_socket]
+2025-04-24 22:40:34.641629 0.00% [NOTICE] switch_loadable_module.c:329 Adding Application 'socket'
+2025-04-24 22:40:34.641649 0.00% [NOTICE] switch_loadable_module.c:389 Adding API Function 'event_sink'
+2025-04-24 22:40:34.642822 0.00% [INFO] mod_sofia.c:6665 Starting initial message thread.
+2025-04-24 22:40:34.642904 0.00% [DEBUG] sofia.c:4727 debug [0]
+2025-04-24 22:40:34.642912 0.00% [DEBUG] sofia.c:4727 sip-trace [no]
+2025-04-24 22:40:34.642915 0.00% [DEBUG] sofia.c:4727 NDLB-received-in-nat-reg-contact [true]
+2025-04-24 22:40:34.642933 0.00% [DEBUG] sofia.c:4727 apply-candidate-acl [rfc1918.auto]
+2025-04-24 22:40:34.642948 0.00% [DEBUG] sofia.c:4727 apply-candidate-acl [wan.auto]
+2025-04-24 22:40:34.642957 0.00% [DEBUG] sofia.c:4727 codecs [OPUS,G722,PCMU,PCMA,H264,VP8]
+2025-04-24 22:40:34.642972 0.00% [DEBUG] sofia.c:4727 odbc-dsn [pgsql://host=10.188.6.233 port=5432 dbname=freeswitch user=postgres password=3or+l2fZuXoSiLsFSwo]
+2025-04-24 22:40:34.642979 0.00% [DEBUG] sofia.c:4727 sip-capture [no]
+2025-04-24 22:40:34.642982 0.00% [DEBUG] sofia.c:4727 rfc2833-pt [101]
+2025-04-24 22:40:34.642985 0.00% [DEBUG] sofia.c:4727 sip-port [15080]
+2025-04-24 22:40:34.642989 0.00% [DEBUG] sofia.c:4727 dialplan [XML]
+2025-04-24 22:40:34.642995 0.00% [DEBUG] sofia.c:4727 context [public]
+2025-04-24 22:40:34.643000 0.00% [DEBUG] sofia.c:4727 dtmf-duration [2000]
+2025-04-24 22:40:34.643006 0.00% [DEBUG] sofia.c:4727 inbound-codec-prefs [OPUS,G722,PCMU,PCMA,H264,VP8]
+2025-04-24 22:40:34.643018 0.00% [DEBUG] sofia.c:4727 outbound-codec-prefs [OPUS,G722,PCMU,PCMA,H264,VP8]
+2025-04-24 22:40:34.643026 0.00% [DEBUG] sofia.c:4727 hold-music [local_stream://moh]
+2025-04-24 22:40:34.643030 0.00% [DEBUG] sofia.c:4727 rtp-timer-name [soft]
+2025-04-24 22:40:34.643038 0.00% [DEBUG] sofia.c:4727 aggressive-nat-detection [true]
+2025-04-24 22:40:34.643042 0.00% [DEBUG] sofia.c:4727 local-network-acl [none]
+2025-04-24 22:40:34.643055 0.00% [DEBUG] sofia.c:4727 manage-presence [false]
+2025-04-24 22:40:34.643059 0.00% [DEBUG] sofia.c:4727 aggressive-nat-detection [true]
+2025-04-24 22:40:34.643062 0.00% [DEBUG] sofia.c:4727 inbound-codec-negotiation [generous]
+2025-04-24 22:40:34.643067 0.00% [DEBUG] sofia.c:4727 nonce-ttl [60]
+2025-04-24 22:40:34.643073 0.00% [DEBUG] sofia.c:4727 auth-calls [false]
+2025-04-24 22:40:34.643080 0.00% [DEBUG] sofia.c:4727 inbound-late-negotiation [true]
+2025-04-24 22:40:34.643095 0.00% [DEBUG] sofia.c:4727 inbound-zrtp-passthru [true]
+2025-04-24 22:40:34.643100 0.00% [DEBUG] sofia.c:4727 rtp-ip [10.188.6.233]
+2025-04-24 22:40:34.643104 0.00% [DEBUG] sofia.c:4727 sip-ip [10.188.6.233]
+2025-04-24 22:40:34.643107 0.00% [DEBUG] sofia.c:4727 ext-sip-ip [223.109.89.196]
+2025-04-24 22:40:34.643117 0.00% [DEBUG] sofia.c:4727 ext-rtp-ip [223.109.89.196]
+2025-04-24 22:40:34.643124 0.00% [DEBUG] sofia.c:4727 rtp-timeout-sec [300]
+2025-04-24 22:40:34.643127 0.00% [WARNING] sofia.c:5328 rtp-timeout-sec deprecated use media_timeout variable.
+2025-04-24 22:40:34.643130 0.00% [DEBUG] sofia.c:4727 rtp-hold-timeout-sec [1800]
+2025-04-24 22:40:34.643133 0.00% [WARNING] sofia.c:5335 rtp-hold-timeout-sec deprecated use media_hold_timeout variable.
+2025-04-24 22:40:34.643136 0.00% [DEBUG] sofia.c:4727 tls [true]
+2025-04-24 22:40:34.643143 0.00% [DEBUG] sofia.c:4727 tls-only [false]
+2025-04-24 22:40:34.643150 0.00% [DEBUG] sofia.c:4727 tls-bind-params [transport=tls]
+2025-04-24 22:40:34.643156 0.00% [DEBUG] sofia.c:4727 tls-sip-port [5081]
+2025-04-24 22:40:34.643160 0.00% [DEBUG] sofia.c:4727 tls-cert-dir [/usr/local/freeswitch/certs]
+2025-04-24 22:40:34.643166 0.00% [DEBUG] sofia.c:4727 tls-passphrase []
+2025-04-24 22:40:34.643172 0.00% [DEBUG] sofia.c:4727 tls-verify-date [true]
+2025-04-24 22:40:34.643178 0.00% [DEBUG] sofia.c:4727 tls-verify-policy [none]
+2025-04-24 22:40:34.643183 0.00% [DEBUG] sofia.c:4727 tls-verify-depth [2]
+2025-04-24 22:40:34.643188 0.00% [DEBUG] sofia.c:4727 tls-verify-in-subjects []
+2025-04-24 22:40:34.643193 0.00% [DEBUG] sofia.c:4727 tls-version [tlsv1,tlsv1.1,tlsv1.2]
+2025-04-24 22:40:34.643204 0.00% [DEBUG] sofia.c:4727 ws-binding [:5066]
+2025-04-24 22:40:34.643211 0.00% [DEBUG] sofia.c:4727 wss-binding [:7443]
+2025-04-24 22:40:34.643231 0.00% [INFO] sofia.c:6187 Setting MAX Auth Validity to 0 Attempts
+2025-04-24 22:40:34.643314 0.00% [NOTICE] sofia.c:6347 Connecting ODBC Profile external [sofia_reg_external]
+2025-04-24 22:40:34.643383 0.00% [DEBUG] sofia.c:3162 Creating agent for external
+
+
+
+
+210:
+2025-05-14 13:23:10.158159 0.00% [NOTICE] mrcp_client.c:719 () MRCP Client Started
+2025-05-14 13:23:10.158182 0.00% [DEBUG] apt_consumer_task.c:135 () Wait for Messages [MRCP Client]
+2025-05-14 13:23:10.158245 0.00% [CONSOLE] switch_loadable_module.c:1772 Successfully Loaded [mod_unimrcp]
+2025-05-14 13:23:10.158300 0.00% [NOTICE] switch_loadable_module.c:537 Adding Speech interface 'unimrcp'
+2025-05-14 13:23:10.158371 0.00% [NOTICE] switch_loadable_module.c:565 Adding ASR interface 'unimrcp'
+2025-05-14 13:23:10.159051 0.00% [CONSOLE] switch_loadable_module.c:1772 Successfully Loaded [mod_event_socket]
+2025-05-14 13:23:10.159102 0.00% [NOTICE] switch_loadable_module.c:329 Adding Application 'socket'
+2025-05-14 13:23:10.159142 0.00% [NOTICE] switch_loadable_module.c:389 Adding API Function 'event_sink'
+2025-05-14 13:23:10.161856 0.00% [INFO] mod_sofia.c:6665 Starting initial message thread.
+2025-05-19 15:40:55.117498 0.00% [INFO] mod_sofia.c:6665 Starting initial message thread.
+2025-05-19 15:40:55.117658 0.00% [DEBUG] sofia.c:4727 debug [0]
+2025-05-19 15:40:55.117689 0.00% [DEBUG] sofia.c:4727 sip-trace [no]
+2025-05-19 15:40:55.117696 0.00% [DEBUG] sofia.c:4727 NDLB-received-in-nat-reg-contact [true]
+2025-05-19 15:40:55.117717 0.00% [DEBUG] sofia.c:4727 apply-candidate-acl [rfc1918.auto]
+2025-05-19 15:40:55.117732 0.00% [DEBUG] sofia.c:4727 apply-candidate-acl [wan.auto]
+2025-05-19 15:40:55.117741 0.00% [DEBUG] sofia.c:4727 codecs [OPUS,G722,PCMU,PCMA,H264,VP8]
+2025-05-19 15:40:55.117762 0.00% [DEBUG] sofia.c:4727 sip-capture [no]
+2025-05-19 15:40:55.117768 0.00% [DEBUG] sofia.c:4727 rfc2833-pt [101]
+2025-05-19 15:40:55.117776 0.00% [DEBUG] sofia.c:4727 sip-port [15080]
+2025-05-19 15:40:55.117783 0.00% [DEBUG] sofia.c:4727 dialplan [XML]
+2025-05-19 15:40:55.117796 0.00% [DEBUG] sofia.c:4727 context [public]
+2025-05-19 15:40:55.117804 0.00% [DEBUG] sofia.c:4727 dtmf-duration [2000]
+2025-05-19 15:40:55.117813 0.00% [DEBUG] sofia.c:4727 inbound-codec-prefs [OPUS,G722,PCMU,PCMA,H264,VP8]
+2025-05-19 15:40:55.117827 0.00% [DEBUG] sofia.c:4727 outbound-codec-prefs [OPUS,G722,PCMU,PCMA,H264,VP8]
+2025-05-19 15:40:55.117850 0.00% [DEBUG] sofia.c:4727 hold-music [local_stream://moh]
+2025-05-19 15:40:55.117858 0.00% [DEBUG] sofia.c:4727 rtp-timer-name [soft]
+2025-05-19 15:40:55.117865 0.00% [DEBUG] sofia.c:4727 aggressive-nat-detection [true]
+2025-05-19 15:40:55.117870 0.00% [DEBUG] sofia.c:4727 local-network-acl [none]
+2025-05-19 15:40:55.117877 0.00% [DEBUG] sofia.c:4727 manage-presence [false]
+2025-05-19 15:40:55.117883 0.00% [DEBUG] sofia.c:4727 aggressive-nat-detection [true]
+2025-05-19 15:40:55.117889 0.00% [DEBUG] sofia.c:4727 inbound-codec-negotiation [generous]
+2025-05-19 15:40:55.117896 0.00% [DEBUG] sofia.c:4727 nonce-ttl [60]
+2025-05-19 15:40:55.117923 0.00% [DEBUG] sofia.c:4727 auth-calls [false]
+2025-05-19 15:40:55.117934 0.00% [DEBUG] sofia.c:4727 inbound-late-negotiation [true]
+2025-05-19 15:40:55.117939 0.00% [DEBUG] sofia.c:4727 inbound-zrtp-passthru [true]
+2025-05-19 15:40:55.117967 0.00% [DEBUG] sofia.c:4727 rtp-ip [172.70.10.210]
+2025-05-19 15:40:55.117976 0.00% [DEBUG] sofia.c:4727 sip-ip [172.70.10.210]
+2025-05-19 15:40:55.117983 0.00% [DEBUG] sofia.c:4727 ext-sip-ip [172.70.10.210]
+2025-05-19 15:40:55.118001 0.00% [DEBUG] sofia.c:4727 ext-rtp-ip [172.70.10.210]
+2025-05-19 15:40:55.118011 0.00% [DEBUG] sofia.c:4727 rtp-timeout-sec [300]
+2025-05-19 15:40:55.118018 0.00% [WARNING] sofia.c:5328 rtp-timeout-sec deprecated use media_timeout variable.
+2025-05-19 15:40:55.118042 0.00% [DEBUG] sofia.c:4727 rtp-hold-timeout-sec [1800]
+2025-05-19 15:40:55.118050 0.00% [WARNING] sofia.c:5335 rtp-hold-timeout-sec deprecated use media_hold_timeout variable.
+2025-05-19 15:40:55.118055 0.00% [DEBUG] sofia.c:4727 tls [true]
+2025-05-19 15:40:55.118064 0.00% [DEBUG] sofia.c:4727 tls-only [false]
+2025-05-19 15:40:55.118077 0.00% [DEBUG] sofia.c:4727 tls-bind-params [transport=tls]
+2025-05-19 15:40:55.118085 0.00% [DEBUG] sofia.c:4727 tls-sip-port [5081]
+2025-05-19 15:40:55.118094 0.00% [DEBUG] sofia.c:4727 tls-cert-dir [/usr/local/freeswitch/certs]
+2025-05-19 15:40:55.118109 0.00% [DEBUG] sofia.c:4727 tls-passphrase []
+2025-05-19 15:40:55.118130 0.00% [DEBUG] sofia.c:4727 tls-verify-date [true]
+2025-05-19 15:40:55.118139 0.00% [DEBUG] sofia.c:4727 tls-verify-policy [none]
+2025-05-19 15:40:55.118150 0.00% [DEBUG] sofia.c:4727 tls-verify-depth [2]
+2025-05-19 15:40:55.118158 0.00% [DEBUG] sofia.c:4727 tls-verify-in-subjects []
+2025-05-19 15:40:55.118165 0.00% [DEBUG] sofia.c:4727 tls-version [tlsv1,tlsv1.1,tlsv1.2]
+2025-05-19 15:40:55.118175 0.00% [DEBUG] sofia.c:4727 ws-binding [:5066]
+2025-05-19 15:40:55.118182 0.00% [DEBUG] sofia.c:4727 wss-binding [:37443]
+2025-05-19 15:40:55.118195 0.00% [INFO] sofia.c:6187 Setting MAX Auth Validity to 0 Attempts
+2025-05-19 15:40:55.118400 0.00% [NOTICE] sofia.c:6347 Connecting ODBC Profile external [sofia_reg_external]
+2025-05-19 15:40:55.118650 0.00% [DEBUG] sofia.c:3162 Creating agent for external
+
+
+
+20250523
+定位解决颐和园PRE测试asr吞字问题
+排查颐和园PRE测试按键选择无效问题
+分析徐工PRD环境asr服务日志
+修复徐工PRD转人工后kd-asr-proxy服务转写结果累加问题
+
+
+/usr/bin/ld: src/utils/kafka/libKafka.a(kafka.cpp.o): in function `utils::KafkaImpl::Init(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+/usr/local/src/.local/lit/kd-asr-proxy/src/utils/kafka/kafka.cpp:26: undefined reference to `cppkafka::Configuration::set(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+/usr/bin/ld: /usr/local/src/.local/lit/kd-asr-proxy/src/utils/kafka/kafka.cpp:35: undefined reference to `cppkafka::Configuration::set_error_callback(std::function<void (cppkafka::KafkaHandleBase&, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)>)'
+
+
+/usr/bin/ld: src/utils/kafka/libKafka.a(kafka.cpp.o): in function `utils::KafkaImpl::Produce(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)':
+/usr/local/src/.local/lit/kd-asr-proxy/src/utils/kafka/kafka.cpp:46: undefined reference to `cppkafka::Buffer::Buffer(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+
+
+/usr/bin/ld: src/utils/kafka/libKafka.a(kafka.cpp.o): in function `std::_Function_handler<void (cppkafka::Producer&, cppkafka::Message const&), utils::KafkaImpl::Init(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)::{lambda(cppkafka::Producer&, cppkafka::Message const&)#1}>::_M_invoke(std::_Any_data const&, cppkafka::Producer&, cppkafka::Message const&)':
+/usr/local/src/.local/lit/kd-asr-proxy/src/utils/kafka/kafka.cpp:28: undefined reference to `cppkafka::Error::to_string[abi:cxx11]() const'
+
+
+/usr/bin/ld: src/session/libSession.a(rtp_session.cpp.o): in function `session::RTP::errorCheck(int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)':
+/usr/local/src/.local/lit/kd-asr-proxy/src/session/rtp_session.cpp:124: undefined reference to `jrtplib::RTPGetErrorString[abi:cxx11](int)'
+
+
+/usr/bin/ld: src/utils/s3/libAwsS3.a(s3.cpp.o): in function `utils::aws_s3::Client::ListBuckets(std::set<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >&)':
+/usr/local/src/.local/lit/kd-asr-proxy/src/utils/s3/s3.cpp:241: undefined reference to `Aws::S3::S3Client::ListBuckets() const'
+
+
+collect2: error: ld returned 1 exit status
+
+
+
+
+
+
+20250522
+准备并安装徐工PRD环境网络相关工具
+统计徐工PRD环境fs语音流端口占用情况
+查找并下载徐工PRD环境asr转写结果累加badcase对应asr日志
+定位徐工PRD环境转人工后asr转写结果累加问题
+
+
+
+
+
+
+排查徐工PRD 转人工asr转写
+排查徐工PRD 转人工asr转写 fs调用tts交互流程
+
+定位fs->mrcp->asr各个流程未发现异常问题，讯飞返回识别结果少部分句子
+
+
+
+徐工线上语音端口占用问题排查(rtp/udp)
+fs:300/150/26-64
+- RTP_START_PORT=26184
+# for verfiy port jump
+#- RTP_START_PORT=26444
+- RTP_END_PORT=26484
+
+mrcp:100/50/0-6
+- RTP_PORT_MIN=15184
+- RTP_PORT_MAX=15284
+
+kd-asr-proxy:300/150/6-20
+- ASRPROXY_RTP_MIN=30000
+- ASRPROXY_RTP_MAX=30300
+
+
+
+
+
+
+
+  <cli-keybindings>
+    <key name="1" value="help"/>
+    <key name="2" value="status"/>
+    <key name="3" value="show channels"/>
+    <key name="4" value="show calls"/>
+    <key name="5" value="sofia status"/>
+    <key name="6" value="reloadxml"/>
+    <key name="7" value="console loglevel 0"/>
+    <key name="8" value="console loglevel 7"/>
+    <key name="9" value="sofia status profile internal"/>
+    <key name="10" value="sofia profile internal siptrace on"/>
+    <key name="11" value="sofia profile internal siptrace off"/>
+    <key name="12" value="version"/>
+  </cli-keybindings>
+
+
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b 2025-05-22 14:37:24.275714 85.13% [DEBUG] sofia.c:7493 Channel sofia/external/9898000630388946@223.109.89.196 entering state [completing][200]
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b 2025-05-22 14:37:24.275714 85.13% [DEBUG] sofia.c:7503 Remote SDP:
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b v=0
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b o=- 8996708521907119029 3 IN IP4 127.0.0.1
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b s=-
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b t=0 0
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=msid-semantic: WMS c40f738d-0ed4-4268-b8e8-30982490dcd4
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b m=audio 53769 RTP/SAVPF 8 101
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b c=IN IP4 10.1.88.4
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=rtpmap:8 PCMA/8000
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=rtpmap:101 telephone-event/8000
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=rtcp:9 IN IP4 0.0.0.0
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=candidate:348375836 1 udp 2122260223 10.1.88.4 53769 typ host generation 0 network-id 1
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=candidate:3932757896 1 tcp 1518280447 10.1.88.4 9 typ host tcptype active generation 0 network-id 1
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=ice-ufrag:Rx6W
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=ice-pwd:RcHG0VUwcfcOydDtAk/JBq1e
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=ice-options:trickle
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=fingerprint:sha-256 18:2D:C8:0E:AB:05:24:90:7F:39:A2:EA:44:F8:AB:52:39:40:6C:45:93:40:94:AB:D1:5C:43:22:6C:70:F9:06
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=setup:active
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=mid:0
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=rtcp-mux
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=ssrc:2030615433 cname:w2Z3stqi9dRZMiBM
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b a=ssrc:2030615433 msid:c40f738d-0ed4-4268-b8e8-30982490dcd4 daa3c70b-4ec3-4d5d-bb19-43aa577e8ace
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b
+2a05b193-2a1f-485f-9452-cba8c0a6ba3b 2025-05-22 14:37:24.295714 85.13% [DEBUG] sofia.c:7493 Channel sofia/external/9898000630388946@223.109.89.196 entering state [ready][200]
+
+
+
+
+34317225-57fe-4e9b-9346-eb0c058be764 2025-04-28 09:58:40.575714 98.57% [NOTICE] switch_rtp.c:1436 Auto Changing audio stun/rtp/dtls port from 10.1.88.17:64246 to 221.178.242.16:53222 idx:-1
+34317225-57fe-4e9b-9346-eb0c058be764 2025-04-28 09:58:40.575714 98.57% [DEBUG] switch_ivr_async.c:1778 No silence detection configured; assuming start of speech
+
+
+ecs-prd-crm-vrs-0001-0001:ssh                                    => 10.1.1.52                                                        10.3Mb  10.1Mb  9.41Mb
+                                                                 <=                                                                   230Kb   231Kb   221Kb
+ecs-prd-crm-vrs-0001-0001:35774                                  => 100.125.32.71                                                       0b   2.89Mb  1.29Mb
+                                                                 <=                                                                     0b   2.14Kb  1.88Kb
+ecs-prd-crm-vrs-0001-0001:28021                                  => 10.188.6.52                                                       138Kb   268Kb   238Kb
+                                                                 <=                                                                  5.34Kb  7.13Kb  5.71Kb
+ecs-prd-crm-vrs-0001-0001:57352                                  => 114.118.65.88                                                     212Kb   217Kb  87.3Kb
+                                                                 <=                                                                  11.6Kb  13.2Kb  4.67Kb
+ecs-prd-crm-vrs-0001-0001:57358                                  => 114.118.65.88                                                    63.0Kb   185Kb  54.4Kb
+                                                                 <=                                                                  6.86Kb  11.2Kb  3.12Kb
+ecs-prd-crm-vrs-0001-0001:60988                                  => 10.188.6.61                                                         0b    176Kb  44.1Kb
+                                                                 <=                                                                     0b   3.74Kb   958b
+ecs-prd-crm-vrs-0001-0001:26444                                  => 10.1.88.69                                                       83.2Kb  85.4Kb  85.3Kb
+                                                                 <=                                                                  81.6Kb  83.7Kb  83.6Kb
+ecs-prd-crm-vrs-0001-0001:26468                                  => 58.218.196.214                                                   82.6Kb  85.0Kb  84.7Kb
+                                                                 <=                                                                  80.8Kb  83.6Kb  83.6Kb
+ecs-prd-crm-vrs-0001-0001:26292                                  => 10.1.88.60                                                       82.4Kb  85.2Kb  85.0Kb
+                                                                 <=                                                                  81.2Kb  83.4Kb  83.6Kb
+ecs-prd-crm-vrs-0001-0001:26324                                  => 10.1.88.71                                                       83.2Kb  85.1Kb  84.9Kb
+                                                                 <=                                                                  81.6Kb  83.5Kb  83.6Kb
+ecs-prd-crm-vrs-0001-0001:26448                                  => 153.36.106.124                                                   82.4Kb  84.9Kb  84.9Kb
+                                                                 <=                                                                  81.6Kb  83.7Kb  83.6Kb
+ecs-prd-crm-vrs-0001-0001:26402                                  => 10.1.88.4                                                        82.4Kb  84.9Kb  84.9Kb
+                                                                 <=                                                                  81.6Kb  83.5Kb  83.6Kb
+ecs-prd-crm-vrs-0001-0001:26328                                  => 221.178.242.16                                                   83.2Kb  84.9Kb  84.8Kb
+                                                                 <=                                                                  80.8Kb  83.5Kb  83.5Kb
+ecs-prd-crm-vrs-0001-0001:26428                                  => 10.1.88.47                                                       82.0Kb  84.8Kb  84.8Kb
+                                                                 <=                                                                  81.5Kb  83.5Kb  83.6Kb
+ecs-prd-crm-vrs-0001-0001:26332                                  => 221.178.242.16                                                   82.0Kb  84.8Kb  84.8Kb
+                                                                 <=                                                                  80.7Kb  83.5Kb  83.6Kb
+ecs-prd-crm-vrs-0001-0001:26202                                  => 221.178.242.16                                                   82.8Kb  84.8Kb  84.8Kb
+                                                                 <=                                                                  81.1Kb  83.5Kb  83.6Kb
+
+
+
+
+10.188.6.233:36274                                               => 114.118.65.87:80                                                  618Kb   124Kb  30.9Kb
+10.188.6.233:41134                                               => 114.118.65.88:80                                                  237Kb  47.4Kb  11.9Kb
+10.188.6.233:53822                                               => 123.56.17.44:80                                                   220Kb  44.0Kb  11.0Kb
+10.188.6.233:41128                                               => 114.118.65.88:80                                                  209Kb   203Kb  50.8Kb
+10.188.6.233:60376                                               => 124.243.239.204:80                                                207Kb  59.0Kb  14.7Kb
+10.188.6.233:53856                                               => 114.118.75.150:80                                                 204Kb  40.8Kb  10.2Kb
+10.188.6.233:50354                                               => 39.105.54.181:80                                                  167Kb   207Kb  62.1Kb
+10.188.6.233:53840                                               => 114.118.75.150:80                                                 147Kb  29.3Kb  7.33Kb
+10.188.6.233:53862                                               => 114.118.75.150:80                                                 133Kb  26.6Kb  6.66Kb
+10.188.6.233:53828                                               => 123.56.17.44:80                                                   107Kb  21.4Kb  5.34Kb
+10.188.6.233:41136                                               => 114.118.65.88:80                                                  106Kb  21.3Kb  5.31Kb
+10.188.6.233:58748                                               => 125.254.169.35:80                                                88.7Kb  54.5Kb  13.6Kb
+10.188.6.233:26218                                               => 10.1.88.11:59977                                                 83.2Kb  86.4Kb  84.4Kb
+10.188.6.233:26192                                               => 221.178.242.16:14671                                             82.6Kb  86.5Kb  65.4Kb
+10.188.6.233:26336                                               => 10.1.88.6:56609                                                  82.4Kb  86.2Kb  62.3Kb
+10.188.6.233:26200                                               => 10.1.88.211:54930                                                82.4Kb  86.2Kb  56.4Kb
+10.188.6.233:26448                                               => 58.218.196.214:12465                                             82.4Kb  86.1Kb  44.6Kb
+10.188.6.233:26294                                               => 10.1.88.20:63543                                                 82.2Kb  82.3Kb  20.7Kb
+10.188.6.233:26428                                               => 10.1.88.37:52575                                                 82.0Kb  86.3Kb  84.5Kb
+10.188.6.233:26398                                               => 58.218.196.215:29768                                             81.8Kb  86.2Kb  84.3Kb
+10.188.6.233:26320                                               => 10.1.88.8:60614                                                  81.8Kb  30.0Kb  7.49Kb
+10.188.6.233:26194                                               => 153.36.106.124:57567                                             81.4Kb  89.0Kb  22.2Kb
+10.188.6.233:26414                                               => 10.1.88.46:54827                                                 81.1Kb  78.3Kb  19.7Kb
+10.188.6.233:26372                                               => 221.181.213.18:18704                                             76.6Kb  79.7Kb  78.0Kb
+10.188.6.233:26236                                               => 221.181.213.18:17872                                             76.6Kb  79.7Kb  57.0Kb
+10.188.6.233:26264                                               => 221.181.213.17:25702                                             76.6Kb  74.5Kb  18.6Kb
+10.188.6.233:26220                                               => 221.181.213.17:19080                                             75.8Kb  80.6Kb  40.1Kb
+10.188.6.233:26188                                               => 221.181.213.17:10700                                             75.8Kb  79.7Kb  78.0Kb
+10.188.6.233:26240                                               => 223.109.89.196:26306                                             75.8Kb  79.7Kb  78.0Kb
+10.188.6.233:26386                                               => 223.109.89.196:26208                                             75.8Kb  79.7Kb  71.5Kb
+10.188.6.233:26208                                               => 223.109.89.196:26386                                             75.8Kb  79.7Kb  65.4Kb
+10.188.6.233:26232                                               => 221.181.213.17:22278                                             75.8Kb  79.7Kb  59.1Kb
+
+
+8582
+4376 createSession response 200
+4206 destorySession response 200
+
+
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000e4010@dx196b9e99b2cb830802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"到"}]},{"cw":[{"sc":0,"w":"现在"}],"bg":45},{"bg":77,"cw":[{"sc":0,"w":"嘛"}]},{"bg":89,"cw":[{"sc":0,"w":"我"}]},{"cw":[{"sc":0,"w":"都"}],"bg":101},{"bg":129,"cw":[{"w":"问","sc":0}]},{"bg":141,"cw":[{"w":"他","sc":0}]},{"bg":153,"cw":[{"sc":0,"w":"我"}]},{"bg":165,"cw":[{"sc":0,"w":"说"}]},{"bg":173,"cw":[{"sc":0,"w":"我"}]},{"bg":181,"cw":[{"sc":0,"w":"这"}]},{"bg":201,"cw":[{"sc":0,"w":"2058"}]},{"bg":257,"cw":[{"sc":0,"w":"G"}]},{"bg":281,"cw":[{"sc":0,"w":"要"}]},{"bg":297,"cw":[{"sc":0,"w":"保养"}]},{"bg":337,"cw":[{"sc":0,"w":"呢"}]}]},"status":0}}
+
+
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000dbd77@dx196b9d60b38a140802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"嗯"}]}]},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000dbd77@dx196b9d60b38a140802","data":{"result":{"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":2},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000dd4a3@dx196b9d6448cb95d802","data":{"result":{"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":1},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d4cf9@dx196b9dc90e2a140802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"w":"但","sc":0}]},{"bg":41,"cw":[{"sc":0,"w":"我"}]},{"bg":53,"cw":[{"sc":0,"w":"不"}]},{"bg":69,"cw":[{"sc":0,"w":"认识"}]},{"cw":[{"sc":0,"w":"他"}],"bg":97},{"bg":145,"cw":[{"sc":0,"w":"我"}]},{"bg":157,"cw":[{"w":"也","sc":0}]},{"bg":169,"cw":[{"sc":0,"w":"没"}]},{"bg":189,"cw":[{"w":"跟","sc":0}]},{"bg":197,"cw":[{"sc":0,"w":"他"}]},{"bg":213,"cw":[{"w":"签","sc":0}]},{"bg":245,"cw":[{"sc":0,"w":"这个"}]},{"bg":273,"cw":[{"sc":0,"w":"钱"}]},{"cw":[{"sc":0,"w":"这个"}],"bg":313},{"cw":[{"sc":0,"w":"钱"}],"bg":345},{"bg":377,"cw":[{"w":"钱","sc":0}]}]},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d4cf9@dx196b9dc90e2a140802","data":{"status":2,"result":{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"cw":[{"w":"","sc":0}],"bg":0}]}}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d6866@dx196b9dd5299a427802","data":{"status":0,"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":33,"cw":[{"sc":0,"w":"我"}]},{"bg":65,"cw":[{"sc":0,"w":"我"}]},{"bg":77,"cw":[{"sc":0,"w":"有"}]},{"bg":97,"cw":[{"sc":0,"w":"证据"}]},{"bg":137,"cw":[{"w":"我","sc":0}]},{"bg":153,"cw":[{"sc":0,"w":"打"}]},{"bg":169,"cw":[{"sc":0,"w":"给"}]},{"bg":181,"cw":[{"sc":0,"w":"他"}]},{"bg":201,"cw":[{"sc":0,"w":"的"}]},{"bg":225,"cw":[{"sc":0,"w":"我"}]},{"bg":237,"cw":[{"w":"有","sc":0}]},{"bg":257,"cw":[{"sc":0,"w":"证据"}]}]}}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d6866@dx196b9dd5299a427802","data":{"result":{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}]},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000df5a3@dx196b9dd8f83b9ec802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":9,"cw":[{"sc":0,"w":"对"}]},{"bg":33,"cw":[{"sc":0,"w":"我"}]},{"bg":57,"cw":[{"w":"我","sc":0}]},{"cw":[{"sc":0,"w":"打"}],"bg":81},{"bg":101,"cw":[{"sc":0,"w":"给"}]},{"cw":[{"sc":0,"w":"的"}],"bg":113},{"bg":125,"cw":[{"sc":0,"w":"就是"}]},{"bg":141,"cw":[{"sc":0,"w":"这个"}]},{"bg":157,"cw":[{"sc":0,"w":"销售"}]},{"cw":[{"sc":0,"w":"经理"}],"bg":189},{"bg":221,"cw":[{"sc":0,"w":"嘛"}]},{"bg":241,"cw":[{"sc":0,"w":"他"}]},{"bg":253,"cw":[{"sc":0,"w":"就是"}]},{"bg":289,"cw":[{"sc":0,"w":"是"}]},{"bg":305,"cw":[{"sc":0,"w":"徐"}]},{"bg":317,"cw":[{"sc":0,"w":"工"}]},{"bg":329,"cw":[{"sc":0,"w":"系"}]},{"bg":341,"cw":[{"sc":0,"w":"他们"}]},{"bg":365,"cw":[{"sc":0,"w":"销售"}]},{"cw":[{"sc":0,"w":"经理"}],"bg":393},{"bg":449,"cw":[{"sc":0,"w":"他"}]}]},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000df5a3@dx196b9dd8f83b9ec802","data":{"status":2,"result":{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"w":"","sc":0}]}]}}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d714f@dx196b9de1139a4f0802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"打"}]},{"bg":37,"cw":[{"sc":0,"w":"电话"}]},{"cw":[{"sc":0,"w":"就"}],"bg":69},{"bg":85,"cw":[{"sc":0,"w":"这样"}]},{"cw":[{"sc":0,"w":"跟"}],"bg":113},{"bg":125,"cw":[{"sc":0,"w":"我"}]},{"bg":141,"cw":[{"sc":0,"w":"说"}]},{"bg":157,"cw":[{"sc":0,"w":"了"}]},{"bg":173,"cw":[{"sc":0,"w":"他"}]},{"bg":193,"cw":[{"sc":0,"w":"说是"}]},{"bg":257,"cw":[{"sc":0,"w":"你"}]},{"bg":297,"cw":[{"sc":0,"w":"如果"}]},{"bg":321,"cw":[{"sc":0,"w":"再"}]},{"bg":345,"cw":[{"w":"拨打","sc":0}]},{"bg":373,"cw":[{"sc":0,"w":"400"}]},{"bg":413,"cw":[{"sc":0,"w":"电话"}]},{"bg":441,"cw":[{"w":"那","sc":0}]},{"bg":457,"cw":[{"sc":0,"w":"我"}]},{"bg":477,"cw":[{"sc":0,"w":"就"}]},{"bg":497,"cw":[{"sc":0,"w":"不"}]},{"bg":513,"cw":[{"sc":0,"w":"让"}]},{"bg":525,"cw":[{"sc":0,"w":"你"}]},{"bg":545,"cw":[{"sc":0,"w":"好过"}]}]},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d714f@dx196b9de1139a4f0802","data":{"result":{"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":2,"ls":true,"bg":0},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000e6632@dx196b9e05de3a12b802","data":{"result":{"ls":true,"bg":0,"ed":0,"ws":[{"bg":17,"cw":[{"sc":0,"w":"对"}]},{"bg":29,"cw":[{"sc":0,"w":"对"}]},{"bg":45,"cw":[{"sc":0,"w":"对"}]},{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":1},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d5133@dx196b9e0a970a12c802","data":{"result":{"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"嗯"}]}],"sn":1,"ls":false},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d5133@dx196b9e0a970a12c802","data":{"status":2,"result":{"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":2,"ls":true}}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d7215@dx196b9e12f06a182802","data":{"result":{"sn":1,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"w":"","sc":0}]}]},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000ddbd4@dx196b9e237e0a182802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"噢"}]},{"bg":65,"cw":[{"sc":0,"w":"对"}]},{"cw":[{"sc":0,"w":"是"}],"bg":105},{"bg":121,"cw":[{"w":"吧","sc":0}]}]},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000ddbd4@dx196b9e237e0a182802","data":{"result":{"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":2,"ls":true},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000dcc3a@dx196b9e2dbffb95d802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"啊"}]},{"bg":49,"cw":[{"w":"工具箱","sc":0}]},{"bg":93,"cw":[{"sc":0,"w":"门"}]},{"bg":113,"cw":[{"sc":0,"w":"打"}]},{"bg":125,"cw":[{"sc":0,"w":"不"}]},{"bg":137,"cw":[{"sc":0,"w":"开"}]},{"bg":153,"cw":[{"sc":0,"w":"是"}]},{"cw":[{"sc":0,"w":"吧"}],"bg":169},{"bg":181,"cw":[{"sc":0,"w":"好"}]},{"bg":189,"cw":[{"w":"的","sc":0}]},{"bg":205,"cw":[{"sc":0,"w":"还有"}]},{"cw":[{"sc":0,"w":"其他"}],"bg":225},{"bg":253,"cw":[{"sc":0,"w":"问题"}]},{"bg":281,"cw":[{"sc":0,"w":"吗"}]},{"bg":297,"cw":[{"sc":0,"w":"先生"}]}]},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000dcc3a@dx196b9e2dbffb95d802","data":{"result":{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}]},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d5750@dx196b9e312c97024802","data":{"result":{"ws":[{"bg":17,"cw":[{"sc":0,"w":"对"}]},{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":1,"ls":true,"bg":0,"ed":0},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d8651@dx196b9e352fba4f0802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":33,"cw":[{"sc":0,"w":"咱们"}]},{"bg":65,"cw":[{"sc":0,"w":"这边"}]}]},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d8651@dx196b9e352fba4f0802","data":{"status":1,"result":{"sn":2,"ls":false,"bg":0,"ed":0,"ws":[{"cw":[{"sc":0,"w":"呃"}],"bg":33},{"bg":81,"cw":[{"sc":0,"w":"有"}]},{"bg":169,"cw":[{"sc":0,"w":"徐"}]},{"bg":193,"cw":[{"sc":0,"w":"工"}]}]}}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d8651@dx196b9e352fba4f0802","data":{"result":{"ls":false,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"售后"}]},{"bg":81,"cw":[{"sc":0,"w":"吗"}]}],"sn":3},"status":1}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d8651@dx196b9e352fba4f0802","data":{"result":{"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":4,"ls":true,"bg":0,"ed":0},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000eaae6@dx196b9e39abea12b802","data":{"result":{"sn":1,"ls":true,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"w":"对","sc":0}]},{"bg":41,"cw":[{"sc":0,"w":"对"}]},{"bg":57,"cw":[{"sc":0,"w":"对"}]},{"bg":73,"cw":[{"sc":0,"w":"对"}]},{"bg":89,"cw":[{"sc":0,"w":"对"}]},{"bg":129,"cw":[{"sc":0,"w":"我"}]},{"bg":141,"cw":[{"sc":0,"w":"刚刚"}]},{"bg":185,"cw":[{"sc":0,"w":"忘记"}]},{"bg":225,"cw":[{"sc":0,"w":"说"}]},{"bg":237,"cw":[{"sc":0,"w":"了"}]},{"bg":257,"cw":[{"sc":0,"w":"就是说"}]},{"bg":349,"cw":[{"sc":0,"w":"就是"}]},{"bg":377,"cw":[{"sc":0,"w":"有"}]},{"bg":389,"cw":[{"sc":0,"w":"服务"}]},{"bg":413,"cw":[{"w":"人员","sc":0}]},{"cw":[{"sc":0,"w":"能不能"}],"bg":445},{"bg":477,"cw":[{"sc":0,"w":"就是"}]},{"bg":505,"cw":[{"sc":0,"w":"跟"}]},{"bg":529,"cw":[{"sc":0,"w":"我"}]},{"cw":[{"sc":0,"w":"联系"}],"bg":553},{"bg":573,"cw":[{"sc":0,"w":"一下"}]},{"bg":601,"cw":[{"w":"然后","sc":0}]},{"bg":641,"cw":[{"sc":0,"w":"我"}]},{"bg":0,"cw":[{"sc":0,"w":""}]}]},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000ec93a@dx196b9e3e8aea12b802","data":{"status":2,"result":{"bg":0,"ed":0,"ws":[{"bg":5,"cw":[{"w":"那个","sc":0}]},{"cw":[{"sc":0,"w":"乌鲁木齐"}],"bg":33},{"bg":93,"cw":[{"sc":0,"w":"是不是"}]},{"bg":117,"cw":[{"sc":0,"w":"有"}]},{"bg":133,"cw":[{"w":"一个","sc":0}]},{"bg":153,"cw":[{"sc":0,"w":"总站"}]},{"bg":201,"cw":[{"sc":0,"w":"呢"}]},{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":1,"ls":true}}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000ed49d@dx196b9e405a9a12b802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":17,"cw":[{"sc":0,"w":"嗯"}]},{"bg":65,"cw":[{"sc":0,"w":"啊"}]},{"bg":85,"cw":[{"sc":0,"w":"好"}]},{"bg":113,"cw":[{"sc":0,"w":"的"}]},{"bg":141,"cw":[{"sc":0,"w":"那"}]},{"bg":161,"cw":[{"sc":0,"w":"祝"}]},{"bg":173,"cw":[{"sc":0,"w":"您"}]},{"bg":193,"cw":[{"w":"快乐","sc":0}]},{"bg":229,"cw":[{"sc":0,"w":"健康"}]}]},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000ed49d@dx196b9e405a9a12b802","data":{"status":2,"result":{"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":2,"ls":true,"bg":0}}}
+
+
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000e4010@dx196b9e99b2cb830802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"到"}]},{"cw":[{"sc":0,"w":"现在"}],"bg":45},{"bg":77,"cw":[{"sc":0,"w":"嘛"}]},{"bg":89,"cw":[{"sc":0,"w":"我"}]},{"cw":[{"sc":0,"w":"都"}],"bg":101},{"bg":129,"cw":[{"w":"问","sc":0}]},{"bg":141,"cw":[{"w":"他","sc":0}]},{"bg":153,"cw":[{"sc":0,"w":"我"}]},{"bg":165,"cw":[{"sc":0,"w":"说"}]},{"bg":173,"cw":[{"sc":0,"w":"我"}]},{"bg":181,"cw":[{"sc":0,"w":"这"}]},{"bg":201,"cw":[{"sc":0,"w":"2058"}]},{"bg":257,"cw":[{"sc":0,"w":"G"}]},{"bg":281,"cw":[{"sc":0,"w":"要"}]},{"bg":297,"cw":[{"sc":0,"w":"保养"}]},{"bg":337,"cw":[{"sc":0,"w":"呢"}]}]},"status":0}}
+
+
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000e4010@dx196b9e99b2cb830802","data":{"result":{"sn":2,"ls":false,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"液压油"}]},{"bg":73,"cw":[{"sc":0,"w":"需要"}]},{"cw":[{"w":"更换","sc":0}],"bg":101},{"bg":161,"cw":[{"sc":0,"w":"我"}]},{"bg":173,"cw":[{"sc":0,"w":"说"}]},{"bg":189,"cw":[{"sc":0,"w":"你"}]},{"bg":197,"cw":[{"w":"把","sc":0}]},{"bg":217,"cw":[{"sc":0,"w":"油"}]},{"bg":233,"cw":[{"sc":0,"w":"拿"}]},{"bg":245,"cw":[{"sc":0,"w":"过来"}]},{"bg":269,"cw":[{"sc":0,"w":"给"}]},{"bg":281,"cw":[{"sc":0,"w":"我"}]},{"bg":297,"cw":[{"sc":0,"w":"更换"}]},{"bg":325,"cw":[{"w":"掉","sc":0}]}]},"status":1}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000e4010@dx196b9e99b2cb830802","data":{"result":{"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"大概"}]},{"bg":77,"cw":[{"sc":0,"w":"大约"}]},{"bg":121,"cw":[{"sc":0,"w":"有"}]},{"bg":153,"cw":[{"sc":0,"w":"4"}]},{"bg":169,"cw":[{"sc":0,"w":"个"}]},{"bg":185,"cw":[{"w":"月","sc":0}]},{"bg":201,"cw":[{"sc":0,"w":"了"}]},{"cw":[{"sc":0,"w":"一直"}],"bg":225},{"bg":253,"cw":[{"sc":0,"w":"在"}]},{"bg":273,"cw":[{"sc":0,"w":"推"}]},{"bg":301,"cw":[{"sc":0,"w":"他"}]},{"bg":309,"cw":[{"sc":0,"w":"说"}]},{"cw":[{"sc":0,"w":"去年"}],"bg":321},{"bg":349,"cw":[{"sc":0,"w":"年底"}]},{"bg":385,"cw":[{"w":"年底","sc":0}]},{"bg":413,"cw":[{"sc":0,"w":"嘛"}]},{"bg":433,"cw":[{"sc":0,"w":"他"}]},{"bg":465,"cw":[{"sc":0,"w":"说"}]},{"cw":[{"sc":0,"w":"唉呀"}],"bg":501},{"bg":537,"cw":[{"sc":0,"w":"我"}]},{"bg":561,"cw":[{"sc":0,"w":"回家"}]},{"bg":593,"cw":[{"sc":0,"w":"老家"}]},{"bg":621,"cw":[{"w":"有","sc":0}]},{"bg":641,"cw":[{"sc":0,"w":"事情"}]},{"bg":677,"cw":[{"w":"有","sc":0}]},{"cw":[{"sc":0,"w":"各种"}],"bg":685},{"bg":721,"cw":[{"sc":0,"w":"理由"}]}],"sn":3,"ls":false},"status":1}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000e4010@dx196b9e99b2cb830802","data":{"result":{"ls":false,"bg":0,"ed":0,"ws":[{"bg":21,"cw":[{"sc":0,"w":"然后"}]},{"bg":45,"cw":[{"sc":0,"w":"呢"}]},{"bg":53,"cw":[{"sc":0,"w":"我们"}]},{"bg":77,"cw":[{"sc":0,"w":"就"}]},{"bg":85,"cw":[{"sc":0,"w":"相信"}]},{"bg":109,"cw":[{"sc":0,"w":"他"}]},{"bg":117,"cw":[{"w":"了","sc":0}]},{"bg":129,"cw":[{"sc":0,"w":"吧"}]},{"bg":141,"cw":[{"sc":0,"w":"因为"}]},{"bg":157,"cw":[{"sc":0,"w":"他们"}]}],"sn":4},"status":1}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000e4010@dx196b9e99b2cb830802","data":{"result":{"ws":[{"bg":9,"cw":[{"sc":0,"w":"我们"}]},{"bg":41,"cw":[{"sc":0,"w":"挖"}]},{"bg":57,"cw":[{"sc":0,"w":"机"}]},{"bg":69,"cw":[{"sc":0,"w":"不是"}]},{"bg":93,"cw":[{"sc":0,"w":"很多"}]},{"bg":121,"cw":[{"w":"吗","sc":0}]},{"bg":137,"cw":[{"sc":0,"w":"都是"}]},{"bg":161,"cw":[{"sc":0,"w":"他"}]},{"bg":201,"cw":[{"sc":0,"w":"过来"}]},{"bg":221,"cw":[{"sc":0,"w":"给"}]},{"bg":229,"cw":[{"sc":0,"w":"我们"}]},{"bg":253,"cw":[{"sc":0,"w":"包养"}]},{"bg":277,"cw":[{"sc":0,"w":"的"}]},{"bg":297,"cw":[{"sc":0,"w":"吗"}]}],"sn":5,"ls":false,"bg":0,"ed":0},"status":1}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000e4010@dx196b9e99b2cb830802","data":{"result":{"sn":6,"ls":true,"bg":0,"ed":0,"ws":[{"cw":[{"sc":0,"w":""}],"bg":0}]},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d4bc1@dx196b9ea77407024802","data":{"result":{"sn":1,"ls":true,"bg":0,"ed":0,"ws":[{"bg":17,"cw":[{"sc":0,"w":"姓"}]},{"cw":[{"sc":0,"w":"孔"}],"bg":41},{"bg":65,"cw":[{"sc":0,"w":"孔子"}]},{"bg":101,"cw":[{"sc":0,"w":"的"}]},{"bg":113,"cw":[{"sc":0,"w":"孔"}]},{"bg":0,"cw":[{"sc":0,"w":""}]}]},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d9f44@dx196b9ebfdafb9ec802","data":{"result":{"ws":[{"bg":33,"cw":[{"sc":0,"w":"是"}]},{"cw":[{"sc":0,"w":"xug"}],"bg":73},{"bg":161,"cw":[{"sc":0,"w":"043"}]},{"bg":225,"cw":[{"sc":0,"w":"后面"}]},{"cw":[{"sc":0,"w":"是"}],"bg":257},{"bg":269,"cw":[{"sc":0,"w":"什么"}]}],"sn":1,"ls":false,"bg":0,"ed":0},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d9f44@dx196b9ebfdafb9ec802","data":{"result":{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}]},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d7878@dx196b9ec4038a11f802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":33,"cw":[{"sc":0,"w":"好"}]},{"bg":65,"cw":[{"sc":0,"w":"是"}]},{"bg":81,"cw":[{"sc":0,"w":"报备"}]},{"bg":113,"cw":[{"sc":0,"w":"这"}]},{"bg":129,"cw":[{"sc":0,"w":"台"}]},{"bg":153,"cw":[{"sc":0,"w":"车"}]},{"bg":169,"cw":[{"sc":0,"w":"吗"}]}]},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d7878@dx196b9ec4038a11f802","data":{"result":{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}]},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d7418@dx196b9ec7efea427802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":33,"cw":[{"sc":0,"w":"呃"}]},{"bg":137,"cw":[{"sc":0,"w":"我"}]},{"bg":149,"cw":[{"sc":0,"w":"有"}]},{"bg":161,"cw":[{"w":"个","sc":0}]},{"cw":[{"sc":0,"w":"车"}],"bg":173},{"bg":193,"cw":[{"sc":0,"w":"油管"}]},{"bg":225,"cw":[{"w":"爆","sc":0}]},{"bg":245,"cw":[{"sc":0,"w":"了"}]}]},"status":0}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d7418@dx196b9ec7efea427802","data":{"status":1,"result":{"bg":0,"ed":0,"ws":[{"bg":21,"cw":[{"sc":0,"w":"明天"}]},{"bg":53,"cw":[{"sc":0,"w":"给"}]},{"bg":69,"cw":[{"sc":0,"w":"我"}]},{"bg":85,"cw":[{"w":"搞","sc":0}]},{"bg":101,"cw":[{"w":"一下","sc":0}]},{"bg":121,"cw":[{"sc":0,"w":"呗"}]}],"sn":2,"ls":false}}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000d7418@dx196b9ec7efea427802","data":{"result":{"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":3},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000df23b@dx196b9eccf00b9ec802","data":{"result":{"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"啊"}]},{"bg":69,"cw":[{"w":"唉","sc":0}]},{"bg":0,"cw":[{"sc":0,"w":""}]}],"sn":1,"ls":true,"bg":0},"status":2}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000db50c@dx196b9ed1fdda427802","data":{"status":0,"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"bg":25,"cw":[{"sc":0,"w":"嗯"}]}]}}}
+knodi_asr_proxy  | [kd-mrcp-asr] on_message called with hdl = 0x7f22980008d0 and message = {"code":0,"message":"success","sid":"iat000db50c@dx196b9ed1fdda427802","data":{"result":{"sn":2,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"w":"","sc":0}]}]},"status":2}}
+
+
+
+
+20250521
+排查徐工PRD环境fs调用asr交互流程
+排查徐工PRD环境fs调用tts交互流程
+排查徐工PRD环境asr语音流转发过程
+定位fs->mrcp->asr各个流程未发现异常问题，讯飞返回识别结果少部分句子
 
 
 2025-04-24 22:40:38.704254 100.00% [INFO] switch_core.c:2503
@@ -150,7 +639,38 @@ SQL [Enabled]
 45980ece-7528-4739-84a0-e4950cc6a600 2025-04-24 22:40:39.635721 100.00% [NOTICE] switch_channel.c:1142 New Channel sofia/external/15069488567@223.109.89.196 [45980ece-7528-4739-84a0-e4950cc6a600]
 
 
+lenovo_vad:
+[2025-05-20 09:51:59.864][thread 25][,][info] : Init recoProxy
+[2025-05-20 09:52:00.662][thread 224][,][info] : Index:0 T: 800 -> detected begin of speech. ret: 1
+[2025-05-20 09:52:00.662][thread 224][,][info] : Reset elspased time 800
+[2025-05-20 09:52:00.716][thread 224][,][info] : var->_iPos:12800 iTotal:8000 iBeginPos:4800   iBeginTime:300 pOptions->_iSampleRatio:8000
+[2025-05-20 09:52:01.322][thread 224][,][info] : Index:1 T: 1460 -> detected end of speech. ret: 2
+[2025-05-20 09:52:01.322][thread 224][,][info] : [kd-mrcp-asr] Session Id = ea676f52-9257-404d-8efb-fbd622a2b8ba, VAD END
+[2025-05-20 09:52:01.322][thread 224][,][info] : [kd-mrcp-asr][vad end] sessionId = ea676f52-9257-404d-8efb-fbd622a2b8ba, traceId = f32e7d4e-eb9c-4140-9d07-b5ee2686f569
+[2025-05-20 09:52:01.336][thread 225][,][info] : Get res ifly
+[2025-05-20 09:52:04.092][thread 224][,][info] : Index:1 T: 4230 -> detected begin of speech. ret: 1
+[2025-05-20 09:52:04.092][thread 224][,][info] : Reset elspased time 4230
+[2025-05-20 09:52:07.372][thread 224][,][info] : var->_iPos:67680 iTotal:8000 iBeginPos:59680   iBeginTime:3730 pOptions->_iSampleRatio:8000
+[2025-05-20 09:52:07.397][thread 224][,][info] : Index:2 T: 6920 -> detected end of speech. ret: 2
+[2025-05-20 09:52:07.397][thread 224][,][info] : [kd-mrcp-asr] Session Id = ea676f52-9257-404d-8efb-fbd622a2b8ba, VAD END
+[2025-05-20 09:52:07.397][thread 224][,][info] : [kd-mrcp-asr][vad end] sessionId = ea676f52-9257-404d-8efb-fbd622a2b8ba, traceId = 16307431-99e9-4193-b5df-133d5f510397
+[2025-05-20 09:52:07.527][thread 227][,][info] : Get res ifly ~O湾~\~S~A~Y~\~I没~\~I~W~I~K~W-4bc7-494d-b088-
+[2025-05-20 09:52:07.531][thread 227][,][info] : Get res ifly
+[2025-05-20 09:52:14.342][thread 224][,][info] : Index:2 T: 14430 -> detected begin of speech. ret: 1
+[2025-05-20 09:52:14.342][thread 224][,][info] : Reset elspased time 14430
+[2025-05-20 09:52:14.375][thread 224][,][info] : var->_iPos:230880 iTotal:8000 iBeginPos:222880   iBeginTime:13930 pOptions->_iSampleRatio:8000
+[2025-05-20 09:52:16.292][thread 224][,][info] : Index:3 T: 16380 -> detected end of speech. ret: 2
+[2025-05-20 09:52:16.292][thread 224][,][info] : [kd-mrcp-asr] Session Id = ea676f52-9257-404d-8efb-fbd622a2b8ba, VAD END
+[2025-05-20 09:52:16.292][thread 224][,][info] : [kd-mrcp-asr][vad end] sessionId = ea676f52-9257-404d-8efb-fbd622a2b8ba, traceId = 5a216380-7821-41c2-ba29-5a1c34ab6396
+[2025-05-20 09:52:16.306][thread 231][,][info] : Get res ifly ~Y~X~\~_~Z~D~F~M~]~@次~F~M~]~@次ret: 1
+[2025-05-20 09:52:16.307][thread 231][,][info] : Get res ifly
 
+
+webrtc_vad:
+[2025-05-16 12:51:25.726][thread 25][,][info] : [kd-spdlog][tts] init success
+[2025-05-16 12:51:25.726][thread 25][,][info] : Init recoProxy
+[2025-05-16 12:51:25.731][thread 30][,][info] : Feed data 0x7fac74003b88, Len is 160
+[2025-05-16 12:51:25.731][thread 60][,][info] : Get Data 0x7fac70002d20, Len=160
 
 
 
@@ -160,7 +680,6 @@ SQL [Enabled]
 分析徐工PRD环境mrcp日志
 分析徐工PRD环境kd-asr-proxy日志
 
-定位分析asr识别丢结果问题
 
 
 
@@ -237,15 +756,6 @@ Get file /tmp/9B3AFEEBD1DE923D71211CB07A0E4726
 [kd-mrcp-tts][tts end] sessionId = f366dcb9-feaf-4e69-a217-a5066cf8f07a, traceId = 959673b8-679a-451c-868e-f78d173d647a, tts_duration = 0.277984, asr_tts_duration = 0
 2025-05-16 10:53:42:974712 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = f366dcb9-feaf-4e69-a217-a5066cf8f07a, traceId = 959673b8-679a-451c-868e-f78d173d647a
 [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> out
-
-
-
-
-
-
-
-
-
 
 
 
