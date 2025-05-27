@@ -192,8 +192,13 @@ unimrcp5  | [kd-mrcp-asr] lenovoVadInst::init iMaxSpPause = 600 ms, iLRelax = 25
 aws ecr get-login-password --region cn-north-1 | docker login --username AWS  --password-stdin  865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn
 aws ecr get-login-password --region cn-north-1 | docker login --username AWS  --password-stdin  865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn
 
+
+
+
+kd-asr-proxy
+
 devel:
-apt install -y wget gcc gcc-c++ curl librdkafka-dev openssl openssl-devel
+apt install -y wget gcc gcc-c++ curl librdkafka-dev libcurl4-gnutls-dev
 
 runtime:
 apt update && apt install -y libcurl4-gnutls-dev
@@ -206,14 +211,11 @@ libjrtplib.so
 libyaml-cpp.a
 
 
-172.70.10.210
-
-
 20250527
-编译调试kd-asr-proxy，修改asr-proxy代码，剥离s3模块
-排查解决服务启动时崩溃问题
+排查解决kd-asr-proxy服务启动时崩溃问题
+合并分支修改kd-asr-proxy代码，剥离s3模块
 构建kd-asr-proxy docker镜像
-调试kd-asr-proxy镜像运行
+调试kd-asr-proxy镜像运行，修复容器内启动缺少curl依赖问题
 
 
 
@@ -224,6 +226,7 @@ kd-asr-proxy工程适配ubuntu22.04
 源码编译依赖jrtplib ubuntu版本
 
 
+freeswitch -> voice_agent:
 websocket传输音频流
 websocket接收处理后音频
 调试桥接电话功能
