@@ -132,6 +132,16 @@ mrcp-deps
 
 
 
+20250528
+定位修复kd-asr-proxy日志模块初始化时的段错误问题
+排查修复http库debug模式兼容性问题
+优化http消息解析时异常处理
+测试kd-asr-proxy rest api功能
+
+
+
+
+
 lsof -i UDP -a -c freeswitch|grep ":26"|wc -l
 
 ss -tulwnp
@@ -170,12 +180,6 @@ ss -unlp | grep "asr"|grep ":30"|wc -l
 
 徐工asr识别问题
 
-20250526
-定位asr相关代码并修复其结果累加BUG
-
-
-
-
 xugong_prd:
 knodi_asr_proxy  | [kd-mrcp-asr] lenovoVadInst::init vad iVadEnergyStart = 70
 knodi_asr_proxy  | [kd-mrcp-asr] lenovoVadInst::init iVadEnergeStop = 40
@@ -201,7 +205,7 @@ devel:
 apt install -y wget gcc gcc-c++ curl librdkafka-dev libcurl4-gnutls-dev
 
 runtime:
-apt update && apt install -y libcurl4-gnutls-dev
+apt update && apt install -y vim curl libcurl4-gnutls-dev
 
 libcppkafka.so
 librdkafka.so
@@ -209,6 +213,14 @@ librdkafka++.so
 libaws-cpp-sdk-s3.so
 libjrtplib.so
 libyaml-cpp.a
+
+
+徐工uat测试环境:
+http://10.188.5.2/hoicee/#/login?redirect=/index
+
+徐工线上生产环境:
+https://cc.xcmg.com/hoicee/#/severHistory
+
 
 
 20250527
