@@ -144,8 +144,8 @@ Thu May 29 02:04:34 Asia 2025
 
 20250529
 研究git仓库不同分支关联submodule的不同分支用法
-修改kd-asr-proxy git仓库dev-ubuntu分支，添加asr-proxy以submodule方式引入dev_ubuntu分支
-修改kd-unimrcp git仓库dev-ubuntu分支，添加asr-proxy和tts-proxy以submodule方式引入dev_ubuntu分支
+修改kd-asr-proxy仓库依赖，添加asr-proxy以submodule方式引入dev_ubuntu分支
+修改kd-unimrcp仓库依赖，添加asr-proxy和tts-proxy以submodule方式引入dev_ubuntu分支
 搭建ubuntu22.04环境，编译调试kd-unimrcp
 
 
