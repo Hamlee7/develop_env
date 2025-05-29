@@ -132,6 +132,25 @@ mrcp-deps
 
 
 
+
+git clone --recurse-submodules http://gitlab.knowdee.com/kds/kd-unimrcp.git
+
+git pull --recurse-submodules
+
+git submodule update --init
+
+
+[lit@centos7 asr-proxy]$ date
+2025年 05月 29日 星期四 10:04:11 CST
+
+root@centos7:/usr/local/kd-asr-proxy/bin# date
+Thu May 29 02:04:34 Asia 2025
+
+20250529
+kd-unimrcp
+
+
+
 20250528
 定位修复kd-asr-proxy日志模块初始化时的段错误问题
 排查修复http库debug模式兼容性问题
@@ -5448,10 +5467,43 @@ layout reg：显示寄存器窗口。
 
 
 
-
+1. 添加子模块
 git submodule add git@gitlab.knowdee.com:kdm/cpp/knowdee/asr-proxy.git third_party/asr-proxy
 git add .gitmodules third_party/asr-proxy
 git commit -m "add kdm asr-proxy as thirdparty with submodule"
+
+2. 更新 .gitmodules 文件
+[submodule "path/to/submodule"]
+    path = path/to/submodule
+    url = https://github.com/user/repo.git
+    branch = main  # 指定要跟踪的分支
+
+注意：并不是所有的 Git 版本都支持直接在 .gitmodules 中设置 branch 属性，如果遇到不支持的情况，可以考虑以下方法。
+
+3. 在不同分支中切换子模块的提交
+对于父仓库的不同分支，你可以通过下面的方式更改子模块的状态：
+
+- 切换到父仓库的一个分支（比如 feature 分支）
+git checkout feature
+
+- 进入子模块目录并切换到希望跟踪的分支或特定提交：
+cd path/to/submodule
+git checkout desired_branch_or_commit
+cd ../..
+
+- 更新父仓库以记录新的子模块状态：
+git add path/to/submodule
+git commit -m "Update submodule for feature branch"
+
+重复上述过程为每个分支配置相应的子模块状态。
+
+4. 子模块自动更新到其配置的分支上的最新提交
+git submodule update --remote
+git submodule update --remote path/to/submodule
+
+5. 确保团队成员同步子模块状态
+git submodule update --init --recursive
+
 
 
 20241224
@@ -6206,7 +6258,7 @@ cp /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
 curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
 
 yum clean all && yum makecache && yum update -y
-yum install -y wget gcc gcc-c++ librdkafka-devel openssl openssl-devel centos-release-scl devtoolset-9-gcc*
+yum install -y wget gcc gcc-c++ librdkafka-devel openssl openssl-devel centos-release-scl devtoolset-9
 
 scl enable devtoolset-9 bash
 
