@@ -132,6 +132,38 @@ mrcp-deps
 
 
 
+20250530
+livekit
+livekit-agent
+
+livekit/sip
+
+
+
+ten/agent
+
+
+cc-robot:xugong-uat-latest
+
+[root@SC-pre-vm-gangtie-demo2 freeswitch]# docker ps -a|grep 13002
+ff4bae6bbe2b   192.168.109.4:443/hoicee/cc-robot:xugong-uat-latest            "sh run.sh start"        2 weeks ago   Up 2 weeks                 0.0.0.0:13002->13002/tcp, [::]:13002->13002/tcp, 0.0.0.0:13001->80/tcp, [::]:13001->80/tcp                                                                  cc-robot
+
+
+
+kf.lua:DoAction
+if(bFinish) then
+  local speakParam = string.format("{engine=%s,sessionId=%s}%s", engine,sp.uuid, playContent)
+  session:speak(speakParam)
+  freeswitch.consoleLog("info","speakParam is "..speakParam.."\n")
+else
+  local voiceParam = string.format("tts_voice=%s",speaker)
+  session:execute("set","tts_engine=unimrcp")
+  session:execute("set",voiceParam)
+  local content = string.format("say:{engine=%s,sessionId=%s}%s",engine,sp.uuid,playContent)
+  local detectParam = string.format("%s detect:unimrcp {start-input-timers=true,no-input-timeout=%s,recognition-timeout=5000,engine=%s,sessionId=%s,Speech-Language=%s}builtin:grammar/",content,noinputTime, asrEngine,sp.uuid,asrLanguage)
+  freeswitch.consoleLog("info", "play_and_detect_speech param "..detectParam)
+  session:execute("play_and_detect_speech", detectParam)
+end
 
 
 
@@ -190,7 +222,7 @@ git submodule update --remote path/to/submodule
 git submodule update --init --recursive
 
 6. 同时新克隆父子仓库及其模块
-git clone --recursive http://gitlab.knowdee.com/kds/kd-unimrcp.git
+git clone --recursive git@gitlab.knowdee.com:kds/kd-unimrcp.git
 
 7. 同时拉取父子仓库最新代码
 git pull --recurse-submodules
