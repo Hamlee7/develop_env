@@ -132,13 +132,23 @@ mrcp-deps
 
 
 
+调研livekit cloud架构
+
+20250603
+调研livekit server与sip对接
+调研livekit sip与外部sip trunk对接
+调研livekit agent接入和分发呼入电话
+调研freeswitch作为sip trunk使用
+
+
+
 20250530
-livekit
-livekit-agent
+调研livekit架构
+调研livekit-agent架构
+调研livekit-server架构
+调研livekit-sip架构
 
-livekit/sip
-
-
+https://docs.livekit.io/agents/start/telephony/
 
 ten/agent
 
