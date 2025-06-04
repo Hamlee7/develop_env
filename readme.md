@@ -134,6 +134,26 @@ mrcp-deps
 
 调研livekit cloud架构
 
+20250604
+团队会议review license授权SDK
+观察颐和园uat环境运行状态
+分析颐和园uat环境asr日志
+定位颐和园uat环境asr丢字问题
+
+#-r：指定每秒呼叫的个数
+#-rp：指定呼叫速率的时间单位（毫秒），默认是 1000 毫秒（1 秒）。通过这个参数，可以指定每 m 毫秒里有 n 个呼叫（使用命令-r n -rp m）
+#-m：指定呼叫的总数
+#-inf: 在呼叫过程中，从一个外部 CSV 文件引入值到脚本中去。文件的第一行表明数据的读取顺序
+#-s：指定呼叫的唯一标识符，用于区分不同的呼叫
+count=20
+let tail_count=6000+count
+echo "SEQUENTIAL" > media_port.csv
+seq 6000 $tail_count >> media_port.csv
+sipp -sf call_asr_p.xml  -r 1 -rp 20000 -m $count -inf media_port.csv -trace_msg -trace_err -s 50000001 192.168.109.37:15080
+
+
+
+
 20250603
 调研livekit server与sip对接
 调研livekit sip与外部sip trunk对接
@@ -141,6 +161,81 @@ mrcp-deps
 调研freeswitch作为sip trunk使用
 
 
+ 1931  2025-06-03 10:24:46 172.70.90.2:root docker ps | grep fs
+ 1932  2025-06-03 10:26:32 172.70.90.2:root cd /data/hoicee/fs/
+ 1933  2025-06-03 10:26:38 172.70.90.2:root ls
+ 1934  2025-06-03 10:26:41 172.70.90.2:root vi docker-compose.yml
+ 1935  2025-06-03 10:27:40 172.70.90.2:root docker logs fs-ai
+ 1936  2025-06-03 10:29:06 172.70.90.2:root ls
+ 1937  2025-06-03 10:29:09 172.70.90.2:root vi docker-compose.yml
+ 1938  2025-06-03 10:29:16 172.70.90.2:root vi .env
+ 1939  2025-06-03 10:42:11 172.70.90.2:root exit
+ 1940  2025-06-03 16:30:57 172.70.90.2:root docker logs -f cc-robot --tail 1000
+ 1941  2025-06-03 16:31:04 172.70.90.2:root docker logs -f cc-robot --tail 1000|grep yhy
+ 1942  2025-06-03 16:31:10 172.70.90.2:root docker logs -f cc-robot --tail 1000|grep -C10 yhy
+ 1943  2025-06-03 17:42:49 172.70.90.2:root cd /data
+ 1944  2025-06-03 17:42:50 172.70.90.2:root ls
+ 1945  2025-06-03 17:42:51 172.70.90.2:root cd hoicee
+ 1946  2025-06-03 17:42:51 172.70.90.2:root ls
+ 1947  2025-06-03 17:43:01 172.70.90.2:root cd fs
+ 1948  2025-06-03 17:43:01 172.70.90.2:root ls
+ 1949  2025-06-03 17:43:13 172.70.90.2:root vim fs-ai/conf/sip_profiles/external/gw.xml
+ 1950  2025-06-03 17:47:03 172.70.90.2:root vim fs-ai/scripts/gw.lua
+ 1951  2025-06-03 18:06:13 172.70.90.2:root docker logs -f cc-robot --tail 10
+
+
+<include>
+  <gateway name="gw">
+  <!--/// account username *required* ///-->
+  <!--<param name="username" value="cluecon"/>-->
+  <!--/// auth realm: *optional* same as gateway name, if blank ///-->
+  <param name="realm" value="192.168.50.10:5060"/>
+  <!--/// username to use in from: *optional* same as  username, if blank ///-->
+  <!--<param name="from-user" value="cluecon"/>-->
+  <!--/// domain to use in from: *optional* same as  realm, if blank ///-->
+  <!--<param name="from-domain" value="asterlink.com"/>-->
+  <!--/// account password *required* ///-->
+  <!--<param name="password" value="2007"/>-->
+  <!--/// extension for inbound calls: *optional* same as username, if blank ///-->
+  <!--<param name="extension" value="cluecon"/>-->
+  <!--/// proxy host: *optional* same as realm, if blank ///-->
+  <param name="proxy" value="192.168.50.10:5060"/>
+  <!--/// send register to this proxy: *optional* same as proxy, if blank ///-->
+  <!--<param name="register-proxy" value="mysbc.com"/>-->
+  <!--/// expire in seconds: *optional* 3600, if blank ///-->
+  <!--<param name="expire-seconds" value="60"/>-->
+  <!--/// do not register ///-->
+  <param name="register" value="false"/>
+  <!-- which transport to use for register -->
+  <!--<param name="register-transport" value="udp"/>-->
+  <!--How many seconds before a retry when a failure or timeout occurs -->
+  <!--<param name="retry-seconds" value="30"/>-->
+  <!--Use the callerid of an inbound call in the from field on outbound calls via this gateway -->
+  <!--<param name="caller-id-in-from" value="false"/>-->
+  <!--extra sip params to send in the contact-->
+  <!--<param name="contact-params" value=""/>-->
+  <!-- Put the extension in the contact -->
+  <!--<param name="extension-in-contact" value="true"/>-->
+  <!--send an options ping every x seconds, failure will unregister and/or mark it down-->
+  <!--<param name="ping" value="25"/>-->
+  <!--<param name="cid-type" value="rpid"/>-->
+  <!--rfc5626 : Abilitazione rfc5626 ///-->
+  <!--<param name="rfc-5626" value="true"/>-->
+  <!--rfc5626 : extra sip params to send in the contact-->
+  <!--<param name="reg-id" value="1"/>-->
+  <param name="effective-caller-id-number" value="83795991"/>
+  </gateway>
+</include>
+
+
+#1745891445
+nc -vxu 192.168.50.10 5060
+
+nc -zxu 192.168.50.10 5060
+nc -zxu 192.168.50.10 5060
+
+#1745891811
+nc -vxu 192.168.50.10 5060
 
 20250530
 调研livekit架构
