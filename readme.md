@@ -138,7 +138,7 @@ mrcp-deps
 团队会议review license授权SDK
 观察颐和园uat环境运行状态
 分析颐和园uat环境asr日志
-定位颐和园uat环境asr丢字问题
+定位颐和园uat环境并发压测时asr丢字问题
 
 #-r：指定每秒呼叫的个数
 #-rp：指定呼叫速率的时间单位（毫秒），默认是 1000 毫秒（1 秒）。通过这个参数，可以指定每 m 毫秒里有 n 个呼叫（使用命令-r n -rp m）
@@ -152,6 +152,37 @@ seq 6000 $tail_count >> media_port.csv
 sipp -sf call_asr_p.xml  -r 1 -rp 20000 -m $count -inf media_port.csv -trace_msg -trace_err -s 50000001 192.168.109.37:15080
 
 
+*** Call rate options:
+
+   -r               : Set the call rate (in calls per seconds).  This value can bechanged during
+                      test by pressing '+', '_', '*' or '/'. Default is 10.
+                      pressing '+' key to increase call rate by 1 * rate_scale,
+                      pressing '-' key to decrease call rate by 1 * rate_scale,
+                      pressing '*' key to increase call rate by 10 * rate_scale,
+                      pressing '/' key to decrease call rate by 10 * rate_scale.
+
+   -rp              : Specify the rate period for the call rate.  Default is 1 second and default
+                      unit is milliseconds.  This allows you to have n calls every m milliseconds
+                      (by using -r n -rp m).
+                      Example: -r 7 -rp 2000 ==> 7 calls every 2 seconds.
+                               -r 10 -rp 5s => 10 calls every 5 seconds.
+   -rate_scale      : Control the units for the '+', '-', '*', and '/' keys.
+   -rate_increase   : Specify the rate increase every -rate_interval units (default is seconds).
+                      This allows you to increase the load for each independent logging period.
+                      Example: -rate_increase 10 -rate_interval 10s
+                        ==> increase calls by 10 every 10 seconds.
+   -rate_max        : If -rate_increase is set, then quit after the rate reaches this value.
+                      Example: -rate_increase 10 -rate_max 100
+                        ==> increase calls by 10 until 100 cps is hit.
+   -rate_interval   : Set the interval by which the call rate is increased. Defaults to the value
+                      of -fd.
+   -no_rate_quit    : If -rate_increase is set, do not quit after the rate reaches -rate_max.
+   -l               : Set the maximum number of simultaneous calls. Once this limit is reached,
+                      traffic is decreased until the number of open calls goes down. Default:
+                        (3 * call_duration (s) * rate).
+   -m               : Stop the test and exit when 'calls' calls are processed
+   -users           : Instead of starting calls at a fixed rate, begin 'users' calls at startup,
+                      and keep the number of calls constant.
 
 
 20250603
@@ -1199,8 +1230,9 @@ root/XcmG#CRM@250205
 运维监控系统日志：
 http://10.188.6.61:3000  账号admin 密码knowdee
 
-
+coredumpctl info
 zstd -d core.zst -o core
+zstd -d /var/lib/systemd/coredump/core.freeswitch.0.0dafc15e3c7a456b98a64b2a790468af.828823.1749087104000000.zst -o core.pid
 
 
 var->_iPos:%d iTotal:%d iBeginPos:%d   iBeginTime:%d pOptions->_iSampleRatio:%d",
