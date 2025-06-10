@@ -129,10 +129,2366 @@ mrcp-deps
 
 支持微软asr/tts(azure sdk)
 调研确认微软asr/tts支持中文普通话、粤语、英语
-
-
-
 调研livekit cloud架构
+
+
+
+
+root@localhost:/usr/local/freeswitch/bin# egrep -Rn "RECOGNIZE failed: status" ../log/freeswitch.*
+../log/freeswitch.log:2055206:12eea3c9-5465-4db6-938e-9edbdbc2473b 2025-06-07 19:19:52.793907 78.83% [DEBUG] mod_unimrcp.c:3647 (ASR-128488) RECOGNIZE failed: status = 407
+../log/freeswitch.log:2055561:c868c107-b5e2-46d2-ad0f-a4f3f51a4f24 2025-06-07 19:19:53.693894 78.77% [DEBUG] mod_unimrcp.c:3647 (ASR-128491) RECOGNIZE failed: status = 407
+../log/freeswitch.log:2055852:8ce65106-c60b-4953-81a0-c2fc6122a120 2025-06-07 19:19:55.793895 78.83% [DEBUG] mod_unimrcp.c:3647 (ASR-128494) RECOGNIZE failed: status = 407
+../log/freeswitch.log:2056250:c2b990ac-69fc-4a67-9115-ec7358f6336b 2025-06-07 19:19:57.993895 78.17% [DEBUG] mod_unimrcp.c:3647 (ASR-128497) RECOGNIZE failed: status = 407
+../log/freeswitch.log:2056711:e74c75fc-9210-4130-b364-105a2e5b8a17 2025-06-07 19:19:59.873893 76.83% [DEBUG] mod_unimrcp.c:3647 (ASR-128500) RECOGNIZE failed: status = 407
+../log/freeswitch.log:2057146:bf89b147-8bf4-477a-8b87-447c8b2d8b77 2025-06-07 19:20:01.533916 75.80% [DEBUG] mod_unimrcp.c:3647 (ASR-128503) RECOGNIZE failed: status = 407
+../log/freeswitch.log:2058273:35d21c4e-ee3b-40f1-9413-c8123d3bf71f 2025-06-07 19:20:04.253896 75.23% [DEBUG] mod_unimrcp.c:3647 (ASR-128548) RECOGNIZE failed: status = 407
+../log/freeswitch.log:2063965:501573c7-dcd1-41a5-bd38-58886631148e 2025-06-07 19:20:24.653893 67.57% [DEBUG] mod_unimrcp.c:3647 (ASR-128551) RECOGNIZE failed: status = 407
+../log/freeswitch.log:2065215:f3a03603-2c1f-42f3-8075-b0fa0c061bf3 2025-06-07 19:20:32.633894 69.63% [DEBUG] mod_unimrcp.c:3647 (ASR-128569) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4757816:1c224c36-1010-496e-b4ca-4c1883e84630 2025-06-07 20:17:46.893906 73.70% [DEBUG] mod_unimrcp.c:3647 (ASR-135336) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4758328:e1a51960-c5bc-4134-81b5-5f4cc0142de1 2025-06-07 20:17:48.213897 73.20% [DEBUG] mod_unimrcp.c:3647 (ASR-135339) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4759279:3aba9577-14c1-4c0d-b836-1f9b93f1f592 2025-06-07 20:17:50.473897 70.20% [DEBUG] mod_unimrcp.c:3647 (ASR-135342) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4760412:783840fc-2828-4356-b56f-67faef95fdc2 2025-06-07 20:17:55.193929 68.43% [DEBUG] mod_unimrcp.c:3647 (ASR-135348) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4760588:5dd6737a-d49b-405b-af30-070f21adc373 2025-06-07 20:17:55.833909 68.27% [DEBUG] mod_unimrcp.c:3647 (ASR-135396) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4760808:706e5a5f-bae5-4c88-9a67-aec2a66ac215 2025-06-07 20:17:57.113896 68.07% [DEBUG] mod_unimrcp.c:3647 (ASR-135354) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4761009:dce383f9-fe04-4062-9644-097583556875 2025-06-07 20:17:58.216018 67.77% [DEBUG] mod_unimrcp.c:3647 (ASR-135390) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4761568:2378f547-79c3-4934-820a-21e0b8016776 2025-06-07 20:17:59.065981 66.93% [DEBUG] mod_unimrcp.c:3647 (ASR-135357) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4762507:a6b32a47-518a-4a71-9b29-fab62171879f 2025-06-07 20:18:01.513899 65.43% [DEBUG] mod_unimrcp.c:3647 (ASR-135402) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4762960:db65429b-4688-4ef4-b4a0-dfc31cb56412 2025-06-07 20:18:03.133899 65.07% [DEBUG] mod_unimrcp.c:3647 (ASR-135393) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4763030:036d6877-d76c-42b0-ad40-c18ccf1c98a9 2025-06-07 20:18:03.213896 65.07% [DEBUG] mod_unimrcp.c:3647 (ASR-135366) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4763706:f43c4368-43c7-4392-86a8-e75b68f7a5db 2025-06-07 20:18:04.513898 64.03% [DEBUG] mod_unimrcp.c:3647 (ASR-135369) RECOGNIZE failed: status = 407
+../log/freeswitch.log:4765348:c6a56891-285c-40ac-9157-f82481ff3c05 2025-06-07 20:18:07.813895 63.13% [DEBUG] mod_unimrcp.c:3647 (ASR-135417) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5841788:863e8b11-14d9-49e2-a32d-1248a0d7bb52 2025-06-09 10:39:03.853922 88.23% [DEBUG] mod_unimrcp.c:3647 (ASR-138120) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5841969:dd1dca33-ed01-4924-9765-4384a2dda894 2025-06-09 10:39:04.053939 88.23% [DEBUG] mod_unimrcp.c:3647 (ASR-138103) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5842095:dba63a3e-e267-49a0-bb64-ea4b4b8890c3 2025-06-09 10:39:04.233929 88.23% [DEBUG] mod_unimrcp.c:3647 (ASR-138130) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5842604:e2c588e5-7545-4858-8b4d-857905f4b0d5 2025-06-09 10:39:05.873941 88.27% [DEBUG] mod_unimrcp.c:3647 (ASR-138123) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5893726:28051b84-ce5b-4953-b528-2ff7d4de3e4c 2025-06-09 10:41:07.853931 88.60% [DEBUG] mod_unimrcp.c:3647 (ASR-138249) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5893935:df365eea-9ccf-4bec-bf44-39777979dfeb 2025-06-09 10:41:08.334593 88.70% [DEBUG] mod_unimrcp.c:3647 (ASR-138240) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5893987:690922c1-bdc2-49ad-a6de-86bcb6c04fd4 2025-06-09 10:41:08.733895 88.70% [DEBUG] mod_unimrcp.c:3647 (ASR-138257) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5894002:02700a88-b154-4f09-8ce9-272243e6eb8c 2025-06-09 10:41:08.753915 88.70% [DEBUG] mod_unimrcp.c:3647 (ASR-138256) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5902750:afd88937-5c7e-423e-8600-814683913513 2025-06-09 10:41:22.153910 90.23% [DEBUG] mod_unimrcp.c:3647 (ASR-138279) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5904968:3f49f5ff-967b-4013-9d3c-5c15b71cdd83 2025-06-09 10:41:24.333968 90.30% [DEBUG] mod_unimrcp.c:3647 (ASR-138267) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5904973:c7a361ce-06d8-4a8b-80cd-39c63e0b9e54 2025-06-09 10:41:24.333968 90.30% [DEBUG] mod_unimrcp.c:3647 (ASR-138272) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5933698:bbbd658e-3216-40ca-bdf7-8b3322fca3bb 2025-06-09 10:42:13.853942 88.37% [DEBUG] mod_unimrcp.c:3647 (ASR-138347) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5934949:01a07e7a-30d3-4945-b43d-38ae7da04382 2025-06-09 10:42:17.273953 87.83% [DEBUG] mod_unimrcp.c:3647 (ASR-138363) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5934954:297e0cb7-34e0-43c6-9c95-fac0827c7c8c 2025-06-09 10:42:17.273953 87.83% [DEBUG] mod_unimrcp.c:3647 (ASR-138362) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5936571:a99e691f-79e1-4ef2-baef-0ef09a7523bf 2025-06-09 10:42:20.273899 88.53% [DEBUG] mod_unimrcp.c:3647 (ASR-138351) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5999679:f657be2a-5e7c-4978-a8cf-dd45c95f8973 2025-06-09 11:41:43.473911 89.97% [DEBUG] mod_unimrcp.c:3647 (ASR-138443) RECOGNIZE failed: status = 407
+../log/freeswitch.log:5999882:8095a874-7386-4f86-86ae-86d29857e0e4 2025-06-09 11:41:43.773902 89.97% [DEBUG] mod_unimrcp.c:3647 (ASR-138452) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6000385:f3570ffc-a3df-409f-88d1-1a440d44c8c7 2025-06-09 11:41:45.333993 89.87% [DEBUG] mod_unimrcp.c:3647 (ASR-138446) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6023464:40324690-3fbb-4c18-87ea-e31503f487e7 2025-06-09 11:42:21.373900 88.17% [DEBUG] mod_unimrcp.c:3647 (ASR-138501) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6023812:f5bc0787-6c8b-47b0-b9fe-ce6008411efe 2025-06-09 11:42:21.753899 88.17% [DEBUG] mod_unimrcp.c:3647 (ASR-138510) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6069580:e7fae514-a4be-47c7-8ec6-ba75bfadc272 2025-06-09 11:43:35.393901 88.93% [DEBUG] mod_unimrcp.c:3647 (ASR-138618) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6069763:9415035e-2f3e-4016-84d2-22b7659a394e 2025-06-09 11:43:35.653907 88.93% [DEBUG] mod_unimrcp.c:3647 (ASR-138629) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6091495:8f67a849-a5be-48a3-a5fb-8f42fd2f9cfb 2025-06-09 11:44:11.493898 90.30% [DEBUG] mod_unimrcp.c:3647 (ASR-138675) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6091760:63dcf4b4-b4c5-4c49-82eb-92b8344fd195 2025-06-09 11:44:11.793977 90.30% [DEBUG] mod_unimrcp.c:3647 (ASR-138684) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6092325:c674170b-e6b8-43a9-a718-f15f597be5eb 2025-06-09 11:44:13.693898 90.17% [DEBUG] mod_unimrcp.c:3647 (ASR-138678) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6092552:bd489a8b-1971-43f5-ba95-f221dc6b0a29 2025-06-09 11:44:13.773896 90.17% [DEBUG] mod_unimrcp.c:3647 (ASR-138687) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6113718:500489bd-327c-4c99-91db-593354ab3bb0 2025-06-09 11:44:47.334006 88.13% [DEBUG] mod_unimrcp.c:3647 (ASR-138727) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6114069:d4c5c76f-6183-490e-8f4f-f132364f8d0f 2025-06-09 11:44:47.813889 88.13% [DEBUG] mod_unimrcp.c:3647 (ASR-138736) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6133893:f12f0152-c608-484d-b056-244590f73143 2025-06-09 11:45:19.393904 89.90% [DEBUG] mod_unimrcp.c:3647 (ASR-138756) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6133898:8a69ad5f-b658-42ec-9cec-9ba76c4ac689 2025-06-09 11:45:19.393904 89.90% [DEBUG] mod_unimrcp.c:3647 (ASR-138777) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6134098:96f86bc3-7078-46bc-88f6-5407b68363ad 2025-06-09 11:45:19.633909 89.90% [DEBUG] mod_unimrcp.c:3647 (ASR-138786) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6134758:a6495d85-c95f-476c-9c0d-3f5ecae02f6b 2025-06-09 11:45:21.333980 89.87% [DEBUG] mod_unimrcp.c:3647 (ASR-138779) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6136424:4b876fc2-8cdc-4d06-ad98-6aff11488b7c 2025-06-09 11:45:24.713902 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-138780) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6136461:0e1afec1-28df-4cf8-b731-51a7d46eed99 2025-06-09 11:45:24.713902 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-138793) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6136466:4b2bbe36-b162-4b3b-83c0-d7161f207b00 2025-06-09 11:45:24.713902 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-138795) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6136473:60d08cc9-4985-4c49-bf79-24e33c767ed9 2025-06-09 11:45:24.713902 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-138792) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6138134:fc3cc374-be39-4103-a4e6-ff75238362a1 2025-06-09 11:45:27.273946 89.73% [DEBUG] mod_unimrcp.c:3647 (ASR-138789) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6155903:79815ccf-9657-4147-a576-d846f55fad4c 2025-06-09 11:45:57.373902 88.77% [DEBUG] mod_unimrcp.c:3647 (ASR-138830) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6156255:d0325f4c-c281-4a0d-a22f-8dfe45de77dc 2025-06-09 11:45:57.833905 88.77% [DEBUG] mod_unimrcp.c:3647 (ASR-138839) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6168145:fff52e37-9ab6-4bf0-a439-76d3047b913c 2025-06-09 11:46:15.953899 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-138867) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6168226:c123fa48-64ce-4c61-a43f-658fa02d5a68 2025-06-09 11:46:16.053902 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-138859) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6168556:198909d1-9d34-4a9f-ba17-56b059e77025 2025-06-09 11:46:16.733915 89.67% [DEBUG] mod_unimrcp.c:3647 (ASR-138846) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6174839:88b06547-7de6-41ce-9760-35cbade9117e 2025-06-09 11:46:27.313905 90.70% [DEBUG] mod_unimrcp.c:3647 (ASR-138874) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6175057:dbc52d21-f0af-42d5-82fe-de9d43b9373d 2025-06-09 11:46:27.633907 90.80% [DEBUG] mod_unimrcp.c:3647 (ASR-138883) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6179083:21318ad4-2c8c-46ce-9c79-95dff28c20a5 2025-06-09 11:46:34.633908 91.10% [DEBUG] mod_unimrcp.c:3647 (ASR-138889) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6179094:66f4d09a-b4d9-4471-b166-361f0e208ed5 2025-06-09 11:46:34.633908 91.10% [DEBUG] mod_unimrcp.c:3647 (ASR-138888) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6179563:8bfce9a9-10fb-4a47-8e6f-6713870e6b17 2025-06-09 11:46:35.373898 91.17% [DEBUG] mod_unimrcp.c:3647 (ASR-138886) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6239537:f16df60d-0027-44ee-8784-cfcb5f166cdf 2025-06-09 11:48:11.374461 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-139034) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6239542:5dd0d13d-480c-4345-8906-12a302fdd054 2025-06-09 11:48:11.374461 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-139017) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6239772:01b8fb68-3380-4e8c-94c8-017706602775 2025-06-09 11:48:11.753912 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-139044) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6260372:ec1ccec4-6224-4696-ab80-6bbdaa295169 2025-06-09 11:48:45.393909 90.13% [DEBUG] mod_unimrcp.c:3647 (ASR-139086) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6260575:7e643b7c-bd06-416a-9f1a-9c6c7ec03412 2025-06-09 11:48:45.716806 90.13% [DEBUG] mod_unimrcp.c:3647 (ASR-139096) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6277889:ff38ba75-ddf5-47c5-9be7-590a81e4bdb9 2025-06-09 11:49:13.513909 90.33% [DEBUG] mod_unimrcp.c:3647 (ASR-139128) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6278234:de1f42c1-8d5c-4215-ae5f-98241434e854 2025-06-09 11:49:13.853903 90.33% [DEBUG] mod_unimrcp.c:3647 (ASR-139137) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6282413:28ca8bb0-2be1-4021-9342-89bfa42aa1f4 2025-06-09 11:49:20.153901 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-139119) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6283013:1d52c992-baed-4777-9604-37a6a6d03ede 2025-06-09 11:49:21.653909 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-139144) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6283028:a13b11af-02b5-43e3-9840-76c73c4d337f 2025-06-09 11:49:21.673907 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-139145) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6283146:d49f0ddf-2c52-4fc7-a837-c02c4578f352 2025-06-09 11:49:21.813908 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-139147) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6287749:d0d3fb4d-30c3-4813-af5a-4f4215f0bcc7 2025-06-09 11:49:28.453905 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-139140) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6342041:298ff57d-9168-43d1-8208-d3e9e2b9c8fd 2025-06-09 11:50:59.273899 88.37% [DEBUG] mod_unimrcp.c:3647 (ASR-139290) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6342386:20ffd787-0c7a-4f12-9d91-b35f33f953d3 2025-06-09 11:50:59.693901 88.57% [DEBUG] mod_unimrcp.c:3647 (ASR-139298) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6344983:86742c9b-3d58-455b-b64b-0db109465fc6 2025-06-09 11:51:02.793898 88.97% [DEBUG] mod_unimrcp.c:3647 (ASR-139294) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6345297:6980e29f-c6e2-46f7-bb95-c85d6184bc53 2025-06-09 11:51:03.393901 89.37% [DEBUG] mod_unimrcp.c:3647 (ASR-139287) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6347259:0e4fb543-121b-40c7-8f58-dc9bc9a97c16 2025-06-09 11:51:06.413897 89.63% [DEBUG] mod_unimrcp.c:3647 (ASR-139277) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6400960:20395e1f-466d-4b0e-ba4d-8496cbf87fed 2025-06-09 11:54:08.553905 66.43% [DEBUG] mod_unimrcp.c:3647 (ASR-139437) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6400997:5092c5b3-1848-4caa-b386-c383a0e9f24f 2025-06-09 11:54:08.553905 66.43% [DEBUG] mod_unimrcp.c:3647 (ASR-139438) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6401034:b889d8b9-a576-4c77-a3a6-c0996027c246 2025-06-09 11:54:08.553905 66.43% [DEBUG] mod_unimrcp.c:3647 (ASR-139439) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6406274:b604993c-5962-43c5-a681-4129ac92ddf0 2025-06-09 11:54:38.593902 71.87% [DEBUG] mod_unimrcp.c:3647 (ASR-139450) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6406284:a5c1495d-8014-4ba3-a2e3-3303f51a41f7 2025-06-09 11:54:38.593902 71.87% [DEBUG] mod_unimrcp.c:3647 (ASR-139451) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6406291:9a4e706d-3796-4fc5-b6d4-d6b7f743da64 2025-06-09 11:54:38.593902 71.87% [DEBUG] mod_unimrcp.c:3647 (ASR-139452) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6406297:ff489bca-04d3-49fb-bfcb-8e13bae7ac38 2025-06-09 11:54:38.593902 71.87% [DEBUG] mod_unimrcp.c:3647 (ASR-139454) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6406308:5bef4c68-1ee8-4e13-8a17-c56b80cbe82d 2025-06-09 11:54:38.593902 71.87% [DEBUG] mod_unimrcp.c:3647 (ASR-139455) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6408356:1f150a52-4fe0-4d74-8832-c2ef56abd131 2025-06-09 11:54:46.333971 71.70% [DEBUG] mod_unimrcp.c:3647 (ASR-139456) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6408361:f90d7ea8-7ad4-489a-828e-e671c4f88761 2025-06-09 11:54:46.333971 71.70% [DEBUG] mod_unimrcp.c:3647 (ASR-139457) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6408367:a797e84d-9d09-41b5-9c7b-402a4a254d6c 2025-06-09 11:54:46.333971 71.70% [DEBUG] mod_unimrcp.c:3647 (ASR-139458) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6408523:3e16d127-efbc-44d8-a6f6-2119b2a0ceb3 2025-06-09 11:54:46.373898 71.70% [DEBUG] mod_unimrcp.c:3647 (ASR-139459) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6408529:903d012b-7339-48b0-9438-e6b0bad8819e 2025-06-09 11:54:46.373898 71.70% [DEBUG] mod_unimrcp.c:3647 (ASR-139460) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6408536:9696f8e6-03bf-44d4-bc43-fb98ec6d28a6 2025-06-09 11:54:46.373898 71.70% [DEBUG] mod_unimrcp.c:3647 (ASR-139462) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6418823:360153ea-1051-4336-8d87-dd0452126de8 2025-06-09 11:55:53.733902 74.00% [DEBUG] mod_unimrcp.c:3647 (ASR-139483) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6418828:86144f6c-d051-43be-b3dd-ad3bc11ffdd6 2025-06-09 11:55:53.733902 74.00% [DEBUG] mod_unimrcp.c:3647 (ASR-139485) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6418834:81a9d3cb-a83d-4534-8eee-ec761fedc655 2025-06-09 11:55:53.733902 74.00% [DEBUG] mod_unimrcp.c:3647 (ASR-139484) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6418928:a10283f0-5efd-425c-95a6-38b4130b2594 2025-06-09 11:55:53.733902 74.00% [DEBUG] mod_unimrcp.c:3647 (ASR-139487) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6418933:d45bdba1-eb7e-4629-8b49-45e2a250ed7b 2025-06-09 11:55:53.733902 74.00% [DEBUG] mod_unimrcp.c:3647 (ASR-139489) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6448075:334932ea-5309-47b6-bb03-e18d0d92d3ab 2025-06-09 11:58:33.128183 68.10% [DEBUG] mod_unimrcp.c:3647 (ASR-139560) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6449001:370dbc5f-8c1b-46ce-b5ab-098044fa71e0 2025-06-09 11:58:38.501772 65.37% [DEBUG] mod_unimrcp.c:3647 (ASR-139567) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6449006:bf5dbb56-440f-487b-92b5-47ad89fd8e23 2025-06-09 11:58:38.501772 65.37% [DEBUG] mod_unimrcp.c:3647 (ASR-139568) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6449012:b664b75a-5062-4642-ba6d-8293cefb197f 2025-06-09 11:58:38.501772 65.37% [DEBUG] mod_unimrcp.c:3647 (ASR-139565) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6449019:230a955c-3871-4b97-a1fe-d9280743b9cc 2025-06-09 11:58:38.501772 65.37% [DEBUG] mod_unimrcp.c:3647 (ASR-139566) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6501301:c385cc82-7a07-45cb-8a14-739ab874e0ed 2025-06-09 12:01:07.313906 88.90% [DEBUG] mod_unimrcp.c:3647 (ASR-139698) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6501512:4060c9e3-3835-48b2-8a28-a7470c6a111e 2025-06-09 12:01:07.813895 89.03% [DEBUG] mod_unimrcp.c:3647 (ASR-139706) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6501529:e65ce227-0175-47a3-a304-501023db9f73 2025-06-09 12:01:07.853904 89.03% [DEBUG] mod_unimrcp.c:3647 (ASR-139675) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6505694:6bdf933f-1eaf-4af4-a7c5-b4fdaeaf37c6 2025-06-09 12:01:15.373905 89.90% [DEBUG] mod_unimrcp.c:3647 (ASR-139710) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6505699:ca332cf9-bdd3-4fe3-a941-555df6b01058 2025-06-09 12:01:15.373905 89.90% [DEBUG] mod_unimrcp.c:3647 (ASR-139712) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6505897:f51ec143-63fb-4e00-a70d-b2ef239e44e8 2025-06-09 12:01:15.493959 89.90% [DEBUG] mod_unimrcp.c:3647 (ASR-139713) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6509889:c81beb17-bd6a-429f-96ef-f99f1fe0b173 2025-06-09 12:01:21.333982 90.77% [DEBUG] mod_unimrcp.c:3647 (ASR-139718) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6510416:b1c6853d-e1f0-4297-9678-e50189f45ee3 2025-06-09 12:01:22.153903 90.77% [DEBUG] mod_unimrcp.c:3647 (ASR-139721) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6510458:75a63657-0c0e-4d19-a233-f6db4b9db74f 2025-06-09 12:01:22.253900 90.77% [DEBUG] mod_unimrcp.c:3647 (ASR-139722) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6510526:8d334091-2f81-4242-94ab-585f35bbed7b 2025-06-09 12:01:22.413901 90.73% [DEBUG] mod_unimrcp.c:3647 (ASR-139723) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6549941:5098dbb5-1783-4b61-a9ad-88dac5c5da93 2025-06-09 12:02:27.374132 90.07% [DEBUG] mod_unimrcp.c:3647 (ASR-139811) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6578493:3f6261da-30fe-4d57-b636-29dac24a5d76 2025-06-09 12:03:09.859075 88.30% [DEBUG] mod_unimrcp.c:3647 (ASR-139887) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6578826:c210feb6-03c7-4c70-9042-d05090b8e7d0 2025-06-09 12:03:11.273897 88.23% [DEBUG] mod_unimrcp.c:3647 (ASR-139881) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6580295:ca351103-5e7e-4108-8485-b1256ee90318 2025-06-09 12:03:11.953900 88.30% [DEBUG] mod_unimrcp.c:3647 (ASR-139878) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6615919:1db62165-52f2-417a-be35-175f98cd314d 2025-06-09 12:04:12.013940 89.13% [DEBUG] mod_unimrcp.c:3647 (ASR-139982) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6620777:ab7369e4-c551-48a2-87be-b7152123c880 2025-06-09 12:04:18.173899 88.53% [DEBUG] mod_unimrcp.c:3647 (ASR-139972) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6621895:31d7bf81-db2b-4056-8909-b16982cbf1f3 2025-06-09 12:04:21.333963 88.50% [DEBUG] mod_unimrcp.c:3647 (ASR-139988) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6622125:27a33f97-709e-484c-884b-864607bc01b1 2025-06-09 12:04:21.713902 88.50% [DEBUG] mod_unimrcp.c:3647 (ASR-139969) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6627276:6d3cb0c4-3ec2-49d5-9032-32f4c2061491 2025-06-09 12:04:29.393908 88.60% [DEBUG] mod_unimrcp.c:3647 (ASR-140000) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6627580:6b0be845-a728-4829-8cd4-2173ea029a2a 2025-06-09 12:04:29.754034 88.60% [DEBUG] mod_unimrcp.c:3647 (ASR-140008) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6628130:46b0a0b8-a8a4-4f25-8531-505c5966a9f8 2025-06-09 12:04:31.273912 88.57% [DEBUG] mod_unimrcp.c:3647 (ASR-140002) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6633216:da58aef8-f0b2-49a1-ae81-cf9a7fb52edc 2025-06-09 12:04:39.653950 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-140023) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6633222:c12a55fb-64bf-4c43-9e2a-795fc154a574 2025-06-09 12:04:39.653950 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-140024) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6633870:13170436-d2ef-4ad3-b640-c8c393574660 2025-06-09 12:04:40.313897 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-140014) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6633910:5346a593-cfbf-433a-bb58-ccc8dae9df52 2025-06-09 12:04:40.434002 89.83% [DEBUG] mod_unimrcp.c:3647 (ASR-140015) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6633927:9153c910-5f3d-48a9-99b5-a2b19244e7a4 2025-06-09 12:04:40.473907 89.83% [DEBUG] mod_unimrcp.c:3647 (ASR-140017) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6634954:c5082690-e5d2-46b2-ad26-67829902acb7 2025-06-09 12:04:42.673961 89.93% [DEBUG] mod_unimrcp.c:3647 (ASR-140011) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6668196:317fdb3e-57aa-4b1b-b6e4-96b52f164297 2025-06-09 12:05:38.733902 88.50% [DEBUG] mod_unimrcp.c:3647 (ASR-140080) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6668298:4e0df252-9dc1-4e6c-a27c-1dac609961c5 2025-06-09 12:05:39.373904 88.60% [DEBUG] mod_unimrcp.c:3647 (ASR-140099) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6668532:33c91698-a487-4b78-a189-50dd30a95398 2025-06-09 12:05:39.613903 88.60% [DEBUG] mod_unimrcp.c:3647 (ASR-140111) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6668771:b867fba7-97e0-42bd-a0e6-182b130abf69 2025-06-09 12:05:39.713901 88.60% [DEBUG] mod_unimrcp.c:3647 (ASR-140108) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6669801:2e2730d9-64de-4e3a-ad3b-5e2aef216f49 2025-06-09 12:05:42.613897 88.80% [DEBUG] mod_unimrcp.c:3647 (ASR-140096) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6670209:38670e26-0f75-4f43-a0d1-f6c074b3922e 2025-06-09 12:05:42.853900 88.80% [DEBUG] mod_unimrcp.c:3647 (ASR-140112) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6670214:700da549-234a-4897-be62-abcc51a2ac20 2025-06-09 12:05:42.853900 88.80% [DEBUG] mod_unimrcp.c:3647 (ASR-140113) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6670791:237382d0-b575-44f8-ba12-f34967d8d8e5 2025-06-09 12:05:43.333991 88.90% [DEBUG] mod_unimrcp.c:3647 (ASR-140105) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6672111:a34e5133-fc34-499e-9ad2-d5358b71ac93 2025-06-09 12:05:45.873891 89.07% [DEBUG] mod_unimrcp.c:3647 (ASR-140101) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6707885:442bde3f-8518-462d-803c-2a43b8cded66 2025-06-09 12:06:45.413901 88.67% [DEBUG] mod_unimrcp.c:3647 (ASR-140197) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6708089:52e26189-2adf-4e1c-b464-136e9e4b28f4 2025-06-09 12:06:45.753998 88.67% [DEBUG] mod_unimrcp.c:3647 (ASR-140205) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6714066:79ce588c-25d8-4336-99ba-8ba99879d0d6 2025-06-09 12:06:55.273903 88.67% [DEBUG] mod_unimrcp.c:3647 (ASR-140212) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6718405:f3f41ba8-b1c6-4b7d-90ce-6051f68d4be7 2025-06-09 12:07:00.613901 88.93% [DEBUG] mod_unimrcp.c:3647 (ASR-140223) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6731729:2b145da2-9488-4056-8761-335031d64ec0 2025-06-09 12:07:23.393886 90.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140253) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6732078:47f6832a-99de-46fd-8e91-ab14167666a5 2025-06-09 12:07:23.793914 90.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140262) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6733244:55dc5919-9b9a-4bc2-b275-c918defae766 2025-06-09 12:07:27.314049 90.67% [DEBUG] mod_unimrcp.c:3647 (ASR-140259) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6733725:ccf8a929-d8bb-47ee-99fe-5336dc46d878 2025-06-09 12:07:28.053910 90.67% [DEBUG] mod_unimrcp.c:3647 (ASR-140269) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6733730:f6cf3a17-33a1-4c61-8d89-aaf9707d559b 2025-06-09 12:07:28.053910 90.67% [DEBUG] mod_unimrcp.c:3647 (ASR-140268) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6736516:870e1bbe-1f5d-4de7-8015-f25186afee15 2025-06-09 12:07:31.079859 90.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140257) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6751834:d6bb849f-7b97-4d3a-a254-9070f5736fa4 2025-06-09 12:07:57.413915 88.63% [DEBUG] mod_unimrcp.c:3647 (ASR-140302) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6752053:5ef21531-44c5-4839-8f10-118b8909d977 2025-06-09 12:07:57.773916 88.63% [DEBUG] mod_unimrcp.c:3647 (ASR-140311) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6752556:86261536-7589-48f2-96d0-75cfa7acdf42 2025-06-09 12:07:59.313907 88.67% [DEBUG] mod_unimrcp.c:3647 (ASR-140305) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6752775:55fda5ea-e424-49c1-897b-b87814fdcfcc 2025-06-09 12:07:59.654101 88.63% [DEBUG] mod_unimrcp.c:3647 (ASR-140314) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6759597:e8c0ec9d-c0dc-40a3-9f7e-55939ac4d774 2025-06-09 12:08:08.533948 88.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140320) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6759619:30256c87-b015-4b55-bbcc-b7b0b4cdc996 2025-06-09 12:08:08.573911 88.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140318) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6793438:2e93ce7a-8d14-469e-b5e6-8edde7e8ee48 2025-06-09 12:09:05.333971 89.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140381) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6793443:3a35e39f-a722-4114-83e8-9af9382231d8 2025-06-09 12:09:05.333971 89.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140403) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6793873:332cf331-3d1b-4414-84b9-898aef81a425 2025-06-09 12:09:05.774036 89.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140410) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6794995:2b1e1d7d-f20c-4ea2-8c65-889eb0712646 2025-06-09 12:09:08.774100 89.03% [DEBUG] mod_unimrcp.c:3647 (ASR-140416) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6795000:eaafa670-a52c-4417-b6e8-79c62da55468 2025-06-09 12:09:08.774100 89.03% [DEBUG] mod_unimrcp.c:3647 (ASR-140417) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6795524:1e6af44a-9a3c-4831-86f0-548c076688ff 2025-06-09 12:09:09.334430 88.93% [DEBUG] mod_unimrcp.c:3647 (ASR-140407) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6796673:2607acbc-b19b-4158-861f-052c3ba449e8 2025-06-09 12:09:11.813906 88.77% [DEBUG] mod_unimrcp.c:3647 (ASR-140405) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6797330:5b642d84-e90b-43ed-b401-c0cfef9c2424 2025-06-09 12:09:12.774686 88.70% [DEBUG] mod_unimrcp.c:3647 (ASR-140420) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6797369:571bd636-a5a8-42fb-9295-c7a94514ea90 2025-06-09 12:09:12.774686 88.70% [DEBUG] mod_unimrcp.c:3647 (ASR-140419) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6797883:4c28f122-740a-48c8-b7b5-7d5d17962195 2025-06-09 12:09:13.313899 88.70% [DEBUG] mod_unimrcp.c:3647 (ASR-140413) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6835863:6628b483-bb50-41a3-a0cd-28c4e4fc1b3a 2025-06-09 12:10:17.473909 89.97% [DEBUG] mod_unimrcp.c:3647 (ASR-140509) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6837346:ac8c573d-6051-4c48-87ae-9ea9cd220b10 2025-06-09 12:10:20.793908 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-140525) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6837351:98b41fcd-f128-49c1-b711-cd461bbeebdd 2025-06-09 12:10:20.793908 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-140524) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6837871:dccbf4c4-bb0a-418d-9d73-917132c1b620 2025-06-09 12:10:21.373914 89.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140515) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6838753:20bfb407-9ef7-4c70-8fb3-603708e69654 2025-06-09 12:10:23.333895 89.33% [DEBUG] mod_unimrcp.c:3647 (ASR-140518) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6840088:bcba3c7a-aae2-4f99-8d61-ebd782059a30 2025-06-09 12:10:23.814009 89.33% [DEBUG] mod_unimrcp.c:3647 (ASR-140512) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6858798:69ffbc46-3179-4b63-83c1-43a954492879 2025-06-09 12:10:55.413920 89.87% [DEBUG] mod_unimrcp.c:3647 (ASR-140567) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6860211:92bd4ebc-64d0-4b88-8966-d38f95e59be8 2025-06-09 12:10:58.753885 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-140581) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6860248:3995997f-20a0-438a-843c-d84ee63c80b9 2025-06-09 12:10:58.753885 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-140582) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6860689:f9f0175a-d5f9-4f77-be19-85f03d45d47a 2025-06-09 12:10:59.373907 90.10% [DEBUG] mod_unimrcp.c:3647 (ASR-140572) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6861058:4871822b-f5fc-4f63-bb36-809cb1186206 2025-06-09 12:10:59.734029 90.10% [DEBUG] mod_unimrcp.c:3647 (ASR-140550) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6863067:ec76675b-0b8d-421c-bcf6-15a15c108c28 2025-06-09 12:11:01.793891 90.00% [DEBUG] mod_unimrcp.c:3647 (ASR-140569) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6884838:2dc65279-5882-4553-9080-e90c04b71495 2025-06-09 12:11:39.373898 88.23% [DEBUG] mod_unimrcp.c:3647 (ASR-140632) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6885188:5a5c595f-7874-4964-af53-e94e45db498e 2025-06-09 12:11:39.813909 88.23% [DEBUG] mod_unimrcp.c:3647 (ASR-140641) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6924939:6530d415-8554-42c7-9d39-c8b8d123352b 2025-06-09 12:12:41.334391 89.10% [DEBUG] mod_unimrcp.c:3647 (ASR-140733) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6925133:e9392ebb-e8a3-4c86-8757-a405da9ece9a 2025-06-09 12:12:41.513901 89.10% [DEBUG] mod_unimrcp.c:3647 (ASR-140719) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6925173:91d5944b-80b3-42bf-b72a-ca413fa8a5a4 2025-06-09 12:12:41.653945 89.10% [DEBUG] mod_unimrcp.c:3647 (ASR-140742) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6925232:7c31164c-1980-4a71-8d81-bece6e140d04 2025-06-09 12:12:41.773901 89.10% [DEBUG] mod_unimrcp.c:3647 (ASR-140708) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6931978:a2beaa37-b54d-4339-a25c-b21c1db3288a 2025-06-09 12:12:51.294137 88.30% [DEBUG] mod_unimrcp.c:3647 (ASR-140748) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6932392:0a3cb8f6-966e-47fa-875f-ca51a46d79c0 2025-06-09 12:12:51.893899 88.40% [DEBUG] mod_unimrcp.c:3647 (ASR-140757) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6932949:c86b28a7-5d2b-48d9-b5dd-8d465f91d3be 2025-06-09 12:12:53.334063 88.47% [DEBUG] mod_unimrcp.c:3647 (ASR-140749) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6959730:2771b348-2c55-4d03-8c70-e0a6fa77d0d5 2025-06-09 12:13:30.993907 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-140801) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6960189:eff51ae7-e546-488d-af04-8a075a08a866 2025-06-09 12:13:31.813915 89.57% [DEBUG] mod_unimrcp.c:3647 (ASR-140819) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6964974:7e54a099-6e90-4f71-93b5-2f64f3c3dc20 2025-06-09 12:13:38.093895 89.63% [DEBUG] mod_unimrcp.c:3647 (ASR-140800) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6971689:df07dda8-58f8-4e90-937d-407e538027f6 2025-06-09 12:13:51.273907 89.33% [DEBUG] mod_unimrcp.c:3647 (ASR-140841) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6972153:ef1290e5-049d-4ff1-931e-ee065facac58 2025-06-09 12:13:51.773885 89.40% [DEBUG] mod_unimrcp.c:3647 (ASR-140849) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6972575:cb5613b1-1849-4b23-99c2-a9f37786cf04 2025-06-09 12:13:53.335295 89.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140843) RECOGNIZE failed: status = 407
+../log/freeswitch.log:6974418:b9432e6d-8046-43b4-9643-d8b654436049 2025-06-09 12:13:54.293956 89.43% [DEBUG] mod_unimrcp.c:3647 (ASR-140838) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7004327:b7abe7b6-e072-4535-86d5-a154aada9b92 2025-06-09 12:14:41.833909 90.07% [DEBUG] mod_unimrcp.c:3647 (ASR-140916) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7004338:349b3dd8-99e3-427c-80b6-4f5d7a52934c 2025-06-09 12:14:41.853907 90.07% [DEBUG] mod_unimrcp.c:3647 (ASR-140926) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7005668:5bd5b0e4-bce4-46b5-8c47-6d77571430ac 2025-06-09 12:14:45.093918 90.07% [DEBUG] mod_unimrcp.c:3647 (ASR-140914) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7006408:a3fb32b7-b95c-423e-b4ff-0f09e6319cd6 2025-06-09 12:14:46.754833 90.20% [DEBUG] mod_unimrcp.c:3647 (ASR-140934) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7006456:bb9bd3ec-807e-449e-ae38-d0d7fbe1d519 2025-06-09 12:14:46.754833 90.20% [DEBUG] mod_unimrcp.c:3647 (ASR-140933) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7009644:d488aafd-d489-44b3-a23c-641f7923bd46 2025-06-09 12:14:50.513901 90.37% [DEBUG] mod_unimrcp.c:3647 (ASR-140919) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7012317:bba6038d-c557-46f6-a734-2f4c362e7777 2025-06-09 12:14:54.133907 90.47% [DEBUG] mod_unimrcp.c:3647 (ASR-140923) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7035728:62eafbda-cda8-4a5c-8023-bcabd2f611e7 2025-06-09 12:15:33.888184 88.73% [DEBUG] mod_unimrcp.c:3647 (ASR-141002) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7036258:08524994-67ea-4e29-9078-bc875c253f3c 2025-06-09 12:15:35.273903 88.93% [DEBUG] mod_unimrcp.c:3647 (ASR-140996) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7038065:32da23a6-593a-4aaf-b41f-9acc53834775 2025-06-09 12:15:35.993905 89.07% [DEBUG] mod_unimrcp.c:3647 (ASR-140993) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7058812:3937199f-4172-4a08-a5d4-c6611359e9d4 2025-06-09 12:16:11.853897 89.43% [DEBUG] mod_unimrcp.c:3647 (ASR-141059) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7060878:3fce94cd-e246-4ae9-99d6-c07e8c9f6a35 2025-06-09 12:16:13.953902 89.37% [DEBUG] mod_unimrcp.c:3647 (ASR-141049) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7065020:02c4180c-bc77-491c-b7e2-f88bad189d0d 2025-06-09 12:16:19.813892 88.93% [DEBUG] mod_unimrcp.c:3647 (ASR-141052) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7066423:6e28f2a2-c0ce-4eda-b54a-77b39c61bfaa 2025-06-09 12:16:23.413901 88.80% [DEBUG] mod_unimrcp.c:3647 (ASR-141066) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7116151:f4b22fab-1b45-4c0e-bc18-01ae9e304346 2025-06-09 12:17:47.793900 89.83% [DEBUG] mod_unimrcp.c:3647 (ASR-141206) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7119680:08bab995-d45d-4d2a-a787-3dfcf60e9649 2025-06-09 12:17:54.253912 90.17% [DEBUG] mod_unimrcp.c:3647 (ASR-141198) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7133693:458af8f7-2f35-41b7-9bb8-629913c23f70 2025-06-09 12:18:19.394316 89.67% [DEBUG] mod_unimrcp.c:3647 (ASR-141242) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7133878:8a4cb69c-85fa-41bd-8600-e1278160472f 2025-06-09 12:18:19.653898 89.67% [DEBUG] mod_unimrcp.c:3647 (ASR-141250) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7134468:22f5bc77-cbb9-4ec0-8e26-4b8015a34db5 2025-06-09 12:18:21.333991 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-141244) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7136112:5ecc3d77-3e4c-4162-8787-d4586b898d1f 2025-06-09 12:18:24.753908 89.70% [DEBUG] mod_unimrcp.c:3647 (ASR-141257) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7136120:d2b2c24b-8c0f-4016-82ec-feddb681aaed 2025-06-09 12:18:24.753908 89.70% [DEBUG] mod_unimrcp.c:3647 (ASR-141256) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7136126:4c25d32a-dbd2-4a7c-af0d-4ae120e9ad80 2025-06-09 12:18:24.753908 89.70% [DEBUG] mod_unimrcp.c:3647 (ASR-141259) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7139069:021ce25a-ebc5-4228-a7cb-1188609244c9 2025-06-09 12:18:27.793963 89.70% [DEBUG] mod_unimrcp.c:3647 (ASR-141247) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7155563:d8a441d4-b595-4146-9535-048f4c3da751 2025-06-09 12:18:57.453914 88.70% [DEBUG] mod_unimrcp.c:3647 (ASR-141295) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7155745:b74209b4-6d0b-4a55-9987-a1c0d0c1472b 2025-06-09 12:18:57.673915 88.70% [DEBUG] mod_unimrcp.c:3647 (ASR-141304) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7186898:de4f9f24-3bc5-44a3-94b8-36093fb1d5cd 2025-06-09 12:19:47.833911 88.40% [DEBUG] mod_unimrcp.c:3647 (ASR-141382) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7186926:33bed8b6-204c-4d09-9654-e5541dd85cf0 2025-06-09 12:19:48.074032 88.40% [DEBUG] mod_unimrcp.c:3647 (ASR-141379) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7190358:e7aa9c88-3b49-4ae6-ac68-3b21b9e660fd 2025-06-09 12:19:52.833899 88.53% [DEBUG] mod_unimrcp.c:3647 (ASR-141375) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7192105:869a6e83-cfa7-4bf5-be09-e418a38b7cd9 2025-06-09 12:19:55.073909 88.43% [DEBUG] mod_unimrcp.c:3647 (ASR-141372) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7195639:9ec2c38c-3b33-49b7-8ee7-d35feeaa06f9 2025-06-09 12:20:01.393910 88.00% [DEBUG] mod_unimrcp.c:3647 (ASR-141392) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7199428:9fb2cba9-59fc-4192-b04f-7168a84f7cc9 2025-06-09 12:20:07.253923 88.37% [DEBUG] mod_unimrcp.c:3647 (ASR-141402) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7199810:4018fa78-4b60-41ed-bcc1-1f1d0279eaa9 2025-06-09 12:20:08.593907 88.57% [DEBUG] mod_unimrcp.c:3647 (ASR-141407) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7199928:a1a2aea2-8f6a-494b-9818-e72c780eda63 2025-06-09 12:20:08.713914 88.57% [DEBUG] mod_unimrcp.c:3647 (ASR-141408) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7200136:8d3f69ce-0afe-4e15-8d4f-d96143401d6e 2025-06-09 12:20:09.333979 88.67% [DEBUG] mod_unimrcp.c:3647 (ASR-141404) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7208085:4dfab8c0-94df-4ae1-96c0-63d5acb7cce2 2025-06-09 12:20:19.813898 89.00% [DEBUG] mod_unimrcp.c:3647 (ASR-141426) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7208156:7927f125-de68-45b5-a84c-5f1e77ef14f0 2025-06-09 12:20:20.093900 89.00% [DEBUG] mod_unimrcp.c:3647 (ASR-141424) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7213190:0a896494-64e8-4f43-a90c-40f914c6eaa9 2025-06-09 12:20:26.333994 89.53% [DEBUG] mod_unimrcp.c:3647 (ASR-141419) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7220587:3db23553-3989-4888-afba-dfab028d8f0a 2025-06-09 12:20:39.413900 89.97% [DEBUG] mod_unimrcp.c:3647 (ASR-141446) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7220851:7e43b997-a2b9-4516-9abe-87424ec9e56f 2025-06-09 12:20:39.713894 89.97% [DEBUG] mod_unimrcp.c:3647 (ASR-141454) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7221280:dcfa58ae-2a1e-4667-8b19-4cf4497e2431 2025-06-09 12:20:41.393911 90.07% [DEBUG] mod_unimrcp.c:3647 (ASR-141448) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7245281:1aff5512-45ac-47b8-a9cf-358eb4178aa0 2025-06-09 12:21:19.373908 87.40% [DEBUG] mod_unimrcp.c:3647 (ASR-141506) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7260767:1fb7c8f0-0ce0-48c4-a0cd-f2ec1a020b32 2025-06-09 12:21:43.173926 89.93% [DEBUG] mod_unimrcp.c:3647 (ASR-141538) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7260785:3c4cb3d9-e8bc-4027-8e90-c93ac4e1bd8d 2025-06-09 12:21:43.293910 89.93% [DEBUG] mod_unimrcp.c:3647 (ASR-141534) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7260803:212a5262-e62f-4b32-b891-84de9b6e9422 2025-06-09 12:21:43.333973 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-141543) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7261050:d223918f-f702-4ac1-88da-8215effabdc9 2025-06-09 12:21:43.753902 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-141555) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7282865:5b8b09aa-685d-49d0-ae80-b5240d041b8d 2025-06-09 12:22:19.853908 89.13% [DEBUG] mod_unimrcp.c:3647 (ASR-141606) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7282885:1ed8c4d8-dc05-4de2-bba8-bce75db6a513 2025-06-09 12:22:19.993910 89.13% [DEBUG] mod_unimrcp.c:3647 (ASR-141598) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7282952:42bfaf8d-938f-45a5-bfd7-a9689cd5fd5f 2025-06-09 12:22:20.013911 89.13% [DEBUG] mod_unimrcp.c:3647 (ASR-141600) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7283133:98d4edaf-417c-401c-a9f3-9f61083a6d40 2025-06-09 12:22:20.074593 89.13% [DEBUG] mod_unimrcp.c:3647 (ASR-141603) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7284143:9c9a746b-3e81-4626-9f01-94b471ff3d5f 2025-06-09 12:22:21.793903 89.07% [DEBUG] mod_unimrcp.c:3647 (ASR-141610) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7296699:cf784a25-c57d-4646-be2d-5fc5f15a015b 2025-06-09 12:22:39.893916 89.50% [DEBUG] mod_unimrcp.c:3647 (ASR-141635) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7297165:4267e2be-ea6b-46f8-8937-9ea8939840c1 2025-06-09 12:22:41.433919 89.63% [DEBUG] mod_unimrcp.c:3647 (ASR-141628) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7304483:44c1dde8-81d5-49f3-900b-5fb4ed28a327 2025-06-09 12:22:53.573906 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-141643) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7304834:319387e3-a29f-4512-9ecc-911024263930 2025-06-09 12:22:53.754567 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-141654) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7327174:4c4b73b4-6743-453d-a8cb-fba286a750e5 2025-06-09 12:23:31.360154 88.70% [DEBUG] mod_unimrcp.c:3647 (ASR-141701) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7327529:b91dabad-12f1-4383-bc86-d74e629a69c3 2025-06-09 12:23:31.893908 88.70% [DEBUG] mod_unimrcp.c:3647 (ASR-141712) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7327599:4eb54c47-c81a-4288-9703-8386d5ea9d2e 2025-06-09 12:23:32.453896 88.73% [DEBUG] mod_unimrcp.c:3647 (ASR-141695) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7334989:78ac944e-ad69-4463-9033-559aa8a23fd1 2025-06-09 12:23:43.334026 88.73% [DEBUG] mod_unimrcp.c:3647 (ASR-141717) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7335381:d1cba65c-6a82-4782-ba22-2305e0012774 2025-06-09 12:23:43.873944 88.73% [DEBUG] mod_unimrcp.c:3647 (ASR-141728) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7335839:93604a74-ba0a-4f1c-b384-8c4b36b3c0a8 2025-06-09 12:23:45.153909 88.77% [DEBUG] mod_unimrcp.c:3647 (ASR-141714) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7335891:73633cc7-c0c1-45b2-b0c7-fb276238999e 2025-06-09 12:23:45.333971 88.83% [DEBUG] mod_unimrcp.c:3647 (ASR-141719) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7358302:f564314b-75ba-4235-acd5-6fc80031fb28 2025-06-09 12:24:21.813907 90.17% [DEBUG] mod_unimrcp.c:3647 (ASR-141783) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7358718:e3c1c1a6-12e6-443a-b885-1333af793f0d 2025-06-09 12:24:23.033898 90.20% [DEBUG] mod_unimrcp.c:3647 (ASR-141768) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7363363:2889ebc3-3751-423a-87f1-b72a32a62c3a 2025-06-09 12:24:28.274122 90.27% [DEBUG] mod_unimrcp.c:3647 (ASR-141773) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7364650:62be580a-a923-4f93-91fa-0de12ffbc7b5 2025-06-09 12:24:31.733895 90.43% [DEBUG] mod_unimrcp.c:3647 (ASR-141770) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7364753:3deea2d7-b189-44db-9453-d7623be66635 2025-06-09 12:24:31.873905 90.43% [DEBUG] mod_unimrcp.c:3647 (ASR-141798) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7365129:94fdcb2b-3624-45cb-aac4-2e355cdea6bb 2025-06-09 12:24:32.694050 90.50% [DEBUG] mod_unimrcp.c:3647 (ASR-141786) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7365334:5c137bde-dbf8-4f1d-96f1-b6882c1e270f 2025-06-09 12:24:33.293985 90.50% [DEBUG] mod_unimrcp.c:3647 (ASR-141790) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7367120:a9e8d281-ecb9-43aa-9eba-62fd8404d913 2025-06-09 12:24:36.769305 90.30% [DEBUG] mod_unimrcp.c:3647 (ASR-141803) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7367125:0440a134-b5ec-446b-8489-ca12a626b1bb 2025-06-09 12:24:36.769305 90.30% [DEBUG] mod_unimrcp.c:3647 (ASR-141804) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7367130:ccb72345-4aaa-44c0-9354-4222e8296a4a 2025-06-09 12:24:36.769305 90.30% [DEBUG] mod_unimrcp.c:3647 (ASR-141791) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7367135:9cd03a18-9dbb-4fb4-9afc-68c7e9122236 2025-06-09 12:24:36.769305 90.30% [DEBUG] mod_unimrcp.c:3647 (ASR-141805) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7368956:9634750f-f609-47b2-95df-1def6c1c676e 2025-06-09 12:24:39.293907 90.17% [DEBUG] mod_unimrcp.c:3647 (ASR-141801) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7395721:db0c0d15-d3e2-4af6-8ffc-e7065cd05879 2025-06-09 12:25:24.833912 90.00% [DEBUG] mod_unimrcp.c:3647 (ASR-141842) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7396004:e220d31c-a29f-4c56-a706-11301ed36f15 2025-06-09 12:25:25.773925 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-141873) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7396421:be35eae9-753d-4523-b1b8-c9bd7c701b75 2025-06-09 12:25:27.013925 90.10% [DEBUG] mod_unimrcp.c:3647 (ASR-141858) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7398404:d9cfad2b-e301-4890-a267-847f83584b94 2025-06-09 12:25:27.873918 90.20% [DEBUG] mod_unimrcp.c:3647 (ASR-141865) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7433150:e561f8f9-9359-4d77-811f-68f32e0472bb 2025-06-09 12:26:27.193901 89.37% [DEBUG] mod_unimrcp.c:3647 (ASR-141939) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7433169:acd714f9-4d0c-4671-a819-a5073526e236 2025-06-09 12:26:27.333979 89.53% [DEBUG] mod_unimrcp.c:3647 (ASR-141957) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7433363:b8bb7be5-dd34-4ff4-9cb9-6fb6257f780f 2025-06-09 12:26:27.573915 89.53% [DEBUG] mod_unimrcp.c:3647 (ASR-141965) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7433477:cce1b633-ea67-4f35-bfb3-66ff3a03d0d2 2025-06-09 12:26:27.754239 89.53% [DEBUG] mod_unimrcp.c:3647 (ASR-141966) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7440152:4fee5090-ca1a-4026-804f-0aaf258bd2fa 2025-06-09 12:26:37.793898 90.10% [DEBUG] mod_unimrcp.c:3647 (ASR-141982) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7440168:13d5732f-77c3-448d-b97d-b06150e91bc1 2025-06-09 12:26:37.813900 90.10% [DEBUG] mod_unimrcp.c:3647 (ASR-141974) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7445829:c38ba77b-eb72-495c-9d4a-9cb3bde93b94 2025-06-09 12:26:45.113898 89.80% [DEBUG] mod_unimrcp.c:3647 (ASR-141975) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7452463:8f8adf29-d8df-456a-9b62-5ba336d6a6c5 2025-06-09 12:26:57.373912 89.70% [DEBUG] mod_unimrcp.c:3647 (ASR-142001) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7452735:5c98d548-06d0-4897-9345-7f8a27c400da 2025-06-09 12:26:57.813899 89.70% [DEBUG] mod_unimrcp.c:3647 (ASR-142009) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7453152:611e1d24-dc07-4e37-87c1-807e3c2155b6 2025-06-09 12:26:59.333985 89.87% [DEBUG] mod_unimrcp.c:3647 (ASR-142003) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7472919:73403a29-9f45-4198-aa1c-e57e82fa0135 2025-06-09 12:27:31.013894 88.30% [DEBUG] mod_unimrcp.c:3647 (ASR-142035) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7472946:02513879-d112-4130-9fe0-932b56aa6a70 2025-06-09 12:27:31.333893 88.43% [DEBUG] mod_unimrcp.c:3647 (ASR-142050) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7473320:4003dc4f-f9c9-45f7-89db-2ed2ea55add2 2025-06-09 12:27:31.774688 88.43% [DEBUG] mod_unimrcp.c:3647 (ASR-142059) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7474532:9ee23d84-2d94-4279-b9be-0cff78125fbd 2025-06-09 12:27:35.374126 89.10% [DEBUG] mod_unimrcp.c:3647 (ASR-142056) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7475019:93faf0d5-ae0d-48ae-8c2a-799d3ba36f21 2025-06-09 12:27:36.154136 89.10% [DEBUG] mod_unimrcp.c:3647 (ASR-142065) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7475024:fe363c70-3b45-40d2-9491-2e5b148f620f 2025-06-09 12:27:36.154136 89.10% [DEBUG] mod_unimrcp.c:3647 (ASR-142066) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7478122:1e6d6d2d-995d-4f45-aefe-c9ebf6c9cc54 2025-06-09 12:27:39.193909 89.07% [DEBUG] mod_unimrcp.c:3647 (ASR-142052) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7532302:be89fa1c-da6f-4d70-85eb-98e6da47840f 2025-06-09 12:29:09.873905 89.33% [DEBUG] mod_unimrcp.c:3647 (ASR-142210) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7537132:b3a3aff6-96f2-41e6-b3af-75ac0c93b6b4 2025-06-09 12:29:18.753908 89.77% [DEBUG] mod_unimrcp.c:3647 (ASR-142219) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7537532:5b81f613-b5c1-4feb-b7cb-614e502c7967 2025-06-09 12:29:19.853910 89.90% [DEBUG] mod_unimrcp.c:3647 (ASR-142225) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7568493:072b307a-6b89-4a88-a6af-d58a458175fc 2025-06-09 12:30:09.813903 90.40% [DEBUG] mod_unimrcp.c:3647 (ASR-142298) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7569600:2b06abea-6338-4dcb-89c7-25e2f8041f8d 2025-06-09 12:30:13.113907 90.50% [DEBUG] mod_unimrcp.c:3647 (ASR-142288) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7569619:d59b9297-49f4-4cd9-8d2d-ca6102dcfed6 2025-06-09 12:30:13.193910 90.50% [DEBUG] mod_unimrcp.c:3647 (ASR-142286) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7569656:bce02dfc-97b0-4e23-bbca-e86d022ae893 2025-06-09 12:30:13.333999 90.50% [DEBUG] mod_unimrcp.c:3647 (ASR-142295) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7570135:4ffe6f82-172e-4172-8f3c-97cbb32c2619 2025-06-09 12:30:13.893908 90.50% [DEBUG] mod_unimrcp.c:3647 (ASR-142305) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7570140:5069700f-7432-4ee1-bdd8-2a593037ed61 2025-06-09 12:30:13.893908 90.50% [DEBUG] mod_unimrcp.c:3647 (ASR-142304) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7573193:2db418b9-50ae-4d2a-9181-80982b8c8c36 2025-06-09 12:30:16.933910 90.37% [DEBUG] mod_unimrcp.c:3647 (ASR-142291) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7577856:8f30f70b-32bb-44a0-94e6-c50416abe389 2025-06-09 12:30:25.293913 90.37% [DEBUG] mod_unimrcp.c:3647 (ASR-142307) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7578255:676157a7-055f-41cf-b4fb-91c35aa1e81f 2025-06-09 12:30:25.833903 90.43% [DEBUG] mod_unimrcp.c:3647 (ASR-142319) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7578743:fda8a8f5-5303-4ae1-ba8a-cf9fd84d7fbd 2025-06-09 12:30:27.333885 90.43% [DEBUG] mod_unimrcp.c:3647 (ASR-142311) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7600073:d112158b-e965-4911-8159-1ce32b2ee87f 2025-06-09 12:31:03.313904 88.53% [DEBUG] mod_unimrcp.c:3647 (ASR-142363) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7600426:5100159c-ae10-4798-aafb-d5df20a4411b 2025-06-09 12:31:03.834006 88.63% [DEBUG] mod_unimrcp.c:3647 (ASR-142373) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7681508:c68689be-c792-469b-841c-ba952b2f8566 2025-06-09 12:33:19.413900 88.57% [DEBUG] mod_unimrcp.c:3647 (ASR-142576) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7681693:96e4796a-1005-4c7d-a46a-49b4b1cc90ed 2025-06-09 12:33:19.693909 88.57% [DEBUG] mod_unimrcp.c:3647 (ASR-142585) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7704697:afb04a53-cde1-406c-870f-4f046f013e2d 2025-06-09 12:33:55.033964 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-142640) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7704724:967b5762-95ac-4b3c-bb62-8b0a1daf8dc9 2025-06-09 12:33:55.334010 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-142633) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7704951:fa1de0ba-723a-4d2c-a4dc-619f01c6803e 2025-06-09 12:33:55.753908 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-142643) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7743369:65c0d875-e822-4b54-95e8-9ad34fedebd1 2025-06-09 12:34:57.233907 90.83% [DEBUG] mod_unimrcp.c:3647 (ASR-142723) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7743387:b803057d-01ec-46b2-80d9-bf8255fd977c 2025-06-09 12:34:57.333984 91.00% [DEBUG] mod_unimrcp.c:3647 (ASR-142730) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7743587:d1c794b0-6a4c-4051-94a2-f59695a99d8a 2025-06-09 12:34:57.633900 91.00% [DEBUG] mod_unimrcp.c:3647 (ASR-142708) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7743690:de173434-3d4d-4f32-94a0-97ed60221cf6 2025-06-09 12:34:57.773907 91.00% [DEBUG] mod_unimrcp.c:3647 (ASR-142741) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7745953:bd720850-be4b-4e42-a5c0-eb2d1a3e8a36 2025-06-09 12:35:00.873914 91.00% [DEBUG] mod_unimrcp.c:3647 (ASR-142746) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7745991:0f8933e5-a61a-41fa-9a42-7a15e8a8aa80 2025-06-09 12:35:00.873914 91.00% [DEBUG] mod_unimrcp.c:3647 (ASR-142733) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7746520:c931d026-aead-47f7-ab29-114c07c40a10 2025-06-09 12:35:01.333992 90.97% [DEBUG] mod_unimrcp.c:3647 (ASR-142736) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7746706:320058a0-2241-471a-8251-45b65ddf59f9 2025-06-09 12:35:01.373979 90.97% [DEBUG] mod_unimrcp.c:3647 (ASR-142726) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7750962:50e1edd7-4552-4f7c-a988-953ca29f364a 2025-06-09 12:35:06.653908 90.63% [DEBUG] mod_unimrcp.c:3647 (ASR-142744) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7765725:3ef58a54-fd33-4264-98f5-f11e130d6b37 2025-06-09 12:35:33.373904 89.17% [DEBUG] mod_unimrcp.c:3647 (ASR-142781) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7765996:c6e853f2-8f47-47e7-be66-c0c4f96e0234 2025-06-09 12:35:33.813903 89.17% [DEBUG] mod_unimrcp.c:3647 (ASR-142790) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7789924:0ea14932-25f7-4a42-9a3c-202c563abb22 2025-06-09 12:36:11.393897 90.37% [DEBUG] mod_unimrcp.c:3647 (ASR-142842) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7790270:b54370c5-e34d-4b76-8ae6-71fbc6b128b9 2025-06-09 12:36:11.754117 90.37% [DEBUG] mod_unimrcp.c:3647 (ASR-142851) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7802189:30fb8d1b-e1be-4486-9456-d37e3a2fb65a 2025-06-09 12:36:29.873912 90.70% [DEBUG] mod_unimrcp.c:3647 (ASR-142858) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7802202:2f7ebba5-f0f1-4af8-a930-3dc75475272e 2025-06-09 12:36:29.893920 90.70% [DEBUG] mod_unimrcp.c:3647 (ASR-142878) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7802233:dde5e67d-3ecd-4965-9619-ded24fb7426a 2025-06-09 12:36:30.073921 90.70% [DEBUG] mod_unimrcp.c:3647 (ASR-142871) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7807571:a2ce472e-3709-4fe3-9604-9603f10c78c6 2025-06-09 12:36:37.233902 90.63% [DEBUG] mod_unimrcp.c:3647 (ASR-142869) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7808504:219860a9-70d3-418d-b5db-52832c322d8b 2025-06-09 12:36:39.753911 90.67% [DEBUG] mod_unimrcp.c:3647 (ASR-142894) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7808613:81f8c41e-fd6b-465c-99f2-6b63d57347c2 2025-06-09 12:36:40.236537 90.67% [DEBUG] mod_unimrcp.c:3647 (ASR-142874) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7808797:aa7486f8-e2ee-48f3-b029-7e4274146f60 2025-06-09 12:36:40.573904 90.63% [DEBUG] mod_unimrcp.c:3647 (ASR-142860) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7809226:88a5604e-b724-4886-936b-556c5b876431 2025-06-09 12:36:41.294015 90.63% [DEBUG] mod_unimrcp.c:3647 (ASR-142886) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7811243:f249ea26-496e-4898-997b-03af9233609a 2025-06-09 12:36:44.733915 90.53% [DEBUG] mod_unimrcp.c:3647 (ASR-142899) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7811248:04098d98-3d21-4f63-9d6a-580b46a070be 2025-06-09 12:36:44.733915 90.53% [DEBUG] mod_unimrcp.c:3647 (ASR-142900) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7811383:75498585-ccb6-4fd3-84b3-dc2ed7801520 2025-06-09 12:36:44.733915 90.53% [DEBUG] mod_unimrcp.c:3647 (ASR-142901) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7812664:116e5196-4eb8-4f26-9bfe-c2f79a23c5cd 2025-06-09 12:36:47.253912 90.53% [DEBUG] mod_unimrcp.c:3647 (ASR-142896) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7813003:7e126009-9d5a-47f5-a857-72fbaa9391f5 2025-06-09 12:36:47.735597 90.60% [DEBUG] mod_unimrcp.c:3647 (ASR-142888) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7814514:45b25826-5487-4cef-b7ae-8727674a3692 2025-06-09 12:36:50.753903 90.57% [DEBUG] mod_unimrcp.c:3647 (ASR-142903) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7845813:5e0795be-0d43-4e7b-888a-d1bfe93b36b4 2025-06-09 12:37:45.393899 90.47% [DEBUG] mod_unimrcp.c:3647 (ASR-142976) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7846080:583ee6a6-1b4f-40c9-9c92-8bf121d360b6 2025-06-09 12:37:45.758501 90.47% [DEBUG] mod_unimrcp.c:3647 (ASR-142985) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7846351:760c1676-19c9-46ca-b4e7-cda09253d6f0 2025-06-09 12:37:46.533908 90.43% [DEBUG] mod_unimrcp.c:3647 (ASR-142960) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7846648:80da8dc9-d877-4330-84af-037d32e690f6 2025-06-09 12:37:47.333978 90.53% [DEBUG] mod_unimrcp.c:3647 (ASR-142980) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7846970:36ae0212-63ab-4c15-9d52-45e3306cd1ce 2025-06-09 12:37:47.734441 90.53% [DEBUG] mod_unimrcp.c:3647 (ASR-142989) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7848401:e207a5a6-3f37-4d35-87d3-f4a11772a187 2025-06-09 12:37:50.794062 90.80% [DEBUG] mod_unimrcp.c:3647 (ASR-142992) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7848406:ee457e34-0bed-421c-ac26-52d9269dc104 2025-06-09 12:37:50.794062 90.80% [DEBUG] mod_unimrcp.c:3647 (ASR-142993) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7848569:06d735f2-eee6-4f38-9caf-cceb3591b957 2025-06-09 12:37:50.794062 90.80% [DEBUG] mod_unimrcp.c:3647 (ASR-142995) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7848574:c516bf48-2dc3-4eb1-a8ab-64501d7ce649 2025-06-09 12:37:50.794062 90.80% [DEBUG] mod_unimrcp.c:3647 (ASR-142982) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7887976:ca6276e3-c47c-4d1e-8a19-8a1e9ea8abb1 2025-06-09 12:38:57.413922 90.03% [DEBUG] mod_unimrcp.c:3647 (ASR-143081) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7888608:67b4ff9c-7222-4599-9494-aeffa42d6f0d 2025-06-09 12:38:59.313900 90.07% [DEBUG] mod_unimrcp.c:3647 (ASR-143084) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7888675:f6b1b497-2d88-4cae-8e8b-2b7f3631d704 2025-06-09 12:38:59.333985 90.17% [DEBUG] mod_unimrcp.c:3647 (ASR-143091) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7888929:6aa19067-6ce6-40e1-aecb-c7cc3c598c29 2025-06-09 12:38:59.734231 90.17% [DEBUG] mod_unimrcp.c:3647 (ASR-143094) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7889398:edc9ebec-f2d0-45a1-9d40-17deef15f39c 2025-06-09 12:39:00.753999 90.20% [DEBUG] mod_unimrcp.c:3647 (ASR-143097) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7889743:2ae18772-9787-49ee-ad22-5ec7a88ec3d6 2025-06-09 12:39:01.373923 90.23% [DEBUG] mod_unimrcp.c:3647 (ASR-143088) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7925334:48e6d092-6a3e-4cb6-99e3-56e5ec153f29 2025-06-09 12:39:57.853899 90.67% [DEBUG] mod_unimrcp.c:3647 (ASR-143179) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7925753:dadf3ee0-c700-4fe6-83a9-f4d9476154bf 2025-06-09 12:39:59.133883 90.73% [DEBUG] mod_unimrcp.c:3647 (ASR-143163) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7932164:856505a5-3853-437f-9028-942ed8c7e0b8 2025-06-09 12:40:09.293911 91.00% [DEBUG] mod_unimrcp.c:3647 (ASR-143186) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7932386:b2228231-945e-4b19-a214-a3c38a9f41d1 2025-06-09 12:40:09.813901 91.00% [DEBUG] mod_unimrcp.c:3647 (ASR-143195) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7932792:251d992f-4c91-4e4f-9571-cf1ad05c558a 2025-06-09 12:40:10.693895 90.93% [DEBUG] mod_unimrcp.c:3647 (ASR-143169) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7933116:020344c8-9674-48bd-917d-813b5ac476e7 2025-06-09 12:40:11.353903 90.93% [DEBUG] mod_unimrcp.c:3647 (ASR-143187) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7933447:fe388c29-92ee-4fc2-b336-215fbe1c0d9d 2025-06-09 12:40:11.734314 90.93% [DEBUG] mod_unimrcp.c:3647 (ASR-143198) RECOGNIZE failed: status = 407
+../log/freeswitch.log:7956040:28c33c7b-9a7e-4bc5-96d6-b36597776963 2025-06-09 12:40:47.873914 89.20% [DEBUG] mod_unimrcp.c:3647 (ASR-143251) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8002719:7d234b25-4838-4393-ab55-55b81496c8cd 2025-06-09 12:42:05.373909 88.53% [DEBUG] mod_unimrcp.c:3647 (ASR-143357) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8002731:7409bce0-ab1b-48ab-ab1b-c4bbfe2464cf 2025-06-09 12:42:05.393917 88.53% [DEBUG] mod_unimrcp.c:3647 (ASR-143363) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8003109:6a42892d-7dda-4128-a9f3-eb2ed9d61258 2025-06-09 12:42:05.873883 88.53% [DEBUG] mod_unimrcp.c:3647 (ASR-143373) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8010568:b666c43a-2256-41af-b895-03620ec17e34 2025-06-09 12:42:17.353902 89.47% [DEBUG] mod_unimrcp.c:3647 (ASR-143379) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8010959:524d3901-9ad0-4bc1-931d-6ae10e1a3741 2025-06-09 12:42:17.813910 89.47% [DEBUG] mod_unimrcp.c:3647 (ASR-143390) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8011426:328cc6b1-5590-42de-a8c9-01c1a96978d5 2025-06-09 12:42:19.173912 89.57% [DEBUG] mod_unimrcp.c:3647 (ASR-143375) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8011474:7b2ab214-a409-490b-8e0d-e4d682c6e540 2025-06-09 12:42:19.333992 89.73% [DEBUG] mod_unimrcp.c:3647 (ASR-143381) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8011715:c310cb75-119a-490b-bdc7-0569eda3b8ca 2025-06-09 12:42:19.633905 89.73% [DEBUG] mod_unimrcp.c:3647 (ASR-143392) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8042125:6f887f00-2a31-44d9-ac99-5115b75a2e52 2025-06-09 12:43:07.833901 88.33% [DEBUG] mod_unimrcp.c:3647 (ASR-143464) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8043366:aa1dac28-de5c-41c1-a76e-56a18aae95a7 2025-06-09 12:43:09.813909 88.53% [DEBUG] mod_unimrcp.c:3647 (ASR-143450) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8046677:3d7de5db-17c3-4f13-b91c-c13e6b2f1f73 2025-06-09 12:43:14.493896 89.10% [DEBUG] mod_unimrcp.c:3647 (ASR-143457) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8071658:bc6a01b5-cb67-49a3-beca-e44083af26ce 2025-06-09 12:43:57.733905 90.00% [DEBUG] mod_unimrcp.c:3647 (ASR-143539) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8072165:3cee1ae4-7d75-441c-8cdc-ab2bf9b0b706 2025-06-09 12:43:59.053908 89.97% [DEBUG] mod_unimrcp.c:3647 (ASR-143522) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8072291:164c9588-3125-429a-a9a9-be41d5e6e7e2 2025-06-09 12:43:59.273900 89.97% [DEBUG] mod_unimrcp.c:3647 (ASR-143530) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8077983:8867b669-0311-41a8-97ef-de94706adffc 2025-06-09 12:44:07.693907 89.37% [DEBUG] mod_unimrcp.c:3647 (ASR-143554) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8078405:e5461982-19f7-4abf-8a03-eabe5e607ae2 2025-06-09 12:44:08.713897 89.43% [DEBUG] mod_unimrcp.c:3647 (ASR-143527) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8078614:c62a9ad8-67b0-4cc3-a9c1-0d46809c8ae2 2025-06-09 12:44:09.333972 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-143546) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8079870:51b3e601-63d1-47ed-ac01-377556db54c5 2025-06-09 12:44:09.854006 89.60% [DEBUG] mod_unimrcp.c:3647 (ASR-143542) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8081347:a1eaf5f6-bc93-4178-a56f-8eb36e2e83ad 2025-06-09 12:44:12.753891 89.33% [DEBUG] mod_unimrcp.c:3647 (ASR-143559) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8081353:35e5e36a-d7d8-4947-87bf-c23a81dcd100 2025-06-09 12:44:12.753891 89.33% [DEBUG] mod_unimrcp.c:3647 (ASR-143547) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8083090:55b9a88f-2e21-4c8e-8177-2f06faa42296 2025-06-09 12:44:15.396361 89.17% [DEBUG] mod_unimrcp.c:3647 (ASR-143556) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8102409:a19bc32e-6a2d-447e-9cd2-0b49e02e4946 2025-06-09 12:44:47.853904 90.07% [DEBUG] mod_unimrcp.c:3647 (ASR-143607) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8143420:14e6cf77-cf78-4815-89a8-3847869241c9 2025-06-09 12:45:55.393898 89.57% [DEBUG] mod_unimrcp.c:3647 (ASR-143706) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8143767:cb264444-b680-432b-bbbd-9750ad5fbe4e 2025-06-09 12:45:55.773908 89.57% [DEBUG] mod_unimrcp.c:3647 (ASR-143713) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8163673:45a146e0-d09f-4bcf-bb8a-9c072d817c22 2025-06-09 12:46:27.433901 89.27% [DEBUG] mod_unimrcp.c:3647 (ASR-143753) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8186876:a9e9e2de-b0e4-401d-8e9c-0cab3f3d3f8f 2025-06-09 12:47:05.354136 89.97% [DEBUG] mod_unimrcp.c:3647 (ASR-143815) RECOGNIZE failed: status = 407
+../log/freeswitch.log:8187125:443e73a7-5f74-4b48-8068-f5b5d72be28e 2025-06-09 12:47:05.693907 89.97% [DEBUG] mod_unimrcp.c:3647 (ASR-143824) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:201971:b4843721-3d5c-40a5-abdb-50cef9bfbad0 2025-06-07 15:09:20.373917 75.17% [DEBUG] mod_unimrcp.c:3647 (ASR-99048) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:201976:b3355abc-537a-4bdf-8eb7-1142b7f06e40 2025-06-07 15:09:20.373917 75.17% [DEBUG] mod_unimrcp.c:3647 (ASR-99045) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:202925:64ad1f67-eb53-4af8-87e6-4490f2342d3f 2025-06-07 15:09:22.627492 72.70% [DEBUG] mod_unimrcp.c:3647 (ASR-99051) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:203424:d7aea366-e898-4219-a141-070f4adec3cf 2025-06-07 15:09:23.693898 71.77% [DEBUG] mod_unimrcp.c:3647 (ASR-99105) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:203968:0c989625-03c5-4075-a9e2-8b6704f0aadf 2025-06-07 15:09:25.093899 71.57% [DEBUG] mod_unimrcp.c:3647 (ASR-99111) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:204813:b9a9659c-3754-4305-89b0-337f76a7c0a6 2025-06-07 15:09:27.893896 71.07% [DEBUG] mod_unimrcp.c:3647 (ASR-99108) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:204939:e6759bc9-6b24-4c04-8a68-13b11170bc4f 2025-06-07 15:09:28.093895 71.07% [DEBUG] mod_unimrcp.c:3647 (ASR-99060) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:205164:ccd1219c-f232-4b2b-bdc2-27e60c6d4e79 2025-06-07 15:09:28.633896 70.60% [DEBUG] mod_unimrcp.c:3647 (ASR-99093) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:205394:bd8ad645-168b-4bbf-8b19-28d025ace9cf 2025-06-07 15:09:28.993900 70.60% [DEBUG] mod_unimrcp.c:3647 (ASR-99114) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:205413:b1053647-438d-415a-abf8-d034bc9d222e 2025-06-07 15:09:29.053896 70.60% [DEBUG] mod_unimrcp.c:3647 (ASR-99063) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:205909:3a2c72ce-6d27-40ba-9afa-23aa3077bb29 2025-06-07 15:09:30.093892 69.87% [DEBUG] mod_unimrcp.c:3647 (ASR-99066) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:208534:6ea252ae-1b83-4777-8916-e5d735b3de98 2025-06-07 15:09:36.773890 67.87% [DEBUG] mod_unimrcp.c:3647 (ASR-99078) RECOGNIZE failed: status = 407
+../log/freeswitch.log.1:208682:368eda52-3bde-4468-95ff-ee6f6bc0bdae 2025-06-07 15:09:36.893896 67.87% [DEBUG] mod_unimrcp.c:3647 (ASR-99081) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:791184:0e658bb6-331d-4965-aa0f-a735c6181803 2025-06-07 05:59:54.194147 79.40% [DEBUG] mod_unimrcp.c:3647 (ASR-51053) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2715823:ac5a22e3-a080-4078-9807-5cf1fe835097 2025-06-07 06:40:46.274263 74.57% [DEBUG] mod_unimrcp.c:3647 (ASR-55886) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2716125:676df37d-7fbb-40c3-b847-ff3d318eb7f8 2025-06-07 06:40:46.953897 73.97% [DEBUG] mod_unimrcp.c:3647 (ASR-55889) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2716443:7e71250a-7dd5-4441-b110-bf05c944093f 2025-06-07 06:40:48.933899 73.43% [DEBUG] mod_unimrcp.c:3647 (ASR-55892) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2717013:2f785d43-8284-4699-af60-7e7089d97958 2025-06-07 06:40:51.513901 71.77% [DEBUG] mod_unimrcp.c:3647 (ASR-55895) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2717342:5cf4e554-3b9d-4859-86b7-b3697a2850e7 2025-06-07 06:40:52.993899 70.77% [DEBUG] mod_unimrcp.c:3647 (ASR-55898) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2717643:0a8a374c-c535-4664-8b00-6e8a19fa9fff 2025-06-07 06:40:55.153901 70.50% [DEBUG] mod_unimrcp.c:3647 (ASR-55901) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2719324:91c161a6-aad0-471c-96ca-b5a656206917 2025-06-07 06:41:01.293892 67.17% [DEBUG] mod_unimrcp.c:3647 (ASR-55913) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2721489:0b4390b1-8da5-4b67-9bce-e5beb1a995d2 2025-06-07 06:41:08.347513 67.17% [DEBUG] mod_unimrcp.c:3647 (ASR-55931) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2729635:bc987b79-f1b5-4068-b097-58b14838825a 2025-06-07 06:41:57.693899 73.83% [DEBUG] mod_unimrcp.c:3647 (ASR-55967) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2729640:4f070ec7-ab43-4135-af65-fe2b9b26e258 2025-06-07 06:41:57.693899 73.83% [DEBUG] mod_unimrcp.c:3647 (ASR-55968) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2729645:0aac611e-8ea4-44e2-a169-58946c832a47 2025-06-07 06:41:57.693899 73.83% [DEBUG] mod_unimrcp.c:3647 (ASR-55969) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2729650:9adcb7a3-0edf-4c1f-9ae5-7ee1138af873 2025-06-07 06:41:57.693899 73.83% [DEBUG] mod_unimrcp.c:3647 (ASR-55970) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:2889556:126fdf3f-a952-4600-a487-0900022bdfa0 2025-06-07 06:54:05.413898 64.97% [DEBUG] mod_unimrcp.c:3647 (ASR-56340) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4014641:90d559a9-f69b-48a3-89aa-04557ec98aea 2025-06-07 09:25:12.873900 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59188) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4014802:b85763cc-66c3-4f32-8187-a313f9c407f7 2025-06-07 09:25:12.914003 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59187) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4015061:fed53e06-b544-4c48-ba39-f33a22f8f391 2025-06-07 09:25:13.073898 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59185) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4015271:6f8e96ce-8f26-43c3-b30b-7b13c9b9e890 2025-06-07 09:25:13.173895 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59186) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4015431:66de20bd-9fa4-4fdd-a7b4-4b5df7d7e2f6 2025-06-07 09:25:13.313896 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59177) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4015591:f9a08758-d1b5-497e-ad67-6302fdfdcaf9 2025-06-07 09:25:13.375191 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59184) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4015752:896976a0-5830-45c7-98b9-647b124574dd 2025-06-07 09:25:13.593896 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59171) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4015942:71c2f658-0d89-40b3-95ff-9435a6b8072d 2025-06-07 09:25:13.773897 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59156) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4016102:778c9c71-1640-427c-8a51-24764bedd38c 2025-06-07 09:25:13.773897 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59126) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4016184:2e7a3639-10f7-4dc8-bc9a-dd83bd0f4c89 2025-06-07 09:25:13.793903 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59165) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4016424:ce0998c8-992a-411e-8fa8-776b5f323461 2025-06-07 09:25:13.954780 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59159) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4016705:e2e4c20a-1d9d-448c-b011-657ca8f35af9 2025-06-07 09:25:14.113898 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59168) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4016870:60a087d2-9bfc-44c9-82e7-aa250b2dbde1 2025-06-07 09:25:14.133885 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59189) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4017253:9a1f230d-8061-4a22-8cfb-3537a0cf8c10 2025-06-07 09:25:14.233901 83.80% [DEBUG] mod_unimrcp.c:3647 (ASR-59190) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4017482:5a5d8f7c-f35b-4c14-ad68-da537652d7d1 2025-06-07 09:25:14.373898 83.53% [DEBUG] mod_unimrcp.c:3647 (ASR-59174) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4017928:7081ee73-0b18-417b-b26a-f30c3e12b51a 2025-06-07 09:25:14.533898 83.53% [DEBUG] mod_unimrcp.c:3647 (ASR-59182) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4018120:b0961494-415a-4ec3-8e0f-dac5bf489877 2025-06-07 09:25:14.553890 83.53% [DEBUG] mod_unimrcp.c:3647 (ASR-59162) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4018424:9761c827-9ce4-4013-8baf-bd84686e33cf 2025-06-07 09:25:14.695041 83.53% [DEBUG] mod_unimrcp.c:3647 (ASR-59210) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4018957:f44159ce-1d74-4564-af15-47c076ffe49a 2025-06-07 09:25:15.293897 83.53% [DEBUG] mod_unimrcp.c:3647 (ASR-59212) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:4019087:391d0986-89b6-4779-8e4a-1ecd4e78a06d 2025-06-07 09:25:15.335164 83.33% [DEBUG] mod_unimrcp.c:3647 (ASR-59129) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:8030880:dcc3e57d-81b2-4a7a-9734-639464d966fc 2025-06-07 10:58:10.873907 72.27% [DEBUG] mod_unimrcp.c:3647 (ASR-69342) RECOGNIZE failed: status = 407
+../log/freeswitch.log.3:8037160:026e1933-c8c4-494c-86a3-259ddb843e03 2025-06-07 10:58:34.094296 70.57% [DEBUG] mod_unimrcp.c:3647 (ASR-69345) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3682554:a443f74f-889c-4817-b82d-56141052f1ba 2025-06-07 00:40:26.153888 78.60% [DEBUG] mod_unimrcp.c:3647 (ASR-33838) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3682902:54994dc4-1b75-4b4a-bf68-37d193e14382 2025-06-07 00:40:26.993898 77.57% [DEBUG] mod_unimrcp.c:3647 (ASR-33841) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3683194:4335af74-0975-4b68-b82f-cf8ea58e721a 2025-06-07 00:40:28.833882 77.10% [DEBUG] mod_unimrcp.c:3647 (ASR-33844) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3683468:a67dcea4-3574-4739-bc85-7b897a9d6ba9 2025-06-07 00:40:30.333897 74.90% [DEBUG] mod_unimrcp.c:3647 (ASR-33847) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3683939:22f28c7d-1728-4ad8-aa05-3fb8cc4f2fbb 2025-06-07 00:40:32.874301 73.00% [DEBUG] mod_unimrcp.c:3647 (ASR-33850) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3684028:9c1a40c9-7b68-4e10-8cb7-9c6b9512f706 2025-06-07 00:40:33.508920 72.27% [DEBUG] mod_unimrcp.c:3647 (ASR-33853) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3684322:afec36ab-d2d2-4c24-8b4c-e9c09ceef9cd 2025-06-07 00:40:34.453907 71.90% [DEBUG] mod_unimrcp.c:3647 (ASR-33856) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3684645:307067ff-0acf-40fc-908e-e77069947843 2025-06-07 00:40:36.533901 71.57% [DEBUG] mod_unimrcp.c:3647 (ASR-33859) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3685008:b74057b1-e727-4fa1-8137-e56117c98838 2025-06-07 00:40:38.634064 71.33% [DEBUG] mod_unimrcp.c:3647 (ASR-33862) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3685335:5ba0f384-2ee2-4aa8-9830-88e874caebe5 2025-06-07 00:40:40.353900 70.37% [DEBUG] mod_unimrcp.c:3647 (ASR-33865) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3685649:945eaf3a-a399-4931-ab9e-fb9b73fa3406 2025-06-07 00:40:42.533902 69.50% [DEBUG] mod_unimrcp.c:3647 (ASR-33868) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3685890:b999b0f5-3d89-4ef1-9e57-df00a3859f6c 2025-06-07 00:40:43.953894 68.97% [DEBUG] mod_unimrcp.c:3647 (ASR-33871) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3686203:4c1010bd-4b5a-409c-829c-ae15c63deace 2025-06-07 00:40:45.553896 67.53% [DEBUG] mod_unimrcp.c:3647 (ASR-33874) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3686412:8a296f26-d1a3-4297-95bc-a5adf30a4779 2025-06-07 00:40:46.953897 67.67% [DEBUG] mod_unimrcp.c:3647 (ASR-33877) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:3686669:771a9d75-4a64-4a11-9eee-07daa449b72b 2025-06-07 00:40:48.553900 67.33% [DEBUG] mod_unimrcp.c:3647 (ASR-33880) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:7575421:4c9dc8da-39e1-4495-b9ac-53209831b0e2 2025-06-07 02:06:23.980619 85.87% [DEBUG] mod_unimrcp.c:3647 (ASR-43737) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:7575433:5e05c597-5bdc-449d-9c30-f9f8215cd35f 2025-06-07 02:06:23.980619 85.87% [DEBUG] mod_unimrcp.c:3647 (ASR-43755) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:7575449:4afc189e-ddfe-4ca1-a727-6dab0aa521e1 2025-06-07 02:06:23.980619 85.87% [DEBUG] mod_unimrcp.c:3647 (ASR-43759) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:7575454:231128d9-349f-45b0-be87-f941c25b1861 2025-06-07 02:06:23.980619 85.87% [DEBUG] mod_unimrcp.c:3647 (ASR-43752) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:7575470:cc4fce9b-a04f-42f2-ba23-7b241f0d2693 2025-06-07 02:06:23.980619 85.87% [DEBUG] mod_unimrcp.c:3647 (ASR-43757) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:7575482:9361eee8-ddbd-4efd-a777-50aad29e8408 2025-06-07 02:06:23.980619 85.87% [DEBUG] mod_unimrcp.c:3647 (ASR-43762) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:9017108:e848c8a1-89db-4eb3-9b23-2c7e2fb8ca7e 2025-06-07 02:46:40.833894 68.63% [DEBUG] mod_unimrcp.c:3647 (ASR-47365) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:9017115:0f4f1863-1a85-4896-ac76-659edcf384e5 2025-06-07 02:46:40.833894 68.63% [DEBUG] mod_unimrcp.c:3647 (ASR-47368) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:9017123:54802387-4fa2-480a-bf70-5ee8dc7daee8 2025-06-07 02:46:40.833894 68.63% [DEBUG] mod_unimrcp.c:3647 (ASR-47371) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:9017130:26af8595-baa9-4ae2-b240-57bf3db67695 2025-06-07 02:46:40.833894 68.63% [DEBUG] mod_unimrcp.c:3647 (ASR-47372) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:9017140:370dda6b-3663-4b69-8c6b-f32f4ec1d7e4 2025-06-07 02:46:40.833894 68.63% [DEBUG] mod_unimrcp.c:3647 (ASR-47373) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:9094277:2cbdf5ea-938d-48ef-a133-b2b10e4e1233 2025-06-07 02:52:50.477924 67.07% [DEBUG] mod_unimrcp.c:3647 (ASR-47553) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:9094282:42d071a5-d189-45ae-b9c4-ccff2d739906 2025-06-07 02:52:50.477924 67.07% [DEBUG] mod_unimrcp.c:3647 (ASR-47570) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:9094287:33ed41c1-18b2-4299-8414-9f0b08f5b993 2025-06-07 02:52:50.477924 67.07% [DEBUG] mod_unimrcp.c:3647 (ASR-47552) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:9094308:00593801-eb89-4b40-9984-6f3185da54a2 2025-06-07 02:52:50.477924 67.07% [DEBUG] mod_unimrcp.c:3647 (ASR-47567) RECOGNIZE failed: status = 407
+../log/freeswitch.log.4:9095429:29940355-04c7-4130-ba3d-cdcdef98f1b3 2025-06-07 02:52:55.793896 64.73% [DEBUG] mod_unimrcp.c:3647 (ASR-47560) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1258315:8a2182eb-dcb0-4377-b483-a08ff97ad262 2025-06-06 19:30:04.913894 69.63% [DEBUG] mod_unimrcp.c:3647 (ASR-3088) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1486588:2d2e1bd5-5bd4-4a37-aab0-e6138fe1fa9a 2025-06-06 19:41:59.953905 82.63% [DEBUG] mod_unimrcp.c:3647 (ASR-3600) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1486953:7d77c33f-463c-4203-818f-1be0f7cefa87 2025-06-06 19:42:00.453900 82.63% [DEBUG] mod_unimrcp.c:3647 (ASR-3672) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1487154:9530b915-2530-43ca-92f9-9b479349fe12 2025-06-06 19:42:00.773897 82.63% [DEBUG] mod_unimrcp.c:3647 (ASR-3605) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1487622:71482553-93b8-4b88-9404-f046916d7409 2025-06-06 19:42:01.162095 82.63% [DEBUG] mod_unimrcp.c:3647 (ASR-3630) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1488216:87f154bb-3c25-445e-b7e2-8d2b4155c101 2025-06-06 19:42:02.153884 82.60% [DEBUG] mod_unimrcp.c:3647 (ASR-3675) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1488449:d50c484a-af81-454c-ac12-f4e20b518e46 2025-06-06 19:42:02.475393 82.67% [DEBUG] mod_unimrcp.c:3647 (ASR-3641) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1489441:acd4e71b-42be-4b53-a647-f4869df6fccb 2025-06-06 19:42:03.013883 82.67% [DEBUG] mod_unimrcp.c:3647 (ASR-3606) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1490942:39da41c0-0e3e-4101-bed0-7b629f7aeb72 2025-06-06 19:42:05.973897 82.43% [DEBUG] mod_unimrcp.c:3647 (ASR-3679) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1490991:9ed5a7ac-5e5f-4b16-afb7-60cd0dbb794c 2025-06-06 19:42:05.973897 82.43% [DEBUG] mod_unimrcp.c:3647 (ASR-3681) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1491157:e6fddd0a-e3a3-4a4c-b364-a945b2df7142 2025-06-06 19:42:05.973897 82.43% [DEBUG] mod_unimrcp.c:3647 (ASR-3680) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1491199:f2de7995-bbef-457e-81dc-3e41a7a51f27 2025-06-06 19:42:05.993904 82.43% [DEBUG] mod_unimrcp.c:3647 (ASR-3684) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1491793:c52b9e7b-30f2-485d-a19a-38d9ac6eaacc 2025-06-06 19:42:06.073893 82.43% [DEBUG] mod_unimrcp.c:3647 (ASR-3677) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1493410:22059e93-71a4-4789-b2c4-a4a3cab7712c 2025-06-06 19:42:08.993904 82.27% [DEBUG] mod_unimrcp.c:3647 (ASR-3655) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:1493415:94beb9f8-4c85-4733-be78-9011b4271825 2025-06-06 19:42:08.993904 82.27% [DEBUG] mod_unimrcp.c:3647 (ASR-3645) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:3827424:dbfb4d23-3e57-4c2e-8975-07ee115f0577 2025-06-06 21:11:16.019037 58.43% [DEBUG] mod_unimrcp.c:3647 (ASR-9533) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:3827435:633d4dd6-a67e-4d2b-a882-156fa7fca1e2 2025-06-06 21:11:16.019037 58.43% [DEBUG] mod_unimrcp.c:3647 (ASR-9530) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:3827440:87aacfe9-3325-4508-8ec9-fd3fd9d887f5 2025-06-06 21:11:16.019037 58.43% [DEBUG] mod_unimrcp.c:3647 (ASR-9531) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:3827445:1f94e894-898c-4e3d-b118-79a62f8d38ea 2025-06-06 21:11:16.019037 58.43% [DEBUG] mod_unimrcp.c:3647 (ASR-9529) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:3827451:95f7e1dd-31df-4b56-ab7f-d09021b0791f 2025-06-06 21:11:16.019037 58.43% [DEBUG] mod_unimrcp.c:3647 (ASR-9532) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:3827456:d23f9e73-7cf9-4b3a-85a3-4c298caef0e1 2025-06-06 21:11:16.019037 58.43% [DEBUG] mod_unimrcp.c:3647 (ASR-9535) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:3827475:5113aec6-68f3-475f-b3d9-c9b7957f8752 2025-06-06 21:11:16.019037 58.43% [DEBUG] mod_unimrcp.c:3647 (ASR-9534) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:7591106:fdb612bc-fda3-429d-b4d7-4e47e9364fab 2025-06-06 22:33:00.253896 68.47% [DEBUG] mod_unimrcp.c:3647 (ASR-19065) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8852596:c366e316-c1be-457e-8aa1-212fd46bf82d 2025-06-06 23:02:58.073898 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22245) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8852662:2720b05e-7fe8-466d-9215-f3425c37afa2 2025-06-06 23:02:58.073898 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22217) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8852939:176423e0-f079-471a-b469-7f0dac763e47 2025-06-06 23:02:58.153905 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22214) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8853102:e81e3019-fa6d-4e27-afb3-c75a5967abd5 2025-06-06 23:02:58.213909 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22241) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8853279:8b100d03-5a0f-48e8-888a-0e5a365b3e8c 2025-06-06 23:02:58.273896 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22223) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8853349:357f04d3-3c00-4180-9a01-739ab291ca27 2025-06-06 23:02:58.293899 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22242) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8853593:7fbcbeb4-6563-491f-b4f4-4b0eddb795a3 2025-06-06 23:02:58.314091 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22220) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8853785:3725580c-c5f0-46f7-8ff0-a2ef18fb0011 2025-06-06 23:02:58.314091 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22244) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8854058:df95818c-f32b-4908-9946-d98199c5b706 2025-06-06 23:02:58.375093 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22237) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8854220:4106455f-cfeb-4155-a67f-489350bed79e 2025-06-06 23:02:58.393972 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22229) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8854384:c4f5a825-3504-4eb9-8a7e-2f6a94af19ea 2025-06-06 23:02:58.473897 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22239) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8854399:fcd0a6d4-10b0-4e57-a816-4e5416ce1902 2025-06-06 23:02:58.513900 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22246) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8854565:2a946f38-b2fb-407a-b150-82c3624e3d09 2025-06-06 23:02:58.573894 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22235) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8854732:15a89236-19f8-4497-aa79-b24b8fc231e9 2025-06-06 23:02:58.633895 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22232) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8854840:abe8ffeb-b5a6-48f1-aec0-530c476cccd3 2025-06-06 23:02:58.653909 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22226) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8855066:25974da1-53a5-44ef-9e5d-5406c810ade6 2025-06-06 23:02:58.773903 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22243) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8855204:0162c4e5-7615-4597-be6a-ff7744c16aa5 2025-06-06 23:02:58.813903 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22264) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8855252:f729b11f-a91f-4726-b17f-e0ce5f006f65 2025-06-06 23:02:58.813903 84.87% [DEBUG] mod_unimrcp.c:3647 (ASR-22178) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8857374:09c1d7f2-476e-44c2-9e34-542a6b4fce9f 2025-06-06 23:03:00.313897 84.53% [DEBUG] mod_unimrcp.c:3647 (ASR-22266) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:8857538:51ece06c-40f8-490a-8dac-575b52777b92 2025-06-06 23:03:00.353913 84.43% [DEBUG] mod_unimrcp.c:3647 (ASR-22181) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:9632284:b4f05494-6f9f-4068-b3b7-a79e452e5256 2025-06-06 23:19:28.493903 84.33% [DEBUG] mod_unimrcp.c:3647 (ASR-24200) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:9635003:175e7c66-5d4e-4e76-a7c7-eafa734ccf1f 2025-06-06 23:19:31.633899 84.60% [DEBUG] mod_unimrcp.c:3647 (ASR-24215) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:9635008:de89c17c-09b8-4a64-8385-8e53eee665c8 2025-06-06 23:19:31.633899 84.60% [DEBUG] mod_unimrcp.c:3647 (ASR-24224) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:9635013:95638030-5bbe-408d-9381-52540525f4a5 2025-06-06 23:19:31.633899 84.60% [DEBUG] mod_unimrcp.c:3647 (ASR-24221) RECOGNIZE failed: status = 407
+../log/freeswitch.log.5:9635018:10f70683-01be-4e95-baa0-15aa754e0a01 2025-06-06 23:19:31.633899 84.60% [DEBUG] mod_unimrcp.c:3647 (ASR-24218) RECOGNIZE failed: status = 407
+
+
+29e5e013-c04b-4b3b-be12-2013b02e3687
+
+
+./fs_cli -H 0.0.0.0 -P 38021 -p ClueCon
+
+vim ../log/freeswitch.xml.fsxml
+    <param name="max-sessions" value="1000"/>
+    <!--Most channels to create per second -->
+    <param name="sessions-per-second" value="30"/>
+    <!-- Default Global Log Level - value is one of debug,info,notice,warning,err,crit,alert -->
+    <param name="loglevel" value="debug"/>
+
+
+
+2025-06-09 19:26:13.720552 87.73% [ERR] mod_xml_curl.c:319 Received HTTP error 400 trying to fetch http://192.168.109.37:20207/acl/directory/xml
+
+
+
+
+20250610
+迭代kd-unimrcp仓库，更新dev_ubuntu分支和tag版本
+打包更新docker镜像kd-freeswitch:0.9.0版本
+排查太原热力线上tts播报中断问题
+排查太原热力线上asr语音丢失问题
+
+
+20250609
+构建docker镜像kd-unimrcp:0.7.0版本
+搭建vpn环境，沟通上传镜像kd-unimrcp到太原热力线上环境
+分析颐和园uat并发压测时asr语音数据流向
+排查颐和园uat并发压测时部分通话的用户语音数据丢失问题
+
+
+
+JumpServer:
+http://172.70.90.2/ui/#/workbench/assets
+
+172.70.10.204
+SC-test-vm-hoicee-test
+4c16g500G
+语音开发
+连瑞龙
+长期
+
+
+
+172.30.207.30	root/tyrl@123
+172.30.207.21	root/Huawei12#$
+目录： /home/hoicee-new/freeswitch
+
+
+
+
+
+root@localhost:/usr/local/freeswitch/log# egrep -Rn "25db0efe-8059-49f5-88a0-60cbe3721214" freeswitch.log
+5932079:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [NOTICE] switch_channel.c:1142 New Channel sofia/external/sipp6156@192.168.109.37:5060 [25db0efe-8059-49f5-88a0-60cbe3721214]
+5932080:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:581 (sofia/external/sipp6156@192.168.109.37:5060) Running State Change CS_NEW (Cur 13 Tot 48784)
+5932081:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [INFO] sofia.c:10460 sofia/external/sipp6156@192.168.109.37:5060 receiving invite from 192.168.109.37:5060 version: 1.10.12-release git a88d069 2024-08-02 21:02:27Z 64bit call-id: 157-2113807@192.168.109.37
+5932082:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] sofia.c:7493 Channel sofia/external/sipp6156@192.168.109.37:5060 entering state [received][100]
+5932083:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] sofia.c:7503 Remote SDP:
+5932084:25db0efe-8059-49f5-88a0-60cbe3721214 v=0
+5932085:25db0efe-8059-49f5-88a0-60cbe3721214 o=user1 53655765 2353687637 IN IP4 192.168.109.37
+5932086:25db0efe-8059-49f5-88a0-60cbe3721214 s=-
+5932087:25db0efe-8059-49f5-88a0-60cbe3721214 c=IN IP4 192.168.109.37
+5932088:25db0efe-8059-49f5-88a0-60cbe3721214 t=0 0
+5932089:25db0efe-8059-49f5-88a0-60cbe3721214 m=audio 6156 RTP/AVP 0
+5932090:25db0efe-8059-49f5-88a0-60cbe3721214 a=rtpmap:0 PCMU/8000
+5932091:25db0efe-8059-49f5-88a0-60cbe3721214
+5932092:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] sofia.c:7906 (sofia/external/sipp6156@192.168.109.37:5060) State Change CS_NEW -> CS_INIT
+5932093:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:600 (sofia/external/sipp6156@192.168.109.37:5060) State NEW
+5932094:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:581 (sofia/external/sipp6156@192.168.109.37:5060) Running State Change CS_INIT (Cur 13 Tot 48784)
+5932095:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:624 (sofia/external/sipp6156@192.168.109.37:5060) State INIT
+5932096:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] mod_sofia.c:97 sofia/external/sipp6156@192.168.109.37:5060 SOFIA INIT
+5932097:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:40 sofia/external/sipp6156@192.168.109.37:5060 Standard INIT
+5932098:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:48 (sofia/external/sipp6156@192.168.109.37:5060) State Change CS_INIT -> CS_ROUTING
+5932099:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:624 (sofia/external/sipp6156@192.168.109.37:5060) State INIT going to sleep
+5932100:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:581 (sofia/external/sipp6156@192.168.109.37:5060) Running State Change CS_ROUTING (Cur 13 Tot 48784)
+5932101:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_channel.c:2399 (sofia/external/sipp6156@192.168.109.37:5060) Callstate Change DOWN -> RINGING
+5932102:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:640 (sofia/external/sipp6156@192.168.109.37:5060) State ROUTING
+5932103:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] mod_sofia.c:158 sofia/external/sipp6156@192.168.109.37:5060 SOFIA ROUTING
+5932104:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:230 sofia/external/sipp6156@192.168.109.37:5060 Standard ROUTING
+5932105:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [INFO] mod_dialplan_xml.c:639 Processing sipp6156 <sipp6156>->50000001 in context public
+5932106:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 parsing [public->public_user2] continue=false
+5932107:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 Regex (FAIL) [public_user2] destination_number(50000001) =~ /^(1\d{3})$/ break=on-false
+5932108:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 parsing [public->public_83795991] continue=false
+5932109:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 Regex (FAIL) [public_83795991] destination_number(50000001) =~ /^(83795991)$/ break=on-false
+5932110:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 parsing [public->callout] continue=false
+5932111:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 Regex (FAIL) [callout] destination_number(50000001) =~ /^(0\d{11}|1\d{10})$/ break=on-false
+5932112:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 parsing [public->public_7000] continue=false
+5932113:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 Regex (FAIL) [public_7000] destination_number(50000001) =~ /^(7000)$/ break=on-false
+5932114:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 parsing [public->public_7001] continue=false
+5932115:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 Regex (FAIL) [public_7001] destination_number(50000001) =~ /^(7001)$/ break=on-false
+5932116:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 parsing [public->public_7002] continue=false
+5932117:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 Regex (FAIL) [public_7002] destination_number(50000001) =~ /^(7002)$/ break=on-false
+5932118:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 parsing [public->public_extensions1] continue=false
+5932119:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 Regex (PASS) [public_extensions1] destination_number(50000001) =~ /^(5\d{7})$/ break=on-false
+5932120:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 Action set(hangup_after_bridge=true)
+5932121:25db0efe-8059-49f5-88a0-60cbe3721214 Dialplan: sofia/external/sipp6156@192.168.109.37:5060 Action socket(127.0.0.1:13002 async full)
+5932122:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:281 (sofia/external/sipp6156@192.168.109.37:5060) State Change CS_ROUTING -> CS_EXECUTE
+5932123:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:640 (sofia/external/sipp6156@192.168.109.37:5060) State ROUTING going to sleep
+5932124:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:581 (sofia/external/sipp6156@192.168.109.37:5060) Running State Change CS_EXECUTE (Cur 13 Tot 48784)
+5932125:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:647 (sofia/external/sipp6156@192.168.109.37:5060) State EXECUTE
+5932126:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] mod_sofia.c:213 sofia/external/sipp6156@192.168.109.37:5060 SOFIA EXECUTE
+5932127:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] switch_core_state_machine.c:323 sofia/external/sipp6156@192.168.109.37:5060 Standard EXECUTE
+5932128:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=0] sofia/external/sipp6156@192.168.109.37:5060 set(hangup_after_bridge=true)
+5932129:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [DEBUG] mod_dptools.c:1671 SET sofia/external/sipp6156@192.168.109.37:5060 [hangup_after_bridge]=[true]
+5932130:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=0] sofia/external/sipp6156@192.168.109.37:5060 socket(127.0.0.1:13002 async full)
+5932131:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.113933 88.20% [NOTICE] mod_event_socket.c:452 Trying host: 127.0.0.1:13002
+5932132:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=0] answer()
+5932133:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=0] sofia/external/sipp6156@192.168.109.37:5060 answer()
+5932134:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMU:0:8000:20:64000:1]/[opus:116:48000:20:0:1]
+5932135:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMU:0:8000:20:64000:1]/[G722:9:8000:20:64000:1]
+5932136:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMU:0:8000:20:64000:1]/[PCMU:0:8000:20:64000:1]
+5932137:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:5588 Audio Codec Compare [PCMU:0:8000:20:64000:1] ++++ is saved as a match
+5932138:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMU:0:8000:20:64000:1]/[PCMA:8:8000:20:64000:1]
+5932139:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:3731 Set Codec sofia/external/sipp6156@192.168.109.37:5060 PCMU/8000 20 ms 160 samples 64000 bits 1 channels
+5932140:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_codec.c:111 sofia/external/sipp6156@192.168.109.37:5060 Original read codec set to PCMU:0
+5932141:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:5827 No 2833 in SDP. Liberal DTMF mode adding 101 as telephone-event.
+5932142:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:5856 sofia/external/sipp6156@192.168.109.37:5060 Set 2833 dtmf send payload to 101 recv payload to 101
+5932143:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:8660 AUDIO RTP [sofia/external/sipp6156@192.168.109.37:5060] 192.168.109.37 port 26404 -> 192.168.109.37 port 6156 codec: 0 ms: 20
+5932144:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_rtp.c:4566 Starting timer [soft] 160 bytes per 20ms
+5932145:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:8973 sofia/external/sipp6156@192.168.109.37:5060 Set 2833 dtmf send payload to 101
+5932146:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:8980 sofia/external/sipp6156@192.168.109.37:5060 Set 2833 dtmf receive payload to 101
+5932147:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:9003 sofia/external/sipp6156@192.168.109.37:5060 Set rtp dtmf delay to 40
+5932148:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [NOTICE] sofia_media.c:90 Pre-Answer sofia/external/sipp6156@192.168.109.37:5060!
+5932149:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_channel.c:3585 (sofia/external/sipp6156@192.168.109.37:5060) Callstate Change RINGING -> EARLY
+5932150:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_core_media.c:8642 Audio params are unchanged for sofia/external/sipp6156@192.168.109.37:5060.
+5932151:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] mod_sofia.c:914 Local SDP sofia/external/sipp6156@192.168.109.37:5060:
+5932152:25db0efe-8059-49f5-88a0-60cbe3721214 v=0
+5932153:25db0efe-8059-49f5-88a0-60cbe3721214 o=FreeSWITCH 1749410525 1749410526 IN IP4 192.168.109.37
+5932154:25db0efe-8059-49f5-88a0-60cbe3721214 s=FreeSWITCH
+5932155:25db0efe-8059-49f5-88a0-60cbe3721214 c=IN IP4 192.168.109.37
+5932156:25db0efe-8059-49f5-88a0-60cbe3721214 t=0 0
+5932157:25db0efe-8059-49f5-88a0-60cbe3721214 m=audio 26404 RTP/AVP 0 101
+5932158:25db0efe-8059-49f5-88a0-60cbe3721214 a=rtpmap:0 PCMU/8000
+5932159:25db0efe-8059-49f5-88a0-60cbe3721214 a=rtpmap:101 telephone-event/8000
+5932160:25db0efe-8059-49f5-88a0-60cbe3721214 a=fmtp:101 0-15
+5932161:25db0efe-8059-49f5-88a0-60cbe3721214 a=ptime:20
+5932162:25db0efe-8059-49f5-88a0-60cbe3721214 a=sendrecv
+5932163:25db0efe-8059-49f5-88a0-60cbe3721214
+5932164:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [NOTICE] mod_dptools.c:1406 Channel [sofia/external/sipp6156@192.168.109.37:5060] has been answered
+5932165:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] switch_channel.c:3912 (sofia/external/sipp6156@192.168.109.37:5060) Callstate Change EARLY -> ACTIVE
+5932166:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] sofia.c:7493 Channel sofia/external/sipp6156@192.168.109.37:5060 entering state [completed][200]
+5932167:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.153919 88.20% [DEBUG] sofia.c:7493 Channel sofia/external/sipp6156@192.168.109.37:5060 entering state [ready][200]
+5932168:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.193924 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=1] set(tts_engine=unimrcp)
+5932169:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=1] sofia/external/sipp6156@192.168.109.37:5060 set(tts_engine=unimrcp)
+5932170:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.193924 88.20% [DEBUG] mod_dptools.c:1671 SET sofia/external/sipp6156@192.168.109.37:5060 [tts_engine]=[unimrcp]
+5932171:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.193924 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=1] set(RECORD_STEREO=true)
+5932172:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=1] sofia/external/sipp6156@192.168.109.37:5060 set(RECORD_STEREO=true)
+5932173:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.193924 88.20% [DEBUG] mod_dptools.c:1671 SET sofia/external/sipp6156@192.168.109.37:5060 [RECORD_STEREO]=[true]
+5932174:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.213923 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=1] set(RECORD_APPEND=false)
+5932175:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=1] sofia/external/sipp6156@192.168.109.37:5060 set(RECORD_APPEND=false)
+5932176:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.213923 88.20% [DEBUG] mod_dptools.c:1671 SET sofia/external/sipp6156@192.168.109.37:5060 [RECORD_APPEND]=[false]
+5932177:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.213923 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=1] set(record_waste_resources=true)
+5932178:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=1] sofia/external/sipp6156@192.168.109.37:5060 set(record_waste_resources=true)
+5932179:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.213923 88.20% [DEBUG] mod_dptools.c:1671 SET sofia/external/sipp6156@192.168.109.37:5060 [record_waste_resources]=[true]
+5932180:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.213923 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=1] record_session(/tmp/servicePool_test_appId/robot/2025-06-09/25db0efe-8059-49f5-88a0-60cbe3721214.wav)
+5932181:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=1] sofia/external/sipp6156@192.168.109.37:5060 record_session(/tmp/servicePool_test_appId/robot/2025-06-09/25db0efe-8059-49f5-88a0-60cbe3721214.wav)
+5932182:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.233929 88.20% [DEBUG] switch_ivr_async.c:1504 Record session sample rate: 8000 -> 8000
+5932183:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.233929 88.20% [DEBUG] switch_core_media_bug.c:976 Attaching BUG to sofia/external/sipp6156@192.168.109.37:5060
+5932184:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.233929 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=1] break()
+5932185:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=1] sofia/external/sipp6156@192.168.109.37:5060 break()
+5932186:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.233929 88.20% [DEBUG] switch_ivr_async.c:1778 No silence detection configured; assuming start of speech
+5932187:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.233929 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=1] play_and_detect_speech(silence_stream://-1 detect:unimrcp {start-input-timers=false,no-input-timeout=10000,engine=Xunfei,sessionId=25db0efe-8059-49f5-88a0-60cbe3721214,Speech-Language=en}builtin:grammar/)
+5932188:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=1] sofia/external/sipp6156@192.168.109.37:5060 play_and_detect_speech(silence_stream://-1 detect:unimrcp {start-input-timers=false,no-input-timeout=10000,engine=Xunfei,sessionId=25db0efe-8059-49f5-88a0-60cbe3721214,Speech-Language=en}builtin:grammar/)
+5932189:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.233929 88.20% [INFO] mod_unimrcp.c:3157 asr_handle: name = unimrcp, codec = (null), rate = 8000, grammar = (null), param = (null)
+5932190:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.233929 88.20% [INFO] mod_unimrcp.c:3159 codec = L16, rate = 8000, dest = (null)
+5932191:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.233929 88.20% [DEBUG] mod_unimrcp.c:688 (ASR-138360) audio queue created
+5932303:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:1905 (ASR-138360) RECOGNIZER channel is ready, codec = LPCM, sample rate = 8000
+5932304:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:1589 (ASR-138360) CLOSED ==> READY
+5932306:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:1067 (ASR-138360) channel is ready
+5932307:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:1470 (ASR-138360) param = start-input-timers, val = true
+5932308:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] switch_core_media_bug.c:976 Attaching BUG to sofia/external/sipp6156@192.168.109.37:5060
+5932309:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:1470 (ASR-138360) param = start-input-timers, val = false
+5932310:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:1470 (ASR-138360) param = no-input-timeout, val = 10000
+5932311:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:1470 (ASR-138360) param = engine, val = Xunfei
+5932312:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:1470 (ASR-138360) param = sessionId, val = 25db0efe-8059-49f5-88a0-60cbe3721214
+5932313:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:1470 (ASR-138360) param = Speech-Language, val = en
+5932314:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:3224 (ASR-138360) grammar = builtin:grammar/, name =
+5932315:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:3241 (ASR-138360) Grammar is URI
+5932316:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:3313 (ASR-138360) grammar is text/uri-list
+5932317:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:2366 (ASR-138360) Loading grammar 917355c4-78d8-4456-8db0-bb96bc102b3a, data = builtin:grammar/
+5932318:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:2540 (ASR-138360) Disabling all grammars
+5932319:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:2495 (ASR-138360) Enabling grammar 917355c4-78d8-4456-8db0-bb96bc102b3a
+5932320:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:2883 (ASR-138360) (vendor-specific value) engine: Xunfei
+5932321:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:2887 (ASR-138360) creating vendor specific pair array
+5932322:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "Speech-Language": "en"
+5932323:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "start-input-timers": "false"
+5932324:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "no-input-timeout": "10000"
+5932325:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:2883 (ASR-138360) (vendor-specific value) sessionId: 25db0efe-8059-49f5-88a0-60cbe3721214
+5932342:Vendor-Specific-Parameters: engine=Xunfei;sessionId=25db0efe-8059-49f5-88a0-60cbe3721214
+5932357:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:3642 (ASR-138360) RECOGNIZE IN PROGRESS
+5932358:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] mod_unimrcp.c:1589 (ASR-138360) READY ==> PROCESSING
+5932360:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.253926 88.20% [DEBUG] switch_ivr_play_say.c:1561 Codec Activated L16@8000hz 1 channels 20ms
+5932455:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.613915 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=2] break()
+5932456:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=2] sofia/external/sipp6156@192.168.109.37:5060 break()
+5932457:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.633939 88.20% [DEBUG] switch_ivr_play_say.c:2010 done playing file silence_stream://-1
+5932458:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.633939 88.20% [DEBUG] mod_unimrcp.c:2592 (ASR-138360) Starting input timers
+5932460:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.633939 88.20% [INFO] switch_ivr_async.c:4938 (sofia/external/sipp6156@192.168.109.37:5060) WAITING FOR RESULT
+5932461:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.633939 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=2] speak(unimrcp|test|{traceId=56875e59-ef53-4bd4-b690-6f704ad3ad25,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=25db0efe-8059-49f5-88a0-60cbe3721214,vadEndTime=null}欢迎您的致电，请问需要什么帮助？)
+5932466:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=2] sofia/external/sipp6156@192.168.109.37:5060 speak(unimrcp|test|{traceId=56875e59-ef53-4bd4-b690-6f704ad3ad25,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=25db0efe-8059-49f5-88a0-60cbe3721214,vadEndTime=null}欢迎您的致电，请问需要什么帮助？)
+5932509:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.633939 88.20% [DEBUG] mod_unimrcp.c:3679 (ASR-138360) timers started
+5932593:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.653922 88.20% [DEBUG] switch_ivr_play_say.c:3108 OPEN TTS unimrcp
+5932594:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.653922 88.20% [DEBUG] switch_ivr_play_say.c:3118 Raw Codec Activated
+5932601:2025-06-09 10:42:09.653922 88.20% [DEBUG] mod_unimrcp.c:1470 (TTS-138361) param = sessionId, val = 25db0efe-8059-49f5-88a0-60cbe3721214
+5932612:2025-06-09 10:42:09.653922 88.20% [DEBUG] mod_unimrcp.c:1212 (TTS-138361) (vendor-specific value) sessionId: 25db0efe-8059-49f5-88a0-60cbe3721214
+5932626:Vendor-Specific-Parameters: engine=Xunfei;traceId=56875e59-ef53-4bd4-b690-6f704ad3ad25;vadEndTime=null;volume=50;speed=55;voiceId=x4_lingxiaoying_en;pitch=50;sessionId=25db0efe-8059-49f5-88a0-60cbe3721214
+5932644:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.653922 88.20% [DEBUG] switch_ivr_play_say.c:2826 Speaking text: {traceId=56875e59-ef53-4bd4-b690-6f704ad3ad25,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=25db0efe-8059-49f5-88a0-60cbe3721214,vadEndTime=null}欢迎您的致电，请问需要什么帮助？
+5932645:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.653922 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=3] detect_speech(resume)
+5932646:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=3] sofia/external/sipp6156@192.168.109.37:5060 detect_speech(resume)
+5932647:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.653922 88.20% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=3] detect_speech(pause)
+5932648:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=3] sofia/external/sipp6156@192.168.109.37:5060 detect_speech(pause)
+5932649:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.653922 88.20% [DEBUG] mod_unimrcp.c:1400 (ASR-138360) Stopping RECOGNIZER
+5932675:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.673940 88.20% [DEBUG] mod_unimrcp.c:3667 (ASR-138360) RECOGNIZE STOPPED
+5932676:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.673940 88.20% [DEBUG] mod_unimrcp.c:1589 (ASR-138360) PROCESSING ==> READY
+5932678:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:09.673940 88.20% [DEBUG] mod_unimrcp.c:1422 (ASR-138360) RECOGNIZER stopped
+5933616:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:13.313908 88.37% [DEBUG] switch_ivr_play_say.c:2990 done speaking text
+5933664:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:13.353888 88.37% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=2] detect_speech(resume)
+5933665:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=2] sofia/external/sipp6156@192.168.109.37:5060 detect_speech(resume)
+5933666:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:13.353888 88.37% [DEBUG] mod_unimrcp.c:2883 (ASR-138360) (vendor-specific value) engine: Xunfei
+5933667:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:13.353888 88.37% [DEBUG] mod_unimrcp.c:2887 (ASR-138360) creating vendor specific pair array
+5933668:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:13.353888 88.37% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "Speech-Language": "en"
+5933669:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:13.353888 88.37% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "start-input-timers": "false"
+5933670:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:13.353888 88.37% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "no-input-timeout": "10000"
+5933671:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:13.353888 88.37% [DEBUG] mod_unimrcp.c:2883 (ASR-138360) (vendor-specific value) sessionId: 25db0efe-8059-49f5-88a0-60cbe3721214
+5933688:Vendor-Specific-Parameters: engine=Xunfei;sessionId=25db0efe-8059-49f5-88a0-60cbe3721214
+5934098:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:14.253942 88.37% [DEBUG] mod_unimrcp.c:3642 (ASR-138360) RECOGNIZE IN PROGRESS
+5934100:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:14.253942 88.37% [DEBUG] mod_unimrcp.c:1589 (ASR-138360) READY ==> PROCESSING
+5934105:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:14.253942 88.37% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=2] detect_speech(param start-input-timers true)
+5934107:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=2] sofia/external/sipp6156@192.168.109.37:5060 detect_speech(param start-input-timers true)
+5934110:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:14.253942 88.37% [DEBUG] mod_unimrcp.c:1470 (ASR-138360) param = start-input-timers, val = true
+5934126:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:14.253942 88.37% [DEBUG] switch_core_io.c:448 Setting BUG Codec PCMU:0
+5934412:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:14.453916 88.23% [INFO] switch_rtp.c:7658 Auto Changing audio port from 192.168.109.37:6156 to 192.168.109.37:6000
+5934755:    <session_id>25db0efe-8059-49f5-88a0-60cbe3721214</session_id>
+5934767:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.813890 88.13% [DEBUG] mod_unimrcp.c:3709 (ASR-138360) RECOGNITION COMPLETE, Completion-Cause: 000
+5934769:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.813890 88.13% [DEBUG] mod_unimrcp.c:2756 (ASR-138360) ASR adding result headers
+5934770:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.813890 88.13% [DEBUG] mod_unimrcp.c:2651 (ASR-138360) result:
+5934771:25db0efe-8059-49f5-88a0-60cbe3721214
+5934772:25db0efe-8059-49f5-88a0-60cbe3721214 <?xml version="1.0"?>
+5934773:25db0efe-8059-49f5-88a0-60cbe3721214 <result>
+5934774:25db0efe-8059-49f5-88a0-60cbe3721214 <interpretation confidence="99" index="0">
+5934775:25db0efe-8059-49f5-88a0-60cbe3721214 <session_id>25db0efe-8059-49f5-88a0-60cbe3721214</session_id>
+5934776:25db0efe-8059-49f5-88a0-60cbe3721214 <trace_id>c939d77b-db7a-4a77-86d6-68c16e6ebae7</trace_id>
+5934777:25db0efe-8059-49f5-88a0-60cbe3721214 <vad_end_time>1749436935.821835</vad_end_time>
+5934778:25db0efe-8059-49f5-88a0-60cbe3721214 <instance>请问颐和园的</instance>
+5934779:25db0efe-8059-49f5-88a0-60cbe3721214 <input mode="speech">请问颐和园的</input>
+5934780:25db0efe-8059-49f5-88a0-60cbe3721214 </interpretation>
+5934781:25db0efe-8059-49f5-88a0-60cbe3721214 </result>
+5934782:25db0efe-8059-49f5-88a0-60cbe3721214
+5934783:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.813890 88.13% [DEBUG] mod_unimrcp.c:1589 (ASR-138360) PROCESSING ==> READY
+5934787:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.833887 88.13% [DEBUG] mod_unimrcp.c:2564 (ASR-138360) SUCCESS, have result
+5934788:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.833887 88.13% [DEBUG] mod_unimrcp.c:2564 (ASR-138360) SUCCESS, have result
+5934789:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.833887 88.13% [DEBUG] mod_unimrcp.c:2809 (ASR-138360) result:
+5934790:25db0efe-8059-49f5-88a0-60cbe3721214
+5934791:25db0efe-8059-49f5-88a0-60cbe3721214 <?xml version="1.0"?>
+5934792:25db0efe-8059-49f5-88a0-60cbe3721214 <result>
+5934793:25db0efe-8059-49f5-88a0-60cbe3721214 <interpretation confidence="99" index="0">
+5934794:25db0efe-8059-49f5-88a0-60cbe3721214 <session_id>25db0efe-8059-49f5-88a0-60cbe3721214</session_id>
+5934795:25db0efe-8059-49f5-88a0-60cbe3721214 <trace_id>c939d77b-db7a-4a77-86d6-68c16e6ebae7</trace_id>
+5934796:25db0efe-8059-49f5-88a0-60cbe3721214 <vad_end_time>1749436935.821835</vad_end_time>
+5934797:25db0efe-8059-49f5-88a0-60cbe3721214 <instance>请问颐和园的</instance>
+5934798:25db0efe-8059-49f5-88a0-60cbe3721214 <input mode="speech">请问颐和园的</input>
+5934799:25db0efe-8059-49f5-88a0-60cbe3721214 </interpretation>
+5934800:25db0efe-8059-49f5-88a0-60cbe3721214 </result>
+5934801:25db0efe-8059-49f5-88a0-60cbe3721214
+5934803:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.853894 88.13% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=2] detect_speech(resume)
+5934804:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=2] sofia/external/sipp6156@192.168.109.37:5060 detect_speech(resume)
+5934805:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.853894 88.13% [DEBUG] mod_unimrcp.c:2883 (ASR-138360) (vendor-specific value) engine: Xunfei
+5934806:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.853894 88.13% [DEBUG] mod_unimrcp.c:2887 (ASR-138360) creating vendor specific pair array
+5934807:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.853894 88.13% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "Speech-Language": "en"
+5934808:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.853894 88.13% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "start-input-timers": "true"
+5934809:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.853894 88.13% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "no-input-timeout": "10000"
+5934810:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:15.853894 88.13% [DEBUG] mod_unimrcp.c:2883 (ASR-138360) (vendor-specific value) sessionId: 25db0efe-8059-49f5-88a0-60cbe3721214
+5934827:Vendor-Specific-Parameters: engine=Xunfei;sessionId=25db0efe-8059-49f5-88a0-60cbe3721214
+5935448:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.553920 88.27% [DEBUG] mod_unimrcp.c:3642 (ASR-138360) RECOGNIZE IN PROGRESS
+5935449:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.553920 88.27% [DEBUG] mod_unimrcp.c:1589 (ASR-138360) READY ==> PROCESSING
+5935455:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.553920 88.27% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=2] break()
+5935458:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=2] sofia/external/sipp6156@192.168.109.37:5060 break()
+5935475:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.553920 88.27% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=2] speak(unimrcp|test|{traceId=c939d77b-db7a-4a77-86d6-68c16e6ebae7,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=25db0efe-8059-49f5-88a0-60cbe3721214,vadEndTime=1749436935.821835}十分抱歉，小颐还不太明白，您可以试着换个问法。)
+5935477:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=2] sofia/external/sipp6156@192.168.109.37:5060 speak(unimrcp|test|{traceId=c939d77b-db7a-4a77-86d6-68c16e6ebae7,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=25db0efe-8059-49f5-88a0-60cbe3721214,vadEndTime=1749436935.821835}十分抱歉，小颐还不太明白，您可以试着换个问法。)
+5935904:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.593894 88.27% [DEBUG] switch_ivr_play_say.c:3108 OPEN TTS unimrcp
+5935907:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.593894 88.27% [DEBUG] switch_ivr_play_say.c:3118 Raw Codec Activated
+5935919:2025-06-09 10:42:17.593894 88.27% [DEBUG] mod_unimrcp.c:1470 (TTS-138367) param = sessionId, val = 25db0efe-8059-49f5-88a0-60cbe3721214
+5935934:2025-06-09 10:42:17.593894 88.27% [DEBUG] mod_unimrcp.c:1212 (TTS-138367) (vendor-specific value) sessionId: 25db0efe-8059-49f5-88a0-60cbe3721214
+5935996:Vendor-Specific-Parameters: engine=Xunfei;traceId=c939d77b-db7a-4a77-86d6-68c16e6ebae7;vadEndTime=1749436935.821835;volume=50;speed=55;voiceId=x4_lingxiaoying_en;pitch=50;sessionId=25db0efe-8059-49f5-88a0-60cbe3721214
+5936073:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.593894 88.27% [DEBUG] switch_ivr_play_say.c:2826 Speaking text: {traceId=c939d77b-db7a-4a77-86d6-68c16e6ebae7,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=25db0efe-8059-49f5-88a0-60cbe3721214,vadEndTime=1749436935.821835}十分抱歉，小颐还不太明白，您可以试着换个问法。
+5936077:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.593894 88.27% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=3] detect_speech(resume)
+5936079:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=3] sofia/external/sipp6156@192.168.109.37:5060 detect_speech(resume)
+5936085:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.593894 88.27% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=3] detect_speech(pause)
+5936087:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=3] sofia/external/sipp6156@192.168.109.37:5060 detect_speech(pause)
+5936090:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.593894 88.27% [DEBUG] mod_unimrcp.c:1400 (ASR-138360) Stopping RECOGNIZER
+5936167:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.613928 88.27% [DEBUG] mod_unimrcp.c:3667 (ASR-138360) RECOGNIZE STOPPED
+5936168:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.613928 88.27% [DEBUG] mod_unimrcp.c:1589 (ASR-138360) PROCESSING ==> READY
+5936172:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:17.613928 88.27% [DEBUG] mod_unimrcp.c:1422 (ASR-138360) RECOGNIZER stopped
+5937264:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.013895 89.37% [DEBUG] switch_ivr_play_say.c:2990 done speaking text
+5937330:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=2] detect_speech(resume)
+5937331:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=2] sofia/external/sipp6156@192.168.109.37:5060 detect_speech(resume)
+5937332:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] mod_unimrcp.c:2883 (ASR-138360) (vendor-specific value) engine: Xunfei
+5937333:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] mod_unimrcp.c:2887 (ASR-138360) creating vendor specific pair array
+5937334:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "Speech-Language": "en"
+5937335:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "start-input-timers": "true"
+5937336:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] mod_unimrcp.c:2871 (ASR-138360) "no-input-timeout": "10000"
+5937337:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] mod_unimrcp.c:2883 (ASR-138360) (vendor-specific value) sessionId: 25db0efe-8059-49f5-88a0-60cbe3721214
+5937354:Vendor-Specific-Parameters: engine=Xunfei;sessionId=25db0efe-8059-49f5-88a0-60cbe3721214
+5937370:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] mod_unimrcp.c:3642 (ASR-138360) RECOGNIZE IN PROGRESS
+5937371:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] mod_unimrcp.c:1589 (ASR-138360) READY ==> PROCESSING
+5937373:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] switch_ivr.c:632 sofia/external/sipp6156@192.168.109.37:5060 Command Execute [depth=2] detect_speech(param start-input-timers true)
+5937375:25db0efe-8059-49f5-88a0-60cbe3721214 EXECUTE [depth=2] sofia/external/sipp6156@192.168.109.37:5060 detect_speech(param start-input-timers true)
+5937376:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:42:23.053937 89.37% [DEBUG] mod_unimrcp.c:1470 (ASR-138360) param = start-input-timers, val = true
+5967804:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.773896 92.13% [NOTICE] switch_core_media.c:2832 Hangup sofia/external/sipp6156@192.168.109.37:5060 [CS_EXECUTE] [MEDIA_TIMEOUT]
+5967805:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.773896 92.13% [DEBUG] mod_unimrcp.c:1400 (ASR-138360) Stopping RECOGNIZER
+5967832:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] mod_unimrcp.c:3667 (ASR-138360) RECOGNIZE STOPPED
+5967833:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] mod_unimrcp.c:1589 (ASR-138360) PROCESSING ==> READY
+5967835:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] mod_unimrcp.c:1422 (ASR-138360) RECOGNIZER stopped
+5967836:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_session.c:2979 sofia/external/sipp6156@192.168.109.37:5060 skip receive message [APPLICATION_EXEC_COMPLETE] (channel is hungup already)
+5967837:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_ivr.c:679 sofia/external/sipp6156@192.168.109.37:5060 skip receive message [AUDIO_SYNC] (channel is hungup already)
+5967838:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_session.c:2979 sofia/external/sipp6156@192.168.109.37:5060 skip receive message [APPLICATION_EXEC_COMPLETE] (channel is hungup already)
+5967839:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:647 (sofia/external/sipp6156@192.168.109.37:5060) State EXECUTE going to sleep
+5967840:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:581 (sofia/external/sipp6156@192.168.109.37:5060) Running State Change CS_HANGUP (Cur 6 Tot 48786)
+5967841:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_ivr_async.c:1597 Stop recording file /tmp/servicePool_test_appId/robot/2025-06-09/25db0efe-8059-49f5-88a0-60cbe3721214.wav
+5967842:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_ivr_async.c:1678 Channel is hung up
+5967844:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_media_bug.c:1326 Removing BUG from sofia/external/sipp6156@192.168.109.37:5060
+5967846:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] mod_unimrcp.c:931 (ASR-138360) Waiting for MRCP session to terminate
+5967887:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] mod_unimrcp.c:1840 (ASR-138360) Destroying MRCP session
+5967889:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] mod_unimrcp.c:1589 (ASR-138360) READY ==> CLOSED
+5967891:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] mod_unimrcp.c:856 (ASR-138360) audio queue destroyed
+5967892:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_media_bug.c:1326 Removing BUG from sofia/external/sipp6156@192.168.109.37:5060
+5967893:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:844 (sofia/external/sipp6156@192.168.109.37:5060) Callstate Change ACTIVE -> HANGUP
+5967894:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:846 (sofia/external/sipp6156@192.168.109.37:5060) State HANGUP
+5967895:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] mod_sofia.c:469 Channel sofia/external/sipp6156@192.168.109.37:5060 hanging up, cause: MEDIA_TIMEOUT
+5967896:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] mod_sofia.c:523 Sending BYE to sofia/external/sipp6156@192.168.109.37:5060
+5967897:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:59 sofia/external/sipp6156@192.168.109.37:5060 Standard HANGUP, cause: MEDIA_TIMEOUT
+5967898:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:846 (sofia/external/sipp6156@192.168.109.37:5060) State HANGUP going to sleep
+5967899:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:616 (sofia/external/sipp6156@192.168.109.37:5060) State Change CS_HANGUP -> CS_REPORTING
+5967900:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:581 (sofia/external/sipp6156@192.168.109.37:5060) Running State Change CS_REPORTING (Cur 6 Tot 48786)
+5967901:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:932 (sofia/external/sipp6156@192.168.109.37:5060) State REPORTING
+5967902:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:168 sofia/external/sipp6156@192.168.109.37:5060 Standard REPORTING, cause: MEDIA_TIMEOUT
+5967903:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:932 (sofia/external/sipp6156@192.168.109.37:5060) State REPORTING going to sleep
+5967904:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:607 (sofia/external/sipp6156@192.168.109.37:5060) State Change CS_REPORTING -> CS_DESTROY
+5967905:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_session.c:1744 Session 48784 (sofia/external/sipp6156@192.168.109.37:5060) Locked, Waiting on external entities
+5967906:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [NOTICE] switch_core_session.c:1762 Session 48784 (sofia/external/sipp6156@192.168.109.37:5060) Ended
+5967907:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [NOTICE] switch_core_session.c:1766 Close Channel sofia/external/sipp6156@192.168.109.37:5060 [CS_DESTROY]
+5967908:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:735 (sofia/external/sipp6156@192.168.109.37:5060) Running State Change CS_DESTROY (Cur 5 Tot 48786)
+5967909:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:745 (sofia/external/sipp6156@192.168.109.37:5060) State DESTROY
+5967910:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] mod_sofia.c:380 sofia/external/sipp6156@192.168.109.37:5060 SOFIA DESTROY
+5967911:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:175 sofia/external/sipp6156@192.168.109.37:5060 Standard DESTROY
+5967912:25db0efe-8059-49f5-88a0-60cbe3721214 2025-06-09 10:47:16.793897 92.13% [DEBUG] switch_core_state_machine.c:745 (sofia/external/sipp6156@192.168.109.37:5060) State DESTROY going to sleep
+
+
+
+
+
+
+/tmp/servicePool_test_appId/robot/2025-0
+
+fs-ai  | 2025-06-06 16:19:09.674087 100.00% [NOTICE] switch_channel.c:1142 New Channel sofia/external/1009@172.30.207.30:15080 [b0c530d1-d777-417e-890d-0a1d30356f98]
+fs-ai  | 2025-06-06 16:19:09.674087 100.00% [INFO] sofia.c:10459 sofia/external/1009@172.30.207.30:15080 receiving invite from 10.41.1.225:59586 version: 1.10.11-release  64bit call-id: ODBmZWU2MzdmZDExZTMzZTgwOGQ2YjI0ZjA1MTgwNDg.
+fs-ai  | 2025-06-06 16:19:09.674087 100.00% [INFO] mod_dialplan_xml.c:639 Processing 1009 <1009>->7001 in context public
+fs-ai  | EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 lua(switch.lua)
+fs-ai  | 2025-06-06 16:19:09.674087 100.00% [INFO] switch_cpp.cpp:1466 -----callerNumber=1009-----calledNumber=7001
+fs-ai  | 2025-06-06 16:19:09.674087 100.00% [INFO] switch_cpp.cpp:1466 xxx request is {"tenantId":1,"calleeNumber":"7001"}2025-06-06 16:19:09.674087 100.00% [INFO] switch_cpp.cpp:1466 xxx request is {"tenantId":1,"calleeNumber":"7001"} response is {"msg":"操作成功","code":200,"data":0}
+fs-ai  | 2025-06-06 16:19:09.674087 100.00% [INFO] switch_cpp.cpp:1466 --------data =02025-06-06 16:19:09.674087 100.00% [INFO] switch_cpp.cpp:1466 xxx request is {"calleeNumber":"20000001"}2025-06-06 16:19:09.674087 100.00% [INFO] switch_cpp.cpp:1466 xxx request is {"calleeNumber":"20000001"} response is {"msg":"操作成功","code":200,"data":0}
+fs-ai  | 2025-06-06 16:19:09.674087 100.00% [INFO] switch_cpp.cpp:1466 --------data1 =0EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 transfer(50000001 XML public)
+fs-ai  | 2025-06-06 16:19:09.674087 100.00% [NOTICE] switch_ivr.c:2303 Transfer sofia/external/1009@172.30.207.30:15080 to XML[50000001@public]
+fs-ai  | 2025-06-06 16:19:09.674087 100.00% [INFO] mod_dialplan_xml.c:639 Processing 1009 <1009>->50000001 in context public
+fs-ai  | EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 set(sip_h_X-cc_tenant_id=1)
+fs-ai  | EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 set(sip_h_X-cc_work_mode=robot)
+fs-ai  | EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 socket(172.30.207.31:13002 async full)
+fs-ai  | 2025-06-06 16:19:09.674087 100.00% [NOTICE] mod_event_socket.c:452 Trying host: 172.30.207.31:13002
+fs-ai  | EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 answer()
+fs-ai  | 2025-06-06 16:19:09.714078 100.00% [NOTICE] sofia_media.c:90 Pre-Answer sofia/external/1009@172.30.207.30:15080!
+fs-ai  | 2025-06-06 16:19:09.714078 100.00% [NOTICE] mod_dptools.c:1406 Channel [sofia/external/1009@172.30.207.30:15080] has been answered
+fs-ai  | EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 set(tts_engine=unimrcp)
+fs-ai  | EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 set(RECORD_STEREO=true)
+fs-ai  | EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 set(RECORD_APPEND=false)
+fs-ai  | EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 set(record_waste_resources=true)
+fs-ai  | EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 record_session(/tmp/servicePool_test_appId/robot/2025-06-06/b0c530d1-d777-417e-890d-0a1d30356f98.wav)
+fs-ai  | EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 break()
+fs-ai  | EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 play_and_detect_speech(silence_stream://-1 detect:unimrcp {start-input-timers=false,no-input-timeout=10000,engine=Xunfei,sessionId=b0c530d1-d777-417e-890d-0a1d30356f98,Speech-Language=en}builtin:grammar/)
+fs-ai  | 2025-06-06 16:19:09.774078 100.00% [INFO] mod_unimrcp.c:3139 asr_handle: name = unimrcp, codec = (null), rate = 8000, grammar = (null), param = (null)
+fs-ai  | 2025-06-06 16:19:09.774078 100.00% [INFO] mod_unimrcp.c:3141 codec = L16, rate = 8000, dest = (null)
+fs-ai  | 2025-06-06 16:19:09.774078 100.00% [NOTICE] mrcp_application.c:117 (ASR-352) Create MRCP Handle 0x7ffae0010348 [unimrcpserver-mrcp-v2]
+fs-ai  | 2025-06-06 16:19:09.774078 100.00% [INFO] mrcp_client_session.c:131 (ASR-352) Create Channel ASR-352 <new>
+fs-ai  | 2025-06-06 16:19:09.774078 100.00% [INFO] mrcp_client_session.c:385 (ASR-352) Receive App Request ASR-352 <new> [2]
+fs-ai  | 2025-06-06 16:19:09.774078 100.00% [INFO] mrcp_client.c:697 (ASR-352) Add MRCP Handle ASR-352 <new>
+fs-ai  | 2025-06-06 16:19:09.774078 100.00% [NOTICE] mrcp_client_session.c:717 (ASR-352) Add Control Channel ASR-352 <new@speechrecog>
+fs-ai  | 2025-06-06 16:19:09.774078 100.00% [INFO] mrcp_client_session.c:409 (ASR-352) Send Offer ASR-352 <new> [c:1 a:1 v:0] to 172.30.207.30:6060
+fs-ai  | 2025-06-06 16:19:09.774078 100.00% [INFO] mrcp_sofiasip_client_agent.c:359 (ASR-352) Local SDP ASR-352 <new>
+fs-ai  | v=0
+fs-ai  | o=FreeSWITCH 0 0 IN IP4 127.0.0.1
+fs-ai  | s=-
+fs-ai  | c=IN IP4 127.0.0.1
+fs-ai  | t=0 0
+fs-ai  | m=application 9 TCP/MRCPv2 1
+fs-ai  | a=setup:active
+fs-ai  | a=connection:new
+fs-ai  | a=resource:speechrecog
+fs-ai  | a=cmid:1
+fs-ai  | m=audio 3704 RTP/AVP 0 8 101
+fs-ai  | a=rtpmap:0 PCMU/8000
+fs-ai  | a=rtpmap:8 PCMA/8000
+fs-ai  | a=rtpmap:101 telephone-event/8000
+fs-ai  | a=fmtp:101 0-15
+fs-ai  | a=sendonly
+fs-ai  | a=mid:1
+
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 lua(switch.lua)
+2025-06-06 13:04:31.674083 99.97% [INFO] switch_cpp.cpp:1466 -----callerNumber=1009-----calledNumber=7001
+2025-06-06 13:04:31.674083 99.97% [INFO] switch_cpp.cpp:1466 xxx request is {"tenantId":1,"calleeNumber":"7001"}2025-06-06 13:04:31.674083 99.97% [INFO] switch_cpp.cpp:1466 xxx request is {"tenantId":1,"calleeNumber":"7001"} response is {"msg":"当~M伾\彈~P佊~_","code":200,"data":0}
+2025-06-06 13:04:31.674083 99.97% [INFO] switch_cpp.cpp:1466 --------data =02025-06-06 13:04:31.674083 99.97% [INFO] switch_cpp.cpp:1466 xxx request is {"calleeNumber":"20000001"}2025-06-06 13:04:31.674083 99.97% [INFO] switch_cpp.cpp:1466 xxx request is {"calleeNumber":"20000001"} response is {"msg":"当~M伾\\
+彈~P佊~_","code":200,"data":0}
+2025-06-06 13:04:31.674083 99.97% [INFO] switch_cpp.cpp:1466 --------data1 =0ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_cpp.cpp:774 CoreSession::setVariable(destination_number, 50000001)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 transfer(50000001 XML public)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_ivr.c:2296 (sofia/external/1009@172.30.207.30:15080) State Change CS_EXECUTE -> CS_ROUTING
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [NOTICE] switch_ivr.c:2303 Transfer sofia/external/1009@172.30.207.30:15080 to XML[50000001@public]
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_cpp.cpp:1210 sofia/external/1009@172.30.207.30:15080 destroy/unlink session from object
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_core_state_machine.c:647 (sofia/external/1009@172.30.207.30:15080) State EXECUTE going to sleep
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_core_state_machine.c:581 (sofia/external/1009@172.30.207.30:15080) Running State Change CS_ROUTING (Cur 2 Tot 221)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_core_state_machine.c:640 (sofia/external/1009@172.30.207.30:15080) State ROUTING
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] mod_sofia.c:149 Call appears to be already acknowledged
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 Regex (FAIL) [qingxu] destination_number(50000001) =~ /^(7010)$/ break=on-false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 parsing [public->seats] continue=false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 Regex (FAIL) [seats] destination_number(50000001) =~ /^(2\d{7})$/ break=on-false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 parsing [public->seats3] continue=false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 Regex (FAIL) [seats3] destination_number(50000001) =~ /^(3\d{7})$/ break=on-false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 parsing [public->ivr] continue=false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 Regex (FAIL) [ivr] destination_number(50000001) =~ /^(4\d{7})$/ break=on-false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 parsing [public->bot] continue=false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 Regex (PASS) [bot] destination_number(50000001) =~ /^(5\d{7})$/ break=on-false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 Action set(sip_h_X-cc_tenant_id=1)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 Action set(sip_h_X-cc_work_mode=robot)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e Dialplan: sofia/external/1009@172.30.207.30:15080 Action socket(172.30.207.31:13002 async full)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_core_state_machine.c:281 (sofia/external/1009@172.30.207.30:15080) State Change CS_ROUTING -> CS_EXECUTE
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_core_state_machine.c:640 (sofia/external/1009@172.30.207.30:15080) State ROUTING going to sleep
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_core_state_machine.c:581 (sofia/external/1009@172.30.207.30:15080) Running State Change CS_EXECUTE (Cur 2 Tot 221)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_core_state_machine.c:647 (sofia/external/1009@172.30.207.30:15080) State EXECUTE
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] mod_sofia.c:213 sofia/external/1009@172.30.207.30:15080 SOFIA EXECUTE
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] switch_core_state_machine.c:323 sofia/external/1009@172.30.207.30:15080 Standard EXECUTE
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 set(sip_h_X-cc_tenant_id=1)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] mod_dptools.c:1671 SET sofia/external/1009@172.30.207.30:15080 [sip_h_X-cc_tenant_id]=[1]
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 set(sip_h_X-cc_work_mode=robot)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [DEBUG] mod_dptools.c:1671 SET sofia/external/1009@172.30.207.30:15080 [sip_h_X-cc_work_mode]=[robot]
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 socket(172.30.207.31:13002 async full)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.674083 99.97% [NOTICE] mod_event_socket.c:452 Trying host: 172.30.207.31:13002
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.694078 99.97% [DEBUG] switch_ivr.c:632 sofia/external/1009@172.30.207.30:15080 Command Execute [depth=0] answer()
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e EXECUTE [depth=0] sofia/external/1009@172.30.207.30:15080 answer()
+
+
+
+
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [DEBUG] switch_ivr.c:632 sofia/external/1009@172.30.207.30:15080 Command Execute [depth=1] break()
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 break()
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [DEBUG] switch_ivr_async.c:1778 No silence detection configured; assuming start of speech
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [DEBUG] switch_ivr.c:632 sofia/external/1009@172.30.207.30:15080 Command Execute [depth=1] play_and_detect_speech(silence_stream://-1 detect:unimrcp {start-input-timers=false,no-input-timeout=10000,engine=Xunfei,sessionId=ea00d9db-72d1-4ae6-a73b-dd302b56d80e,Speech-Language=en}builtin:grammar/)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 play_and_detect_speech(silence_stream://-1 detect:unimrcp {start-input-timers=false,no-input-timeout=10000,engine=Xunfei,sessionId=ea00d9db-72d1-4ae6-a73b-dd302b56d80e,Speech-Language=en}builtin:grammar/)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [INFO] mod_unimrcp.c:3139 asr_handle: name = unimrcp, codec = (null), rate = 8000, grammar = (null), param = (null)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [INFO] mod_unimrcp.c:3141 codec = L16, rate = 8000, dest = (null)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [DEBUG] mod_unimrcp.c:688 (ASR-304) audio queue created
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:36.754081 99.97% [WARNING] mod_unimrcp.c:1063 (ASR-304) MRCP session has not opened after 5000 ms
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1905 (ASR-304) RECOGNIZER channel is ready, codec = LPCM, sample rate = 8000
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1589 (ASR-304) CLOSED ==> READY
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1067 (ASR-304) channel is ready
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = start-input-timers, val = true
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] switch_core_media_bug.c:976 Attaching BUG to sofia/external/1009@172.30.207.30:15080
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] sofia.c:7493 Channel sofia/external/1009@172.30.207.30:15080 entering state [ready][200]
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [NOTICE] sofia.c:1065 Hangup sofia/external/1009@172.30.207.30:15080 [CS_EXECUTE] [NORMAL_CLEARING]
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = start-input-timers, val = false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = no-input-timeout, val = 10000
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = engine, val = Xunfei
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = sessionId, val = ea00d9db-72d1-4ae6-a73b-dd302b56d80e
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = Speech-Language, val = en
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:3206 (ASR-304) grammar = builtin:grammar/, name =
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:3223 (ASR-304) Grammar is URI
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:3295 (ASR-304) grammar is text/uri-list
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:2366 (ASR-304) Loading grammar e4e577fd-05b3-4d04-ba2d-9dd357388b01, data = builtin:grammar/
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:2531 (ASR-304) Disabling all grammars
+
+
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [DEBUG] switch_ivr.c:632 sofia/external/1009@172.30.207.30:15080 Command Execute [depth=1] break()
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 break()
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [DEBUG] switch_ivr_async.c:1778 No silence detection configured; assuming start of speech
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [DEBUG] switch_ivr.c:632 sofia/external/1009@172.30.207.30:15080 Command Execute [depth=1] play_and_detect_speech(silence_stream://-1 detect:unimrcp {start-input-timers=false,no-input-timeout=10000,engine=Xunfei,sessionId=ea00d9db-72d1-4ae6-a73b-dd302b56d80e,Speech-Language=en}builtin:grammar/)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e EXECUTE [depth=1] sofia/external/1009@172.30.207.30:15080 play_and_detect_speech(silence_stream://-1 detect:unimrcp {start-input-timers=false,no-input-timeout=10000,engine=Xunfei,sessionId=ea00d9db-72d1-4ae6-a73b-dd302b56d80e,Speech-Language=en}builtin:grammar/)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [INFO] mod_unimrcp.c:3139 asr_handle: name = unimrcp, codec = (null), rate = 8000, grammar = (null), param = (null)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [INFO] mod_unimrcp.c:3141 codec = L16, rate = 8000, dest = (null)
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:31.754074 99.97% [DEBUG] mod_unimrcp.c:688 (ASR-304) audio queue created
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:04:36.754081 99.97% [WARNING] mod_unimrcp.c:1063 (ASR-304) MRCP session has not opened after 5000 ms
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1905 (ASR-304) RECOGNIZER channel is ready, codec = LPCM, sample rate = 8000
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1589 (ASR-304) CLOSED ==> READY
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1067 (ASR-304) channel is ready
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = start-input-timers, val = true
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] switch_core_media_bug.c:976 Attaching BUG to sofia/external/1009@172.30.207.30:15080
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] sofia.c:7493 Channel sofia/external/1009@172.30.207.30:15080 entering state [ready][200]
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [NOTICE] sofia.c:1065 Hangup sofia/external/1009@172.30.207.30:15080 [CS_EXECUTE] [NORMAL_CLEARING]
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = start-input-timers, val = false
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = no-input-timeout, val = 10000
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = engine, val = Xunfei
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = sessionId, val = ea00d9db-72d1-4ae6-a73b-dd302b56d80e
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:1470 (ASR-304) param = Speech-Language, val = en
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:3206 (ASR-304) grammar = builtin:grammar/, name =
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:3223 (ASR-304) Grammar is URI
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:3295 (ASR-304) grammar is text/uri-list
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:2366 (ASR-304) Loading grammar e4e577fd-05b3-4d04-ba2d-9dd357388b01, data = builtin:grammar/
+ea00d9db-72d1-4ae6-a73b-dd302b56d80e 2025-06-06 13:09:29.954082 100.00% [DEBUG] mod_unimrcp.c:2531 (ASR-304) Disabling all grammars
+
+
+
+
+
+[root@localhost freeswitch]# docker compose logs -f  fs-ai |grep "MRCP session has not opened after"
+WARN[0000] /home/hoicee-new/freeswitch/docker-compose.yml: `version` is obsolete
+fs-ai  | 2025-06-03 16:50:12.134089 99.93% [WARNING] mod_unimrcp.c:1063 (ASR-15) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 13:04:26.634082 99.87% [WARNING] mod_unimrcp.c:1063 (ASR-303) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 13:04:36.754081 99.97% [WARNING] mod_unimrcp.c:1063 (ASR-304) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 13:04:53.134083 100.00% [WARNING] mod_unimrcp.c:1063 (ASR-305) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 16:12:43.994085 98.93% [WARNING] mod_unimrcp.c:1063 (ASR-349) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 16:14:32.294085 100.00% [WARNING] mod_unimrcp.c:1063 (ASR-350) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 16:14:43.914083 100.00% [WARNING] mod_unimrcp.c:1063 (ASR-351) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 16:34:10.934079 100.00% [WARNING] mod_unimrcp.c:1063 (ASR-386) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 16:34:24.074087 100.00% [WARNING] mod_unimrcp.c:1063 (ASR-387) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 16:34:40.234080 100.00% [WARNING] mod_unimrcp.c:1063 (ASR-388) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 16:35:17.314080 99.97% [WARNING] mod_unimrcp.c:1063 (ASR-389) MRCP session has not opened after 5000 ms
+fs-ai  | 2025-06-06 16:36:41.554080 100.00% [WARNING] mod_unimrcp.c:1063 (ASR-390) MRCP session has not opened after 5000 ms
+
+
+
+unimrcp  | 2025-06-05 17:30:16:953508 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <c176aff963204cfa@speechsynth> [1]
+unimrcp  | 2025-06-05 17:30:16:973125 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <709f061e38104e4f@speechsynth> [1]
+unimrcp  | 2025-06-06 13:16:55:554419 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <44102965086543f5@speechrecog> [1]
+unimrcp  | 2025-06-06 13:16:55:773521 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <a8b8f30368614425@speechsynth> [1]
+unimrcp  | 2025-06-06 13:17:10:973478 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <dd1f9dc0556b4b1b@speechsynth> [1]
+unimrcp  | 2025-06-06 13:17:35:593474 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <d133be98051b4c8b@speechsynth> [1]
+unimrcp  | 2025-06-06 13:18:18:933398 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <63206f5bf6664c53@speechrecog> [1]
+unimrcp  | 2025-06-06 13:18:19:053250 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <d2bf72ba4cc946e5@speechsynth> [1]
+unimrcp  | 2025-06-06 13:18:30:793531 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <42374f2559ac4f71@speechsynth> [1]
+unimrcp  | 2025-06-06 13:18:49:203538 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <b6c569273a3a4ef4@speechrecog> [1]
+unimrcp  | 2025-06-06 13:18:49:303285 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <6cc226fb936d4cb4@speechsynth> [1]
+unimrcp  | 2025-06-06 13:19:00:463478 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <af781d25ab4b43fb@speechsynth> [1]
+unimrcp  | 2025-06-06 13:19:18:273340 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <5185eeace42f4f41@speechrecog> [1]
+unimrcp  | 2025-06-06 13:19:18:373387 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <b7cfc9ffc4ab4d23@speechsynth> [1]
+unimrcp  | 2025-06-06 13:19:27:953479 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <bbf2d908f8ee4af4@speechsynth> [1]
+unimrcp  | 2025-06-06 13:19:50:263386 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <a66f401ad9af4927@speechrecog> [1]
+unimrcp  | 2025-06-06 13:19:50:383221 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <2e346d5044714670@speechsynth> [1]
+unimrcp  | 2025-06-06 13:20:03:163537 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <e103c37f03e84d4c@speechsynth> [1]
+unimrcp  | 2025-06-06 13:20:21:053456 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <48259681a9a74385@speechrecog> [1]
+unimrcp  | 2025-06-06 13:20:21:153404 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <8cd51f63ade94ed2@speechsynth> [1]
+unimrcp  | 2025-06-06 13:20:31:233506 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <76bfd5454b1f4967@speechsynth> [1]
+unimrcp  | 2025-06-06 13:20:50:913453 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <5b016fbf73ce46ef@speechrecog> [1]
+unimrcp  | 2025-06-06 13:20:51:013206 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <b18c833e5ca24337@speechsynth> [1]
+unimrcp  | 2025-06-06 13:21:00:693673 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <f5a12a2fc47b498e@speechsynth> [1]
+unimrcp  | 2025-06-06 13:21:29:013631 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <b158d88faabb49c9@speechrecog> [1]
+unimrcp  | 2025-06-06 13:21:29:133131 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <ac3a1df58cbd4395@speechsynth> [1]
+unimrcp  | 2025-06-06 13:21:40:073510 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <16fd971c4b2449a0@speechsynth> [1]
+unimrcp  | 2025-06-06 13:22:02:493352 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <4afaf72ec7494bb5@speechrecog> [1]
+unimrcp  | 2025-06-06 13:22:12:633430 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <b92c6964800f469b@speechrecog> [2]
+unimrcp  | 2025-06-06 13:22:28:993543 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <4654a8040e8d4aa6@speechrecog> [3]
+unimrcp  | 2025-06-06 13:48:47:283829 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <2b8317580d2942dc@speechrecog> [1]
+unimrcp  | 2025-06-06 13:48:47:423343 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <d145d907187f4d26@speechsynth> [1]
+unimrcp  | 2025-06-06 13:48:59:683460 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <6a8a4e945f7449b4@speechsynth> [1]
+unimrcp  | 2025-06-06 13:49:23:483426 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <e8071913a2d24cbf@speechsynth> [1]
+unimrcp  | 2025-06-06 14:15:20:763976 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <f6a802ae474c4773@speechrecog> [1]
+unimrcp  | 2025-06-06 14:15:20:883409 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <b5668da1c55f4468@speechsynth> [1]
+unimrcp  | 2025-06-06 14:15:28:743715 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <6dd41cfdc0f842a3@speechsynth> [1]
+unimrcp  | 2025-06-06 14:15:32:783674 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <580399760c7d41d0@speechsynth> [1]
+unimrcp  | 2025-06-06 14:17:00:563486 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <4004918911b74ff4@speechsynth> [1]
+unimrcp  | 2025-06-06 14:18:03:523673 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <9295816161dc485d@speechsynth> [1]
+unimrcp  | 2025-06-06 14:41:53:383413 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <3c6adfcf43dc4493@speechrecog> [1]
+unimrcp  | 2025-06-06 14:41:53:503241 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <83242309e3f84ee6@speechsynth> [1]
+unimrcp  | 2025-06-06 14:42:10:303419 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <fd6a9d871d554ee6@speechsynth> [1]
+unimrcp  | 2025-06-06 14:42:44:973358 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <2fe547f262c94c1f@speechrecog> [1]
+unimrcp  | 2025-06-06 14:42:45:093354 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <8a334730920f400a@speechsynth> [1]
+unimrcp  | 2025-06-06 14:42:58:273408 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <f2495f3b705d4277@speechsynth> [1]
+unimrcp  | 2025-06-06 14:43:22:583424 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <e08bd78c85704282@speechrecog> [1]
+unimrcp  | 2025-06-06 14:43:22:683311 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <9344ecfe7628490a@speechsynth> [1]
+unimrcp  | 2025-06-06 14:43:36:463466 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <c3644b5b0a654e70@speechsynth> [1]
+unimrcp  | 2025-06-06 14:44:07:143293 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <0db6d2f570244272@speechrecog> [1]
+unimrcp  | 2025-06-06 14:44:07:243085 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <204a82a5c4db43c2@speechsynth> [1]
+unimrcp  | 2025-06-06 14:44:19:803569 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <ef91841e20124904@speechsynth> [1]
+unimrcp  | 2025-06-06 14:44:47:173463 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <e4fab16e0ed74677@speechrecog> [1]
+unimrcp  | 2025-06-06 14:44:47:273002 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <6377bdcf0a47430d@speechsynth> [1]
+unimrcp  | 2025-06-06 14:44:59:453574 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <afbf60a8d90d40ad@speechsynth> [1]
+unimrcp  | 2025-06-06 14:52:59:373647 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <d919b5d0af944045@speechrecog> [1]
+unimrcp  | 2025-06-06 14:52:59:483419 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <09ddbcbd246c4501@speechsynth> [1]
+unimrcp  | 2025-06-06 14:53:10:903747 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <075e5ff720d14f1b@speechsynth> [1]
+unimrcp  | 2025-06-06 15:19:09:414202 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <36c7ae2c3d3447ab@speechrecog> [1]
+unimrcp  | 2025-06-06 15:19:09:513105 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <1fea88b336014c50@speechsynth> [1]
+unimrcp  | 2025-06-06 15:19:21:613506 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <a19154144bea4aae@speechsynth> [1]
+unimrcp  | 2025-06-06 15:19:37:993642 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <feafecdd6ebe45b6@speechrecog> [1]
+unimrcp  | 2025-06-06 15:19:38:083854 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <922e2d6f673f40c5@speechsynth> [1]
+unimrcp  | 2025-06-06 15:19:51:223406 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <80268e1baae94dab@speechsynth> [1]
+unimrcp  | 2025-06-06 15:20:06:433387 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <0451ef9866c04388@speechrecog> [1]
+unimrcp  | 2025-06-06 15:20:06:532969 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <0ca9ed4814cd45e2@speechsynth> [1]
+unimrcp  | 2025-06-06 15:20:18:555831 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <1d326d06c70e4532@speechsynth> [1]
+unimrcp  | 2025-06-06 15:23:32:343467 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <94ba9cdeacf14c3b@speechrecog> [1]
+unimrcp  | 2025-06-06 15:23:32:433565 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <cd0d4544b0f64782@speechsynth> [1]
+unimrcp  | 2025-06-06 15:23:43:793400 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <d7f2bc8955474eaf@speechsynth> [1]
+unimrcp  | 2025-06-06 16:28:16:024196 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <e30172c4a7a548aa@speechrecog> [1]
+unimrcp  | 2025-06-06 16:28:16:143273 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <1f7adff8312a4659@speechsynth> [1]
+unimrcp  | 2025-06-06 16:28:26:003546 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <bb5199780e744389@speechsynth> [1]
+unimrcp  | 2025-06-06 16:30:19:863812 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <3f7fc6a42c11446e@speechrecog> [1]
+unimrcp  | 2025-06-06 16:32:08:153404 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <341c307e19984e28@speechrecog> [2]
+unimrcp  | 2025-06-06 16:32:19:783463 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <a0fdf9afae694c95@speechrecog> [3]
+unimrcp  | 2025-06-06 16:36:50:633473 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <1715fa3adafe480e@speechrecog> [1]
+unimrcp  | 2025-06-06 16:36:50:733213 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <ce2dc098af654eda@speechsynth> [1]
+unimrcp  | 2025-06-06 16:37:00:013383 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <1dd8cb7192344041@speechsynth> [1]
+unimrcp  | 2025-06-06 16:41:06:963430 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <3660f8dcac8e4663@speechrecog> [1]
+unimrcp  | 2025-06-06 16:41:07:083304 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <cb8539b79a494b36@speechsynth> [1]
+unimrcp  | 2025-06-06 16:41:18:043350 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <ea941c3a58564680@speechsynth> [1]
+unimrcp  | 2025-06-06 16:41:29:263515 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <449df2471e2f4bac@speechrecog> [1]
+unimrcp  | 2025-06-06 16:41:29:363313 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <9331345b64fc4399@speechsynth> [1]
+unimrcp  | 2025-06-06 16:41:40:263557 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <8a05212b15ea43b0@speechsynth> [1]
+unimrcp  | 2025-06-06 16:44:26:093737 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <609a18d9b07140a4@speechrecog> [1]
+unimrcp  | 2025-06-06 16:44:26:213320 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <b48c1457b946463b@speechsynth> [1]
+unimrcp  | 2025-06-06 16:44:37:773388 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <c8cf405b2f1d4260@speechsynth> [1]
+unimrcp  | 2025-06-06 16:45:18:273494 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <2a248db9bb5f47a7@speechrecog> [1]
+unimrcp  | 2025-06-06 16:45:18:373641 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <93caecd3891c4013@speechsynth> [1]
+unimrcp  | 2025-06-06 16:45:28:353422 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <e1763cf403a1459c@speechsynth> [1]
+unimrcp  | 2025-06-06 16:45:57:403349 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <9acf6667a8544d59@speechrecog> [1]
+unimrcp  | 2025-06-06 16:45:57:502966 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <9db605580bb64248@speechsynth> [1]
+unimrcp  | 2025-06-06 16:46:07:463433 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <298d8889b1164a59@speechsynth> [1]
+unimrcp  | 2025-06-06 16:46:47:193448 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <c337fb13bf014c0c@speechrecog> [1]
+unimrcp  | 2025-06-06 16:46:47:293373 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <a41936da83f2444a@speechsynth> [1]
+unimrcp  | 2025-06-06 16:46:57:313709 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <3b347a4aafdb401a@speechsynth> [1]
+unimrcp  | 2025-06-06 16:47:25:413358 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <d41878f3335f4f86@speechrecog> [1]
+unimrcp  | 2025-06-06 16:47:25:513160 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <83a74b9cf4214612@speechsynth> [1]
+unimrcp  | 2025-06-06 16:47:35:393333 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <a056173420614d7a@speechsynth> [1]
+unimrcp  | 2025-06-06 16:48:05:033462 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <29226eae74b94cca@speechrecog> [1]
+unimrcp  | 2025-06-06 16:48:05:133028 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <8c07d42505d84783@speechsynth> [1]
+unimrcp  | 2025-06-06 16:48:16:013522 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <fb0d888d85464ef5@speechsynth> [1]
+unimrcp  | 2025-06-06 16:49:16:503587 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <97b6aaa6c1cd4d0b@speechrecog> [1]
+unimrcp  | 2025-06-06 16:49:16:603406 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <d67eb38567604452@speechsynth> [1]
+unimrcp  | 2025-06-06 16:49:27:303422 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <7578cdce3b214f80@speechsynth> [1]
+unimrcp  | 2025-06-06 16:50:01:763381 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <a4a3e218ce1c409f@speechrecog> [1]
+unimrcp  | 2025-06-06 16:50:01:853613 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <205bda6f810b4c20@speechsynth> [1]
+unimrcp  | 2025-06-06 16:50:14:453382 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <748bf3c3cb1f46f9@speechsynth> [1]
+unimrcp  | 2025-06-06 16:50:22:473415 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <f313189504b84ccd@speechsynth> [1]
+unimrcp  | 2025-06-06 16:51:46:793491 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <cdbbcf353f454d63@speechrecog> [1]
+unimrcp  | 2025-06-06 16:51:59:943357 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <906f6fa0c42349c3@speechrecog> [2]
+unimrcp  | 2025-06-06 16:52:16:103370 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <8216229a5a3b4a48@speechrecog> [3]
+unimrcp  | 2025-06-06 16:52:53:183975 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <46bfd865e7724ea5@speechrecog> [4]
+unimrcp  | 2025-06-06 16:54:17:423412 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <436a9661827f4503@speechrecog> [5]
+unimrcp  | 2025-06-06 17:22:51:394164 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <818fd944076a43a5@speechrecog> [1]
+unimrcp  | 2025-06-06 17:22:51:533686 src/mrcp_server_connection.c:627 140024066807552 [INFO]   Add Pending Control Channel <b51a37c4fed04325@speechsynth> [1]
+^Ccanceled
+
+
+
+
+sip:
+tcp   ESTAB      0      0               192.168.109.37:15080       192.168.40.107:57523 users:(("freeswitch",pid=1035087,fd=28))
+
+esl:
+tcp   ESTAB      0      0               192.168.109.37:38021         192.168.16.3:37062 users:(("freeswitch",pid=1035087,fd=54))
+tcp   ESTAB      0      0               192.168.109.37:38021         192.168.16.2:37648 users:(("freeswitch",pid=1035087,fd=57))
+tcp   ESTAB      0      0               192.168.109.37:38021         192.168.48.2:50186 users:(("freeswitch",pid=1035087,fd=59))
+
+pgsql:
+tcp   ESTAB      0      0               192.168.109.37:46900       192.168.109.88:5432  users:(("freeswitch",pid=1035087,fd=6))
+tcp   ESTAB      0      0               192.168.109.37:46904       192.168.109.88:5432  users:(("freeswitch",pid=1035087,fd=7))
+tcp   ESTAB      0      0               192.168.109.37:47800       192.168.109.88:5432  users:(("freeswitch",pid=1035087,fd=32))
+tcp   ESTAB      0      0               192.168.109.37:47816       192.168.109.88:5432  users:(("freeswitch",pid=1035087,fd=40))
+tcp   ESTAB      0      0               192.168.109.37:51736       192.168.109.88:5432  users:(("freeswitch",pid=1035087,fd=62))
+
+
+
+
+fs restart:
+udp   UNCONN     0      0                      0.0.0.0:1337               0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=45))
+udp   UNCONN     0      0                    127.0.0.1:36090              0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=19))
+udp   UNCONN     0      0               192.168.109.37:15060              0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=36))
+udp   UNCONN     0      0               192.168.109.37:15080              0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=26))
+tcp   LISTEN     0      64              192.168.109.37:5066               0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=38))
+tcp   LISTEN     0      4096            192.168.109.37:8081               0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=43))
+tcp   LISTEN     0      4096            192.168.109.37:8082               0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=46))
+tcp   LISTEN     0      64              192.168.109.37:15060              0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=37))
+tcp   LISTEN     0      64              192.168.109.37:37443              0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=39))
+tcp   LISTEN     0      5                      0.0.0.0:38021              0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=56))
+tcp   LISTEN     0      5               192.168.109.37:22855              0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=4))
+tcp   LISTEN     0      64              192.168.109.37:15080              0.0.0.0:*     users:(("freeswitch",pid=1035087,fd=27))
+tcp   ESTAB      0      0               192.168.109.37:47816       192.168.109.88:5432  users:(("freeswitch",pid=1035087,fd=40))
+tcp   ESTAB      0      0               192.168.109.37:15080       192.168.40.107:57523 users:(("freeswitch",pid=1035087,fd=28))
+tcp   ESTAB      0      0               192.168.109.37:46900       192.168.109.88:5432  users:(("freeswitch",pid=1035087,fd=6))
+tcp   ESTAB      0      0               192.168.109.37:38021         192.168.16.2:37648 users:(("freeswitch",pid=1035087,fd=57))
+tcp   ESTAB      0      0               192.168.109.37:47800       192.168.109.88:5432  users:(("freeswitch",pid=1035087,fd=32))
+tcp   ESTAB      0      0               192.168.109.37:38021         192.168.16.3:37062 users:(("freeswitch",pid=1035087,fd=54))
+tcp   ESTAB      0      0               192.168.109.37:51736       192.168.109.88:5432  users:(("freeswitch",pid=1035087,fd=62))
+tcp   ESTAB      0      0               192.168.109.37:38021         192.168.48.2:50186 users:(("freeswitch",pid=1035087,fd=59))
+tcp   ESTAB      0      0               192.168.109.37:46904       192.168.109.88:5432  users:(("freeswitch",pid=1035087,fd=7))
+tcp   LISTEN     0      4096                     [::1]:8081                  [::]:*     users:(("freeswitch",pid=1035087,fd=42))
+tcp   LISTEN     0      4096                     [::1]:8082                  [::]:*     users:(("freeswitch",pid=1035087,fd=44))
+
+
+
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:51.545862 97.70% [WARNING] mod_unimrcp.c:1063 (ASR-2) MRCP session has not opened after 5000 ms
+
+
+
+
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [NOTICE] switch_channel.c:1142 New Channel sofia/external/1006@192.168.109.37:15080 [1f696e19-6dbd-4481-8a91-4f1f64c560a9]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:581 (sofia/external/1006@192.168.109.37:15080) Running State Change CS_NEW (Cur 3 Tot 3)
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [INFO] sofia.c:10460 sofia/external/1006@192.168.109.37:15080 receiving invite from 192.168.41.51:52370 version: 1.10.12-release git a88d069 2024-08-02 21:02:27Z 64bit call-id: OWU5MDAyYzdjOWY1OTZhMGRkY2Y5YmMwOWVjMjc0MTU.
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] sofia.c:7493 Channel sofia/external/1006@192.168.109.37:15080 entering state [received][100]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] sofia.c:7503 Remote SDP:
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 v=0^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 o=- 4 2 IN IP4 192.168.41.51^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 s=CounterPath eyeBeam 1.5^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 c=IN IP4 192.168.41.51^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 t=0 0^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 m=audio 3626 RTP/AVP 0 8 18 101^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 a=rtpmap:18 G729/8000^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 a=fmtp:18 annexb=no^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 a=rtpmap:101 telephone-event/8000^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 a=fmtp:101 0-15^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 a=alt:1 3 : gXTzciUL yuErsXrU 172.28.128.1 3626^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 a=alt:2 2 : K1E0pCMz B0dHnMiQ 192.168.176.1 3626^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 a=alt:3 1 : zGRJ45eY Xr1M7efI 192.168.41.51 3626^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 a=x-rtp-session-id:AC177CCEA4BC4FE592EAA56050669040^M
+1f696e19-6dbd-4481-8a91-4f1f64c560a9
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] sofia.c:7906 (sofia/external/1006@192.168.109.37:15080) State Change CS_NEW -> CS_INIT
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:600 (sofia/external/1006@192.168.109.37:15080) State NEW
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:581 (sofia/external/1006@192.168.109.37:15080) Running State Change CS_INIT (Cur 3 Tot 3)
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:624 (sofia/external/1006@192.168.109.37:15080) State INIT
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] mod_sofia.c:97 sofia/external/1006@192.168.109.37:15080 SOFIA INIT
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:40 sofia/external/1006@192.168.109.37:15080 Standard INIT
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:48 (sofia/external/1006@192.168.109.37:15080) State Change CS_INIT -> CS_ROUTING
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:624 (sofia/external/1006@192.168.109.37:15080) State INIT going to sleep
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:581 (sofia/external/1006@192.168.109.37:15080) Running State Change CS_ROUTING (Cur 3 Tot 3)
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_channel.c:2399 (sofia/external/1006@192.168.109.37:15080) Callstate Change DOWN -> RINGING
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:640 (sofia/external/1006@192.168.109.37:15080) State ROUTING
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] mod_sofia.c:158 sofia/external/1006@192.168.109.37:15080 SOFIA ROUTING
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:230 sofia/external/1006@192.168.109.37:15080 Standard ROUTING
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [INFO] mod_dialplan_xml.c:639 Processing yhy_uat_pre_test <1006>->50000001 in context public
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 parsing [public->public_user2] continue=false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 Regex (FAIL) [public_user2] destination_number(50000001) =~ /^(1\d{3})$/ break=on-false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 parsing [public->public_83795991] continue=false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 Regex (FAIL) [public_83795991] destination_number(50000001) =~ /^(83795991)$/ break=on-false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 parsing [public->callout] continue=false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 Regex (FAIL) [callout] destination_number(50000001) =~ /^(0\d{11}|1\d{10})$/ break=on-false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 parsing [public->public_7000] continue=false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 Regex (FAIL) [public_7000] destination_number(50000001) =~ /^(7000)$/ break=on-false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 parsing [public->public_7001] continue=false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 Regex (FAIL) [public_7001] destination_number(50000001) =~ /^(7001)$/ break=on-false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 parsing [public->public_7002] continue=false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 Regex (FAIL) [public_7002] destination_number(50000001) =~ /^(7002)$/ break=on-false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 parsing [public->public_extensions1] continue=false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 Regex (PASS) [public_extensions1] destination_number(50000001) =~ /^(5\d{7})$/ break=on-false
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 Action set(hangup_after_bridge=true)
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 Dialplan: sofia/external/1006@192.168.109.37:15080 Action socket(127.0.0.1:13002 async full)
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:281 (sofia/external/1006@192.168.109.37:15080) State Change CS_ROUTING -> CS_EXECUTE
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:640 (sofia/external/1006@192.168.109.37:15080) State ROUTING going to sleep
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:581 (sofia/external/1006@192.168.109.37:15080) Running State Change CS_EXECUTE (Cur 3 Tot 3)
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:647 (sofia/external/1006@192.168.109.37:15080) State EXECUTE
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] mod_sofia.c:213 sofia/external/1006@192.168.109.37:15080 SOFIA EXECUTE
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] switch_core_state_machine.c:323 sofia/external/1006@192.168.109.37:15080 Standard EXECUTE
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 EXECUTE [depth=0] sofia/external/1006@192.168.109.37:15080 set(hangup_after_bridge=true)
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [DEBUG] mod_dptools.c:1671 SET sofia/external/1006@192.168.109.37:15080 [hangup_after_bridge]=[true]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 EXECUTE [depth=0] sofia/external/1006@192.168.109.37:15080 socket(127.0.0.1:13002 async full)
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.425851 97.87% [NOTICE] mod_event_socket.c:452 Trying host: 127.0.0.1:13002
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_ivr.c:632 sofia/external/1006@192.168.109.37:15080 Command Execute [depth=0] answer()
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 EXECUTE [depth=0] sofia/external/1006@192.168.109.37:15080 answer()
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMU:0:8000:20:64000:1]/[opus:116:48000:20:0:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMU:0:8000:20:64000:1]/[G722:9:8000:20:64000:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMU:0:8000:20:64000:1]/[PCMU:0:8000:20:64000:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5588 Audio Codec Compare [PCMU:0:8000:20:64000:1] ++++ is saved as a match
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMU:0:8000:20:64000:1]/[PCMA:8:8000:20:64000:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMA:8:8000:20:64000:1]/[opus:116:48000:20:0:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMA:8:8000:20:64000:1]/[G722:9:8000:20:64000:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMA:8:8000:20:64000:1]/[PCMU:0:8000:20:64000:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [PCMA:8:8000:20:64000:1]/[PCMA:8:8000:20:64000:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5588 Audio Codec Compare [PCMA:8:8000:20:64000:1] ++++ is saved as a match
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [G729:18:8000:20:8000:1]/[opus:116:48000:20:0:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [G729:18:8000:20:8000:1]/[G722:9:8000:20:64000:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [G729:18:8000:20:8000:1]/[PCMU:0:8000:20:64000:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5526 Audio Codec Compare [G729:18:8000:20:8000:1]/[PCMA:8:8000:20:64000:1]
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5438 Set telephone-event payload to 101@8000
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:3731 Set Codec sofia/external/1006@192.168.109.37:15080 PCMU/8000 20 ms 160 samples 64000 bits 1 channels
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_codec.c:111 sofia/external/1006@192.168.109.37:15080 Original read codec set to PCMU:0
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5798 Set telephone-event payload to 101@8000
+1f696e19-6dbd-4481-8a91-4f1f64c560a9 2025-06-06 13:37:46.465851 97.87% [DEBUG] switch_core_media.c:5856 sofia/external/1006@192.168.109.37:15080 Set 2833 dtmf send payload to 101 recv payload to 101
+
+
+
+
+(base) [root@localhost fs]# ss -atunp|grep ":13002"|grep freeswitch|wc -l
+51
+(base) [root@localhost fs]# ss -atunp|grep ":13002"|grep freeswitch
+tcp   ESTAB      0      0                    127.0.0.1:57630            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=75))
+tcp   ESTAB      0      0                    127.0.0.1:57642            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=137))
+tcp   ESTAB      0      0                    127.0.0.1:57646            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=161))
+tcp   ESTAB      0      0                    127.0.0.1:52428            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=269))
+tcp   ESTAB      0      0                    127.0.0.1:60888            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=110))
+tcp   ESTAB      0      0                    127.0.0.1:52380            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=170))
+tcp   ESTAB      0      0                    127.0.0.1:47994            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=250))
+tcp   ESTAB      0      0                    127.0.0.1:40536            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=78))
+tcp   ESTAB      0      0                    127.0.0.1:45824            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=69))
+tcp   ESTAB      0      0                    127.0.0.1:36368            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=171))
+tcp   ESTAB      0      0                    127.0.0.1:57162            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=206))
+tcp   ESTAB      0      0                    127.0.0.1:54890            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=89))
+tcp   ESTAB      0      0                    127.0.0.1:57952            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=65))
+tcp   ESTAB      0      0                    127.0.0.1:36400            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=292))
+tcp   ESTAB      0      0                    127.0.0.1:52404            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=296))
+tcp   ESTAB      0      0                    127.0.0.1:52374            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=285))
+tcp   ESTAB      0      0                    127.0.0.1:55088            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=83))
+tcp   ESTAB      0      0                    127.0.0.1:33736            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=183))
+tcp   ESTAB      0      0                    127.0.0.1:52392            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=344))
+tcp   ESTAB      0      0                    127.0.0.1:46300            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=152))
+tcp   ESTAB      0      0                    127.0.0.1:60876            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=323))
+tcp   ESTAB      0      0                    127.0.0.1:54892            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=94))
+tcp   ESTAB      0      0                    127.0.0.1:41220            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=264))
+tcp   ESTAB      0      0                    127.0.0.1:46322            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=91))
+tcp   ESTAB      0      0                    127.0.0.1:57910            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=176))
+tcp   ESTAB      0      0                    127.0.0.1:33522            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=96))
+tcp   ESTAB      0      0                    127.0.0.1:60862            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=117))
+tcp   ESTAB      0      0                    127.0.0.1:57640            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=122))
+tcp   ESTAB      0      0                    127.0.0.1:48022            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=74))
+tcp   ESTAB      0      0                    127.0.0.1:46304            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=163))
+tcp   ESTAB      0      0                    127.0.0.1:41204            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=135))
+tcp   ESTAB      0      0                    127.0.0.1:41814            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=389))
+tcp   ESTAB      0      0                    127.0.0.1:41172            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=194))
+tcp   ESTAB      0      0                    127.0.0.1:57924            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=255))
+tcp   ESTAB      0      0                    127.0.0.1:44848            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=109))
+tcp   ESTAB      0      0                    127.0.0.1:49236            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=417))
+tcp   ESTAB      0      0                    127.0.0.1:52420            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=203))
+tcp   ESTAB      0      0                    127.0.0.1:57158            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=134))
+tcp   ESTAB      0      0                    127.0.0.1:41764            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=107))
+tcp   ESTAB      0      0                    127.0.0.1:60880            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=68))
+tcp   ESTAB      0      0                    127.0.0.1:46308            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=123))
+tcp   ESTAB      0      0                    127.0.0.1:52424            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=317))
+tcp   ESTAB      0      0                    127.0.0.1:60108            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=71))
+tcp   ESTAB      0      0                    127.0.0.1:38108            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=67))
+tcp   ESTAB      0      0                    127.0.0.1:33486            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=79))
+tcp   ESTAB      0      0                    127.0.0.1:40028            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=153))
+tcp   ESTAB      0      0                    127.0.0.1:40568            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=166))
+tcp   ESTAB      0      0                    127.0.0.1:39996            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=98))
+tcp   ESTAB      0      0                    127.0.0.1:46040            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=84))
+tcp   ESTAB      0      0                    127.0.0.1:41782            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=116))
+tcp   ESTAB      0      0                    127.0.0.1:33752            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=125))
+(base) [root@localhost fs]# ss -aunp|grep freeswitch|grep "192.168.109.37:26" |wc -l
+51
+(base) [root@localhost fs]# ss -aunp|grep freeswitch|grep "192.168.109.37:26"
+UNCONN 99840  0      192.168.109.37:26384      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=481))
+UNCONN 99840  0      192.168.109.37:26386      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=407))
+UNCONN 99840  0      192.168.109.37:26388      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=396))
+UNCONN 99840  0      192.168.109.37:26390      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=330))
+UNCONN 99840  0      192.168.109.37:26392      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=226))
+UNCONN 99840  0      192.168.109.37:26394      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=335))
+UNCONN 99840  0      192.168.109.37:26396      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=108))
+UNCONN 99840  0      192.168.109.37:26398      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=348))
+UNCONN 99840  0      192.168.109.37:26400      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=451))
+UNCONN 99840  0      192.168.109.37:26402      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=356))
+UNCONN 99840  0      192.168.109.37:26404      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=362))
+UNCONN 99840  0      192.168.109.37:26406      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=339))
+UNCONN 99840  0      192.168.109.37:26408      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=283))
+UNCONN 99840  0      192.168.109.37:26410      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=454))
+UNCONN 99840  0      192.168.109.37:26412      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=421))
+UNCONN 99840  0      192.168.109.37:26414      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=425))
+UNCONN 99840  0      192.168.109.37:26416      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=318))
+UNCONN 99840  0      192.168.109.37:26418      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=405))
+UNCONN 145920 0      192.168.109.37:26420      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=478))
+UNCONN 99840  0      192.168.109.37:26422      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=427))
+UNCONN 99840  0      192.168.109.37:26424      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=375))
+UNCONN 99840  0      192.168.109.37:26426      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=400))
+UNCONN 99840  0      192.168.109.37:26428      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=178))
+UNCONN 99840  0      192.168.109.37:26430      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=376))
+UNCONN 99840  0      192.168.109.37:26432      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=301))
+UNCONN 99840  0      192.168.109.37:26434      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=315))
+UNCONN 99840  0      192.168.109.37:26436      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=367))
+UNCONN 99840  0      192.168.109.37:26438      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=410))
+UNCONN 99840  0      192.168.109.37:26440      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=151))
+UNCONN 99840  0      192.168.109.37:26442      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=439))
+UNCONN 99840  0      192.168.109.37:26444      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=227))
+UNCONN 99840  0      192.168.109.37:26446      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=441))
+UNCONN 99840  0      192.168.109.37:26448      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=175))
+UNCONN 99840  0      192.168.109.37:26450      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=195))
+UNCONN 99840  0      192.168.109.37:26452      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=240))
+UNCONN 99840  0      192.168.109.37:26454      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=265))
+UNCONN 99840  0      192.168.109.37:26456      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=246))
+UNCONN 99840  0      192.168.109.37:26458      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=238))
+UNCONN 99840  0      192.168.109.37:26460      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=385))
+UNCONN 99840  0      192.168.109.37:26462      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=268))
+UNCONN 99840  0      192.168.109.37:26464      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=334))
+UNCONN 99840  0      192.168.109.37:26466      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=309))
+UNCONN 99840  0      192.168.109.37:26468      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=132))
+UNCONN 99840  0      192.168.109.37:26470      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=326))
+UNCONN 99840  0      192.168.109.37:26472      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=341))
+UNCONN 99840  0      192.168.109.37:26474      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=262))
+UNCONN 99840  0      192.168.109.37:26476      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=448))
+UNCONN 99840  0      192.168.109.37:26478      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=228))
+UNCONN 99840  0      192.168.109.37:26480      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=252))
+UNCONN 99840  0      192.168.109.37:26482      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=445))
+UNCONN 99840  0      192.168.109.37:26484      0.0.0.0:*    users:(("freeswitch",pid=905961,fd=136))
+
+
+
+
+(base) [root@localhost fs]# ss -atunp|grep ":13002"
+tcp   LISTEN     0      4096                   0.0.0.0:13002              0.0.0.0:*     users:(("docker-proxy",pid=465476,fd=4))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:40568 users:(("docker-proxy",pid=465476,fd=139))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:57646 users:(("docker-proxy",pid=465476,fd=3))
+tcp   ESTAB      0      0                    127.0.0.1:57630            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=75))
+tcp   ESTAB      0      0                    127.0.0.1:57642            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=137))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:52404 users:(("docker-proxy",pid=465476,fd=261))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:39996 users:(("docker-proxy",pid=465476,fd=187))
+tcp   ESTAB      0      0                 192.168.48.1:56772         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=86))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:41172 users:(("docker-proxy",pid=465476,fd=97))
+tcp   ESTAB      0      0                    127.0.0.1:57646            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=161))
+tcp   ESTAB      0      0                 192.168.48.1:38430         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=110))
+tcp   ESTAB      0      0                 192.168.48.1:56076         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=242))
+tcp   ESTAB      0      0                 192.168.48.1:59236         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=152))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:41204 users:(("docker-proxy",pid=465476,fd=109))
+tcp   ESTAB      0      0                 192.168.48.1:45166         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=272))
+tcp   ESTAB      0      0                    127.0.0.1:52428            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=269))
+tcp   ESTAB      0      0                    127.0.0.1:60888            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=110))
+tcp   ESTAB      0      0                    127.0.0.1:52380            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=170))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:55088 users:(("docker-proxy",pid=465476,fd=145))
+tcp   ESTAB      0      0                    127.0.0.1:47994            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=250))
+tcp   ESTAB      0      0                 192.168.48.1:54250         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=26))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:46300 users:(("docker-proxy",pid=465476,fd=253))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:57158 users:(("docker-proxy",pid=465476,fd=121))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:60862 users:(("docker-proxy",pid=465476,fd=91))
+tcp   ESTAB      0      0                 192.168.48.1:60564         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=43))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:52380 users:(("docker-proxy",pid=465476,fd=297))
+tcp   ESTAB      0      0                    127.0.0.1:40536            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=78))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:47994 users:(("docker-proxy",pid=465476,fd=237))
+tcp   ESTAB      0      0                    127.0.0.1:45824            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=69))
+tcp   ESTAB      0      0                 192.168.48.1:54240         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=194))
+tcp   ESTAB      0      0                    127.0.0.1:36368            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=171))
+tcp   ESTAB      0      0                    127.0.0.1:57162            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=206))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:40536 users:(("docker-proxy",pid=465476,fd=103))
+tcp   ESTAB      0      0                    127.0.0.1:54890            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=89))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:57952 users:(("docker-proxy",pid=465476,fd=279))
+tcp   ESTAB      0      0                    127.0.0.1:57952            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=65))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:41814 users:(("docker-proxy",pid=465476,fd=79))
+tcp   ESTAB      0      0                    127.0.0.1:36400            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=292))
+tcp   ESTAB      0      0                    127.0.0.1:52404            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=296))
+tcp   ESTAB      0      0                    127.0.0.1:52374            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=285))
+tcp   ESTAB      0      0                 192.168.48.1:45672         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=182))
+tcp   ESTAB      0      0                 192.168.48.1:48948         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=284))
+tcp   ESTAB      0      0                 192.168.48.1:36866         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=199))
+tcp   ESTAB      0      0                    127.0.0.1:55088            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=83))
+tcp   ESTAB      0      0                 192.168.48.1:44280         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=104))
+tcp   ESTAB      0      0                    127.0.0.1:33736            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=183))
+tcp   ESTAB      0      0                    127.0.0.1:52392            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=344))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:60880 users:(("docker-proxy",pid=465476,fd=249))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:40028 users:(("docker-proxy",pid=465476,fd=13))
+tcp   ESTAB      0      0                 192.168.48.1:47048         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=170))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:33752 users:(("docker-proxy",pid=465476,fd=200))
+tcp   ESTAB      0      0                    127.0.0.1:46300            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=152))
+tcp   ESTAB      0      0                 192.168.48.1:45662         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=224))
+tcp   ESTAB      0      0                    127.0.0.1:60876            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=323))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:41764 users:(("docker-proxy",pid=465476,fd=44))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:46322 users:(("docker-proxy",pid=465476,fd=31))
+tcp   ESTAB      0      0                 192.168.48.1:38918         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=49))
+tcp   ESTAB      0      0                 192.168.48.1:44330         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=140))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:54890 users:(("docker-proxy",pid=465476,fd=271))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:60888 users:(("docker-proxy",pid=465476,fd=115))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:52392 users:(("docker-proxy",pid=465476,fd=303))
+tcp   ESTAB      0      0                 192.168.48.1:54264         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=32))
+tcp   ESTAB      0      0                    127.0.0.1:54892            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=94))
+tcp   ESTAB      0      0                 192.168.48.1:38450         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=134))
+tcp   ESTAB      0      0                 192.168.48.1:45636         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=172))
+tcp   ESTAB      0      0                    127.0.0.1:41220            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=264))
+tcp   ESTAB      0      0                    127.0.0.1:46322            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=91))
+tcp   ESTAB      0      0                 192.168.48.1:54232         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=254))
+tcp   ESTAB      0      0                    127.0.0.1:57910            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=176))
+tcp   ESTAB      0      0                    127.0.0.1:33522            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=96))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:45824 users:(("docker-proxy",pid=465476,fd=19))
+tcp   ESTAB      0      0                 192.168.48.1:56092         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=158))
+tcp   ESTAB      0      0                 192.168.48.1:48938         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=92))
+tcp   ESTAB      0      0                 192.168.48.1:55060         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=211))
+tcp   ESTAB      0      0                 192.168.48.1:56064         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=304))
+tcp   ESTAB      0      0                    127.0.0.1:60862            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=117))
+tcp   ESTAB      0      0                 192.168.48.1:57416         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=188))
+tcp   ESTAB      0      0                    127.0.0.1:57640            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=122))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:57910 users:(("docker-proxy",pid=465476,fd=50))
+tcp   ESTAB      0      0                 192.168.48.1:47000         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=238))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:33522 users:(("docker-proxy",pid=465476,fd=267))
+tcp   ESTAB      0      0                    127.0.0.1:48022            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=74))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:57640 users:(("docker-proxy",pid=465476,fd=223))
+tcp   ESTAB      0      0                 192.168.48.1:38414         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=98))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:57162 users:(("docker-proxy",pid=465476,fd=127))
+tcp   ESTAB      0      0                    127.0.0.1:46304            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=163))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:46040 users:(("docker-proxy",pid=465476,fd=85))
+tcp   ESTAB      0      0                 192.168.48.1:48960         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=250))
+tcp   ESTAB      0      0                 192.168.48.1:43378         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=20))
+tcp   ESTAB      0      0                    127.0.0.1:41204            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=135))
+tcp   ESTAB      0      0                 192.168.48.1:36876         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=205))
+tcp   ESTAB      0      0                    127.0.0.1:41814            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=389))
+tcp   ESTAB      0      0                 192.168.48.1:45684         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=5))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:52420 users:(("docker-proxy",pid=465476,fd=241))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:41782 users:(("docker-proxy",pid=465476,fd=67))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:44848 users:(("docker-proxy",pid=465476,fd=38))
+tcp   ESTAB      0      0                 192.168.48.1:32872         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=72))
+tcp   ESTAB      0      0                 192.168.48.1:59912         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=176))
+tcp   ESTAB      0      0                 192.168.48.1:38992         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=80))
+tcp   ESTAB      0      0                 192.168.48.1:45180         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=74))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:57630 users:(("docker-proxy",pid=465476,fd=171))
+tcp   ESTAB      0      0                    127.0.0.1:41172            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=194))
+tcp   ESTAB      0      0                    127.0.0.1:57924            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=255))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:52374 users:(("docker-proxy",pid=465476,fd=291))
+tcp   ESTAB      0      0                 192.168.48.1:33340         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=55))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:52424 users:(("docker-proxy",pid=465476,fd=157))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:46308 users:(("docker-proxy",pid=465476,fd=25))
+tcp   ESTAB      0      0                    127.0.0.1:44848            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=109))
+tcp   ESTAB      0      0                 192.168.48.1:54744         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=146))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:46304 users:(("docker-proxy",pid=465476,fd=193))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:52428 users:(("docker-proxy",pid=465476,fd=163))
+tcp   ESTAB      0      0                    127.0.0.1:49236            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=417))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:60108 users:(("docker-proxy",pid=465476,fd=71))
+tcp   ESTAB      0      0                    127.0.0.1:52420            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=203))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:49236 users:(("docker-proxy",pid=465476,fd=307))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:41220 users:(("docker-proxy",pid=465476,fd=133))
+tcp   ESTAB      0      0                    127.0.0.1:57158            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=134))
+tcp   ESTAB      0      0                 192.168.48.1:38950         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=68))
+tcp   ESTAB      0      0                 192.168.48.1:48964         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=116))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:33736 users:(("docker-proxy",pid=465476,fd=37))
+tcp   ESTAB      0      0                    127.0.0.1:41764            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=107))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:54892 users:(("docker-proxy",pid=465476,fd=73))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:48022 users:(("docker-proxy",pid=465476,fd=169))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:57642 users:(("docker-proxy",pid=465476,fd=181))
+tcp   ESTAB      0      0                 192.168.48.1:33354         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=61))
+tcp   ESTAB      0      0                 192.168.48.1:35218         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=128))
+tcp   ESTAB      0      0                    127.0.0.1:60880            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=68))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:36400 users:(("docker-proxy",pid=465476,fd=206))
+tcp   ESTAB      0      0                    127.0.0.1:46308            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=123))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:38108 users:(("docker-proxy",pid=465476,fd=151))
+tcp   ESTAB      0      0                    127.0.0.1:52424            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=317))
+tcp   ESTAB      0      0                    127.0.0.1:60108            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=71))
+tcp   ESTAB      0      0                 192.168.48.1:56050         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=292))
+tcp   ESTAB      0      0                 192.168.48.1:33378         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=280))
+tcp   ESTAB      0      0                    127.0.0.1:38108            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=67))
+tcp   ESTAB      0      0                    127.0.0.1:33486            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=79))
+tcp   ESTAB      0      0                    127.0.0.1:40028            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=153))
+tcp   ESTAB      0      0                 192.168.48.1:59946         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=268))
+tcp   ESTAB      0      0                    127.0.0.1:40568            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=166))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:60876 users:(("docker-proxy",pid=465476,fd=283))
+tcp   ESTAB      0      0                 192.168.48.1:52504         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=308))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:33486 users:(("docker-proxy",pid=465476,fd=175))
+tcp   ESTAB      0      0                 192.168.48.1:55030         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=232))
+tcp   ESTAB      0      0                 192.168.48.1:57436         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=14))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:36368 users:(("docker-proxy",pid=465476,fd=231))
+tcp   ESTAB      0      0                 192.168.48.1:56056         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=298))
+tcp   ESTAB      0      0                 192.168.48.1:56098         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=164))
+tcp   ESTAB      0      0                 192.168.48.1:56074         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=262))
+tcp   ESTAB      0      0                    127.0.0.1:13002            127.0.0.1:57924 users:(("docker-proxy",pid=465476,fd=56))
+tcp   ESTAB      0      0                    127.0.0.1:39996            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=98))
+tcp   ESTAB      0      0                    127.0.0.1:46040            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=84))
+tcp   ESTAB      0      0                    127.0.0.1:41782            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=116))
+tcp   ESTAB      0      0                 192.168.48.1:35206         192.168.48.2:13002 users:(("docker-proxy",pid=465476,fd=122))
+tcp   ESTAB      0      0                    127.0.0.1:33752            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=125))
+tcp   LISTEN     0      4096                      [::]:13002                 [::]:*     users:(("docker-proxy",pid=465484,fd=4))
+(base) [root@localhost fs]# ss -atunp|grep ":13002"|wc -l
+155
+
+
+(base) [root@localhost fs]# ss -atunp|grep "127.0.0.1:13002"|grep "docker-proxy"|wc -l
+51
+(base) [root@localhost fs]# ss -atunp|grep "127.0.0.1:13002"|grep "freeswitch"|wc -l
+51
+(base) [root@localhost fs]# ss -atunp|grep "127.0.0.1:13002"|grep "docker-proxy"
+
+
+
+
+(base) [root@localhost fs]#  ss -aunp|grep unimrcp|grep "192.168.109.37:45"|wc -l
+108
+(base) [root@localhost fs]#  ss -aunp|grep freeswitch|grep "192.168.109.37:26" |wc -l
+33
+
+
+(base) [root@localhost fs]#  ss -aunp|grep unimrcp|grep "192.168.109.37:45"|wc -l
+28
+(base) [root@localhost fs]#  ss -aunp|grep freeswitch|grep "192.168.109.37:26" |wc -l
+51
+(base) [root@localhost fs]# ss -atunp|grep unimrcp
+udp   UNCONN     0      0               192.168.109.37:6060               0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=28))
+udp   UNCONN     0      0               192.168.109.37:45394              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=354))
+udp   UNCONN     3072   0               192.168.109.37:45395              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=408))
+udp   UNCONN     0      0               192.168.109.37:45406              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=249))
+udp   UNCONN     3072   0               192.168.109.37:45407              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=254))
+udp   UNCONN     207360 0               192.168.109.37:45412              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=345))
+udp   UNCONN     2304   0               192.168.109.37:45413              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=396))
+udp   UNCONN     207360 0               192.168.109.37:45418              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=183))
+udp   UNCONN     2304   0               192.168.109.37:45419              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=210))
+udp   UNCONN     207360 0               192.168.109.37:45424              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=269))
+udp   UNCONN     2304   0               192.168.109.37:45425              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=270))
+udp   UNCONN     207360 0               192.168.109.37:45430              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=286))
+udp   UNCONN     2304   0               192.168.109.37:45431              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=299))
+udp   UNCONN     0      0               192.168.109.37:45434              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=70))
+udp   UNCONN     768    0               192.168.109.37:45435              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=134))
+udp   UNCONN     213760 0               192.168.109.37:45436              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=335))
+udp   UNCONN     1536   0               192.168.109.37:45437              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=337))
+udp   UNCONN     0      0               192.168.109.37:45440              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=35))
+udp   UNCONN     768    0               192.168.109.37:45441              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=116))
+udp   UNCONN     213760 0               192.168.109.37:45442              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=157))
+udp   UNCONN     1536   0               192.168.109.37:45443              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=159))
+udp   UNCONN     0      0               192.168.109.37:45446              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=31))
+udp   UNCONN     768    0               192.168.109.37:45447              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=32))
+udp   UNCONN     213760 0               192.168.109.37:45448              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=114))
+udp   UNCONN     1536   0               192.168.109.37:45449              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=142))
+udp   UNCONN     213760 0               192.168.109.37:45454              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=39))
+udp   UNCONN     768    0               192.168.109.37:45455              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=42))
+udp   UNCONN     0      0               192.168.109.37:45456              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=48))
+udp   UNCONN     768    0               192.168.109.37:45457              0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=49))
+tcp   LISTEN     0      64              192.168.109.37:6060               0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=29))
+tcp   LISTEN     0      4096            192.168.109.37:1644               0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=11))
+tcp   LISTEN     0      4096            192.168.109.37:1554               0.0.0.0:*     users:(("unimrcpserver",pid=922816,fd=7))
+tcp   ESTAB      0      0               192.168.109.37:36102        120.92.238.24:80    users:(("unimrcpserver",pid=922816,fd=251))
+(base) [root@localhost fs]# ss -atunp|grep unimrcp|wc -l
+33
+
+(base) [root@localhost fs]# ss -atunp|grep freeswitch
+udp   UNCONN     99840  0               192.168.109.37:26384              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=481))
+udp   UNCONN     99840  0               192.168.109.37:26386              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=407))
+udp   UNCONN     99840  0               192.168.109.37:26388              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=396))
+udp   UNCONN     99840  0               192.168.109.37:26390              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=330))
+udp   UNCONN     99840  0               192.168.109.37:26392              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=226))
+udp   UNCONN     99840  0               192.168.109.37:26394              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=335))
+udp   UNCONN     99840  0               192.168.109.37:26396              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=108))
+udp   UNCONN     99840  0               192.168.109.37:26398              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=348))
+udp   UNCONN     99840  0               192.168.109.37:26400              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=451))
+udp   UNCONN     99840  0               192.168.109.37:26402              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=356))
+udp   UNCONN     99840  0               192.168.109.37:26404              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=362))
+udp   UNCONN     99840  0               192.168.109.37:26406              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=339))
+udp   UNCONN     99840  0               192.168.109.37:26408              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=283))
+udp   UNCONN     99840  0               192.168.109.37:26410              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=454))
+udp   UNCONN     99840  0               192.168.109.37:26412              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=421))
+udp   UNCONN     99840  0               192.168.109.37:26414              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=425))
+udp   UNCONN     99840  0               192.168.109.37:26416              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=318))
+udp   UNCONN     99840  0               192.168.109.37:26418              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=405))
+udp   UNCONN     145920 0               192.168.109.37:26420              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=478))
+udp   UNCONN     99840  0               192.168.109.37:26422              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=427))
+udp   UNCONN     99840  0               192.168.109.37:26424              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=375))
+udp   UNCONN     99840  0               192.168.109.37:26426              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=400))
+udp   UNCONN     99840  0               192.168.109.37:26428              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=178))
+udp   UNCONN     99840  0               192.168.109.37:26430              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=376))
+udp   UNCONN     99840  0               192.168.109.37:26432              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=301))
+udp   UNCONN     99840  0               192.168.109.37:26434              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=315))
+udp   UNCONN     99840  0               192.168.109.37:26436              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=367))
+udp   UNCONN     99840  0               192.168.109.37:26438              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=410))
+udp   UNCONN     99840  0               192.168.109.37:26440              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=151))
+udp   UNCONN     99840  0               192.168.109.37:26442              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=439))
+udp   UNCONN     99840  0               192.168.109.37:26444              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=227))
+udp   UNCONN     99840  0               192.168.109.37:26446              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=441))
+udp   UNCONN     99840  0               192.168.109.37:26448              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=175))
+udp   UNCONN     99840  0               192.168.109.37:26450              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=195))
+udp   UNCONN     99840  0               192.168.109.37:26452              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=240))
+udp   UNCONN     99840  0               192.168.109.37:26454              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=265))
+udp   UNCONN     99840  0               192.168.109.37:26456              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=246))
+udp   UNCONN     99840  0               192.168.109.37:26458              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=238))
+udp   UNCONN     99840  0               192.168.109.37:26460              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=385))
+udp   UNCONN     99840  0               192.168.109.37:26462              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=268))
+udp   UNCONN     99840  0               192.168.109.37:26464              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=334))
+udp   UNCONN     99840  0               192.168.109.37:26466              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=309))
+udp   UNCONN     99840  0               192.168.109.37:26468              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=132))
+udp   UNCONN     99840  0               192.168.109.37:26470              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=326))
+udp   UNCONN     99840  0               192.168.109.37:26472              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=341))
+udp   UNCONN     99840  0               192.168.109.37:26474              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=262))
+udp   UNCONN     99840  0               192.168.109.37:26476              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=448))
+udp   UNCONN     99840  0               192.168.109.37:26478              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=228))
+udp   UNCONN     99840  0               192.168.109.37:26480              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=252))
+udp   UNCONN     99840  0               192.168.109.37:26482              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=445))
+udp   UNCONN     99840  0               192.168.109.37:26484              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=136))
+udp   UNCONN     0      0                      0.0.0.0:1337               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=45))
+udp   UNCONN     0      0                    127.0.0.1:36090              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=19))
+udp   UNCONN     0      0                    127.0.0.1:4890               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=88))
+udp   UNCONN     0      0                    127.0.0.1:4891               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=129))
+udp   UNCONN     0      0                    127.0.0.1:4892               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=213))
+udp   UNCONN     0      0                    127.0.0.1:4893               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=223))
+udp   UNCONN     0      0                    127.0.0.1:4894               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=173))
+udp   UNCONN     0      0                    127.0.0.1:4895               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=182))
+udp   UNCONN     0      0                    127.0.0.1:4896               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=104))
+udp   UNCONN     0      0                    127.0.0.1:4897               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=155))
+udp   UNCONN     0      0                    127.0.0.1:4898               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=288))
+udp   UNCONN     0      0                    127.0.0.1:4899               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=290))
+udp   UNCONN     0      0                    127.0.0.1:4900               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=259))
+udp   UNCONN     0      0                    127.0.0.1:4901               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=263))
+udp   UNCONN     0      0                    127.0.0.1:4902               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=130))
+udp   UNCONN     0      0                    127.0.0.1:4903               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=148))
+udp   UNCONN     0      0                    127.0.0.1:4904               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=90))
+udp   UNCONN     0      0                    127.0.0.1:4905               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=172))
+udp   UNCONN     0      0                    127.0.0.1:4906               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=337))
+udp   UNCONN     0      0                    127.0.0.1:4907               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=338))
+udp   UNCONN     0      0                    127.0.0.1:4908               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=346))
+udp   UNCONN     0      0                    127.0.0.1:4909               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=347))
+udp   UNCONN     0      0                    127.0.0.1:4910               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=351))
+udp   UNCONN     0      0                    127.0.0.1:4911               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=352))
+udp   UNCONN     0      0                    127.0.0.1:4912               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=372))
+udp   UNCONN     0      0                    127.0.0.1:4913               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=373))
+udp   UNCONN     0      0                    127.0.0.1:4914               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=380))
+udp   UNCONN     0      0                    127.0.0.1:4915               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=381))
+udp   UNCONN     0      0                    127.0.0.1:4916               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=180))
+udp   UNCONN     0      0                    127.0.0.1:4917               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=253))
+udp   UNCONN     0      0                    127.0.0.1:4918               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=73))
+udp   UNCONN     0      0                    127.0.0.1:4919               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=271))
+udp   UNCONN     0      0                    127.0.0.1:4920               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=147))
+udp   UNCONN     0      0                    127.0.0.1:4921               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=275))
+udp   UNCONN     0      0                    127.0.0.1:4922               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=210))
+udp   UNCONN     0      0                    127.0.0.1:4923               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=216))
+udp   UNCONN     0      0                    127.0.0.1:4924               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=324))
+udp   UNCONN     0      0                    127.0.0.1:4925               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=429))
+udp   UNCONN     0      0                    127.0.0.1:4926               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=97))
+udp   UNCONN     0      0                    127.0.0.1:4927               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=99))
+udp   UNCONN     0      0                    127.0.0.1:4928               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=434))
+udp   UNCONN     0      0                    127.0.0.1:4929               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=435))
+udp   UNCONN     0      0                    127.0.0.1:4930               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=115))
+udp   UNCONN     0      0                    127.0.0.1:4931               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=160))
+udp   UNCONN     0      0                    127.0.0.1:4932               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=138))
+udp   UNCONN     0      0                    127.0.0.1:4933               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=165))
+udp   UNCONN     0      0                    127.0.0.1:4934               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=443))
+udp   UNCONN     0      0                    127.0.0.1:4935               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=444))
+udp   UNCONN     0      0                    127.0.0.1:4936               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=168))
+udp   UNCONN     0      0                    127.0.0.1:4937               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=169))
+udp   UNCONN     0      0                    127.0.0.1:4938               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=121))
+udp   UNCONN     0      0                    127.0.0.1:4939               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=149))
+udp   UNCONN     0      0                    127.0.0.1:4940               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=413))
+udp   UNCONN     0      0                    127.0.0.1:4941               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=414))
+udp   UNCONN     0      0                    127.0.0.1:4942               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=431))
+udp   UNCONN     0      0                    127.0.0.1:4943               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=453))
+udp   UNCONN     0      0                    127.0.0.1:4944               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=457))
+udp   UNCONN     0      0                    127.0.0.1:4945               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=458))
+udp   UNCONN     0      0                    127.0.0.1:4946               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=460))
+udp   UNCONN     0      0                    127.0.0.1:4947               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=461))
+udp   UNCONN     0      0                    127.0.0.1:4948               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=192))
+udp   UNCONN     0      0                    127.0.0.1:4949               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=463))
+udp   UNCONN     0      0                    127.0.0.1:4950               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=465))
+udp   UNCONN     0      0                    127.0.0.1:4951               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=466))
+udp   UNCONN     0      0                    127.0.0.1:4952               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=467))
+udp   UNCONN     0      0                    127.0.0.1:4953               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=468))
+udp   UNCONN     0      0                    127.0.0.1:4954               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=470))
+udp   UNCONN     0      0                    127.0.0.1:4955               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=472))
+udp   UNCONN     0      0                    127.0.0.1:4956               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=475))
+udp   UNCONN     0      0                    127.0.0.1:4957               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=476))
+udp   UNCONN     0      0                    127.0.0.1:4958               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=474))
+udp   UNCONN     0      0                    127.0.0.1:4959               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=477))
+udp   UNCONN     0      0                    127.0.0.1:4960               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=387))
+udp   UNCONN     0      0                    127.0.0.1:4961               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=388))
+udp   UNCONN     0      0                    127.0.0.1:4962               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=391))
+udp   UNCONN     0      0                    127.0.0.1:4963               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=483))
+udp   UNCONN     0      0                    127.0.0.1:4964               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=485))
+udp   UNCONN     0      0                    127.0.0.1:4965               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=486))
+udp   UNCONN     0      0                    127.0.0.1:4966               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=488))
+udp   UNCONN     0      0                    127.0.0.1:4967               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=489))
+udp   UNCONN     0      0                    127.0.0.1:4968               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=493))
+udp   UNCONN     0      0                    127.0.0.1:4969               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=494))
+udp   UNCONN     0      0                    127.0.0.1:4970               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=495))
+udp   UNCONN     0      0                    127.0.0.1:4971               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=496))
+udp   UNCONN     0      0                    127.0.0.1:4972               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=498))
+udp   UNCONN     0      0                    127.0.0.1:4973               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=499))
+udp   UNCONN     0      0                    127.0.0.1:4974               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=500))
+udp   UNCONN     0      0                    127.0.0.1:4975               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=503))
+udp   UNCONN     0      0                    127.0.0.1:4976               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=505))
+udp   UNCONN     0      0                    127.0.0.1:4977               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=506))
+udp   UNCONN     0      0                    127.0.0.1:4978               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=507))
+udp   UNCONN     0      0                    127.0.0.1:4979               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=508))
+udp   UNCONN     0      0                    127.0.0.1:4980               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=501))
+udp   UNCONN     0      0                    127.0.0.1:4981               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=514))
+udp   UNCONN     0      0                    127.0.0.1:4982               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=515))
+udp   UNCONN     0      0                    127.0.0.1:4983               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=516))
+udp   UNCONN     0      0                    127.0.0.1:4984               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=517))
+udp   UNCONN     0      0                    127.0.0.1:4985               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=518))
+udp   UNCONN     0      0                    127.0.0.1:4986               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=521))
+udp   UNCONN     0      0                    127.0.0.1:4987               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=522))
+udp   UNCONN     0      0                    127.0.0.1:4988               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=523))
+udp   UNCONN     0      0                    127.0.0.1:4989               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=524))
+udp   UNCONN     0      0                    127.0.0.1:4990               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=525))
+udp   UNCONN     0      0                    127.0.0.1:4991               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=526))
+udp   UNCONN     0      0               192.168.109.37:15060              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=35))
+udp   UNCONN     0      0               192.168.109.37:15080              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=26))
+tcp   LISTEN     0      64              192.168.109.37:5066               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=37))
+tcp   LISTEN     0      4096            192.168.109.37:8081               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=42))
+tcp   LISTEN     0      4096            192.168.109.37:8082               0.0.0.0:*     users:(("freeswitch",pid=905961,fd=44))
+tcp   LISTEN     0      64              192.168.109.37:15060              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=36))
+tcp   LISTEN     0      64              192.168.109.37:37443              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=38))
+tcp   LISTEN     0      5                      0.0.0.0:38021              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=55))
+tcp   LISTEN     0      5               192.168.109.37:22855              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=4))
+tcp   LISTEN     0      64              192.168.109.37:15080              0.0.0.0:*     users:(("freeswitch",pid=905961,fd=27))
+tcp   ESTAB      0      0                    127.0.0.1:57630            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=75))
+tcp   ESTAB      0      0                    127.0.0.1:57642            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=137))
+tcp   ESTAB      0      0                    127.0.0.1:57646            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=161))
+tcp   ESTAB      0      0                    127.0.0.1:52428            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=269))
+tcp   ESTAB      0      0                    127.0.0.1:60888            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=110))
+tcp   ESTAB      0      0                    127.0.0.1:52380            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=170))
+tcp   ESTAB      0      0                    127.0.0.1:47994            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=250))
+tcp   ESTAB      0      0                    127.0.0.1:40536            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=78))
+tcp   ESTAB      0      0                    127.0.0.1:45824            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=69))
+tcp   ESTAB      0      0                    127.0.0.1:36368            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=171))
+tcp   ESTAB      0      0                    127.0.0.1:57162            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=206))
+tcp   ESTAB      0      0                    127.0.0.1:54890            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=89))
+tcp   ESTAB      0      0                    127.0.0.1:57952            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=65))
+tcp   ESTAB      0      0                    127.0.0.1:36400            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=292))
+tcp   ESTAB      0      0               192.168.109.37:34540       192.168.109.88:5432  users:(("freeswitch",pid=905961,fd=31))
+tcp   ESTAB      0      0                    127.0.0.1:52404            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=296))
+tcp   ESTAB      0      0                    127.0.0.1:52374            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=285))
+tcp   ESTAB      0      0                    127.0.0.1:55088            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=83))
+tcp   ESTAB      0      0                    127.0.0.1:33736            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=183))
+tcp   ESTAB      0      0                    127.0.0.1:52392            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=344))
+tcp   ESTAB      0      0                    127.0.0.1:46300            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=152))
+tcp   ESTAB      0      0                    127.0.0.1:60876            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=323))
+tcp   ESTAB      0      0                    127.0.0.1:54892            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=94))
+tcp   ESTAB      0      0                    127.0.0.1:38021            127.0.0.1:32844 users:(("freeswitch",pid=905961,fd=62))
+tcp   ESTAB      0      0                    127.0.0.1:41220            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=264))
+tcp   ESTAB      0      0                    127.0.0.1:46322            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=91))
+tcp   ESTAB      0      0                    127.0.0.1:57910            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=176))
+tcp   ESTAB      0      0                    127.0.0.1:33522            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=96))
+tcp   ESTAB      0      0                    127.0.0.1:60862            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=117))
+tcp   ESTAB      0      0                    127.0.0.1:38021            127.0.0.1:32846 users:(("freeswitch",pid=905961,fd=60))
+tcp   ESTAB      0      0                    127.0.0.1:57640            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=122))
+tcp   ESTAB      0      0                    127.0.0.1:48022            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=74))
+tcp   ESTAB      0      0               192.168.109.37:34534       192.168.109.88:5432  users:(("freeswitch",pid=905961,fd=7))
+tcp   ESTAB      0      0                    127.0.0.1:46304            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=163))
+tcp   ESTAB      0      0                    127.0.0.1:41204            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=135))
+tcp   ESTAB      0      0                    127.0.0.1:41814            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=389))
+tcp   ESTAB      0      0                    127.0.0.1:41172            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=194))
+tcp   ESTAB      0      0               192.168.109.37:38021         192.168.48.2:54732 users:(("freeswitch",pid=905961,fd=58))
+tcp   ESTAB      0      0               192.168.109.37:35984       192.168.109.88:5432  users:(("freeswitch",pid=905961,fd=39))
+tcp   ESTAB      0      0                    127.0.0.1:57924            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=255))
+tcp   ESTAB      0      0                    127.0.0.1:44848            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=109))
+tcp   ESTAB      0      0               192.168.109.37:39270       192.168.109.88:5432  users:(("freeswitch",pid=905961,fd=139))
+tcp   ESTAB      0      0                    127.0.0.1:49236            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=417))
+tcp   ESTAB      0      0                    127.0.0.1:52420            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=203))
+tcp   ESTAB      327    0               192.168.109.37:57338       192.168.109.88:5432  users:(("freeswitch",pid=905961,fd=40))
+tcp   ESTAB      0      0               192.168.109.37:38021         192.168.16.3:34496 users:(("freeswitch",pid=905961,fd=54))
+tcp   ESTAB      0      0                    127.0.0.1:38021            127.0.0.1:44800 users:(("freeswitch",pid=905961,fd=49))
+tcp   ESTAB      0      0                    127.0.0.1:57158            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=134))
+tcp   ESTAB      0      0                    127.0.0.1:41764            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=107))
+tcp   ESTAB      0      0               192.168.109.37:34530       192.168.109.88:5432  users:(("freeswitch",pid=905961,fd=6))
+tcp   ESTAB      0      0                    127.0.0.1:60880            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=68))
+tcp   ESTAB      0      0               192.168.109.37:38021         192.168.16.2:56374 users:(("freeswitch",pid=905961,fd=56))
+tcp   ESTAB      0      0                    127.0.0.1:46308            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=123))
+tcp   ESTAB      0      0                    127.0.0.1:52424            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=317))
+tcp   ESTAB      0      0                    127.0.0.1:60108            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=71))
+tcp   ESTAB      0      0                    127.0.0.1:38108            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=67))
+tcp   ESTAB      0      0                    127.0.0.1:33486            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=79))
+tcp   ESTAB      0      0                    127.0.0.1:40028            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=153))
+tcp   ESTAB      0      0                    127.0.0.1:40568            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=166))
+tcp   ESTAB      0      0                    127.0.0.1:39996            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=98))
+tcp   ESTAB      0      0                    127.0.0.1:46040            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=84))
+tcp   ESTAB      0      0                    127.0.0.1:41782            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=116))
+tcp   ESTAB      0      0                    127.0.0.1:33752            127.0.0.1:13002 users:(("freeswitch",pid=905961,fd=125))
+tcp   LISTEN     0      4096                     [::1]:8081                  [::]:*     users:(("freeswitch",pid=905961,fd=41))
+tcp   LISTEN     0      4096                     [::1]:8082                  [::]:*     users:(("freeswitch",pid=905961,fd=43))
+(base) [root@localhost fs]# ss -atunp|grep freeswitch|wc -l
+230
+
+
+
+
+(base) [root@localhost fs]# ss -atunp
+Netid       State             Recv-Q        Send-Q                         Local Address:Port                        Peer Address:Port        Process
+udp         UNCONN            99840         0                             192.168.109.37:26384                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=481))
+udp         UNCONN            99840         0                             192.168.109.37:26386                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=407))
+udp         UNCONN            99840         0                             192.168.109.37:26388                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=396))
+udp         UNCONN            99840         0                             192.168.109.37:26390                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=330))
+udp         UNCONN            99840         0                             192.168.109.37:26392                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=226))
+udp         UNCONN            99840         0                             192.168.109.37:26394                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=335))
+udp         UNCONN            99840         0                             192.168.109.37:26396                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=108))
+udp         UNCONN            99840         0                             192.168.109.37:26398                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=348))
+udp         UNCONN            99840         0                             192.168.109.37:26400                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=451))
+udp         UNCONN            99840         0                             192.168.109.37:26402                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=356))
+udp         UNCONN            99840         0                             192.168.109.37:26404                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=362))
+udp         UNCONN            99840         0                             192.168.109.37:26406                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=339))
+udp         UNCONN            99840         0                             192.168.109.37:26408                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=283))
+udp         UNCONN            99840         0                             192.168.109.37:26410                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=454))
+udp         UNCONN            99840         0                             192.168.109.37:26412                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=421))
+udp         UNCONN            99840         0                             192.168.109.37:26414                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=425))
+udp         UNCONN            99840         0                             192.168.109.37:26416                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=318))
+udp         UNCONN            99840         0                             192.168.109.37:26418                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=405))
+udp         UNCONN            145920        0                             192.168.109.37:26420                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=478))
+udp         UNCONN            99840         0                             192.168.109.37:26422                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=427))
+udp         UNCONN            99840         0                             192.168.109.37:26424                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=375))
+udp         UNCONN            99840         0                             192.168.109.37:26426                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=400))
+udp         UNCONN            99840         0                             192.168.109.37:26428                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=178))
+udp         UNCONN            99840         0                             192.168.109.37:26430                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=376))
+udp         UNCONN            99840         0                             192.168.109.37:26432                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=301))
+udp         UNCONN            99840         0                             192.168.109.37:26434                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=315))
+udp         UNCONN            99840         0                             192.168.109.37:26436                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=367))
+udp         UNCONN            99840         0                             192.168.109.37:26438                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=410))
+udp         UNCONN            99840         0                             192.168.109.37:26440                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=151))
+udp         UNCONN            99840         0                             192.168.109.37:26442                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=439))
+udp         UNCONN            99840         0                             192.168.109.37:26444                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=227))
+udp         UNCONN            99840         0                             192.168.109.37:26446                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=441))
+udp         UNCONN            99840         0                             192.168.109.37:26448                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=175))
+udp         UNCONN            99840         0                             192.168.109.37:26450                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=195))
+udp         UNCONN            99840         0                             192.168.109.37:26452                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=240))
+udp         UNCONN            99840         0                             192.168.109.37:26454                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=265))
+udp         UNCONN            99840         0                             192.168.109.37:26456                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=246))
+udp         UNCONN            99840         0                             192.168.109.37:26458                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=238))
+udp         UNCONN            99840         0                             192.168.109.37:26460                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=385))
+udp         UNCONN            99840         0                             192.168.109.37:26462                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=268))
+udp         UNCONN            99840         0                             192.168.109.37:26464                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=334))
+udp         UNCONN            99840         0                             192.168.109.37:26466                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=309))
+udp         UNCONN            99840         0                             192.168.109.37:26468                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=132))
+udp         UNCONN            99840         0                             192.168.109.37:26470                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=326))
+udp         UNCONN            99840         0                             192.168.109.37:26472                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=341))
+udp         UNCONN            99840         0                             192.168.109.37:26474                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=262))
+udp         UNCONN            99840         0                             192.168.109.37:26476                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=448))
+udp         UNCONN            99840         0                             192.168.109.37:26478                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=228))
+udp         UNCONN            99840         0                             192.168.109.37:26480                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=252))
+udp         UNCONN            99840         0                             192.168.109.37:26482                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=445))
+udp         UNCONN            99840         0                             192.168.109.37:26484                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=136))
+udp         UNCONN            0             0                                    0.0.0.0:111                              0.0.0.0:*            users:(("rpcbind",pid=724603,fd=5),("systemd",pid=1,fd=87))
+udp         UNCONN            0             0                                  127.0.0.1:323                              0.0.0.0:*            users:(("chronyd",pid=871,fd=5))
+udp         UNCONN            0             0                                  127.0.0.1:1017                             0.0.0.0:*            users:(("rpc.statd",pid=724609,fd=5))
+udp         UNCONN            0             0                                    0.0.0.0:1337                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=45))
+udp         UNCONN            0             0                                  127.0.0.1:36090                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=19))
+udp         UNCONN            0             0                                  127.0.0.1:4890                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=88))
+udp         UNCONN            0             0                                  127.0.0.1:4891                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=129))
+udp         UNCONN            0             0                                  127.0.0.1:4892                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=213))
+udp         UNCONN            0             0                                  127.0.0.1:4893                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=223))
+udp         UNCONN            0             0                                  127.0.0.1:4894                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=173))
+udp         UNCONN            0             0                                  127.0.0.1:4895                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=182))
+udp         UNCONN            0             0                                  127.0.0.1:4896                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=104))
+udp         UNCONN            0             0                                  127.0.0.1:4897                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=155))
+udp         UNCONN            0             0                                  127.0.0.1:4898                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=288))
+udp         UNCONN            0             0                                  127.0.0.1:4899                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=290))
+udp         UNCONN            0             0                                  127.0.0.1:4900                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=259))
+udp         UNCONN            0             0                                  127.0.0.1:4901                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=263))
+udp         UNCONN            0             0                                  127.0.0.1:4902                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=130))
+udp         UNCONN            0             0                                  127.0.0.1:4903                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=148))
+udp         UNCONN            0             0                                  127.0.0.1:4904                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=90))
+udp         UNCONN            0             0                                  127.0.0.1:4905                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=172))
+udp         UNCONN            0             0                                  127.0.0.1:4906                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=337))
+udp         UNCONN            0             0                                  127.0.0.1:4907                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=338))
+udp         UNCONN            0             0                                  127.0.0.1:4908                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=346))
+udp         UNCONN            0             0                                  127.0.0.1:4909                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=347))
+udp         UNCONN            0             0                                  127.0.0.1:4910                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=351))
+udp         UNCONN            0             0                                  127.0.0.1:4911                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=352))
+udp         UNCONN            0             0                                  127.0.0.1:4912                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=372))
+udp         UNCONN            0             0                                  127.0.0.1:4913                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=373))
+udp         UNCONN            0             0                                  127.0.0.1:4914                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=380))
+udp         UNCONN            0             0                                  127.0.0.1:4915                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=381))
+udp         UNCONN            0             0                                  127.0.0.1:4916                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=180))
+udp         UNCONN            0             0                                  127.0.0.1:4917                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=253))
+udp         UNCONN            0             0                                  127.0.0.1:4918                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=73))
+udp         UNCONN            0             0                                  127.0.0.1:4919                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=271))
+udp         UNCONN            0             0                                  127.0.0.1:4920                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=147))
+udp         UNCONN            0             0                                  127.0.0.1:4921                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=275))
+udp         UNCONN            0             0                                  127.0.0.1:4922                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=210))
+udp         UNCONN            0             0                                  127.0.0.1:4923                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=216))
+udp         UNCONN            0             0                                  127.0.0.1:4924                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=324))
+udp         UNCONN            0             0                                  127.0.0.1:4925                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=429))
+udp         UNCONN            0             0                                  127.0.0.1:4926                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=97))
+udp         UNCONN            0             0                                  127.0.0.1:4927                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=99))
+udp         UNCONN            0             0                                  127.0.0.1:4928                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=434))
+udp         UNCONN            0             0                                  127.0.0.1:4929                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=435))
+udp         UNCONN            0             0                                  127.0.0.1:4930                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=115))
+udp         UNCONN            0             0                                  127.0.0.1:4931                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=160))
+udp         UNCONN            0             0                                  127.0.0.1:4932                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=138))
+udp         UNCONN            0             0                                  127.0.0.1:4933                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=165))
+udp         UNCONN            0             0                                  127.0.0.1:4934                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=443))
+udp         UNCONN            0             0                                  127.0.0.1:4935                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=444))
+udp         UNCONN            0             0                                  127.0.0.1:4936                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=168))
+udp         UNCONN            0             0                                  127.0.0.1:4937                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=169))
+udp         UNCONN            0             0                                  127.0.0.1:4938                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=121))
+udp         UNCONN            0             0                                  127.0.0.1:4939                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=149))
+udp         UNCONN            0             0                                  127.0.0.1:4940                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=413))
+udp         UNCONN            0             0                                  127.0.0.1:4941                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=414))
+udp         UNCONN            0             0                                  127.0.0.1:4942                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=431))
+udp         UNCONN            0             0                                  127.0.0.1:4943                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=453))
+udp         UNCONN            0             0                                  127.0.0.1:4944                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=457))
+udp         UNCONN            0             0                                  127.0.0.1:4945                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=458))
+udp         UNCONN            0             0                                  127.0.0.1:4946                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=460))
+udp         UNCONN            0             0                                  127.0.0.1:4947                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=461))
+udp         UNCONN            0             0                                  127.0.0.1:4948                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=192))
+udp         UNCONN            0             0                                  127.0.0.1:4949                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=463))
+udp         UNCONN            0             0                                  127.0.0.1:4950                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=465))
+udp         UNCONN            0             0                                  127.0.0.1:4951                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=466))
+udp         UNCONN            0             0                                  127.0.0.1:4952                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=467))
+udp         UNCONN            0             0                                  127.0.0.1:4953                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=468))
+udp         UNCONN            0             0                                  127.0.0.1:4954                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=470))
+udp         UNCONN            0             0                                  127.0.0.1:4955                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=472))
+udp         UNCONN            0             0                                  127.0.0.1:4956                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=475))
+udp         UNCONN            0             0                                  127.0.0.1:4957                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=476))
+udp         UNCONN            0             0                                  127.0.0.1:4958                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=474))
+udp         UNCONN            0             0                                  127.0.0.1:4959                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=477))
+udp         UNCONN            0             0                                  127.0.0.1:4960                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=387))
+udp         UNCONN            0             0                                  127.0.0.1:4961                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=388))
+udp         UNCONN            0             0                                  127.0.0.1:4962                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=391))
+udp         UNCONN            0             0                                  127.0.0.1:4963                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=483))
+udp         UNCONN            0             0                                  127.0.0.1:4964                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=485))
+udp         UNCONN            0             0                                  127.0.0.1:4965                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=486))
+udp         UNCONN            0             0                                  127.0.0.1:4966                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=488))
+udp         UNCONN            0             0                                  127.0.0.1:4967                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=489))
+udp         UNCONN            0             0                                  127.0.0.1:4968                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=493))
+udp         UNCONN            0             0                                  127.0.0.1:4969                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=494))
+udp         UNCONN            0             0                                  127.0.0.1:4970                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=495))
+udp         UNCONN            0             0                                  127.0.0.1:4971                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=496))
+udp         UNCONN            0             0                                  127.0.0.1:4972                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=498))
+udp         UNCONN            0             0                                  127.0.0.1:4973                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=499))
+udp         UNCONN            0             0                                  127.0.0.1:4974                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=500))
+udp         UNCONN            0             0                                  127.0.0.1:4975                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=503))
+udp         UNCONN            0             0                                  127.0.0.1:4976                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=505))
+udp         UNCONN            0             0                                  127.0.0.1:4977                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=506))
+udp         UNCONN            0             0                                  127.0.0.1:4978                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=507))
+udp         UNCONN            0             0                                  127.0.0.1:4979                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=508))
+udp         UNCONN            0             0                                  127.0.0.1:4980                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=501))
+udp         UNCONN            0             0                                  127.0.0.1:4981                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=514))
+udp         UNCONN            0             0                                  127.0.0.1:4982                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=515))
+udp         UNCONN            0             0                                  127.0.0.1:4983                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=516))
+udp         UNCONN            0             0                                  127.0.0.1:4984                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=517))
+udp         UNCONN            0             0                                  127.0.0.1:4985                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=518))
+udp         UNCONN            0             0                                  127.0.0.1:4986                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=521))
+udp         UNCONN            0             0                                  127.0.0.1:4987                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=522))
+udp         UNCONN            0             0                                  127.0.0.1:4988                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=523))
+udp         UNCONN            0             0                                  127.0.0.1:4989                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=524))
+udp         UNCONN            0             0                                  127.0.0.1:4990                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=525))
+udp         UNCONN            0             0                                  127.0.0.1:4991                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=526))
+udp         UNCONN            0             0                                    0.0.0.0:5353                             0.0.0.0:*            users:(("avahi-daemon",pid=831,fd=12))
+udp         UNCONN            0             0                                    0.0.0.0:38465                            0.0.0.0:*
+udp         UNCONN            0             0                             192.168.109.37:6060                             0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=28))
+udp         UNCONN            0             0                                    0.0.0.0:44692                            0.0.0.0:*            users:(("rpc.statd",pid=724609,fd=8))
+udp         UNCONN            0             0                             192.168.109.37:45394                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=354))
+udp         UNCONN            3072          0                             192.168.109.37:45395                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=408))
+udp         UNCONN            0             0                             192.168.109.37:45406                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=249))
+udp         UNCONN            3072          0                             192.168.109.37:45407                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=254))
+udp         UNCONN            207360        0                             192.168.109.37:45412                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=345))
+udp         UNCONN            2304          0                             192.168.109.37:45413                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=396))
+udp         UNCONN            207360        0                             192.168.109.37:45418                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=183))
+udp         UNCONN            2304          0                             192.168.109.37:45419                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=210))
+udp         UNCONN            207360        0                             192.168.109.37:45424                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=269))
+udp         UNCONN            2304          0                             192.168.109.37:45425                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=270))
+udp         UNCONN            207360        0                             192.168.109.37:45430                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=286))
+udp         UNCONN            2304          0                             192.168.109.37:45431                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=299))
+udp         UNCONN            0             0                             192.168.109.37:45434                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=70))
+udp         UNCONN            768           0                             192.168.109.37:45435                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=134))
+udp         UNCONN            213760        0                             192.168.109.37:45436                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=335))
+udp         UNCONN            1536          0                             192.168.109.37:45437                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=337))
+udp         UNCONN            0             0                             192.168.109.37:45440                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=35))
+udp         UNCONN            768           0                             192.168.109.37:45441                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=116))
+udp         UNCONN            213760        0                             192.168.109.37:45442                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=157))
+udp         UNCONN            1536          0                             192.168.109.37:45443                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=159))
+udp         UNCONN            0             0                             192.168.109.37:45446                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=31))
+udp         UNCONN            768           0                             192.168.109.37:45447                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=32))
+udp         UNCONN            213760        0                             192.168.109.37:45448                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=114))
+udp         UNCONN            1536          0                             192.168.109.37:45449                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=142))
+udp         UNCONN            213760        0                             192.168.109.37:45454                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=39))
+udp         UNCONN            768           0                             192.168.109.37:45455                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=42))
+udp         UNCONN            0             0                             192.168.109.37:45456                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=48))
+udp         UNCONN            768           0                             192.168.109.37:45457                            0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=49))
+udp         UNCONN            0             0                                    0.0.0.0:47482                            0.0.0.0:*            users:(("avahi-daemon",pid=831,fd=14))
+udp         UNCONN            0             0                             192.168.109.37:15060                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=35))
+udp         UNCONN            0             0                             192.168.109.37:15080                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=26))
+udp         UNCONN            0             0                                       [::]:59755                               [::]:*            users:(("rpc.statd",pid=724609,fd=10))
+udp         UNCONN            0             0                                       [::]:111                                 [::]:*            users:(("rpcbind",pid=724603,fd=7),("systemd",pid=1,fd=90))
+udp         UNCONN            0             0                                      [::1]:323                                 [::]:*            users:(("chronyd",pid=871,fd=6))
+udp         UNCONN            0             0                                       [::]:5353                                [::]:*            users:(("avahi-daemon",pid=831,fd=13))
+udp         UNCONN            0             0                                       [::]:44010                               [::]:*            users:(("avahi-daemon",pid=831,fd=15))
+udp         UNCONN            0             0                                       [::]:48530                               [::]:*
+tcp         LISTEN            0             64                            192.168.109.37:5066                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=37))
+tcp         LISTEN            0             4096                                 0.0.0.0:13002                            0.0.0.0:*            users:(("docker-proxy",pid=465476,fd=4))
+tcp         LISTEN            0             64                            192.168.109.37:6060                             0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=29))
+tcp         LISTEN            0             4096                          192.168.109.37:1644                             0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=11))
+tcp         LISTEN            0             4096                                 0.0.0.0:20206                            0.0.0.0:*            users:(("docker-proxy",pid=85773,fd=4))
+tcp         LISTEN            0             4096                                 0.0.0.0:20207                            0.0.0.0:*            users:(("docker-proxy",pid=85884,fd=4))
+tcp         LISTEN            0             4096                                 0.0.0.0:111                              0.0.0.0:*            users:(("rpcbind",pid=724603,fd=4),("systemd",pid=1,fd=86))
+tcp         LISTEN            0             4096                                 0.0.0.0:80                               0.0.0.0:*            users:(("docker-proxy",pid=794308,fd=4))
+tcp         LISTEN            0             4096                          192.168.109.37:8081                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=42))
+tcp         LISTEN            0             4096                                 0.0.0.0:20209                            0.0.0.0:*            users:(("docker-proxy",pid=85668,fd=4))
+tcp         LISTEN            0             4096                          192.168.109.37:1554                             0.0.0.0:*            users:(("unimrcpserver",pid=922816,fd=7))
+tcp         LISTEN            0             4096                          192.168.109.37:8082                             0.0.0.0:*            users:(("freeswitch",pid=905961,fd=44))
+tcp         LISTEN            0             4096                                 0.0.0.0:20211                            0.0.0.0:*            users:(("docker-proxy",pid=906934,fd=4))
+tcp         LISTEN            0             64                            192.168.109.37:15060                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=36))
+tcp         LISTEN            0             4096                                 0.0.0.0:20212                            0.0.0.0:*            users:(("docker-proxy",pid=85706,fd=4))
+tcp         LISTEN            0             128                                  0.0.0.0:22                               0.0.0.0:*            users:(("sshd",pid=984,fd=3))
+tcp         LISTEN            0             4096                                 0.0.0.0:29207                            0.0.0.0:*            users:(("docker-proxy",pid=467318,fd=4))
+tcp         LISTEN            0             128                                127.0.0.1:631                              0.0.0.0:*            users:(("cupsd",pid=983,fd=7))
+tcp         LISTEN            0             4096                                 0.0.0.0:29209                            0.0.0.0:*            users:(("docker-proxy",pid=907018,fd=4))
+tcp         LISTEN            0             4096                                 0.0.0.0:30301                            0.0.0.0:*            users:(("docker-proxy",pid=799311,fd=4))
+tcp         LISTEN            0             4096                                 0.0.0.0:30302                            0.0.0.0:*            users:(("docker-proxy",pid=799211,fd=4))
+tcp         LISTEN            0             4096                                 0.0.0.0:19006                            0.0.0.0:*            users:(("docker-proxy",pid=794254,fd=4))
+tcp         LISTEN            0             128                           192.168.109.37:30208                            0.0.0.0:*            users:(("knodi_asr_proxy",pid=128690,fd=11))
+tcp         LISTEN            0             4096                                 0.0.0.0:24001                            0.0.0.0:*            users:(("docker-proxy",pid=85728,fd=4))
+tcp         LISTEN            0             64                            192.168.109.37:37443                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=38))
+tcp         LISTEN            0             4096                                 0.0.0.0:54883                            0.0.0.0:*            users:(("rpc.statd",pid=724609,fd=9))
+tcp         LISTEN            0             5                                    0.0.0.0:38021                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=55))
+tcp         LISTEN            0             5                             192.168.109.37:22855                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=4))
+tcp         LISTEN            0             64                            192.168.109.37:15080                            0.0.0.0:*            users:(("freeswitch",pid=905961,fd=27))
+tcp         LISTEN            0             4096                                 0.0.0.0:13001                            0.0.0.0:*            users:(("docker-proxy",pid=465496,fd=4))
+tcp         LISTEN            0             64                                   0.0.0.0:38505                            0.0.0.0:*
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:40568        users:(("docker-proxy",pid=465476,fd=139))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:57646        users:(("docker-proxy",pid=465476,fd=3))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:54108        users:(("sshd",pid=913453,fd=4),("sshd",pid=913449,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:57630                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=75))
+tcp         ESTAB             0             0                                  127.0.0.1:57642                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=137))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:52404        users:(("docker-proxy",pid=465476,fd=261))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:39996        users:(("docker-proxy",pid=465476,fd=187))
+tcp         ESTAB             0             0                               192.168.48.1:56772                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=86))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:41172        users:(("docker-proxy",pid=465476,fd=97))
+tcp         ESTAB             0             0                                  127.0.0.1:57646                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=161))
+tcp         ESTAB             0             0                               192.168.48.1:38430                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=110))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:35422        users:(("sshd",pid=3896037,fd=4),("sshd",pid=3896033,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:56076                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=242))
+tcp         ESTAB             0             0                               192.168.48.1:59236                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=152))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:41204        users:(("docker-proxy",pid=465476,fd=109))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:55502        users:(("sshd",pid=917683,fd=4),("sshd",pid=917679,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:45166                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=272))
+tcp         ESTAB             0             0                                  127.0.0.1:52428                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=269))
+tcp         ESTAB             0             0                                  127.0.0.1:60888                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=110))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:55696        users:(("sshd",pid=3009136,fd=4),("sshd",pid=3009132,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:52380                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=170))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:55088        users:(("docker-proxy",pid=465476,fd=145))
+tcp         ESTAB             0             0                                  127.0.0.1:47994                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=250))
+tcp         ESTAB             0             0                               192.168.48.1:54250                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=26))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:37206        users:(("sshd",pid=3410352,fd=4),("sshd",pid=3410348,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:46300        users:(("docker-proxy",pid=465476,fd=253))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:57158        users:(("docker-proxy",pid=465476,fd=121))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:60862        users:(("docker-proxy",pid=465476,fd=91))
+tcp         ESTAB             0             0                               192.168.48.1:60564                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=43))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:52380        users:(("docker-proxy",pid=465476,fd=297))
+tcp         ESTAB             0             0                             192.168.109.37:20206                      192.168.208.3:37130        users:(("docker-proxy",pid=85773,fd=3))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:49724        users:(("sshd",pid=923260,fd=4),("sshd",pid=923257,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:40536                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=78))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:47994        users:(("docker-proxy",pid=465476,fd=237))
+tcp         ESTAB             0             0                                  127.0.0.1:44800                          127.0.0.1:38021        users:(("fs_cli",pid=918278,fd=3))
+tcp         ESTAB             0             0                                  127.0.0.1:45824                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=69))
+tcp         ESTAB             0             0                               192.168.48.1:54240                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=194))
+tcp         ESTAB             0             0                                  127.0.0.1:36368                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=171))
+tcp         ESTAB             0             0                                  127.0.0.1:57162                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=206))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:40536        users:(("docker-proxy",pid=465476,fd=103))
+tcp         ESTAB             0             0                                  127.0.0.1:54890                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=89))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:57952        users:(("docker-proxy",pid=465476,fd=279))
+tcp         ESTAB             0             0                               192.168.10.1:47094                       192.168.10.5:80           users:(("docker-proxy",pid=85773,fd=5))
+tcp         ESTAB             0             0                             192.168.109.37:36102                      120.92.238.24:80           users:(("unimrcpserver",pid=922816,fd=251))
+tcp         ESTAB             0             0                                  127.0.0.1:57952                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=65))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:59264        users:(("sshd",pid=125624,fd=4),("sshd",pid=125620,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:41814        users:(("docker-proxy",pid=465476,fd=79))
+tcp         ESTAB             0             0                                  127.0.0.1:36400                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=292))
+tcp         ESTAB             0             0                                  127.0.0.1:32844                          127.0.0.1:38021        users:(("fs_cli",pid=923540,fd=3))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:38962        users:(("sshd",pid=1010713,fd=4),("sshd",pid=1010707,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:34540                     192.168.109.88:5432         users:(("freeswitch",pid=905961,fd=31))
+tcp         ESTAB             0             0                                  127.0.0.1:52404                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=296))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:42014        users:(("sshd",pid=3311089,fd=4),("sshd",pid=3311085,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:49562        users:(("sshd",pid=925231,fd=4),("sshd",pid=925227,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:52374                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=285))
+tcp         ESTAB             0             0                               192.168.48.1:45672                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=182))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:59310        users:(("sshd",pid=857438,fd=4),("sshd",pid=857434,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:48948                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=284))
+tcp         ESTAB             0             0                               192.168.48.1:36866                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=199))
+tcp         ESTAB             0             0                                  127.0.0.1:55088                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=83))
+tcp         ESTAB             0             0                               192.168.48.1:44280                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=104))
+tcp         ESTAB             0             0                                  127.0.0.1:33736                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=183))
+tcp         ESTAB             0             0                                  127.0.0.1:52392                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=344))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:60880        users:(("docker-proxy",pid=465476,fd=249))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:40028        users:(("docker-proxy",pid=465476,fd=13))
+tcp         ESTAB             0             0                               192.168.48.1:47048                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=170))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:33752        users:(("docker-proxy",pid=465476,fd=200))
+tcp         ESTAB             0             0                                  127.0.0.1:46300                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=152))
+tcp         ESTAB             0             0                               192.168.48.1:45662                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=224))
+tcp         ESTAB             0             0                                  127.0.0.1:60876                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=323))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:41764        users:(("docker-proxy",pid=465476,fd=44))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:46322        users:(("docker-proxy",pid=465476,fd=31))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:42274        users:(("sshd",pid=3460695,fd=4),("sshd",pid=3460692,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:38918                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=49))
+tcp         ESTAB             0             0                               192.168.48.1:44330                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=140))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:54890        users:(("docker-proxy",pid=465476,fd=271))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:60888        users:(("docker-proxy",pid=465476,fd=115))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:52392        users:(("docker-proxy",pid=465476,fd=303))
+tcp         ESTAB             0             0                               192.168.48.1:54264                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=32))
+tcp         ESTAB             0             0                                  127.0.0.1:54892                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=94))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:44438        users:(("sshd",pid=1009896,fd=4),("sshd",pid=1009892,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:38021                          127.0.0.1:32844        users:(("freeswitch",pid=905961,fd=62))
+tcp         ESTAB             0             0                               192.168.48.1:38450                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=134))
+tcp         ESTAB             0             0                               192.168.48.1:45636                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=172))
+tcp         ESTAB             0             0                                  127.0.0.1:41220                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=264))
+tcp         ESTAB             0             0                                  127.0.0.1:46322                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=91))
+tcp         ESTAB             0             0                               192.168.48.1:54232                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=254))
+tcp         ESTAB             0             0                                  127.0.0.1:57910                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=176))
+tcp         ESTAB             0             0                                  127.0.0.1:33522                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=96))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:45824        users:(("docker-proxy",pid=465476,fd=19))
+tcp         ESTAB             0             0                               192.168.48.1:56092                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=158))
+tcp         ESTAB             0             0                               192.168.48.1:48938                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=92))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:43030        users:(("sshd",pid=699497,fd=4),("sshd",pid=699493,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:55060                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=211))
+tcp         ESTAB             0             0                               192.168.48.1:56064                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=304))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:45246        users:(("sshd",pid=714989,fd=4),("sshd",pid=714985,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:40864        users:(("sshd",pid=3705075,fd=4),("sshd",pid=3705071,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:60862                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=117))
+tcp         ESTAB             0             0                               192.168.48.1:57416                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=188))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:53328        users:(("sshd",pid=712250,fd=4),("sshd",pid=712247,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:32846                          127.0.0.1:38021        users:(("fs_cli",pid=914119,fd=3))
+tcp         ESTAB             0             0                                  127.0.0.1:38021                          127.0.0.1:32846        users:(("freeswitch",pid=905961,fd=60))
+tcp         ESTAB             0             0                                  127.0.0.1:57640                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=122))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:57910        users:(("docker-proxy",pid=465476,fd=50))
+tcp         ESTAB             0             0                               192.168.48.1:47000                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=238))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:33522        users:(("docker-proxy",pid=465476,fd=267))
+tcp         ESTAB             0             0                                  127.0.0.1:48022                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=74))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:39834        users:(("sshd",pid=926113,fd=4),("sshd",pid=926108,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:37504        users:(("sshd",pid=3028663,fd=4),("sshd",pid=3028659,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:57640        users:(("docker-proxy",pid=465476,fd=223))
+tcp         ESTAB             0             0                             192.168.109.37:34534                     192.168.109.88:5432         users:(("freeswitch",pid=905961,fd=7))
+tcp         ESTAB             0             0                               192.168.48.1:38414                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=98))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:34800        users:(("sshd",pid=104599,fd=4),("sshd",pid=104595,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:37942        users:(("sshd",pid=751354,fd=4),("sshd",pid=751350,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:57162        users:(("docker-proxy",pid=465476,fd=127))
+tcp         ESTAB             0             0                                  127.0.0.1:46304                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=163))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:46040        users:(("docker-proxy",pid=465476,fd=85))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:44116        users:(("sshd",pid=864622,fd=4),("sshd",pid=864618,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:48396        users:(("sshd",pid=4188642,fd=4),("sshd",pid=4188638,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:48960                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=250))
+tcp         ESTAB             0             0                               192.168.48.1:43378                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=20))
+tcp         ESTAB             0             0                                  127.0.0.1:41204                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=135))
+tcp         ESTAB             0             0                               192.168.48.1:36876                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=205))
+tcp         ESTAB             0             0                                  127.0.0.1:41814                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=389))
+tcp         ESTAB             0             0                               192.168.48.1:45684                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=5))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:52420        users:(("docker-proxy",pid=465476,fd=241))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:41782        users:(("docker-proxy",pid=465476,fd=67))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:59638        users:(("sshd",pid=836438,fd=4),("sshd",pid=836434,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:44848        users:(("docker-proxy",pid=465476,fd=38))
+tcp         ESTAB             0             0                               192.168.48.1:32872                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=72))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:60714        users:(("sshd",pid=750955,fd=4),("sshd",pid=750952,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:59912                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=176))
+tcp         ESTAB             0             0                               192.168.48.1:38992                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=80))
+tcp         ESTAB             0             0                               192.168.48.1:45180                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=74))
+tcp         ESTAB             0             0                             192.168.109.37:854                       192.168.109.88:2049
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:46002        users:(("sshd",pid=699395,fd=4),("sshd",pid=699391,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:55684        users:(("sshd",pid=3009091,fd=4),("sshd",pid=3009087,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:45092        users:(("sshd",pid=3451007,fd=4),("sshd",pid=3451002,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:57630        users:(("docker-proxy",pid=465476,fd=171))
+tcp         ESTAB             0             0                                  127.0.0.1:41172                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=194))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:33476        users:(("sshd",pid=751770,fd=4),("sshd",pid=751766,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:38021                       192.168.48.2:54732        users:(("freeswitch",pid=905961,fd=58))
+tcp         ESTAB             0             0                             192.168.109.37:35984                     192.168.109.88:5432         users:(("freeswitch",pid=905961,fd=39))
+tcp         ESTAB             0             0                                  127.0.0.1:57924                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=255))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:52374        users:(("docker-proxy",pid=465476,fd=291))
+tcp         ESTAB             0             0                               192.168.48.1:33340                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=55))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:52424        users:(("docker-proxy",pid=465476,fd=157))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:47424        users:(("sshd",pid=917363,fd=4),("sshd",pid=917359,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:46308        users:(("docker-proxy",pid=465476,fd=25))
+tcp         ESTAB             0             0                                  127.0.0.1:44848                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=109))
+tcp         ESTAB             0             0                               192.168.48.1:54744                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=146))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:46304        users:(("docker-proxy",pid=465476,fd=193))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:52428        users:(("docker-proxy",pid=465476,fd=163))
+tcp         ESTAB             0             0                             192.168.109.37:39270                     192.168.109.88:5432         users:(("freeswitch",pid=905961,fd=139))
+tcp         ESTAB             0             0                             192.168.109.37:51602                     192.168.109.87:9092         users:(("knodi_asr_proxy",pid=128690,fd=9))
+tcp         ESTAB             0             0                                  127.0.0.1:49236                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=417))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:60108        users:(("docker-proxy",pid=465476,fd=71))
+tcp         ESTAB             0             0                                  127.0.0.1:52420                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=203))
+tcp         ESTAB             327           0                             192.168.109.37:57338                     192.168.109.88:5432         users:(("freeswitch",pid=905961,fd=40))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:48432        users:(("sshd",pid=814283,fd=4),("sshd",pid=814279,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:49236        users:(("docker-proxy",pid=465476,fd=307))
+tcp         ESTAB             0             0                             192.168.109.37:38021                       192.168.16.3:34496        users:(("freeswitch",pid=905961,fd=54))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:41220        users:(("docker-proxy",pid=465476,fd=133))
+tcp         FIN-WAIT-2        0             0                             192.168.109.37:19006                      192.168.208.3:37290        users:(("docker-proxy",pid=794254,fd=3))
+tcp         ESTAB             0             0                                  127.0.0.1:38021                          127.0.0.1:44800        users:(("freeswitch",pid=905961,fd=49))
+tcp         ESTAB             0             0                                  127.0.0.1:57158                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=134))
+tcp         ESTAB             0             0                               192.168.48.1:38950                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=68))
+tcp         ESTAB             0             0                               192.168.48.1:48964                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=116))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:33736        users:(("docker-proxy",pid=465476,fd=37))
+tcp         ESTAB             0             0                                  127.0.0.1:41764                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=107))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:54892        users:(("docker-proxy",pid=465476,fd=73))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:48022        users:(("docker-proxy",pid=465476,fd=169))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:57642        users:(("docker-proxy",pid=465476,fd=181))
+tcp         ESTAB             0             0                               192.168.48.1:33354                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=61))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:39506        users:(("sshd",pid=753214,fd=4),("sshd",pid=753210,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:34530                     192.168.109.88:5432         users:(("freeswitch",pid=905961,fd=6))
+tcp         ESTAB             0             0                               192.168.48.1:35218                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=128))
+tcp         ESTAB             0             0                                  127.0.0.1:60880                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=68))
+tcp         ESTAB             0             0                             192.168.109.37:38021                       192.168.16.2:56374        users:(("freeswitch",pid=905961,fd=56))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:36400        users:(("docker-proxy",pid=465476,fd=206))
+tcp         ESTAB             0             0                                  127.0.0.1:46308                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=123))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:43728        users:(("sshd",pid=3441537,fd=4),("sshd",pid=3441533,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:38108        users:(("docker-proxy",pid=465476,fd=151))
+tcp         ESTAB             0             0                                  127.0.0.1:52424                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=317))
+tcp         ESTAB             0             0                                  127.0.0.1:60108                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=71))
+tcp         ESTAB             0             0                               192.168.48.1:56050                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=292))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:45530        users:(("sshd",pid=3671729,fd=4),("sshd",pid=3671726,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:33378                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=280))
+tcp         ESTAB             0             0                                  127.0.0.1:38108                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=67))
+tcp         ESTAB             0             0                                  127.0.0.1:33486                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=79))
+tcp         ESTAB             0             0                                  127.0.0.1:40028                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=153))
+tcp         ESTAB             0             0                               192.168.48.1:59946                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=268))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:38806        users:(("sshd",pid=711728,fd=4),("sshd",pid=711724,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:37374        users:(("sshd",pid=4014911,fd=4),("sshd",pid=4014907,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:40568                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=166))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:39186        users:(("sshd",pid=91810,fd=4),("sshd",pid=91807,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:60876        users:(("docker-proxy",pid=465476,fd=283))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:36784        users:(("sshd",pid=859393,fd=4),("sshd",pid=859389,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:52504                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=308))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:47566        users:(("sshd",pid=861421,fd=4),("sshd",pid=861417,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:39428        users:(("sshd",pid=4124244,fd=4),("sshd",pid=4124239,fd=4))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:60856        users:(("sshd",pid=3958188,fd=4),("sshd",pid=3958185,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:33486        users:(("docker-proxy",pid=465476,fd=175))
+tcp         ESTAB             0             0                               192.168.48.1:55030                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=232))
+tcp         ESTAB             0             0                               192.168.48.1:57436                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=14))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:36368        users:(("docker-proxy",pid=465476,fd=231))
+tcp         ESTAB             0             0                               192.168.48.1:56056                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=298))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:52406        users:(("sshd",pid=3956719,fd=4),("sshd",pid=3956705,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:56098                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=164))
+tcp         ESTAB             0             0                               192.168.48.1:56074                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=262))
+tcp         ESTAB             0             0                                  127.0.0.1:13002                          127.0.0.1:57924        users:(("docker-proxy",pid=465476,fd=56))
+tcp         ESTAB             0             0                                  127.0.0.1:39996                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=98))
+tcp         ESTAB             0             0                                  127.0.0.1:46040                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=84))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:48414        users:(("sshd",pid=3068628,fd=4),("sshd",pid=3068623,fd=4))
+tcp         ESTAB             0             0                                  127.0.0.1:41782                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=116))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:49666        users:(("sshd",pid=131569,fd=4),("sshd",pid=131565,fd=4))
+tcp         ESTAB             0             0                               192.168.48.1:35206                       192.168.48.2:13002        users:(("docker-proxy",pid=465476,fd=122))
+tcp         ESTAB             0             0                                  127.0.0.1:33752                          127.0.0.1:13002        users:(("freeswitch",pid=905961,fd=125))
+tcp         ESTAB             0             0                             192.168.109.37:22                           172.70.90.2:53718        users:(("sshd",pid=3008785,fd=4),("sshd",pid=3008781,fd=4))
+tcp         LISTEN            0             4096                                    [::]:13002                               [::]:*            users:(("docker-proxy",pid=465484,fd=4))
+tcp         LISTEN            0             2000                                       *:3306                                   *:*            users:(("mysqld",pid=1123230,fd=55))
+tcp         LISTEN            0             4096                                    [::]:20206                               [::]:*            users:(("docker-proxy",pid=85780,fd=4))
+tcp         LISTEN            0             4096                                    [::]:20207                               [::]:*            users:(("docker-proxy",pid=85901,fd=4))
+tcp         LISTEN            0             4096                                    [::]:111                                 [::]:*            users:(("rpcbind",pid=724603,fd=6),("systemd",pid=1,fd=88))
+tcp         LISTEN            0             4096                                    [::]:80                                  [::]:*            users:(("docker-proxy",pid=794317,fd=4))
+tcp         LISTEN            0             4096                                   [::1]:8081                                [::]:*            users:(("freeswitch",pid=905961,fd=41))
+tcp         LISTEN            0             4096                                    [::]:20209                               [::]:*            users:(("docker-proxy",pid=85680,fd=4))
+tcp         LISTEN            0             4096                                   [::1]:8082                                [::]:*            users:(("freeswitch",pid=905961,fd=43))
+tcp         LISTEN            0             4096                                    [::]:20211                               [::]:*            users:(("docker-proxy",pid=906943,fd=4))
+tcp         LISTEN            0             4096                                    [::]:20212                               [::]:*            users:(("docker-proxy",pid=85715,fd=4))
+tcp         LISTEN            0             128                                     [::]:22                                  [::]:*            users:(("sshd",pid=984,fd=4))
+tcp         LISTEN            0             4096                                    [::]:29207                               [::]:*            users:(("docker-proxy",pid=467325,fd=4))
+tcp         LISTEN            0             128                                    [::1]:631                                 [::]:*            users:(("cupsd",pid=983,fd=6))
+tcp         LISTEN            0             4096                                    [::]:29209                               [::]:*            users:(("docker-proxy",pid=907026,fd=4))
+tcp         LISTEN            0             4096                                    [::]:30301                               [::]:*            users:(("docker-proxy",pid=799324,fd=4))
+tcp         LISTEN            0             64                                      [::]:37085                               [::]:*
+tcp         LISTEN            0             4096                                    [::]:30302                               [::]:*            users:(("docker-proxy",pid=799217,fd=4))
+tcp         LISTEN            0             4096                                    [::]:19006                               [::]:*            users:(("docker-proxy",pid=794262,fd=4))
+tcp         LISTEN            0             4096                                    [::]:34719                               [::]:*            users:(("rpc.statd",pid=724609,fd=11))
+tcp         LISTEN            0             4096                                    [::]:24001                               [::]:*            users:(("docker-proxy",pid=85735,fd=4))
+tcp         LISTEN            0             70                                         *:33060                                  *:*            users:(("mysqld",pid=1123230,fd=20))
+tcp         LISTEN            0             4096                                       *:39110                                  *:*            users:(("node_exporter",pid=104318,fd=3))
+tcp         LISTEN            0             4096                                    [::]:13001                               [::]:*            users:(("docker-proxy",pid=465502,fd=4))
+tcp         ESTAB             0             0                    [::ffff:192.168.109.37]:39110               [::ffff:172.70.90.3]:50556        users:(("node_exporter",pid=104318,fd=7))
+
+
+
+20250606
+观测分析颐和园uat环境0605压测mrcp和asr转写
+尝试复现颐和园uat环境压测时asr转写不完整问题
+定位解决太原热力讯飞tts连接超时问题
+分析太原热力首问语播报无声问题
+
 
 20250605
 分析颐和园uat环境0604上午压测mrcp日志
@@ -157,6 +2513,356 @@ let tail_count=6000+count
 echo "SEQUENTIAL" > media_port.csv
 seq 6000 $tail_count >> media_port.csv
 sipp -sf call_asr_p.xml  -r 1 -rp 20000 -m $count -inf media_port.csv -trace_msg -trace_err -s 50000001 192.168.109.37:15080
+
+#-r：指定每秒呼叫的个数
+#-rp：指定呼叫速率的时间单位（毫秒），默认是 1000 毫秒（1 秒）。通过这个参数，可以指定每 m 毫秒里有 n 个呼叫（使用命令-r n -rp m）
+#-m：指定呼叫的总数
+#-inf: 在呼叫过程中，从一个外部 CSV 文件引入值到脚本中去。文件的第一行表明数据的读取顺序
+#-s：指定呼叫的唯一标识符，用于区分不同的呼叫
+count=2000
+let tail_count=6000+count
+echo "SEQUENTIAL" > media_port.csv
+seq 6000 $tail_count >> media_port.csv
+sipp -sf call1.xml  -r 5 -rp 10000 -m $count -inf media_port.csv -s 50000001 192.168.109.37:15080
+
+
+
+
+Usage:
+
+  sipp remote_host[:remote_port] [options]
+
+Example:
+
+   Run SIPp with embedded server (uas) scenario:
+     ./sipp -sn uas
+   On the same host, run SIPp with embedded client (uac) scenario:
+     ./sipp -sn uac 127.0.0.1
+
+  Available options:
+
+
+*** Scenario file options:
+
+   -sd              : Dumps a default scenario (embedded in the SIPp executable)
+   -sf              : Loads an alternate XML scenario file.  To learn more about XML scenario
+                      syntax, use the -sd option to dump embedded scenarios. They contain all the
+                      necessary help.
+   -oocsf           : Load out-of-call scenario.
+   -oocsn           : Load out-of-call scenario.
+   -sn              : Use a default scenario (embedded in the SIPp executable). If this option is
+                      omitted, the Standard SipStone UAC scenario is loaded.
+                      Available values in this version:
+
+                      - 'uac'      : Standard SipStone UAC (default).
+                      - 'uas'      : Simple UAS responder.
+                      - 'regexp'   : Standard SipStone UAC - with regexp and variables.
+                      - 'branchc'  : Branching and conditional branching in scenarios - client.
+                      - 'branchs'  : Branching and conditional branching in scenarios - server.
+
+                      Default 3pcc scenarios (see -3pcc option):
+
+                      - '3pcc-C-A' : Controller A side (must be started after all other 3pcc
+                        scenarios)
+                      - '3pcc-C-B' : Controller B side.
+                      - '3pcc-A'   : A side.
+                      - '3pcc-B'   : B side.
+
+
+*** IP, port and protocol options:
+
+   -t               : Set the transport mode:
+                      - u1: UDP with one socket (default),
+                      - un: UDP with one socket per call,
+                      - ui: UDP with one socket per IP address. The IP addresses must be defined
+                        in the injection file.
+                      - t1: TCP with one socket,
+                      - tn: TCP with one socket per call,
+                      - c1: u1 + compression (only if compression plugin loaded),
+                      - cn: un + compression (only if compression plugin loaded).  This plugin is
+                        not provided with SIPp.
+
+   -i               : Set the local IP address for 'Contact:','Via:', and 'From:' headers. Default
+                      is primary host IP address.
+
+   -p               : Set the local port number.  Default is a random free port chosen by the
+                      system.
+   -bind_local      : Bind socket to local IP address, i.e. the local IP address is used as the
+                      source IP address.  If SIPp runs in server mode it will only listen on the
+                      local IP address instead of all IP addresses.
+   -ci              : Set the local control IP address
+   -cp              : Set the local control port number. Default is 8888.
+   -max_socket      : Set the max number of sockets to open simultaneously. This option is
+                      significant if you use one socket per call. Once this limit is reached,
+                      traffic is distributed over the sockets already opened. Default value is
+                      50000
+   -max_reconnect   : Set the the maximum number of reconnection.
+   -reconnect_close : Should calls be closed on reconnect?
+   -reconnect_sleep : How long (in milliseconds) to sleep between the close and reconnect?
+   -rsa             : Set the remote sending address to host:port for sending the messages.
+
+*** SIPp overall behavior options:
+
+   -v               : Display version and copyright information.
+   -bg              : Launch SIPp in background mode.
+   -nostdin         : Disable stdin.
+
+   -plugin          : Load a plugin.
+   -sleep           : How long to sleep for at startup. Default unit is seconds.
+   -skip_rlimit     : Do not perform rlimit tuning of file descriptor limits.  Default: false.
+   -buff_size       : Set the send and receive buffer size.
+   -sendbuffer_warn : Produce warnings instead of errors on SendBuffer failures.
+   -lost            : Set the number of packets to lose by default (scenario specifications
+                      override this value).
+   -key             : keyword value
+                      Set the generic parameter named "keyword" to "value".
+   -set             : variable value
+                      Set the global variable parameter named "variable" to "value".
+   -tdmmap          : Generate and handle a table of TDM circuits.
+                      A circuit must be available for the call to be placed.
+                      Format: -tdmmap {0-3}{99}{5-8}{1-31}
+   -dynamicStart    : variable value
+                      Set the start offset of dynamic_id variable
+   -dynamicMax      : variable value
+                      Set the maximum of dynamic_id variable
+   -dynamicStep     : variable value
+                      Set the increment of dynamic_id variable
+
+*** Call behavior options:
+
+   -aa              : Enable automatic 200 OK answer for INFO, NOTIFY, OPTIONS and UPDATE.
+   -base_cseq       : Start value of [cseq] for each call.
+   -cid_str         : Call ID string (default %u-%p@%s).  %u=call_number, %s=ip_address,
+                      %p=process_number, %%=% (in any order).
+   -d               : Controls the length of calls. More precisely, this controls the duration of
+                      'pause' instructions in the scenario, if they do not have a 'milliseconds'
+                      section. Default value is 0 and default unit is milliseconds.
+   -deadcall_wait   : How long the Call-ID and final status of calls should be kept to improve
+                      message and error logs (default unit is ms).
+   -auth_uri        : Force the value of the URI for authentication.
+                      By default, the URI is composed of remote_ip:remote_port.
+   -au              : Set authorization username for authentication challenges. Default is taken
+                      from -s argument
+   -ap              : Set the password for authentication challenges. Default is 'password'
+   -s               : Set the username part of the request URI. Default is 'service'.
+   -default_behaviors: Set the default behaviors that SIPp will use.  Possible values are:
+                      - all     Use all default behaviors
+                      - none    Use no default behaviors
+                      - bye     Send byes for aborted calls
+                      - abortunexp      Abort calls on unexpected messages
+                      - pingreply       Reply to ping requests
+                      If a behavior is prefaced with a -, then it is turned off.  Example:
+                      all,-bye
+
+   -nd              : No Default. Disable all default behavior of SIPp which are the following:
+                      - On UDP retransmission timeout, abort the call by sending a BYE or a CANCEL
+                      - On receive timeout with no ontimeout attribute, abort the call by sending
+                        a BYE or a CANCEL
+                      - On unexpected BYE send a 200 OK and close the call
+                      - On unexpected CANCEL send a 200 OK and close the call
+                      - On unexpected PING send a 200 OK and continue the call
+                      - On any other unexpected message, abort the call by sending a BYE or a
+                        CANCEL
+
+   -pause_msg_ign   : Ignore the messages received during a pause defined in the scenario
+   -callid_slash_ign: Don't treat a triple-slash in Call-IDs as indicating an extra SIPp prefix.
+
+*** Injection file options:
+
+   -inf             : Inject values from an external CSV file during calls into the scenarios.
+                      First line of this file say whether the data is to be read in sequence
+                      (SEQUENTIAL), random (RANDOM), or user (USER) order.
+                      Each line corresponds to one call and has one or more ';' delimited data
+                      fields. Those fields can be referred as [field0], [field1], ... in the xml
+                      scenario file.  Several CSV files can be used simultaneously (syntax: -inf
+                      f1.csv -inf f2.csv ...)
+   -infindex        : file field
+                      Create an index of file using field.  For example -inf ../path/to/users.csv
+                      -infindex users.csv 0 creates an index on the first key.
+   -ip_field        : Set which field from the injection file contains the IP address from which
+                      the client will send its messages.
+                      If this option is omitted and the '-t ui' option is present, then field 0 is
+                      assumed.
+                      Use this option together with '-t ui'
+
+*** RTP behaviour options:
+
+   -mi              : Set the local media IP address (default: local primary host IP address)
+   -rtp_echo        : Enable RTP echo. RTP/UDP packets received on port defined by -mp are echoed
+                      to their sender.
+                      RTP/UDP packets coming on this port + 2 are also echoed to their sender
+                      (used for sound and video echo).
+   -mb              : Set the RTP echo buffer size (default: 2048).
+   -mp              : Set the local RTP echo port number. Default is 6000.
+   -rtp_payload     : RTP default payload type.
+   -rtp_threadtasks : RTP number of playback tasks per thread.
+   -rtp_buffsize    : Set the rtp socket send/receive buffer size.
+
+*** Call rate options:
+
+   -r               : Set the call rate (in calls per seconds).  This value can bechanged during
+                      test by pressing '+', '_', '*' or '/'. Default is 10.
+                      pressing '+' key to increase call rate by 1 * rate_scale,
+                      pressing '-' key to decrease call rate by 1 * rate_scale,
+                      pressing '*' key to increase call rate by 10 * rate_scale,
+                      pressing '/' key to decrease call rate by 10 * rate_scale.
+
+   -rp              : Specify the rate period for the call rate.  Default is 1 second and default
+                      unit is milliseconds.  This allows you to have n calls every m milliseconds
+                      (by using -r n -rp m).
+                      Example: -r 7 -rp 2000 ==> 7 calls every 2 seconds.
+                               -r 10 -rp 5s => 10 calls every 5 seconds.
+   -rate_scale      : Control the units for the '+', '-', '*', and '/' keys.
+   -rate_increase   : Specify the rate increase every -rate_interval units (default is seconds).
+                      This allows you to increase the load for each independent logging period.
+                      Example: -rate_increase 10 -rate_interval 10s
+                        ==> increase calls by 10 every 10 seconds.
+   -rate_max        : If -rate_increase is set, then quit after the rate reaches this value.
+                      Example: -rate_increase 10 -rate_max 100
+                        ==> increase calls by 10 until 100 cps is hit.
+   -rate_interval   : Set the interval by which the call rate is increased. Defaults to the value
+                      of -fd.
+   -no_rate_quit    : If -rate_increase is set, do not quit after the rate reaches -rate_max.
+   -l               : Set the maximum number of simultaneous calls. Once this limit is reached,
+                      traffic is decreased until the number of open calls goes down. Default:
+                        (3 * call_duration (s) * rate).
+   -m               : Stop the test and exit when 'calls' calls are processed
+   -users           : Instead of starting calls at a fixed rate, begin 'users' calls at startup,
+                      and keep the number of calls constant.
+
+*** Retransmission and timeout options:
+
+   -recv_timeout    : Global receive timeout. Default unit is milliseconds. If the expected message
+                      is not received, the call times out and is aborted.
+   -send_timeout    : Global send timeout. Default unit is milliseconds. If a message is not sent
+                      (due to congestion), the call times out and is aborted.
+   -timeout         : Global timeout. Default unit is seconds.  If this option is set, SIPp quits
+                      after nb units (-timeout 20s quits after 20 seconds).
+   -timeout_error   : SIPp fails if the global timeout is reached is set (-timeout option
+                      required).
+   -max_retrans     : Maximum number of UDP retransmissions before call ends on timeout.  Default
+                      is 5 for INVITE transactions and 7 for others.
+   -max_invite_retrans: Maximum number of UDP retransmissions for invite transactions before call
+                      ends on timeout.
+   -max_non_invite_retrans: Maximum number of UDP retransmissions for non-invite transactions before call
+                      ends on timeout.
+   -nr              : Disable retransmission in UDP mode.
+   -rtcheck         : Select the retransmission detection method: full (default) or loose.
+   -T2              : Global T2-timer in milli seconds
+
+*** Third-party call control options:
+
+   -3pcc            : Launch the tool in 3pcc mode ("Third Party call control"). The passed IP
+                      address depends on the 3PCC role.
+                      - When the first twin command is 'sendCmd' then this is the address of the
+                        remote twin socket.  SIPp will try to connect to this address:port to send
+                        the twin command (This instance must be started after all other 3PCC
+                        scenarios).
+                          Example: 3PCC-C-A scenario.
+                      - When the first twin command is 'recvCmd' then this is the address of the
+                        local twin socket. SIPp will open this address:port to listen for twin
+                        command.
+                          Example: 3PCC-C-B scenario.
+   -master          : 3pcc extended mode: indicates the master number
+   -slave           : 3pcc extended mode: indicates the slave number
+   -slave_cfg       : 3pcc extended mode: indicates the file where the master and slave addresses
+                      are stored
+
+*** Performance and watchdog options:
+
+   -timer_resol     : Set the timer resolution. Default unit is milliseconds.  This option has an
+                      impact on timers precision.Small values allow more precise scheduling but
+                      impacts CPU usage.If the compression is on, the value is set to 50ms. The
+                      default value is 10ms.
+   -max_recv_loops  : Set the maximum number of messages received read per cycle. Increase this
+                      value for high traffic level.  The default value is 1000.
+   -max_sched_loops : Set the maximum number of calls run per event loop. Increase this value for
+                      high traffic level.  The default value is 1000.
+   -watchdog_interval: Set gap between watchdog timer firings.  Default is 400.
+   -watchdog_reset  : If the watchdog timer has not fired in more than this time period, then reset
+                      the max triggers counters.  Default is 10 minutes.
+   -watchdog_minor_threshold: If it has been longer than this period between watchdog executions count a
+                      minor trip.  Default is 500.
+   -watchdog_major_threshold: If it has been longer than this period between watchdog executions count a
+                      major trip.  Default is 3000.
+   -watchdog_major_maxtriggers: How many times the major watchdog timer can be tripped before the test is
+                      terminated.  Default is 10.
+   -watchdog_minor_maxtriggers: How many times the minor watchdog timer can be tripped before the test is
+                      terminated.  Default is 120.
+
+*** Tracing, logging and statistics options:
+
+   -f               : Set the statistics report frequency on screen. Default is 1 and default unit
+                      is seconds.
+   -trace_stat      : Dumps all statistics in <scenario_name>_<pid>.csv file. Use the '-h stat'
+                      option for a detailed description of the statistics file content.
+   -stat_delimiter  : Set the delimiter for the statistics file
+   -stf             : Set the file name to use to dump statistics
+   -fd              : Set the statistics dump log report frequency. Default is 60 and default unit
+                      is seconds.
+   -periodic_rtd    : Reset response time partition counters each logging interval.
+   -trace_msg       : Displays sent and received SIP messages in <scenario file
+                      name>_<pid>_messages.log
+   -message_file    : Set the name of the message log file.
+   -message_overwrite: Overwrite the message log file (default true).
+   -trace_shortmsg  : Displays sent and received SIP messages as CSV in <scenario file
+                      name>_<pid>_shortmessages.log
+   -shortmessage_file: Set the name of the short message log file.
+   -shortmessage_overwrite: Overwrite the short message log file (default true).
+   -trace_counts    : Dumps individual message counts in a CSV file.
+   -trace_err       : Trace all unexpected messages in <scenario file name>_<pid>_errors.log.
+   -error_file      : Set the name of the error log file.
+   -error_overwrite : Overwrite the error log file (default true).
+   -trace_error_codes: Dumps the SIP response codes of unexpected messages to <scenario file
+                      name>_<pid>_error_codes.log.
+   -trace_calldebug : Dumps debugging information about aborted calls to
+                      <scenario_name>_<pid>_calldebug.log file.
+   -calldebug_file  : Set the name of the call debug file.
+   -calldebug_overwrite: Overwrite the call debug file (default true).
+   -trace_screen    : Dump statistic screens in the <scenario_name>_<pid>_screens.log file when
+                      quitting SIPp. Useful to get a final status report in background mode (-bg
+                      option).
+   -screen_file     : Set the name of the screen file.
+   -screen_overwrite: Overwrite the screen file (default true).
+   -trace_rtt       : Allow tracing of all response times in <scenario file name>_<pid>_rtt.csv.
+   -rtt_freq        : freq is mandatory. Dump response times every freq calls in the log file
+                      defined by -trace_rtt. Default value is 200.
+   -trace_logs      : Allow tracing of <log> actions in <scenario file name>_<pid>_logs.log.
+   -log_file        : Set the name of the log actions log file.
+   -log_overwrite   : Overwrite the log actions log file (default true).
+   -ringbuffer_files: How many error, message, shortmessage and calldebug files should be kept
+                      after rotation?
+   -ringbuffer_size : How large should error, message, shortmessage and calldebug files be before
+                      they get rotated?
+   -max_log_size    : What is the limit for error, message, shortmessage and calldebug file sizes.
+
+
+Signal handling:
+
+   SIPp can be controlled using POSIX signals. The following signals
+   are handled:
+   USR1: Similar to pressing the 'q' key. It triggers a soft exit
+         of SIPp. No more new calls are placed and all ongoing calls
+         are finished before SIPp exits.
+         Example: kill -SIGUSR1 732
+   USR2: Triggers a dump of all statistics screens in
+         <scenario_name>_<pid>_screens.log file. Especially useful
+         in background mode to know what the current status is.
+         Example: kill -SIGUSR2 732
+
+Exit codes:
+
+   Upon exit (on fatal error or when the number of asked calls (-m
+   option) is reached, SIPp exits with one of the following exit
+   code:
+    0: All calls were successful
+    1: At least one call failed
+   97: Exit on internal command. Calls may have been processed
+   99: Normal exit without calls processed
+   -1: Fatal error
+   -2: Fatal error binding a socket
+
+
 
 
 *** Call rate options:
@@ -7228,7 +9934,7 @@ vcpkg install graphicsmagick:x64-linux-dynamic
 
 网络router跟踪:
 sngrep
-
+vnstat
 
 20240912
 开发文本预处理功能
