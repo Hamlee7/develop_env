@@ -82,18 +82,6 @@ ${GIOMM_LIBRARIES} Qt5::Gui
 宋L DM-i
 
 
-## FreeSWITCH高可用部署与云原生集群部署
-### 主备双机HA
-[LiveVideoStack](https://cloud.tencent.com/developer/article/2208126)
-
-FreeSWITCH的主备切换原理：首先主机包含一个Param，参数为：<params name=“track-calls” value=“true”/>，如果我们开启此参数，它就会实时的将通话数据写入数据库当中。当然这个会有一定的开销，因为需要实时的写入数据库，比如每秒有一千路通话、一万路通话，它的开销就会很大，所以这种双机切换会对系统的吞吐量有一定影响。但在一些必要的场景下，我们往往是需要牺牲一些性能来更好的实现高可用的。
-
-当备机发生切换的时候，备机会执行一个 sofia recover 命令，从数据库中取得数据重建通话的场景，向A和B发送 reINVITE。前面我们说A和B感知不到，其实也能感知到，因为A和B收到了重新建连的邀请，继续进行通话。一般这个通话过程大概在1-3秒内解决，A和B只是觉得会短暂的卡顿，不用挂断重新呼叫。
-
-### 三机HA
-
-### 自动弹性伸缩HA
-
 asr engine:AWS、Xunfei、Azure、Lenovo_HTTP、Azure_cont
 tts engine:AWS、Xunfei、Lenovo
 
@@ -659,6 +647,12 @@ root@localhost:/usr/local/freeswitch/bin# egrep -Rn "RECOGNIZE failed: status" .
 29e5e013-c04b-4b3b-be12-2013b02e3687
 
 
+
+机器人回答到一半听不到语音了，这个拿出来一个case，让高宇和廷廷查一下吧。不是说昨天更新的mrcp已经解决了么
+对应这个服务ID：1932258182205833216
+
+
+
 ./fs_cli -H 0.0.0.0 -P 38021 -p ClueCon
 
 vim ../log/freeswitch.xml.fsxml
@@ -668,18 +662,100 @@ vim ../log/freeswitch.xml.fsxml
     <!-- Default Global Log Level - value is one of debug,info,notice,warning,err,crit,alert -->
     <param name="loglevel" value="debug"/>
 
+[root@SC-prod-vm-yhy151 cc]# docker compose logs unimrcp|grep "demo_synth_channel_speak"|wc -l
+WARN[0000] /data/hoicee/cc/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+35
+
+[root@SC-prod-vm-yhy151 cc]# docker compose logs unimrcp|grep "\[kd-mrcp-tts\]\[tts init\] sessionId ="|wc -l
+WARN[0000] /data/hoicee/cc/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+35
+
+[root@SC-prod-vm-yhy151 cc]# docker compose logs unimrcp|grep "parse tts param: engine ="|wc -l
+WARN[0000] /data/hoicee/cc/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
+28
+
+
+
+
+fa23d72b-08f4-473d-8001-0c52f4c39ac3 2025-06-10 18:01:56.258218 95.37% [DEBUG] switch_ivr.c:632 sofia/external/1007@175.25.42.2 Command Execute [depth=2] play_and_get_digits(1 0 1 8000 # say:'{traceId=no trace id,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=fa23d72b-08f4-473d-8001-0c52f4c39ac3,vadEndTime=1749549714.325444}您好，颐和园执行淡旺季开放政策。)
+fa23d72b-08f4-473d-8001-0c52f4c39ac3 EXECUTE [depth=2] sofia/external/1007@175.25.42.2 play_and_get_digits(1 0 1 8000 # say:'{traceId=no trace id,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=fa23d72b-08f4-473d-8001-0c52f4c39ac3,vadEndTime=1749549714.325444}您好，颐和园执行淡旺季开放政策。)
+2025-06-10 18:01:56.258218 95.37% [INFO] mod_unimrcp.c:1636 speech_handle: name = unimrcp, rate = 8000, speed = 0, samples = 160, voice = , engine = unimrcp, param = (null)
+2025-06-10 18:01:56.258218 95.37% [INFO] mod_unimrcp.c:1639 voice = (null), rate = 8000
+
 
 
 2025-06-09 19:26:13.720552 87.73% [ERR] mod_xml_curl.c:319 Received HTTP error 400 trying to fetch http://192.168.109.37:20207/acl/directory/xml
 
+unimrcp  | 2025-06-10 19:10:49:571417 [WARN]   Reject Unexpected TCP/MRCPv2 Connection 192.168.6.151:1644 <-> 192.168.6.156:45656
 
+
+unimrcp  | [2025-06-10 18:51:57] [info] Error getting remote endpoint: system:9 (Bad file descriptor)
+unimrcp  | [2025-06-10 18:51:57] [info] asio async_shutdown error: system:9 (Bad file descriptor)
+unimrcp  | [2025-06-10 18:51:57] [error] [kd-mrcp-tts] handle_connect error: Timer Expired
+unimrcp  | [2025-06-10 18:51:57] [fail] [kd-mrcp-tts] WebSocket Connection Unknown - "" /v2/tts?date=Tue%2C+10+Jun+2025+18%3A51%3A52+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0ib1lkTWFRZmVuZStOaFRES0FBZGF4QUVBK1QxUnZJekJWUUNrR2xlU1QxbD0i 0 websocketpp.transport:9 Timer Expired
+unimrcp  | [kd-mrcp-tts] wsConnection::on_fail >>> hdl =  0x7fb5680139b0
+unimrcp  | state : 3
+unimrcp  | local_close_code : 1006
+unimrcp  | local_close_reason : Timer Expired
+unimrcp  | remote_close_code : 1006
+unimrcp  | remote_close_reason :
+unimrcp  | ec : websocketpp.transport:9 - Timer Expired
+
+
+/tmp/7AAC6E162F8A9FE8478DD602DBF6E391
+
+20250611
+排查太原热力线上asr语音丢失问题
+
+
+add:
+[   uuid_media_params]
+dec:
+[       uuid_real_asr]
+[    uuid_zombie_exec]
+[        uuid_warning]
+
+fs:1.10.12
+[         uuid_answer]  [          uuid_audio]  [          uuid_break]  [         uuid_bridge]
+[      uuid_broadcast]  [        uuid_buglist]  [   uuid_capture_text]  [           uuid_chat]
+[    uuid_codec_debug]  [    uuid_codec_param]  [    uuid_debug_media]  [        uuid_deflect]
+[       uuid_displace]  [        uuid_display]  [      uuid_drop_dtmf]  [  uuid_dual_transfer]
+[           uuid_dump]  [       uuid_early_ok]  [         uuid_exists]  [        uuid_fileman]
+[     uuid_flush_dtmf]  [         uuid_getvar]  [           uuid_hold]  [   uuid_jitterbuffer]
+[           uuid_kill]  [          uuid_limit]  [  uuid_limit_release]  [       uuid_loglevel]
+[          uuid_media]  [       uuid_media_3p]  [   uuid_media_params]  [    uuid_media_reneg]
+[      uuid_msrp_send]  [uuid_outgoing_answer]  [           uuid_park]  [          uuid_pause]
+[    uuid_phone_event]  [     uuid_pre_answer]  [     uuid_preprocess]  [         uuid_record]
+[uuid_recovery_refresh] [      uuid_recv_dtmf]  [       uuid_redirect]  [     uuid_ring_ready]
+[      uuid_send_dtmf]  [      uuid_send_info]  [   uuid_send_message]  [       uuid_send_tdd]
+[      uuid_send_text]  [uuid_session_heartbeat]        [uuid_set_media_stats]  [         uuid_setvar]
+[   uuid_setvar_multi]  [       uuid_simplify]  [       uuid_transfer]  [uuid_video_bandwidth]
+[  uuid_video_bitrate]  [  uuid_video_refresh]  [      uuid_write_png]  [    uuid_xfer_zombie]
+
+fs:1.10.11
+[         uuid_answer]	[          uuid_audio]	[          uuid_break]	[         uuid_bridge]
+[      uuid_broadcast]	[        uuid_buglist]	[   uuid_capture_text]	[           uuid_chat]
+[    uuid_codec_debug]	[    uuid_codec_param]	[    uuid_debug_media]	[        uuid_deflect]
+[       uuid_displace]	[        uuid_display]	[      uuid_drop_dtmf]	[  uuid_dual_transfer]
+[           uuid_dump]	[       uuid_early_ok]	[         uuid_exists]	[        uuid_fileman]
+[     uuid_flush_dtmf]	[         uuid_getvar]	[           uuid_hold]	[   uuid_jitterbuffer]
+[           uuid_kill]	[          uuid_limit]	[  uuid_limit_release]	[       uuid_loglevel]
+[          uuid_media]	[       uuid_media_3p]	[    uuid_media_reneg]	[      uuid_msrp_send]
+[uuid_outgoing_answer]	[           uuid_park]	[          uuid_pause]	[    uuid_phone_event]
+[     uuid_pre_answer]	[     uuid_preprocess]	[       uuid_real_asr]	[         uuid_record]
+[uuid_recovery_refresh]	[      uuid_recv_dtmf]	[       uuid_redirect]	[     uuid_ring_ready]
+[      uuid_send_dtmf]	[      uuid_send_info]	[   uuid_send_message]	[       uuid_send_tdd]
+[      uuid_send_text]	[uuid_session_heartbeat]	[uuid_set_media_stats]	[         uuid_setvar]
+[   uuid_setvar_multi]	[       uuid_simplify]	[       uuid_transfer]	[uuid_video_bandwidth]
+[  uuid_video_bitrate]	[  uuid_video_refresh]	[      uuid_write_png]	[    uuid_xfer_zombie]
+[    uuid_zombie_exec]	[        uuid_warning]
 
 
 20250610
 迭代kd-unimrcp仓库，更新dev_ubuntu分支和tag版本
 打包更新docker镜像kd-freeswitch:0.9.0版本
-排查太原热力线上tts播报中断问题
-排查太原热力线上asr语音丢失问题
+支持颐和园线上生产环境升级fs和mrcp版本
+排查太原热力线上语音播报中断问题
 
 
 20250609
@@ -2483,6 +2559,20 @@ tcp         ESTAB             0             0                    [::ffff:192.168
 
 
 
+## FreeSWITCH高可用部署与云原生集群部署
+### 主备双机HA
+[LiveVideoStack](https://cloud.tencent.com/developer/article/2208126)
+
+FreeSWITCH的主备切换原理：首先主机包含一个Param，参数为：<params name=“track-calls” value=“true”/>，如果我们开启此参数，它就会实时的将通话数据写入数据库当中。当然这个会有一定的开销，因为需要实时的写入数据库，比如每秒有一千路通话、一万路通话，它的开销就会很大，所以这种双机切换会对系统的吞吐量有一定影响。但在一些必要的场景下，我们往往是需要牺牲一些性能来更好的实现高可用的。
+
+当备机发生切换的时候，备机会执行一个 sofia recover 命令，从数据库中取得数据重建通话的场景，向A和B发送 reINVITE。前面我们说A和B感知不到，其实也能感知到，因为A和B收到了重新建连的邀请，继续进行通话。一般这个通话过程大概在1-3秒内解决，A和B只是觉得会短暂的卡顿，不用挂断重新呼叫。
+
+### 三机HA
+
+### 自动弹性伸缩HA
+
+
+
 20250606
 观测分析颐和园uat环境0605压测mrcp和asr转写
 尝试复现颐和园uat环境压测时asr转写不完整问题
@@ -3183,6 +3273,10 @@ kd-asr-proxy工程适配ubuntu22.04
 源码编译依赖yaml ubuntu版本
 源码编译依赖kafka ubuntu版本
 源码编译依赖jrtplib ubuntu版本
+
+mod_portaudio
+mod_local_stream
+live-stream-switching
 
 
 freeswitch -> voice_agent:
