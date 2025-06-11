@@ -701,13 +701,40 @@ unimrcp  | remote_close_code : 1006
 unimrcp  | remote_close_reason :
 unimrcp  | ec : websocketpp.transport:9 - Timer Expired
 
+./fs_cli -H 0.0.0.0 -P 38021 -p ClueCon
 
 /tmp/7AAC6E162F8A9FE8478DD602DBF6E391
 
-20250611
 排查太原热力线上asr语音丢失问题
 
+20250611
+调研fs(1.10.12/1.10.11/1.10.5/1.8.7/1.4.4)兼容支持uuid_real_asr
+分析徐工fs调用uuid_real_asr日志
+分析fs1.10.11mod_commands模块代码
+调研fs平替uuid_real_asr功能的API工具
 
+
+
+2ca4e7d5a47e36514bddf73529a4ef79  ../mod/mod_commands.la
+5e442999eac2f3fead3d5b9427ddf532  ../mod/mod_commands.so
+1e4fc14a50ff1dd1bd92e568e22ad421  ../mod/mod_commands.so.old
+14600f5aad7b9c56210912bc807db34a  ../mod/mod_commands.so_bak
+
+
+media_bugs
+uuid_real_asr api非官方
+
+switch_core_media_bug_add
+
+
+顶顶通
+https://www.ddrj.com/callcenter/asr.html
+https://freeswitch.org.cn/books/case-study/1.15-freeswitch-%E7%94%A8-websocket-%E5%8F%91%E9%80%81-mediabug-%E8%AF%AD%E9%9F%B3%E6%B5%81%E5%88%B0-asrproxy-%E5%AE%9E%E7%8E%B0%E5%AE%9E%E6%97%B6%E8%B4%A8%E6%A3%80%E5%92%8C%E5%9D%90%E5%B8%AD%E8%BE%85%E5%8A%A9.html
+
+2025-05-19 15:46:50.452631 0.00% [NOTICE] switch_loadable_module.c:389 Adding API Function 'uuid_real_asr'
+{"timestamp":"2025-06-10T22:11:14.344+08:00","module":"fs-ai","host":"SC-prod-vm-yhy151","level":"debug","eventName":"FS_INFO_mod_commands.c_real_asr_function","event":{"file":"mod_commands.c","func":"real_asr_function","line":4842,"payload":"2025-06-10 22:11:14.344451 [DEBUG] mod_commands.c:4842 real_asr api params '679e4d11-44ad-408f-abf7-c8cd772efdc0 start 192.168.6.151 30018' \n"}}
+2025-06-11 09:56:59.815715 98.67% [DEBUG] mod_commands.c:4842 real_asr api params 'f6d34f60-0995-45d9-b5a9-d0a0087295f0 start 10.188.6.233 30226'
+switch_loadable_module
 add:
 [   uuid_media_params]
 dec:
@@ -732,7 +759,7 @@ fs:1.10.12
 [   uuid_setvar_multi]  [       uuid_simplify]  [       uuid_transfer]  [uuid_video_bandwidth]
 [  uuid_video_bitrate]  [  uuid_video_refresh]  [      uuid_write_png]  [    uuid_xfer_zombie]
 
-fs:1.10.11
+fs:1.10.11(FreeSWITCH Version 1.10.11-release~64bit ( 64bit))
 [         uuid_answer]	[          uuid_audio]	[          uuid_break]	[         uuid_bridge]
 [      uuid_broadcast]	[        uuid_buglist]	[   uuid_capture_text]	[           uuid_chat]
 [    uuid_codec_debug]	[    uuid_codec_param]	[    uuid_debug_media]	[        uuid_deflect]
@@ -749,6 +776,36 @@ fs:1.10.11
 [   uuid_setvar_multi]	[       uuid_simplify]	[       uuid_transfer]	[uuid_video_bandwidth]
 [  uuid_video_bitrate]	[  uuid_video_refresh]	[      uuid_write_png]	[    uuid_xfer_zombie]
 [    uuid_zombie_exec]	[        uuid_warning]
+
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.735714 98.67% [DEBUG] switch_core_state_machine.c:581 (sofia/internal/9898000689297244@10.188.6.233) Running State Change CS_CONSUME_MEDIA (Cur 66 Tot 516032)
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.735714 98.67% [DEBUG] switch_core_state_machine.c:659 (sofia/internal/9898000689297244@10.188.6.233) State CONSUME_MEDIA
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.735714 98.67% [DEBUG] switch_ivr_bridge.c:1056 sofia/internal/9898000689297244@10.188.6.233 CUSTOM HOLD
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.735714 98.67% [DEBUG] switch_core_state_machine.c:659 (sofia/internal/9898000689297244@10.188.6.233) State CONSUME_MEDIA going to sleep
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.735714 98.67% [DEBUG] switch_ivr_bridge.c:1791 (sofia/internal/9898000689297244@10.188.6.233) State Change CS_CONSUME_MEDIA -> CS_EXCHANGE_MEDIA
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.735714 98.67% [DEBUG] switch_core_state_machine.c:581 (sofia/internal/9898000689297244@10.188.6.233) Running State Change CS_EXCHANGE_MEDIA (Cur 66 Tot 516032)
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.735714 98.67% [DEBUG] switch_core_state_machine.c:650 (sofia/internal/9898000689297244@10.188.6.233) State EXCHANGE_MEDIA
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.735714 98.67% [DEBUG] mod_sofia.c:672 SOFIA EXCHANGE_MEDIA
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.735714 98.67% [NOTICE] switch_rtp.c:1436 Auto Changing audio stun/rtp/dtls port from 10.1.88.47:63355 to 221.178.242.16:44027 idx:-1
+2025-06-11 09:56:59.755718 98.67% [INFO] sofia.c:1348 sofia/external/7002@0.0.0.0:15080 Update Callee ID to "19965260518" <19965260518>
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.775714 98.67% [INFO] switch_rtp.c:3338 Changing audio DTLS state from HANDSHAKE to SETUP
+2025-06-11 09:56:59.815715 98.67% [DEBUG] mod_commands.c:4842 real_asr api params 'f6d34f60-0995-45d9-b5a9-d0a0087295f0 start 10.188.6.233 30226'
+2025-06-11 09:56:59.815715 98.67% [INFO] mod_commands.c:4896 uuid::f6d34f60-0995-45d9-b5a9-d0a0087295f0 actual_sample_rate:8000
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.815715 98.67% [DEBUG] switch_core_media_bug.c:976 Attaching BUG to sofia/internal/9898000689297244@10.188.6.233
+2025-06-11 09:56:59.815715 98.67% [DEBUG] mod_commands.c:4842 real_asr api params 'fa6de314-1a86-40e0-b6b9-93ea3850e2fa start 10.188.6.233 30228'
+2025-06-11 09:56:59.815715 98.67% [INFO] mod_commands.c:4896 uuid::fa6de314-1a86-40e0-b6b9-93ea3850e2fa actual_sample_rate:8000
+fa6de314-1a86-40e0-b6b9-93ea3850e2fa 2025-06-11 09:56:59.815715 98.67% [DEBUG] switch_core_media_bug.c:976 Attaching BUG to sofia/external/19965260518@223.109.89.196
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.815715 98.67% [INFO] switch_rtp.c:3245 audio Fingerprint Verified.
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.815715 98.67% [INFO] switch_rtp.c:4366 Activating audio Secure RTP SEND
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.815715 98.67% [INFO] switch_rtp.c:4344 Activating audio Secure RTP RECV
+2025-06-11 09:56:59.815715 98.67% [DEBUG] switch_core_sqldb.c:2778 Secure Type: srtp:dtls:AES_CM_128_HMAC_SHA1_80
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.815715 98.67% [INFO] switch_rtp.c:3287 Changing audio DTLS state from SETUP to READY
+2025-06-11 09:56:59.815715 98.67% [DEBUG] switch_core_sqldb.c:2778 Secure Type: srtp:dtls:AES_CM_128_HMAC_SHA1_80
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.835715 98.67% [DEBUG] switch_rtp.c:1930 rtcp_stats_init: audio ssrc[785959368] base_seq[24869]
+f6d34f60-0995-45d9-b5a9-d0a0087295f0 2025-06-11 09:56:59.855714 98.67% [DEBUG] switch_core_io.c:448 Setting BUG Codec PCMA:8
+fa6de314-1a86-40e0-b6b9-93ea3850e2fa 2025-06-11 09:56:59.875714 98.67% [DEBUG] switch_core_io.c:448 Setting BUG Codec PCMU:0
+fa6de314-1a86-40e0-b6b9-93ea3850e2fa 2025-06-11 09:57:00.035716 98.67% [DEBUG] switch_ivr.c:632 sofia/external/19965260518@223.109.89.196 Command Execute [depth=0] speak(unimrcp|test|{engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50}39955住·客彜~M为彂¨彜~M佊¡)
+
+
 
 
 20250610
