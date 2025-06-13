@@ -707,6 +707,280 @@ unimrcp  | ec : websocketpp.transport:9 - Timer Expired
 
 排查太原热力线上asr语音丢失问题
 
+
+demosynth.so:
+2025-06-13 06:30:41:493975 [WARN]   Failed to Load DSO: libevent-2.1.so.7: cannot open shared object file: No such file or directory
+        libevent-2.1.so.7 => not found
+        libevent_openssl-2.1.so.7 => not found
+        libssl.so.10 => not found
+        libcrypto.so.10 => not found
+
+
+libkdm_tts_proxy.so:
+        libevent-2.1.so.7 => not found
+        libevent_openssl-2.1.so.7 => not found
+        libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f9583783000)
+        libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f9583763000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f958353a000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f9584778000)
+        libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f9583535000)
+        libaws-c-event-stream.so.0unstable => /usr/local/kd-unimrcp/lib/./libaws-c-event-stream.so.0unstable (0x00007f9583529000)
+        libaws-c-common.so.0unstable => /usr/local/kd-unimrcp/lib/./libaws-c-common.so.0unstable (0x00007f95834dc000)
+        librt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f95834d7000)
+        libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f95834d2000)
+        libaws-checksums.so => /usr/local/kd-unimrcp/lib/./libaws-checksums.so (0x00007f95834c5000)
+        libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f95833de000)
+        libcurl.so.4 => /lib/x86_64-linux-gnu/libcurl.so.4 (0x00007f9583335000)
+        libssl.so.10 => not found
+        libcrypto.so.10 => not found
+
+demorecog.so:
+        linux-vdso.so.1 (0x00007ffdb9fe0000)
+        libkdm_asr_proxy.so => ../lib/libkdm_asr_proxy.so (0x00007f71f9e6e000)
+        libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f71f9c43000)
+        libcurl-gnutls.so.4 => /lib/x86_64-linux-gnu/libcurl-gnutls.so.4 (0x00007f71f9ba1000)
+        libssl.so.3 => /lib/x86_64-linux-gnu/libssl.so.3 (0x00007f71f9afd000)
+        libcrypto.so.3 => /lib/x86_64-linux-gnu/libcrypto.so.3 (0x00007f71f96b7000)
+        libmfe_JNI.so => ../lib/libmfe_JNI.so (0x00007f71f9200000)
+        libwebrtc.so => ../lib/libwebrtc.so (0x00007f71f96a8000)
+        libstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f71f8fd4000)
+        libm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f71f95c1000)
+        libgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f71f95a1000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007f71fa0a4000)
+        libnghttp2.so.14 => /lib/x86_64-linux-gnu/libnghttp2.so.14 (0x00007f71f9575000)
+        libidn2.so.0 => /lib/x86_64-linux-gnu/libidn2.so.0 (0x00007f71f9554000)
+        librtmp.so.1 => /lib/x86_64-linux-gnu/librtmp.so.1 (0x00007f71f9535000)
+        libssh.so.4 => /lib/x86_64-linux-gnu/libssh.so.4 (0x00007f71f8f67000)
+        libpsl.so.5 => /lib/x86_64-linux-gnu/libpsl.so.5 (0x00007f71f9521000)
+        libnettle.so.8 => /lib/x86_64-linux-gnu/libnettle.so.8 (0x00007f71f8f21000)
+        libgnutls.so.30 => /lib/x86_64-linux-gnu/libgnutls.so.30 (0x00007f71f8d36000)
+        libgssapi_krb5.so.2 => /lib/x86_64-linux-gnu/libgssapi_krb5.so.2 (0x00007f71f8ce2000)
+        libldap-2.5.so.0 => /lib/x86_64-linux-gnu/libldap-2.5.so.0 (0x00007f71f8c82000)
+        liblber-2.5.so.0 => /lib/x86_64-linux-gnu/liblber-2.5.so.0 (0x00007f71f950e000)
+        libzstd.so.1 => /lib/x86_64-linux-gnu/libzstd.so.1 (0x00007f71f8bb3000)
+        libbrotlidec.so.1 => /lib/x86_64-linux-gnu/libbrotlidec.so.1 (0x00007f71f9500000)
+        libz.so.1 => /lib/x86_64-linux-gnu/libz.so.1 (0x00007f71f8b97000)
+        libpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f71f94f9000)
+        libunistring.so.2 => /lib/x86_64-linux-gnu/libunistring.so.2 (0x00007f71f89ed000)
+        libhogweed.so.6 => /lib/x86_64-linux-gnu/libhogweed.so.6 (0x00007f71f89a5000)
+        libgmp.so.10 => /lib/x86_64-linux-gnu/libgmp.so.10 (0x00007f71f8923000)
+        libp11-kit.so.0 => /lib/x86_64-linux-gnu/libp11-kit.so.0 (0x00007f71f87e8000)
+        libtasn1.so.6 => /lib/x86_64-linux-gnu/libtasn1.so.6 (0x00007f71f87d0000)
+        libkrb5.so.3 => /lib/x86_64-linux-gnu/libkrb5.so.3 (0x00007f71f8705000)
+        libk5crypto.so.3 => /lib/x86_64-linux-gnu/libk5crypto.so.3 (0x00007f71f86d6000)
+        libcom_err.so.2 => /lib/x86_64-linux-gnu/libcom_err.so.2 (0x00007f71f94f1000)
+        libkrb5support.so.0 => /lib/x86_64-linux-gnu/libkrb5support.so.0 (0x00007f71f86c8000)
+        libsasl2.so.2 => /lib/x86_64-linux-gnu/libsasl2.so.2 (0x00007f71f86ad000)
+        libbrotlicommon.so.1 => /lib/x86_64-linux-gnu/libbrotlicommon.so.1 (0x00007f71f868a000)
+        libffi.so.8 => /lib/x86_64-linux-gnu/libffi.so.8 (0x00007f71f867d000)
+        libkeyutils.so.1 => /lib/x86_64-linux-gnu/libkeyutils.so.1 (0x00007f71f8676000)
+        libresolv.so.2 => /lib/x86_64-linux-gnu/libresolv.so.2 (0x00007f71f8662000)
+
+
+
+
+
+20250613
+分析太原热力测试asr丢字问题
+分析太原热力机器人抢答问题
+分析太原热力机器人反应慢问题
+更新并构建kd-unimrcp:0.8.0版本docker镜像
+
+
+
+
+    <ip>172.30.207.21</ip>
+
+    <ext-ip>172.30.207.21</ext-ip>
+    <!-- <ip>172.30.207.21</ip> -->
+
+    <!-- <ext-ip>172.30.207.21</ext-ip> -->
+
+
+if [ -n '$LAN_IP' ]; then
+  sed -i '/<ip>/s@<ip>.*</ip>@<ip>'$LAN_IP'</ip>@' $AppHome/conf/unimrcpserver.xml
+  sed -i '/<ip>/s@<ip>.*</ip>@<ip>'$LAN_IP'</ip>@' $AppHome/conf/unimrcpclient.xml
+fi
+
+if [ -n '$WAN_IP' ]; then
+  sed -i '/<ext-ip>/s@<ext-ip>.*</ext-ip>@<ext-ip>'$WAN_IP'</ext-ip>@' $AppHome/conf/unimrcpserver.xml
+  sed -i '/<ext-ip>/s@<ext-ip>.*</ext-ip>@<ext-ip>'$WAN_IP'</ext-ip>@' $AppHome/conf/unimrcpclient.xml
+fi
+
+sed -i '/server-ip/@<server-ip>.*</server-ip>@<server-ip>'$LAN_IP'</server-ip>@'  /usr/local/kd-unimrcp/conf/client-profiles/unimrcp.xml
+
+if [ -n '$LAN_IP' ]; then
+        sed -i '/<ip>/s@<ip>.*</ip>@<ip>'$LAN_IP'</ip>@' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
+        sed -i '/<ip>/s@<ip>.*</ip>@<ip>'$LAN_IP'</ip>@' /usr/local/kd-unimrcp/conf/unimrcpclient.xml
+fi
+
+if [ -n '$WAN_IP' ]; then
+        sed -i '/<ext-ip>/s@<ext-ip>.*</ext-ip>@<ext-ip>'$WAN_IP'</ext-ip>@' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
+        sed -i '/<ext-ip>/s@<ext-ip>.*</ext-ip>@<ext-ip>'$WAN_IP'</ext-ip>@' /usr/local/kd-unimrcp/conf/unimrcpclient.xml
+fi
+
+
+if [ -n '$SIP_PORT' ]; then
+        sed -i '/<sip-port>/s@<sip-port>.*</sip-port>@<sip-port>'$SIP_PORT'</sip-port>@' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
+fi
+
+if [ -n '$MRCP_PORT' ]; then
+        sed -i '/<mrcp-port>/s@<mrcp-port>.*</mrcp-port>@<mrcp-port>'$MRCP_PORT'</mrcp-port>@' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
+fi
+
+if [ -n '$RTSP_PORT' ]; then
+        sed -i '/<rtsp-port>/s@<rtsp-port>.*</rtsp-port>@<rtsp-port>'$RTSP_PORT'</rtsp-port>@' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
+fi
+if [ -n '$RTP_PORT_MIN' ]; then
+    sed -i '/rtp-port-min/s#<rtp-port-min>.*</rtp-port-min>#<rtp-port-min>'$RTP_PORT_MIN'</rtp-port-min>#g' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
+fi
+if [ -n '$RTP_PORT_MAX' ]; then
+    sed -i '/rtp-port-max/s#<rtp-port-max>.*</rtp-port-max>#<rtp-port-max>'$RTP_PORT_MAX'</rtp-port-max>#g' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
+fi
+
+#export LD_LIBRARY_PATH=/usr/local/kd-unimrcp/lib/:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=../lib:/usr/local/unimrcp-deps/lib/:$LD_LIBRARY_PATH
+cd /usr/local/kd-unimrcp/bin
+if [ -n  "$MRCP_UPLOAD"  ] && [ $MRCP_UPLOAD == "YES" ]; then
+    python3 upload.py &
+fi
+./unimrcpserver -o 3 -w
+
+
+<!-- upload.py
+import os
+import time
+import datetime
+import urllib.request
+from kafka import KafkaProducer
+import requests
+import json
+import sys
+import codecs
+import shutil
+import time
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+
+def sendKafkaMsg(producer,topic,f, record_url,c):
+    #split file name
+    pos1 = f.rfind('/')
+    pos2 = f.rfind('_')
+    pos3 = f.rfind('.')
+    callid=f[pos1+1:pos2]
+    index =int(f[pos2+1:pos3])
+    msg ={"msgType":"bot_split_record","callId":callid, "index": index, "side":"customer","recordUrl":record_url, "chatTime":c}
+    data = json.dumps(msg,ensure_ascii=True).encode("utf-8")
+    producer.send(topic,data)
+    print(data)
+
+def upload(producer,topic,url,f):
+    #print(f)
+    try:
+        #f="/tmp/f07c952e-f367-4721-ba04-56fdb515dc2d_0015.wav"
+        fp=open(f, 'rb')
+        multiple_files=[('file', (f, fp, 'audio/wav'))]
+        r = requests.post(url, files=multiple_files)
+        res = json.loads(r.text)
+        if res['success'] is True :
+            c = int(os.path.getctime(f) *1000)
+            print("File " + f + "is upload successfully")
+            shutil.move(f,'/tmp/bak/')
+            sendKafkaMsg(producer,topic,f,res['url'],c)
+            #print(res['success'])
+            #print(res['url'])
+    except Exception as e:
+        print(e)
+
+
+topic = "app_record_notify"
+kafka_broker = os.environ.get('KAFKA_BROKERS')
+kafka_broker = os.environ.get('KAFKA_BROKERS')
+#url="http://172.70.10.34:20014/s3/upload"
+url=os.environ.get('RECORD_ENDPOINT')
+producer = KafkaProducer(bootstrap_servers=kafka_broker.split(","))
+rootdir ='/tmp/vad/'
+bakdir = '/tmp/bak'
+#s3_bucket = os.environ.get('S3_BUCKET')
+#s3_access_key = os.environ.get('S3_Access_Key')
+#s3_secret_key = os.environ.get('S3_Secret_Key')
+#s3_endpoint = os.environ.get('S3_ENDPOINT')
+#record_endpoint="http://172.70.10.34:20014/s3/upload"
+
+if os.path.exists(bakdir):
+    print('bakdir exist')
+else:
+    os.mkdir(bakdir)
+while (1) :
+    for filename in os.listdir(rootdir):
+        absfilename = os.path.join(rootdir,filename)
+        #print(filename)
+        c = os.path.getmtime(absfilename)
+        nowdate=time.time()
+        print("file " + filename + " m time is %f, now is %f" %(c,nowdate))
+        diff = nowdate -c
+        if diff > 30 :
+            if filename.endswith(".wav"):
+                upload(producer,topic,url,absfilename)
+                #print ("filename is:" + filename )
+            else :
+                print ("filename " + filename + " is not wav"  )
+        else :
+            print("filename " + filename + " is less than 30")
+    time.sleep(30)
+producer.close()
+ -->
+
+
+[root@localhost bin]# grep "9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE" ../log/freeswitch.log
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=0] sofia/external/1002@172.30.207.21 set(sip_h_X-cc_tenant_id=1)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=0] sofia/external/1002@172.30.207.21 set(sip_h_X-cc_work_mode=robot)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=0] sofia/external/1002@172.30.207.21 socket(127.0.0.1:13002 async full)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=0] sofia/external/1002@172.30.207.21 answer()
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=1] sofia/external/1002@172.30.207.21 set(tts_engine=unimrcp)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=1] sofia/external/1002@172.30.207.21 set(RECORD_STEREO=true)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=1] sofia/external/1002@172.30.207.21 set(RECORD_APPEND=false)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=1] sofia/external/1002@172.30.207.21 set(record_waste_resources=true)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=1] sofia/external/1002@172.30.207.21 record_session(/tmp/servicePool_test_appId/robot/2025-06-11/9af4a138-df6c-4205-a7e9-25e627f1a749.wav)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=1] sofia/external/1002@172.30.207.21 break()
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=1] sofia/external/1002@172.30.207.21 play_and_detect_speech(silence_stream://-1 detect:unimrcp {start-input-timers=false,no-input-timeout=10000,engine=Xunfei,sessionId=9af4a138-df6c-4205-a7e9-25e627f1a749,Speech-Language=en}builtin:grammar/)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 break()
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 speak(unimrcp|test|{traceId=2db9aa32-3740-4467-a56a-ec9767162383,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=9af4a138-df6c-4205-a7e9-25e627f1a749,vadEndTime=null}您好，我是太原热力集团的暖暖，您有什么问题可以找我哦！)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=3] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=3] sofia/external/1002@172.30.207.21 detect_speech(pause)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(param start-input-timers true)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 break()
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 speak(unimrcp|test|{traceId=e2808d0c-f1df-47b0-8367-1b159997ca1f,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=9af4a138-df6c-4205-a7e9-25e627f1a749,vadEndTime=1749611272.627433}供热设计依建筑结构等综合计算。用户私接乱改供热设施，会致管网失衡、楼内暖气不热，装修时也不可随意改动供热设施。)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=3] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=3] sofia/external/1002@172.30.207.21 detect_speech(pause)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(param start-input-timers true)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 break()
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 speak(unimrcp|test|{traceId=c2787021-fa3c-4297-842a-86327b26db45,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=9af4a138-df6c-4205-a7e9-25e627f1a749,vadEndTime=1749611292.656815}为保障冬季供暖，新入网用户供热前供热方需对其采暖设施打压验收，合格才能入网；已入网用户每三年要由供热方进行一次水压试验。)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=3] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=3] sofia/external/1002@172.30.207.21 detect_speech(pause)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(param start-input-timers true)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 break()
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 speak(unimrcp|test|{traceId=no trace id,engine=Xunfei,voiceId=x4_lingxiaoying_en,speed=55,pitch=50,volume=50,sessionId=9af4a138-df6c-4205-a7e9-25e627f1a749,vadEndTime=1749611317.029699}采暖期前对用户管网系统打压、试水，可检查承压和严密性，保障供热设施完好。若不做可能因管网问题失水影响供热。打压试水时用户家中需留人，防漏水致损。)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=3] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=3] sofia/external/1002@172.30.207.21 detect_speech(pause)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(resume)
+9af4a138-df6c-4205-a7e9-25e627f1a749 EXECUTE [depth=2] sofia/external/1002@172.30.207.21 detect_speech(param start-input-timers true)
+
+
+
+
+20250612
+调研分析mod_rst用法
+调研分析mod_audio_stream用法
+调研分析mod_audio_fork用法
+分析太原热力测试asr丢字问题
+
+
 20250611
 调研fs(1.10.12/1.10.11/1.10.5/1.8.7/1.4.4)兼容支持uuid_real_asr
 分析徐工fs调用uuid_real_asr日志
@@ -714,7 +988,7 @@ unimrcp  | ec : websocketpp.transport:9 - Timer Expired
 调研fs平替uuid_real_asr功能的API工具
 
 
-
+yhy_prod:
 2ca4e7d5a47e36514bddf73529a4ef79  ../mod/mod_commands.la
 5e442999eac2f3fead3d5b9427ddf532  ../mod/mod_commands.so
 1e4fc14a50ff1dd1bd92e568e22ad421  ../mod/mod_commands.so.old
@@ -725,6 +999,8 @@ media_bugs
 uuid_real_asr api非官方
 
 switch_core_media_bug_add
+
+FreeSWITCH version: 1.10.5-release+git~20201013T151219Z~2b79ac2f75~64bit (-releasegit 2b79ac2 2020-10-13 15:12:19Z 64bit)
 
 
 顶顶通
