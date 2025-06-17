@@ -129,11 +129,29 @@ root@localhost:/usr/local/freeswitch/bin# egrep -Rn "RECOGNIZE failed: status" .
 29e5e013-c04b-4b3b-be12-2013b02e3687
 
 
+20250606
+1930951837676052480
 
+20250609 18:17:00
+更新升级mrcp
+
+20250610
 机器人回答到一半听不到语音了，这个拿出来一个case，让高宇和廷廷查一下吧。不是说昨天更新的mrcp已经解决了么
-对应这个服务ID：1932258182205833216
+对应这个服务ID：
+1932258182205833216
+
+20250616
+1934422812109864960
 
 
+20250617(1934422812109864960)
+分析太原热力测试机器人播报时中断mrcp日志
+分析太原热力测试机器人播报时中断tts日志问
+
+
+
+./fs_cli fsctl sync_clock
+./fs_cli fsctl calibrate_clock
 
 ./fs_cli -H 0.0.0.0 -P 38021 -p ClueCon
 
@@ -189,11 +207,23 @@ unimrcp  | ec : websocketpp.transport:9 - Timer Expired
 
 排查太原热力线上asr语音丢失问题
 
+unimrcp  | [kd-mrcp-asr] wsConnection::on_socket_init >>> hdl = 0x7f96200014e0
+unimrcp  | [kd-mrcp-asr][try to connect] create connection success, connect ... hdl = 0x7f96200014e0
+unimrcp  | [kd-mrcp-asr] wsConnection::on_open >>> hdl = 0x7f96200014e0
+unimrcp  | [kd-mrcp-asr] on_message called with hdl = 0x7f96200014e0 and message = {"code":0,"message":"success","sid":"iat000da2fc@dx197765bc8189a48802","data":{"result":{"sn":1,"ls":true,"bg":0,"ed":0,"ws":[{"bg":0,"cw":[{"sc":0,"w":"核减"}]},{"bg":0,"cw":[{"sc":0,"w":"手续"}]},{"cw":[{"sc":0,"w":"怎么"}],"bg":0},{"bg":0,"cw":[{"sc":0,"w":"办理"}]},{"bg":0,"cw":[{"sc":0,"w":""}]}]},"status":2}}
+unimrcp  | [kd-mrcp-asr] on_message close socket with hdl: 0x7f96200014e0
+unimrcp  | [kd-mrcp-asr] wsConnection::close hdl = 0x7f96200014e0
+unimrcp  | [kd-mrcp-asr] wsConnection::on_close >>> hdl = 0x7f96200014e0
+unimrcp  | [2025-06-16 01:29:26] [disconnect] Disconnect close local:[1001] remote:[1001]
+/// The endpoint was "going away", such as a server going down or a browser
+/// navigating away from a page.
+static value const going_away = 1001;
+
 
 
 20250616
 排查太原热力测试整句语音无asr结果问题
-定位太原热力测试机器人播报过程中丢字问题
+定位太原热力测试机器人播报时中断问题
 分析太原热力测试asr丢字问题
 分析太原热力测试asr语音不全问题
 
@@ -276,64 +306,35 @@ get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "i
 
 
 
+"<ip type="auto"/>" 改为 "<!-- <ip type="auto"/> -->"
+"<!-- <ip>10.10.0.1</ip> -->" 改为 "<ip>10.10.0.1</ip>"
+"<!-- <ext-ip>a.b.c.d</ext-ip> -->" 改为 "<ext-ip>a.b.c.d</ext-ip>"
 
     <ip>172.30.207.21</ip>
-
     <ext-ip>172.30.207.21</ext-ip>
     <!-- <ip>172.30.207.21</ip> -->
-
     <!-- <ext-ip>172.30.207.21</ext-ip> -->
 
+append to run.sh:
 
-if [ -n '$LAN_IP' ]; then
-  sed -i '/<ip>/s@<ip>.*</ip>@<ip>'$LAN_IP'</ip>@' $AppHome/conf/unimrcpserver.xml
-  sed -i '/<ip>/s@<ip>.*</ip>@<ip>'$LAN_IP'</ip>@' $AppHome/conf/unimrcpclient.xml
-fi
+  if [ -n "$LAN_IP" ]; then
+    sed -i 's@<!-- <ip>[0-9\.]*</ip> -->@<ip>'$LAN_IP'</ip>@g' $AppHome/conf/unimrcpserver.xml
+    sed -i 's@<ip type="auto"/>@@g' $AppHome/conf/unimrcpserver.xml
+  fi
 
-if [ -n '$WAN_IP' ]; then
-  sed -i '/<ext-ip>/s@<ext-ip>.*</ext-ip>@<ext-ip>'$WAN_IP'</ext-ip>@' $AppHome/conf/unimrcpserver.xml
-  sed -i '/<ext-ip>/s@<ext-ip>.*</ext-ip>@<ext-ip>'$WAN_IP'</ext-ip>@' $AppHome/conf/unimrcpclient.xml
-fi
-
-sed -i '/server-ip/@<server-ip>.*</server-ip>@<server-ip>'$LAN_IP'</server-ip>@'  /usr/local/kd-unimrcp/conf/client-profiles/unimrcp.xml
-
-if [ -n '$LAN_IP' ]; then
-        sed -i '/<ip>/s@<ip>.*</ip>@<ip>'$LAN_IP'</ip>@' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
-        sed -i '/<ip>/s@<ip>.*</ip>@<ip>'$LAN_IP'</ip>@' /usr/local/kd-unimrcp/conf/unimrcpclient.xml
-fi
-
-if [ -n '$WAN_IP' ]; then
-        sed -i '/<ext-ip>/s@<ext-ip>.*</ext-ip>@<ext-ip>'$WAN_IP'</ext-ip>@' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
-        sed -i '/<ext-ip>/s@<ext-ip>.*</ext-ip>@<ext-ip>'$WAN_IP'</ext-ip>@' /usr/local/kd-unimrcp/conf/unimrcpclient.xml
-fi
+  if [ -n "$WAN_IP" ]; then
+    sed -i 's@<!-- <ext-ip>[a-zA-Z0-9\.\:]*</ext-ip> -->@<ext-ip>'$WAN_IP'</ext-ip>@g' $AppHome/conf/unimrcpserver.xml
+    sed -i 's@<ip type="auto"/>@@g' $AppHome/conf/unimrcpserver.xml
+  fi
 
 
-if [ -n '$SIP_PORT' ]; then
-        sed -i '/<sip-port>/s@<sip-port>.*</sip-port>@<sip-port>'$SIP_PORT'</sip-port>@' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
-fi
+  if [ -n '$LAN_IP' ]; then
+    sed -i '/<ip>/s@<ip>.*</ip>@<ip>'$LAN_IP'</ip>@' $AppHome/conf/unimrcpserver.xml
+  fi
 
-if [ -n '$MRCP_PORT' ]; then
-        sed -i '/<mrcp-port>/s@<mrcp-port>.*</mrcp-port>@<mrcp-port>'$MRCP_PORT'</mrcp-port>@' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
-fi
-
-if [ -n '$RTSP_PORT' ]; then
-        sed -i '/<rtsp-port>/s@<rtsp-port>.*</rtsp-port>@<rtsp-port>'$RTSP_PORT'</rtsp-port>@' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
-fi
-if [ -n '$RTP_PORT_MIN' ]; then
-    sed -i '/rtp-port-min/s#<rtp-port-min>.*</rtp-port-min>#<rtp-port-min>'$RTP_PORT_MIN'</rtp-port-min>#g' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
-fi
-if [ -n '$RTP_PORT_MAX' ]; then
-    sed -i '/rtp-port-max/s#<rtp-port-max>.*</rtp-port-max>#<rtp-port-max>'$RTP_PORT_MAX'</rtp-port-max>#g' /usr/local/kd-unimrcp/conf/unimrcpserver.xml
-fi
-
-#export LD_LIBRARY_PATH=/usr/local/kd-unimrcp/lib/:$LD_LIBRARY_PATH
-export LD_LIBRARY_PATH=../lib:/usr/local/unimrcp-deps/lib/:$LD_LIBRARY_PATH
-cd /usr/local/kd-unimrcp/bin
-if [ -n  "$MRCP_UPLOAD"  ] && [ $MRCP_UPLOAD == "YES" ]; then
-    python3 upload.py &
-fi
-./unimrcpserver -o 3 -w
-
+  if [ -n '$WAN_IP' ]; then
+    sed -i '/<ext-ip>/s@<ext-ip>.*</ext-ip>@<ext-ip>'$WAN_IP'</ext-ip>@' $AppHome/conf/unimrcpserver.xml
+  fi
 
 <!-- upload.py
 import os
