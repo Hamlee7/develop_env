@@ -147,8 +147,8 @@ root@localhost:/usr/local/freeswitch/bin# egrep -Rn "RECOGNIZE failed: status" .
 20250617(1934422812109864960)
 分析太原热力测试机器人播报时中断mrcp日志
 分析太原热力测试机器人播报时中断tts日志问
-
-
+排查热力其余两个播报中断bad case:1932258182205833216,1930951837676052480
+构建kd-unimrcp:0.9.0版本docker镜像, 升级热力测试环境版本
 
 ./fs_cli fsctl sync_clock
 ./fs_cli fsctl calibrate_clock
