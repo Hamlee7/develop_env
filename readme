@@ -113,12 +113,132 @@ lua-socket
 apr
 mrcp-deps
 
-手动构建kd-unimrcp docker镜像
 
-支持微软asr/tts(azure sdk)
-调研确认微软asr/tts支持中文普通话、粤语、英语
+支持azure asr/tts(azure sdk)
+调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
+20250618
+协助排查热力测试系统无录音问题
+分析热力测试环境asr丢句case:708288
+分析热力测试环境asr丢句case:635968
+研究asr/ws模块代码，定位讯飞接口报错10008问题
+
+依然存在VAD切片的问题，导致用户问题还没问完机器人就开始回答的情况，抽了10个问题，出现了1次（1935157798358253568问题：《太原市城市供热管理条例》是什么时候经什么组织通过、批准的?）
+出现了两次ASR丢整句的情况（1935158826717708288），出现概率大约8%
+
+unimrcp  | 2025-06-18 02:13:17:775752 [INFO]   Send MRCPv2 Data 172.30.207.21:1644 <-> 172.30.207.21:52272 [83 bytes]
+unimrcp  | MRCP/2.0 83 4 200 IN-PROGRESS
+unimrcp  | Channel-Identifier: ecfa2d761a274c21@speechrecog
+unimrcp  |
+unimrcp  |
+unimrcp  | [kd-mrcp-asr][warning] iflytekAsrInst::sendFirstMsg iMsgType = 0, recreate_connection_if_timeout = 0
+unimrcp  | CreateMsg Index = 0, point = 0x7f4ff8009b10
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl reg_url = ws://ws-api.xfyun.cn/v2/iat
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl api_key = 18bf3ad418f72b1ee335eb1ec5c1c0bf
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl api_secret = 293bae58f41a9a69f7d4a72839f737da
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl host = ws-api.xfyun.cn, path = /v2/iat
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl signature_origin = host: ws-api.xfyun.cn
+unimrcp  | date: Wed, 18 Jun 2025 02:13:20 GMT
+unimrcp  | GET /v2/iat HTTP/1.1
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl authorization_origin = api_key="18bf3ad418f72b1ee335eb1ec5c1c0bf", algorithm="hmac-sha256", headers="host date request-line", signature="GQegqJX4+cqgaHpC4QVsnzuEShyitltqZ3SzFONxwok="
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl _finalUrl = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A13%3A20+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iR1FlZ3FKWDQrY3FnYUhwQzRRVnNuenVFU2h5aXRsdHFaM1N6Rk9OeHdvaz0i
+unimrcp  | [kd-mrcp-asr] rreporter::createCon wsConnection in _allCons.size = 0,  url = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A13%3A20+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iR1FlZ3FKWDQrY3FnYUhwQzRRVnNuenVFU2h5aXRsdHFaM1N6Rk9OeHdvaz0i
+unimrcp  | [kd-mrcp-asr] wsConnection::wsConnection >>> uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A13%3A20+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iR1FlZ3FKWDQrY3FnYUhwQzRRVnNuenVFU2h5aXRsdHFaM1N6Rk9OeHdvaz0i
+unimrcp  | [kd-mrcp-asr] wsConnection::init >>> uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A13%3A20+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iR1FlZ3FKWDQrY3FnYUhwQzRRVnNuenVFU2h5aXRsdHFaM1N6Rk9OeHdvaz0i
+unimrcp  | [kd-mrcp-asr] rreporter::createCon wsConnection ot _allCons.size = 1, url = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A13%3A20+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iR1FlZ3FKWDQrY3FnYUhwQzRRVnNuenVFU2h5aXRsdHFaM1N6Rk9OeHdvaz0i
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::getCommonArgs appid = 5e815ba7
+unimrcp  | get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "iat", "language": "", "accent": "", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"CAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAD4//j/+P/4//j/+P/4//j/+P/4//j/+P/4//j/+P8IAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAD4//j/+P/o/+j/6P/o/+j/6P/o/+j/6P/o//j/+P/4/wgACAAIABgAGAAYACgAKAAoACgAGAAYAAgACADo/9j/yP+4/6j/mP+I/4j/iP+Y/6j/yP/o/ygAWACEALQA5AAEASQBNAFEATQBJAH0ALQAeAAYALj/bP8M/6z+VP4U/vT91P3U/RT+VP7c/lz/+P+UACQBrAFMAqwCDANMA0wDLAOsAiwCjAHUACgAbP+8/vT9VP20/CT85Pvk++T7ZPz0/LT9dP5=","encoding": "raw"}}
+unimrcp  | [kd-mrcp-asr][try to connect] _bClientOpen = 0, _iMaxTry = 1, Uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A13%3A20+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iR1FlZ3FKWDQrY3FnYUhwQzRRVnNuenVFU2h5aXRsdHFaM1N6Rk9OeHdvaz0i
+unimrcp  | [kd-mrcp-asr] wsConnection::on_socket_init >>> hdl = 0x7f4ff000e1e0
+unimrcp  | [kd-mrcp-asr][try to connect] create connection success, connect ... hdl = 0x7f4ff000e1e0
+unimrcp  | ================query tcp v4 ws-api.xfyun.cn:80
+unimrcp  | [2025-06-18 02:13:20] [connect] [kd-mrcp-tts] Successful connection
+unimrcp  | [2025-06-18 02:13:20] [connect] WebSocket Connection 125.254.169.36:80 v-2 "WebSocket++/0.8.2" /v2/iat?date=Wed%2C+18+Jun+2025+02%3A13%3A20+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iR1FlZ3FKWDQrY3FnYUhwQzRRVnNuenVFU2h5aXRsdHFaM1N6Rk9OeHdvaz0i 101
+unimrcp  | [kd-mrcp-asr] wsConnection::on_open >>> hdl = 0x7f4ff000e1e0
+unimrcp  | [kd-mrcp-asr] recoProxy::openDbgFile filename: /tmp/vad//a32ff067-e793-44d7-822e-16373369addf_0000.wav
+unimrcp  | [kd-mrcp-asr] recoProxy::processVadRes VAD END
+unimrcp  | [kd-mrcp-asr] rreporter::sendMsg 2 FRAME_LAST
+unimrcp  | [kd-mrcp-asr] wsConnection::sendMsg 2 vad end, sessionId = a32ff067-e793-44d7-822e-16373369addf, traceId = 1054f4e1-7c75-4f6b-8da2-6d8ecfb7d72d, time = 2025-06-18 02:13:22:759732
+unimrcp  | Catch noinput at 242080 ms, elapsed 10010 ms
+unimrcp  | 2025-06-18 02:13:37:034989 [INFO]   Receive MRCPv2 Data 172.30.207.21:1644 <-> 172.30.207.21:52272 [72 bytes]
+unimrcp  | MRCP/2.0 72 STOP 5
+unimrcp  | Channel-Identifier: ecfa2d761a274c21@speechrecog
+
+
+1935159491703635968:
+
+2025-06-18 10:18:27 ~ 2025-06-18 10:18:31 发送三秒左右
+
+unimrcp  | [2025-06-18 02:18:27] [connect] WebSocket Connection 114.118.75.150:80 v-2 "WebSocket++/0.8.2" /v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A27+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaksyWmYwY0ZXN3VmQVk1dHBFbTJad3hiSVN3eS9FZEp0dTZIK1NMbUdlcj0i 101
+unimrcp  | [kd-mrcp-asr] wsConnection::on_open >>> hdl = 0x7f4ff800aa50
+unimrcp  | [kd-mrcp-asr] recoProxy::openDbgFile filename: /tmp/vad//e4f9f983-c859-402a-8ccf-672feea757a0_0005.wav
+unimrcp  | [kd-mrcp-asr] recoProxy::processVadRes VAD END
+unimrcp  | [kd-mrcp-asr] rreporter::sendMsg 2 FRAME_LAST
+unimrcp  | [kd-mrcp-asr] wsConnection::sendMsg 2 vad end, sessionId = e4f9f983-c859-402a-8ccf-672feea757a0, traceId = 577c1029-ab1c-4b5c-ac8e-f0bd0c35f55c, time = 2025-06-18 02:18:30:919739
+
+unimrcp  | 2025-06-18 02:18:42:116690 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = e4f9f983-c859-402a-8ccf-672feea757a0, traceId = 1c77908b-a7a0-4e7c-98c2-e9e58e8521ef
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> out
+unimrcp  | [kd-mrcp-asr] on_message called with hdl = 0x7f4ff800aa50 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d5c81@dx19780d5713da182802"}
+unimrcp  | code is10008err is service instance invalid[kd-mrcp-asr] on_message called with hdl = 0x7f4ff800aa50 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d5c81@dx19780d5713da182802"}
+unimrcp  | code is10008err is service instance invalid[kd-mrcp-asr] on_message called with hdl = 0x7f4ff800aa50 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d5c81@dx19780d5713da182802"}
+unimrcp  | code is10008err is service instance invalid[kd-mrcp-asr] on_message called with hdl = 0x7f4ff800aa50 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d5c81@dx19780d5713da182802"}
+unimrcp  | code is10008err is service instance invalid[kd-mrcp-asr] on_message called with hdl = 0x7f4ff800aa50 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d5c81@dx19780d5713da182802"}
+unimrcp  | code is10008err is service instance invalid[kd-mrcp-asr] wsConnection::on_close >>> hdl = 0x7f4ff000e1e0
+unimrcp  | [2025-06-18 02:18:42] [disconnect] Disconnect close local:[1001] remote:[1001]
+unimrcp  | [2025-06-18 02:18:52] [control] Control frame received with opcode 8
+unimrcp  | [kd-mrcp-asr] wsConnection::on_close >>> hdl = 0x7f4ff800aa50
+unimrcp  | [2025-06-18 02:18:53] [disconnect] Disconnect close local:[1000,Websocket closed!,sid=iat000d5c81@dx19780d5713da182802!reason=server read msg timeout] remote:[1000,Websocket closed!,sid=iat000d5c81@dx19780d5713da182802!reason=server read msg timeout]
+unimrcp  | [2025-06-18 02:18:53] [info] asio async_write error: system:32 (Broken pipe)
+unimrcp  | [2025-06-18 02:18:53] [fatal] handle_write_frame error: websocketpp.transport:2 (Underlying Transport Error)
+
+
+
+
+
+unimrcp  | 2025-06-18 02:18:22:960062 [INFO]   Send MRCPv2 Data 172.30.207.21:1644 <-> 172.30.207.21:41048 [84 bytes]
+unimrcp  | MRCP/2.0 84 19 200 IN-PROGRESS
+unimrcp  | Channel-Identifier: 688893dfc3db4455@speechrecog
+unimrcp  |
+unimrcp  |
+unimrcp  | [kd-mrcp-asr][warning] iflytekAsrInst::sendFirstMsg iMsgType = 0, recreate_connection_if_timeout = 0
+unimrcp  | CreateMsg Index = 5, point = 0x7f4ffc0125a0
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl reg_url = ws://ws-api.xfyun.cn/v2/iat
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl api_key = 18bf3ad418f72b1ee335eb1ec5c1c0bf
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl api_secret = 293bae58f41a9a69f7d4a72839f737da
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl host = ws-api.xfyun.cn, path = /v2/iat
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl signature_origin = host: ws-api.xfyun.cn
+unimrcp  | date: Wed, 18 Jun 2025 02:18:27 GMT
+unimrcp  | GET /v2/iat HTTP/1.1
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl authorization_origin = api_key="18bf3ad418f72b1ee335eb1ec5c1c0bf", algorithm="hmac-sha256", headers="host date request-line", signature="jK2Zf0cFW7ufAY5tpEm2ZwxbISwy/EdJtu6H+SLmGer="
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl _finalUrl = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A27+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaksyWmYwY0ZXN3VmQVk1dHBFbTJad3hiSVN3eS9FZEp0dTZIK1NMbUdlcj0i
+unimrcp  | [kd-mrcp-asr] rreporter::createCon wsConnection in _allCons.size = 1,  url = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A27+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaksyWmYwY0ZXN3VmQVk1dHBFbTJad3hiSVN3eS9FZEp0dTZIK1NMbUdlcj0i
+unimrcp  | [kd-mrcp-asr] wsConnection::~wsConnection >>> uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A00+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iZmJKckc2WnJjUHBmVzdZSWlaZVVYZXAvRnNUKzVqdWYvaWVkSkRWU1hBLz0i
+unimrcp  | [kd-mrcp-asr] wsConnection::close _bClientClose = 1, uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A00+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iZmJKckc2WnJjUHBmVzdZSWlaZVVYZXAvRnNUKzVqdWYvaWVkSkRWU1hBLz0i
+unimrcp  | [kd-mrcp-asr] wsConnection::wsConnection >>> uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A27+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaksyWmYwY0ZXN3VmQVk1dHBFbTJad3hiSVN3eS9FZEp0dTZIK1NMbUdlcj0i
+unimrcp  | [kd-mrcp-asr] wsConnection::init >>> uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A27+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaksyWmYwY0ZXN3VmQVk1dHBFbTJad3hiSVN3eS9FZEp0dTZIK1NMbUdlcj0i
+unimrcp  | [kd-mrcp-asr] rreporter::createCon wsConnection ot _allCons.size = 1, url = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A27+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaksyWmYwY0ZXN3VmQVk1dHBFbTJad3hiSVN3eS9FZEp0dTZIK1NMbUdlcj0i
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::getCommonArgs appid = 5e815ba7
+unimrcp  | get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "iat", "language": "", "accent": "", "ptt":0, "vinfo":0,"vad_eos":10000},"data": {"status":0,"format": "audio/L16;rate=8000","audio":"CAAIAAgACAAIAAgACAAIAAgACAAIAAgACAD4/wgACAAIAAgA+P8IAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAPj/CAAIAAgACAAIAAgACAD4//j/CAAIAAgACAAIAAgACAD4/wgACAAIAAgACAAIAAgACAD4/wgACAAIAAgACAAIAAgACAAIAAgA+P8IAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAD4/wgACAAIAAgA+P8IAAgACAAIAAgACAAIAAgACAAIAAgACAAIAPj/CAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAAIAAgACAA=","encoding": "raw"}}
+unimrcp  | [kd-mrcp-asr][try to connect] _bClientOpen = 0, _iMaxTry = 1, Uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A27+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaksyWmYwY0ZXN3VmQVk1dHBFbTJad3hiSVN3eS9FZEp0dTZIK1NMbUdlcj0i
+unimrcp  | [kd-mrcp-asr] wsConnection::on_socket_init >>> hdl = 0x7f4ff800aa50
+unimrcp  | [kd-mrcp-asr][try to connect] create connection success, connect ... hdl = 0x7f4ff800aa50
+unimrcp  | ================query tcp v4 ws-api.xfyun.cn:80
+unimrcp  | [2025-06-18 02:18:27] [connect] [kd-mrcp-tts] Successful connection
+unimrcp  | [2025-06-18 02:18:27] [connect] WebSocket Connection 114.118.75.150:80 v-2 "WebSocket++/0.8.2" /v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A27+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaksyWmYwY0ZXN3VmQVk1dHBFbTJad3hiSVN3eS9FZEp0dTZIK1NMbUdlcj0i 101
+unimrcp  | [kd-mrcp-asr] wsConnection::on_open >>> hdl = 0x7f4ff800aa50
+unimrcp  | [kd-mrcp-asr] recoProxy::openDbgFile filename: /tmp/vad//e4f9f983-c859-402a-8ccf-672feea757a0_0005.wav
+unimrcp  | [kd-mrcp-asr] recoProxy::processVadRes VAD END
+unimrcp  | [kd-mrcp-asr] rreporter::sendMsg 2 FRAME_LAST
+unimrcp  | [kd-mrcp-asr] wsConnection::sendMsg 2 vad end, sessionId = e4f9f983-c859-402a-8ccf-672feea757a0, traceId = 577c1029-ab1c-4b5c-ac8e-f0bd0c35f55c, time = 2025-06-18 02:18:30:919739
+unimrcp  | [kd-mrcp-asr][warning] iflytekAsrInst::sendFirstMsg iMsgType = 0, recreate_connection_if_timeout = 0
+unimrcp  | CreateMsg Index = 6, point = 0x7f4ffc00b110
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl reg_url = ws://ws-api.xfyun.cn/v2/iat
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl api_key = 18bf3ad418f72b1ee335eb1ec5c1c0bf
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl api_secret = 293bae58f41a9a69f7d4a72839f737da
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl host = ws-api.xfyun.cn, path = /v2/iat
+unimrcp  | [kd-mrcp-asr] iflytekAsrRequestParam::createUrl signature_origin = host: ws-api.xfyun.cn
+unimrcp  | date: Wed, 18 Jun 2025 02:18:38 GMT
 
 
 
@@ -146,7 +266,7 @@ root@localhost:/usr/local/freeswitch/bin# egrep -Rn "RECOGNIZE failed: status" .
 
 20250617(1934422812109864960)
 分析太原热力测试机器人播报时中断mrcp日志
-分析太原热力测试机器人播报时中断tts日志问
+分析太原热力测试机器人播报时中断tts日志
 排查热力其余两个播报中断bad case:1932258182205833216,1930951837676052480
 构建kd-unimrcp:0.9.0版本docker镜像, 升级热力测试环境版本
 
@@ -232,33 +352,33 @@ static value const going_away = 1001;
 
 #### asr调用流程与逻辑
 
-- 电话数量(第一次RECOGNIZE命令)：
-unimrcp  | LOG (mfeInit():vad/libmfe_JNI.cc:225) MFE_Init with SampleRate=8000
-unimrcp  | VLOG[1] (MFE_Init():feat/front-end.cc:71) dither=0, subband_type=0, debug=0
-unimrcp  | 2025-06-16 01:28:32:969208 [INFO]   [kd-mrcp-asr] Choose [Xunfei][3] as asr render
-unimrcp  | [kd-mrcp-asr] recoProxy::recoProxy >>>>>> in
-unimrcp  | [kd-mrcp-asr] rreporter create pUuid = 3ef0b512-56e3-4ef5-83e2-528873210bf5
-unimrcp  | VLOG[1] (MFE_Init():feat/front-end.cc:100) Using linear PCM, encode frame size = 80, decoder frame size = 80
-unimrcp  | [kd-mrcp-asr] createVadCbUtil
-unimrcp  | [kd-mrcp-asr] recoProxyCreateVad >>>>>> RECO_VAD_LENOVO
-unimrcp  | [kd-mrcp-asr] recoProxy::recoProxy >>>>>> RECO_ASR_IFLYTEK SampleRatio = 8000
-unimrcp  | [kd-mrcp-asr] recoProxyInitVad
-unimrcp  | [kd-mrcp-asr] lenovoVadInst::init vad iVadEnergyStart = 85
-unimrcp  | [kd-mrcp-asr] lenovoVadInst::init iVadEnergeStop = 30
-unimrcp  | [kd-mrcp-asr] lenovoVadInst::init iVoicePoint = 100
-unimrcp  | [kd-mrcp-asr] lenovoVadInst::init iLRelax = 25
-unimrcp  | [kd-mrcp-asr] lenovoVadInst::init iRRelax = 30
-unimrcp  | [kd-mrcp-asr] lenovoVadInst::init iMinSpDuration = 15
-unimrcp  | [kd-mrcp-asr] lenovoVadInst::init iMaxSpDuration = 100000
-unimrcp  | [kd-mrcp-asr] lenovoVadInst::init iSleepTimeout = 6000
-unimrcp  | [kd-mrcp-asr] lenovoVadInst::init iMaxSpPause = 750 ms, iLRelax = 250 ms
-unimrcp  | [kd-mrcp-asr] recoProxy::recoProxy >>>>>> out
+- 电话数量(第一次RECOGNIZE命令)
+LOG (mfeInit():vad/libmfe_JNI.cc:225) MFE_Init with SampleRate=8000
+VLOG[1] (MFE_Init():feat/front-end.cc:71) dither=0, subband_type=0, debug=0
+2025-06-16 01:28:32:969208 [INFO]   [kd-mrcp-asr] Choose [Xunfei][3] as asr render
+[kd-mrcp-asr] recoProxy::recoProxy >>>>>> in
+[kd-mrcp-asr] rreporter create pUuid = 3ef0b512-56e3-4ef5-83e2-528873210bf5
+VLOG[1] (MFE_Init():feat/front-end.cc:100) Using linear PCM, encode frame size = 80, decoder frame size = 80
+[kd-mrcp-asr] createVadCbUtil
+[kd-mrcp-asr] recoProxyCreateVad >>>>>> RECO_VAD_LENOVO
+[kd-mrcp-asr] recoProxy::recoProxy >>>>>> RECO_ASR_IFLYTEK SampleRatio = 8000
+[kd-mrcp-asr] recoProxyInitVad
+[kd-mrcp-asr] lenovoVadInst::init vad iVadEnergyStart = 85
+[kd-mrcp-asr] lenovoVadInst::init iVadEnergeStop = 30
+[kd-mrcp-asr] lenovoVadInst::init iVoicePoint = 100
+[kd-mrcp-asr] lenovoVadInst::init iLRelax = 25
+[kd-mrcp-asr] lenovoVadInst::init iRRelax = 30
+[kd-mrcp-asr] lenovoVadInst::init iMinSpDuration = 15
+[kd-mrcp-asr] lenovoVadInst::init iMaxSpDuration = 100000
+[kd-mrcp-asr] lenovoVadInst::init iSleepTimeout = 6000
+[kd-mrcp-asr] lenovoVadInst::init iMaxSpPause = 750 ms, iLRelax = 250 ms
+[kd-mrcp-asr] recoProxy::recoProxy >>>>>> out
 
-- 调用[detech_speech/RECOGNIZE] 次数:
+- 调用[detech_speech/RECOGNIZE]次数
 [kd-mrcp-asr] recoProxySetVadIntParam type = 0, value = 1
 [kd-mrcp-asr] recoProxySetVadIntParam type = 1, value = 10000
 
-- 调用讯飞api ws连接次数:
+- 调用讯飞api ws连接次数
 [kd-mrcp-asr][warning] iflytekAsrInst::sendFirstMsg iMsgType = 0, recreate_connection_if_timeout = 0
 CreateMsg Index = 0, point = 0x7f96240081a0
 [kd-mrcp-asr] iflytekAsrRequestParam::createUrl reg_url = ws://ws-api.xfyun.cn/v2/iat
@@ -286,15 +406,18 @@ get request parameter = {"common":{"app_id":"5e815ba7"},"business":{"domain": "i
 [kd-mrcp-asr] recoProxy::openDbgFile filename: /tmp/vad//3ef0b512-56e3-4ef5-83e2-528873210bf5_0000.wav
 
 
-- asr识别结果[RECOGNITION-COMPLETE]数量：
+- asr识别结果[RECOGNITION-COMPLETE]数量
 [kd-mrcp-asr] on_message called with hdl = 0x7f9620001b20 and message = {"code":0,"message":"success","sid":"iat000e57d6@dx197765b2243a13b802","data":{"result":{"sn":1,"ls":false,"bg":0,"ed":0,"ws":[{"cw":[{"sc":0,"w":"之前"}],"bg":1},{"cw":[{"sc":0,"w":"为什么"}],"bg":49},{"bg":93,"cw":[{"sc":0,"w":"要"}]},{"bg":113,"cw":[{"sc":0,"w":"对"}]},{"bg":137,"cw":[{"sc":0,"w":"用户"}]},{"bg":177,"cw":[{"sc":0,"w":"管网"}]},{"bg":217,"cw":[{"sc":0,"w":"系统"}]},{"bg":273,"cw":[{"sc":0,"w":"进行"}]},{"bg":321,"cw":[{"sc":0,"w":"打压"}]},{"cw":[{"sc":0,"w":"试水"}],"bg":369}]},"status":0}}
 [kd-mrcp-asr] msgFactory:processIflyMsg pUuid = 3ef0b512-56e3-4ef5-83e2-528873210bf5, traceID = , iStatus = 0
-2025-06-16 01:28:45:855784 [INFO]   [kd-mrcp-asr] Detected recogniation complete <8b7c6e9de56d4252@speechrecog>
-2025-06-16 01:28:45:855812 [INFO]   [kd-mrcp-asr] sessionId = 3ef0b512-56e3-4ef5-83e2-528873210bf5, traceID = , isFinal = 0, timers_started = 1, result = 之前为什么要对用户管网系统进行打压试水
-2025-06-16 01:28:45:855816 [INFO]   [kd-mrcp-asr][asr will end] >>>>>>>>
-2025-06-16 01:28:45:855819 [INFO]   [kd-mrcp-asr][asr end] sessionId = 3ef0b512-56e3-4ef5-83e2-528873210bf5, traceId = no trace id, vadEndTime = 1750037325.855768
+[kd-mrcp-asr] Detected recogniation complete <8b7c6e9de56d4252@speechrecog>
+[kd-mrcp-asr] sessionId = 3ef0b512-56e3-4ef5-83e2-528873210bf5, traceID = , isFinal = 0, timers_started = 1, result = 之前为什么要对用户管网系统进行打压试水
+[kd-mrcp-asr][asr will end] >>>>>>>>
+[kd-mrcp-asr][asr end] sessionId = 3ef0b512-56e3-4ef5-83e2-528873210bf5, traceId = no trace id, vadEndTime = 1750037325.855768
 
-
+- VAD尾点切片次数
+[kd-mrcp-asr] recoProxy::processVadRes VAD END
+[kd-mrcp-asr] rreporter::sendMsg 2 FRAME_LAST
+[kd-mrcp-asr] wsConnection::sendMsg 2 vad end, sessionId = 3ef0b512-56e3-4ef5-83e2-528873210bf5, traceId = 7df6a9b6-6d8d-42a3-8ffc-14e62b7ea3fc, time = 2025-06-16 01:29:08:850317
 
 
 
