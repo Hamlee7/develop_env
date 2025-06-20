@@ -118,8 +118,14 @@ mrcp-deps
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
+20250621
+分析热力测试环境asr丢句时mrcp日志
+
+
 20250620
-细化asr-proxy讯飞接口日志
+分析热力测试环境asr丢句时asr-proxy日志
+分析asr-proxy源码，细化讯飞接口日志
+编译调试asr-proxy ws相关日志输出
 测试asr-proxy讯飞接口调用
 
 
@@ -130,6 +136,9 @@ mrcp-deps
 分析websocketpp源码数据发送流程及其异常处理
 梳理核实讯飞asr接口调用流程及具体要求
 
+
+2025-06-18 06:56:29.976952 [WARNING] mod_unimrcp.c:2326 (ASR-20) IN-PROGRESS not received for RECOGNIZE after 5000 ms——这是线上日志，供后续排查用
+另外，在查看线上日志过程中，发现fs报出“IN-PROGRESS not received for RECOGNIZE after 5000 ms”的异常。排查发现，是因为mrcp client端当几乎同时接收到IN-PROGRESS和RECOGNITION-COMPLETE时，会导致mrcp client不识别IN-PROGRESS，进而引发mrcp client重试，同时该通对话无法挂断，资源无法释放，成为幽灵电话（即服务历史中查不到的电话，这种电话可能也是导致线上问题的最根本原因）。这个问题也同步给了俊超，俊超后续评估是否有必要修复该问题。@李俊超 @周波 
 
 
 20250618
