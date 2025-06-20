@@ -118,6 +118,14 @@ mrcp-deps
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
+20250619
+分析websocketpp源码on_message相关模块
+分析websocketpp源码on_close相关模块
+分析websocketpp源码数据发送流程及其异常处理
+梳理核实讯飞asr接口调用流程及具体要求
+
+
+
 20250618
 协助排查热力测试系统无录音问题
 分析热力测试环境asr丢句case:708288
@@ -126,6 +134,24 @@ mrcp-deps
 
 依然存在VAD切片的问题，导致用户问题还没问完机器人就开始回答的情况，抽了10个问题，出现了1次（1935157798358253568问题：《太原市城市供热管理条例》是什么时候经什么组织通过、批准的?）
 出现了两次ASR丢整句的情况（1935158826717708288），出现概率大约8%
+
+
+
+问题：在连接上发完语音数据后，无asr识别结果返回。
+
+badcase1(2025-06-18 10:18:27 ~ 2025-06-18 10:18:54)
+on_message: {"code":10008,"message":"service instance invalid","sid":"iat000d5c81@dx19780d5713da182802"}
+on_close: 1000,Websocket closed!,sid=iat000d5c81@dx19780d5713da182802!reason=server read msg timeout
+1、该连接上的语音数据是否收到？完整不？讯飞收到的语音能提供出来吗？
+
+badcase2(2025-06-18 10:13:17 ~ 2025-06-18 10:13:42)
+on_message: 未收到任何消息
+on_close: 1006
+1、参考RFC6455可知，1006为异常关闭连接，为什么讯飞端会异常关闭连接？
+2、该连接上的语音数据是否收到？完整不？讯飞收到的语音能提供出来吗？
+
+
+
 
 unimrcp  | 2025-06-18 02:13:17:775752 [INFO]   Send MRCPv2 Data 172.30.207.21:1644 <-> 172.30.207.21:52272 [83 bytes]
 unimrcp  | MRCP/2.0 83 4 200 IN-PROGRESS
@@ -164,11 +190,40 @@ unimrcp  | Catch noinput at 242080 ms, elapsed 10010 ms
 unimrcp  | 2025-06-18 02:13:37:034989 [INFO]   Receive MRCPv2 Data 172.30.207.21:1644 <-> 172.30.207.21:52272 [72 bytes]
 unimrcp  | MRCP/2.0 72 STOP 5
 unimrcp  | Channel-Identifier: ecfa2d761a274c21@speechrecog
+~
+unimrcp  | [kd-mrcp-asr] recoProxyCloseVad
+unimrcp  | [kd-mrcp-asr] wsConnection::~wsConnection >>> uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A13%3A20+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iR1FlZ3FKWDQrY3FnYUhwQzRRVnNuenVFU2h5aXRsdHFaM1N6Rk9OeHdvaz0i
+unimrcp  | [kd-mrcp-asr] wsConnection::close _bClientClose = 0, uri = ws://ws-api.xfyun.cn/v2/iat?date=Wed%2C+18+Jun+2025+02%3A13%3A20+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iR1FlZ3FKWDQrY3FnYUhwQzRRVnNuenVFU2h5aXRsdHFaM1N6Rk9OeHdvaz0i
+unimrcp  | [kd-mrcp-asr] wsConnection::close hdl = 0x7f4ff000e1e0
+unimrcp  | 2025-06-18 02:13:37:049632 [INFO]   Close RTP Receiver 172.30.207.21:15246 <- 127.0.0.1:3294 [r:968 l:0 j:59 p:50 d:0 i:0]
+unimrcp  | 2025-06-18 02:13:37:050071 [INFO]   Remove RTP Session 172.30.207.21:15246
+unimrcp  | [kd-mrcp-asr] wsConnection::on_close >>> hdl = 0x7f4ff000e1e0
+unimrcp  | [2025-06-18 02:13:42] [disconnect] Disconnect close local:[1006,The closing handshake timed out] remote:[1006]
+unimrcp  | [kd-mrcp-asr] releaseVadCbUtil
+unimrcp  | release reporter
+
+
+
+
+问题：在连接上发完语音数据后，无asr识别结果返回。
+
+badcase1(出现于2025-06-18 10:18:27 ~ 2025-06-18 10:18:54)
+on_message: {"code":10008,"message":"service instance invalid","sid":"iat000d5c81@dx19780d5713da182802"}
+1、看官方介绍，10008可能为尾帧
+2、该连接上的语音数据是否收到？完整不？讯飞收到的语音能提供出来吗？
+
+badcase2(出现于2025-06-18 10:13:17 ~ 2025-06-18 10:13:42)
+on_message: 未收到任何消息
+on_close: 1006
+1、参考RFC6455可知，1006为异常关闭连接，为什么讯飞端会在返回asr识别结果之前异常关闭连接？
+2、该连接上的语音数据是否收到？完整不？讯飞收到的语音能提供出来吗？
+
+
 
 
 1935159491703635968:
 
-2025-06-18 10:18:27 ~ 2025-06-18 10:18:31 发送三秒左右
+2025-06-18 10:18:27 ~ 2025-06-18 10:18:54 发送三秒左右
 
 unimrcp  | [2025-06-18 02:18:27] [connect] WebSocket Connection 114.118.75.150:80 v-2 "WebSocket++/0.8.2" /v2/iat?date=Wed%2C+18+Jun+2025+02%3A18%3A27+GMT&host=ws-api.xfyun.cn&authorization=YXBpX2tleT0iMThiZjNhZDQxOGY3MmIxZWUzMzVlYjFlYzVjMWMwYmYiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iaksyWmYwY0ZXN3VmQVk1dHBFbTJad3hiSVN3eS9FZEp0dTZIK1NMbUdlcj0i 101
 unimrcp  | [kd-mrcp-asr] wsConnection::on_open >>> hdl = 0x7f4ff800aa50
@@ -176,7 +231,7 @@ unimrcp  | [kd-mrcp-asr] recoProxy::openDbgFile filename: /tmp/vad//e4f9f983-c85
 unimrcp  | [kd-mrcp-asr] recoProxy::processVadRes VAD END
 unimrcp  | [kd-mrcp-asr] rreporter::sendMsg 2 FRAME_LAST
 unimrcp  | [kd-mrcp-asr] wsConnection::sendMsg 2 vad end, sessionId = e4f9f983-c859-402a-8ccf-672feea757a0, traceId = 577c1029-ab1c-4b5c-ac8e-f0bd0c35f55c, time = 2025-06-18 02:18:30:919739
-
+~
 unimrcp  | 2025-06-18 02:18:42:116690 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = e4f9f983-c859-402a-8ccf-672feea757a0, traceId = 1c77908b-a7a0-4e7c-98c2-e9e58e8521ef
 unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> out
 unimrcp  | [kd-mrcp-asr] on_message called with hdl = 0x7f4ff800aa50 and message = {"code":10008,"message":"service instance invalid","sid":"iat000d5c81@dx19780d5713da182802"}
