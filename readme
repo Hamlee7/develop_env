@@ -118,6 +118,12 @@ mrcp-deps
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
+20250620
+细化asr-proxy讯飞接口日志
+测试asr-proxy讯飞接口调用
+
+
+
 20250619
 分析websocketpp源码on_message相关模块
 分析websocketpp源码on_close相关模块
