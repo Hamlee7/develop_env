@@ -117,6 +117,10 @@ mrcp-deps
 支持azure asr/tts(azure sdk)
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
+20250624
+收集热力测试环境VAD bad case语音
+安装语音转码工具并转化bad case语音格式
+
 
 20250623
 调研TEN-VAD
@@ -196,6 +200,14 @@ docker pull inv987/sipp:3.7.3-ubuntu25.04
 编译调试asr-proxy ws相关日志输出
 测试asr-proxy讯飞接口调用
 
+image_embedding:
+基于CLIP的图像向量化及其检索(ONNXRuntime, Eigen3, GraphicsMagick, FastTokenizer)[https://github.com/Hamlee7/image.git]
+intent:
+基于BERT的意图识别(ONNXRuntime, FastTokenizer, HNSWLib)[https://github.com/Hamlee7/intent.git]
+ner:
+基于UIE的槽位抽取(ONNXRuntime, FastTokenizer, HNSWLib)[https://github.com/Hamlee7/ner.git]
+kd-unimrcp:
+修复线上崩溃和无声、asr丢字、丢句等bug问题
 
 
 20250619
