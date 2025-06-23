@@ -118,7 +118,72 @@ mrcp-deps
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
-20250621
+20250623
+调研TEN-VAD
+搭建TEN-VAD开发环境
+编译调试TEN-VAD demo
+测试TEN-VAD demo功能
+
+### TEN-VAD Demo测试效果
+- 1.const int hop_size = 256;
+[100%] Built target ten_vad_demo
+WAV file byte num: 244192
+total_audio_time: 7631.00(ms)
+Audio frame Num: 476
+tenvadsrc version: 2.1.0
+[0] 0.379721, 0
+[1] 0.384227, 0
+[2] 0.481574, 0
+[3] 0.484834, 0
+[4] 0.543557, 1
+[5] 0.490376, 0
+[6] 0.441260, 0
+[7] 0.425821, 0
+[8] 0.412862, 0
+[9] 0.389099, 0
+[10] 0.431426, 0
+[11] 0.500300, 1
+[12] 0.444740, 0
+
+- 2.const int hop_size = 320;
+[100%] Built target ten_vad_demo
+WAV file byte num: 244192
+total_audio_time: 7631.00(ms)
+Audio frame Num: 381
+tenvadsrc version: 2.1.0
+[0] 0.379721, 0
+[1] 0.384227, 0
+[2] 0.481574, 0
+[3] 0.543557, 1
+[4] 0.490376, 0
+[5] 0.441260, 0
+[6] 0.425821, 0
+[7] 0.389099, 0
+[8] 0.431426, 0
+[9] 0.500300, 1
+[10] 0.444740, 0
+
+- 3.const int hop_size = 640;
+[100%] Built target ten_vad_demo
+WAV file byte num: 244192
+total_audio_time: 7631.00(ms)
+Audio frame Num: 190
+tenvadsrc version: 2.1.0
+[0] 0.384227, 0
+[1] 0.543557, 1
+[2] 0.441260, 0
+[3] 0.389099, 0
+[4] 0.500300, 1
+[5] 0.492927, 0
+
+1、520-3760
+1、4840-7160
+
+
+
+sipp测试工具
+docker pull inv987/sipp:3.7.3-ubuntu25.04
+
 分析热力测试环境asr丢句时mrcp日志
 
 
