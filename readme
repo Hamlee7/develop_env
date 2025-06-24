@@ -119,10 +119,19 @@ mrcp-deps
 支持azure asr/tts(azure sdk)
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
+
+20250625
+设计asr-proxy/TenVad模块
+
+
 20250624
 收集热力测试环境VAD bad case语音
-安装语音转码工具并转化bad case语音格式
+安装转码工具并转换bad case语音格式
+编写脚本使用TEN-VAD demo测试bad case语音
+分析评估bad case语音的VAD处理效果
 
+https://huggingface.co/TEN-framework/TEN_Turn_Detection
+https://huggingface.co/DevQuasar/TEN-framework.TEN_Turn_Detection-GGUF
 
 20250623
 调研TEN-VAD
