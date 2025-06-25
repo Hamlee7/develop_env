@@ -120,8 +120,12 @@ mrcp-deps
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
+
 20250625
+排查分析热力测试环境asr丢句问题，暂未复现该问题
+分析热力测试环境bad case(c627aaec) asr丢字问题
 设计asr-proxy/TenVad模块
+TEN-VAD API封装与开发
 
 
 20250624
