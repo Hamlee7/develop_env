@@ -121,6 +121,34 @@ mrcp-deps
 调研livekit cloud架构
 
 
+20250630
+调测asr_proxy/TenVad模块功能
+排查解决TenVad初始化失败问题
+定位解决TenVad语音编码问题
+调试排查TenVad处理后数据无效问题
+
+
+// For TEN VAD
+// "prefix_padding_ms": 200,
+// "silence_duration_ms": 500,
+// "vad_threshold": 0.5,
+// "hop_size_ms": 20,
+
+
+20250627
+开发TenVad数据送入功能
+开发TenVad结果回传功能
+集成TenVad模块到asr-proxy
+编译asr-proxy模块，调试解决TenVad编译错误
+
+
+20250626
+分析asr-proxy/Vad抽象类模块
+梳理asr-proxy数据送入Vad实例流程
+梳理asr-proxy/Vad处理后数据状态同步逻辑
+开发TenVad数据状态流转逻辑功能
+
+
 20250625
 排查分析热力测试环境asr丢句问题，暂未复现该问题
 分析热力测试环境bad case(c627aaec) asr丢字问题
