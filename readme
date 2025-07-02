@@ -122,8 +122,10 @@ mrcp-deps
 
 
 20250702
-整理asr-proxy/TenVad模块代码
-创建asr-proxy单独分支，合并提交TEN-VAD代码
+优化asr-proxy/TenVad模块代码
+基于asr-proxy分支最新提交，集成合并TEN-VAD相关代码
+测试合并后asr-proxy的TEN-VAD功能
+创建asr-proxy独立分支，合并和提交asr-proxy代码和TEN-VAD代码
 
 
 
