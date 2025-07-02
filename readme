@@ -121,11 +121,346 @@ mrcp-deps
 调研livekit cloud架构
 
 
+20250702
+整理asr-proxy/TenVad模块代码
+创建asr-proxy单独分支，合并提交TEN-VAD代码
+
+
+
+
+20250701
+调试解决asr/TenVad处理后数据无效问题
+排查颐和园pre环境mrcp/tts播报完成后偶现无asr调用流程
+定位颐和园pre环境mrcp/tts偶现播报无声问题
+修复asr/TenVad处理后数据落地问题
+
+
 20250630
 调测asr_proxy/TenVad模块功能
 排查解决TenVad初始化失败问题
 定位解决TenVad语音编码问题
 调试排查TenVad处理后数据无效问题
+[kd-mrcp-tts] release sessionId = 16649c07-d64a-450d-816e-14f236ec9e61, traceId = no trace id, time = 2025-07-01 16:53:16:272481
+unimrcp  | 2025-07-01 16:53:16:272967 139763579352640 [INFO]   Process SPEAK-COMPLETE Event <1f0bf0f2199c4ba4@speechsynth> [1]
+unimrcp  | 2025-07-01 16:53:16:273133 139763579352640 [NOTICE] State Transition SPEAKING -> IDLE <1f0bf0f2199c4ba4@speechsynth>
+unimrcp  | 2025-07-01 16:53:16:273306 139763185079872 [INFO]   Send MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:56658 [122 bytes]
+unimrcp  | MRCP/2.0 122 SPEAK-COMPLETE 1 COMPLETE
+unimrcp  | Channel-Identifier: 1f0bf0f2199c4ba4@speechsynth
+unimrcp  | Completion-Cause: 000 normal
+unimrcp  |
+unimrcp  |
+unimrcp  | 2025-07-01 16:53:16:308152 139763201865280 [INFO]   Receive SIP Event [nua_i_bye] Status 200 Session Terminated [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:53:16:308220 139763201865280 [INFO]   Receive SIP Event [nua_i_state] Status 200 Session Terminated [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:53:16:308253 139763201865280 [NOTICE] SIP Call State 0x7f1d180073d8 [terminated]
+unimrcp  | 2025-07-01 16:53:16:308286 139763201865280 [INFO]   Receive SIP Event [nua_i_terminated] Status 200 Session Terminated [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:53:16:308319 139763579352640 [INFO]   Deactivate Session 0x7f1d180073d8 <1f0bf0f2199c4ba4>
+unimrcp  | 2025-07-01 16:53:16:308361 139763579352640 [INFO]   Terminate Session 0x7f1d180073d8 <1f0bf0f2199c4ba4>
+unimrcp  | 2025-07-01 16:53:16:308517 139763185079872 [INFO]   Remove Control Channel <1f0bf0f2199c4ba4@speechsynth> [1]
+unimrcp  | 2025-07-01 16:53:16:312155 139763176687168 [INFO]   Close RTP Transmitter 192.168.109.37:45188 -> 192.168.109.37:4010 [s:661 o:105604]
+unimrcp  | 2025-07-01 16:53:16:312220 139763176687168 [INFO]   Remove RTP Session 192.168.109.37:45188
+unimrcp  | 2025-07-01 16:53:16:312342 139763579352640 [NOTICE] Remove Session <1f0bf0f2199c4ba4>
+unimrcp  | 2025-07-01 16:53:16:312374 139763579352640 [INFO]   Session Terminated 0x7f1d180073d8 <1f0bf0f2199c4ba4>
+unimrcp  | 2025-07-01 16:53:16:312413 139763579352640 [NOTICE] Destroy Session <1f0bf0f2199c4ba4>
+unimrcp  | 2025-07-01 16:53:24:629137 139763185079872 [INFO]   Receive MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:56658 [329 bytes]
+unimrcp  | MRCP/2.0 329 RECOGNIZE 9
+unimrcp  | Channel-Identifier: f53829d3df8c45c2@speechrecog
+unimrcp  | Content-Type: text/uri-list
+unimrcp  | Cancel-If-Queue: false
+unimrcp  | Speech-Language: en
+unimrcp  | Start-Input-Timers: true
+unimrcp  | No-Input-Timeout: 10000
+unimrcp  | Vendor-Specific-Parameters: engine=Xunfei;sessionId=16649c07-d64a-450d-816e-14f236ec9e61
+unimrcp  | Content-Length: 16
+unimrcp  |
+unimrcp  | builtin:grammar/
+unimrcp  | 2025-07-01 16:53:24:629385 139763579352640 [INFO]   Process RECOGNIZE Request <f53829d3df8c45c2@speechrecog> [9]
+unimrcp  | [kd-mrcp-asr] recoProxySetVadIntParam type = 5, value = 1
+unimrcp  | [kd-mrcp-asr] recoProxySetVadIntParam type = 0, value = 1
+unimrcp  | [kd-mrcp-asr] recoProxySetVadIntParam type = 1, value = 10000
+unimrcp  | 2025-07-01 16:53:24:629848 139763579352640 [INFO]   Process RECOGNIZE Response <f53829d3df8c45c2@speechrecog> [9]
+unimrcp  | 2025-07-01 16:53:24:629864 139763579352640 [INFO]   State Transition IDLE -> RECOGNIZING <f53829d3df8c45c2@speechrecog>
+unimrcp  | 2025-07-01 16:53:24:629951 139763185079872 [INFO]   Send MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:56658 [83 bytes]
+unimrcp  | MRCP/2.0 83 9 200 IN-PROGRESS
+unimrcp  | Channel-Identifier: f53829d3df8c45c2@speechrecog
+
+
+
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::getCommonArgs appid = 65f4da90
+unimrcp  | =====getFirstFrame:{"common":{"app_id":"65f4da90"},"business":{"reg":"0","aue": "raw","tte":"UTF8","ttp":"cssml","vcn":"aisxping","speed": 0,"volume": 0,"pitch": 0,"auf":"audio/L16;rate=8000"},"data": {"status": 2,"text":"J3t0cmFjZUlkPW5vIHRyYWNlIGlkLGVuZ2luZT1YdW5mZWksdm9pY2VJZD14NF9saW5neGlhb3lpbmdfZW4sc3BlZWQ9NTUscGl0Y2g9NTAsdm9sdW1lPTUwLHNlc3Npb25JZD0xNjY0OWMwNy1kNjRhLTQ1MGQtODE2ZS0xNGYyMzZlYzllNjEsdmFkRW5kVGltZT0xNzUxMzYwMDk5LjQ0NTg1M33popDlkozlm63kvZzkuLrkuJbnlYzmlofljJbpgZfkuqflj4rlhajlm73ph43ngrnmlofniankv53miqTljZXkvY3vvIzmmK/kuK3ljY7msJHml4/nmoTmlofljJbnkbDlrp3jgILlnKjlj4Lop4LmuLjnjqnml7bvvIzor7fmgqjpgbXnhaflhazlm63muLjlm63pobvnn6Xlj4rmlofmmI7muLjlm63lgKHorq7vvIzmnZznu53noLTlnY/lj4rlvbHlk43popDlkozlm63pgZfkuqfkv53miqTnmoTooYzkuLrjgII="}}
+unimrcp  | [kd-mrcp-tts][try to connect] Uri = ws://tts-api.xfyun.cn/v2/tts?date=Tue%2C+01+Jul+2025+16%3A55%3A00+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iUUhBQ1hlNWpPUUZxckh5RVJXTlh0R1V4ei9FdkhzYWs4REk5QlJnL0EzTj0i
+unimrcp  | Uri is ws://tts-api.xfyun.cn/v2/tts?date=Tue%2C+01+Jul+2025+16%3A55%3A00+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iUUhBQ1hlNWpPUUZxckh5RVJXTlh0R1V4ei9FdkhzYWs4REk5QlJnL0EzTj0i
+unimrcp  | [kd-mrcp-tts] wsConnection::on_socket_init >>> hdl = 0x7f1cfc0012a0
+unimrcp  | ================query tcp v4 tts-api.xfyun.cn:80
+unimrcp  | 2025-07-01 16:55:00:133463 139763185079872 [INFO]   Receive MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:56658 [73 bytes]
+unimrcp  | MRCP/2.0 73 STOP 18
+unimrcp  | Channel-Identifier: f53829d3df8c45c2@speechrecog
+unimrcp  |
+unimrcp  |
+unimrcp  | 2025-07-01 16:55:00:133497 139763579352640 [INFO]   Process STOP Request <f53829d3df8c45c2@speechrecog> [18]
+unimrcp  | 2025-07-01 16:55:00:142155 139763579352640 [INFO]   Process STOP Response <f53829d3df8c45c2@speechrecog> [18]
+unimrcp  | 2025-07-01 16:55:00:142172 139763579352640 [INFO]   State Transition RECOGNIZING -> IDLE <f53829d3df8c45c2@speechrecog>
+unimrcp  | 2025-07-01 16:55:00:142194 139763185079872 [INFO]   Send MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:56658 [110 bytes]
+unimrcp  | MRCP/2.0 110 18 200 COMPLETE
+unimrcp  | Channel-Identifier: f53829d3df8c45c2@speechrecog
+unimrcp  | Active-Request-Id-List: 17
+unimrcp  |
+unimrcp  |
+unimrcp  | [2025-07-01 16:55:00] [connect] [kd-mrcp-tts] Successful connection
+unimrcp  | [2025-07-01 16:55:00] [connect] WebSocket Connection 124.172.152.233:80 v-2 "WebSocket++/0.8.2" /v2/tts?date=Tue%2C+01+Jul+2025+16%3A55%3A00+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0iUUhBQ1hlNWpPUUZxckh5RVJXTlh0R1V4ei9FdkhzYWs4REk5QlJnL0EzTj0i 101
+unimrcp  | [kd-mrcp-tts] wsConnection::on_open >>> hdl = 0x7f1cfc0012a0
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> out
+unimrcp  | [kd-mrcp-asr] wsConnection::on_close >>> hdl = 0x7f1cec001220
+unimrcp  | [2025-07-01 16:55:00] [disconnect] Disconnect close local:[1001] remote:[1001]
+unimrcp  | [kd-mrcp-tts][tts end] sessionId = , traceId = , tts_duration = 1815.2, asr_tts_duration = 0
+unimrcp  | 2025-07-01 16:55:01:947491 139762648208960 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = , traceId =
+unimrcp  | [2025-07-01 16:55:01] [control] Control frame received with opcode 8
+unimrcp  | [kd-mrcp-tts] wsConnection::on_close >>> hdl = 0x7f1cfc0012a0
+unimrcp  | [2025-07-01 16:55:02] [disconnect] Disconnect close local:[1001] remote:[1001]
+unimrcp  | [kd-mrcp-tts] ttsManager close
+unimrcp  | [kd-mrcp-tts] close, sessionId = no session id, traceId = no trace id, time = 2025-07-01 16:56:42:202388
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::close
+unimrcp  | [kd-mrcp-tts] ttsManager release
+unimrcp  | [kd-mrcp-tts] release sessionId = no session id, traceId = no trace id, time = 2025-07-01 16:56:42:202908
+unimrcp  | 2025-07-01 16:56:42:203799 139763579352640 [INFO]   Process SPEAK-COMPLETE Event <fbd9f413031f469f@speechsynth> [1]
+unimrcp  | 2025-07-01 16:56:42:203958 139763579352640 [NOTICE] State Transition SPEAKING -> IDLE <fbd9f413031f469f@speechsynth>
+unimrcp  | 2025-07-01 16:56:42:204207 139763185079872 [INFO]   Send MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:56658 [122 bytes]
+unimrcp  | MRCP/2.0 122 SPEAK-COMPLETE 1 COMPLETE
+unimrcp  | Channel-Identifier: fbd9f413031f469f@speechsynth
+unimrcp  | Completion-Cause: 000 normal
+unimrcp  |
+unimrcp  |
+unimrcp  | 2025-07-01 16:56:42:269545 139763201865280 [INFO]   Receive SIP Event [nua_i_bye] Status 200 Session Terminated [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:56:42:269612 139763201865280 [INFO]   Receive SIP Event [nua_i_state] Status 200 Session Terminated [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:56:42:269626 139763201865280 [NOTICE] SIP Call State 0x7f1d180073d8 [terminated]
+unimrcp  | 2025-07-01 16:56:42:269654 139763201865280 [INFO]   Receive SIP Event [nua_i_terminated] Status 200 Session Terminated [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:56:42:269681 139763579352640 [INFO]   Deactivate Session 0x7f1d180073d8 <fbd9f413031f469f>
+unimrcp  | 2025-07-01 16:56:42:269690 139763579352640 [INFO]   Terminate Session 0x7f1d180073d8 <fbd9f413031f469f>
+unimrcp  | 2025-07-01 16:56:42:269782 139763185079872 [INFO]   Remove Control Channel <fbd9f413031f469f@speechsynth> [1]
+unimrcp  | 2025-07-01 16:56:42:272172 139763176687168 [INFO]   Close RTP Transmitter 192.168.109.37:45192 -> 192.168.109.37:4014 [s:5089 o:814084]
+unimrcp  | 2025-07-01 16:56:42:272267 139763176687168 [INFO]   Remove RTP Session 192.168.109.37:45192
+unimrcp  | 2025-07-01 16:56:42:272352 139763579352640 [NOTICE] Remove Session <fbd9f413031f469f>
+unimrcp  | 2025-07-01 16:56:42:273549 139763579352640 [INFO]   Session Terminated 0x7f1d180073d8 <fbd9f413031f469f>
+unimrcp  | 2025-07-01 16:56:42:273601 139763579352640 [NOTICE] Destroy Session <fbd9f413031f469f>
+
+
+
+
+ [kd-mrcp-tts] wsConnection::on_open >>> hdl = 0x7f1cec001220
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> out
+unimrcp  | [kd-mrcp-tts] ttsProxyMsg::recordTime _pAsrTime : 1751360245.871615
+unimrcp  | [kd-mrcp-tts][tts end] sessionId = 16649c07-d64a-450d-816e-14f236ec9e61, traceId = no trace id, tts_duration = 2144.65, asr_tts_duration = 3225.39
+unimrcp  | 2025-07-01 16:57:29:097263 139762639816256 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = 16649c07-d64a-450d-816e-14f236ec9e61, traceId = no trace id
+unimrcp  | [2025-07-01 16:57:29] [control] Control frame received with opcode 8
+unimrcp  | [kd-mrcp-tts] wsConnection::on_close >>> hdl = 0x7f1cec001220
+unimrcp  | [2025-07-01 16:57:30] [disconnect] Disconnect close local:[1001] remote:[1001]
+unimrcp  | [kd-mrcp-tts] ttsManager close
+unimrcp  | [kd-mrcp-tts] close, sessionId = 16649c07-d64a-450d-816e-14f236ec9e61, traceId = no trace id, time = 2025-07-01 16:57:35:852819
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::close
+unimrcp  | [kd-mrcp-tts] ttsManager release
+unimrcp  | [kd-mrcp-tts] release sessionId = 16649c07-d64a-450d-816e-14f236ec9e61, traceId = no trace id, time = 2025-07-01 16:57:35:852957
+unimrcp  | 2025-07-01 16:57:35:855267 139763579352640 [INFO]   Process SPEAK-COMPLETE Event <ea0f0228e512421c@speechsynth> [1]
+unimrcp  | 2025-07-01 16:57:35:856273 139763579352640 [NOTICE] State Transition SPEAKING -> IDLE <ea0f0228e512421c@speechsynth>
+unimrcp  | 2025-07-01 16:57:35:856389 139763185079872 [INFO]   Send MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:56658 [122 bytes]
+unimrcp  | MRCP/2.0 122 SPEAK-COMPLETE 1 COMPLETE
+unimrcp  | Channel-Identifier: ea0f0228e512421c@speechsynth
+unimrcp  | Completion-Cause: 000 normal
+unimrcp  |
+unimrcp  |
+unimrcp  | 2025-07-01 16:57:35:887920 139763201865280 [INFO]   Receive SIP Event [nua_i_bye] Status 200 Session Terminated [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:57:35:887999 139763201865280 [INFO]   Receive SIP Event [nua_i_state] Status 200 Session Terminated [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:57:35:888009 139763201865280 [NOTICE] SIP Call State 0x7f1d180073d8 [terminated]
+unimrcp  | 2025-07-01 16:57:35:888035 139763579352640 [INFO]   Deactivate Session 0x7f1d180073d8 <ea0f0228e512421c>
+unimrcp  | 2025-07-01 16:57:35:888042 139763579352640 [INFO]   Terminate Session 0x7f1d180073d8 <ea0f0228e512421c>
+unimrcp  | 2025-07-01 16:57:35:888116 139763201865280 [INFO]   Receive SIP Event [nua_i_terminated] Status 200 Session Terminated [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:57:35:888337 139763185079872 [INFO]   Remove Control Channel <ea0f0228e512421c@speechsynth> [1]
+unimrcp  | 2025-07-01 16:57:35:892161 139763176687168 [INFO]   Close RTP Transmitter 192.168.109.37:45194 -> 192.168.109.37:4016 [s:427 o:68164]
+unimrcp  | 2025-07-01 16:57:35:892214 139763176687168 [INFO]   Remove RTP Session 192.168.109.37:45194
+unimrcp  | 2025-07-01 16:57:35:892313 139763579352640 [NOTICE] Remove Session <ea0f0228e512421c>
+unimrcp  | 2025-07-01 16:57:35:892335 139763579352640 [INFO]   Session Terminated 0x7f1d180073d8 <ea0f0228e512421c>
+unimrcp  | 2025-07-01 16:57:35:892364 139763579352640 [NOTICE] Destroy Session <ea0f0228e512421c>
+unimrcp  | 2025-07-01 16:57:37:749713 139763201865280 [INFO]   Receive SIP Event [nua_i_invite] Status 100 Trying [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:57:37:750477 139763201865280 [INFO]   Receive SIP Event [nua_i_state] Status 100 Trying [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:57:37:750504 139763201865280 [NOTICE] SIP Call State 0x7f1d18001db8 [received]
+unimrcp  | 2025-07-01 16:57:37:750520 139763201865280 [INFO]   Remote SDP 0x7f1d18001db8 <f53829d3df8c45c2>
+unimrcp  | v=0
+unimrcp  | o=FreeSWITCH 7761656227240329875 6793809193694837273 IN IP4 192.168.109.37
+unimrcp  | s=-
+unimrcp  | c=IN IP4 192.168.109.37
+unimrcp  | t=0 0
+unimrcp  | m=application 9 TCP/MRCPv2 1
+unimrcp  | a=setup:active
+unimrcp  | a=connection:new
+unimrcp  | a=resource:speechrecog
+unimrcp  | a=cmid:1
+unimrcp  | m=audio 4006 RTP/AVP 0
+unimrcp  | a=rtpmap:0 PCMU/8000
+unimrcp  | a=sendonly
+unimrcp  | a=mid:1
+unimrcp  |
+unimrcp  | 2025-07-01 16:57:37:750595 139763579352640 [INFO]   Receive Offer 0x7f1d18001db8 <f53829d3df8c45c2> [c:1 a:1 v:0]
+unimrcp  | 2025-07-01 16:57:37:750770 139763185079872 [INFO]   Modify Control Channel <f53829d3df8c45c2@speechrecog>
+unimrcp  | 2025-07-01 16:57:37:752189 139763176687168 [INFO]   Close RTP Receiver 192.168.109.37:45184 <- 192.168.109.37:4006 [r:5890 l:0 j:75 p:50 d:0 i:0]
+unimrcp  | 2025-07-01 16:57:37:752303 139763176687168 [INFO]   Open RTP Receiver 192.168.109.37:45184 <- 192.168.109.37:4006 playout [50 ms] bounds [0 - 600 ms] adaptive [1] skew detection [1]
+unimrcp  | 2025-07-01 16:57:37:752320 139763176687168 [INFO]   Media Path 0x7f1d18001db8 Source->[PCMU/8000/1]->Decoder->[LPCM/8000/1]->Bridge->[LPCM/8000/1]->Sink
+unimrcp  | 2025-07-01 16:57:37:752373 139763579352640 [INFO]   Send Answer 0x7f1d18001db8 <f53829d3df8c45c2> [c:1 a:1 v:0] Status OK
+unimrcp  | 2025-07-01 16:57:37:752420 139763579352640 [INFO]   Local SDP 0x7f1d18001db8 <f53829d3df8c45c2>
+unimrcp  | v=0
+unimrcp  | o=UniMRCPServer 0 0 IN IP4 192.168.109.37
+unimrcp  | s=-
+unimrcp  | c=IN IP4 192.168.109.37
+unimrcp  | t=0 0
+unimrcp  | m=application 1644 TCP/MRCPv2 1
+unimrcp  | a=setup:passive
+unimrcp  | a=connection:new
+unimrcp  | a=channel:f53829d3df8c45c2@speechrecog
+unimrcp  | a=cmid:1
+unimrcp  | m=audio 45184 RTP/AVP 0
+unimrcp  | a=rtpmap:0 PCMU/8000
+unimrcp  | a=recvonly
+unimrcp  | a=mid:1
+unimrcp  |
+unimrcp  | 2025-07-01 16:57:37:752999 139763201865280 [INFO]   Receive SIP Event [nua_i_state] Status 200 OK [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:57:37:753021 139763201865280 [NOTICE] SIP Call State 0x7f1d18001db8 [completed]
+unimrcp  | 2025-07-01 16:57:37:753634 139763201865280 [INFO]   Receive SIP Event [nua_i_ack] Status 200 OK [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:57:37:753698 139763201865280 [INFO]   Receive SIP Event [nua_i_state] Status 200 OK [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:57:37:753709 139763201865280 [NOTICE] SIP Call State 0x7f1d18001db8 [ready]
+unimrcp  | 2025-07-01 16:57:37:753735 139763201865280 [INFO]   Receive SIP Event [nua_i_active] Status 200 Call active [SIP-Agent-1]
+unimrcp  | 2025-07-01 16:57:44:207441 139763185079872 [INFO]   Receive MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:56658 [330 bytes]
+unimrcp  | MRCP/2.0 330 RECOGNIZE 24
+unimrcp  | Channel-Identifier: f53829d3df8c45c2@speechrecog
+unimrcp  | Content-Type: text/uri-list
+unimrcp  | Cancel-If-Queue: false
+unimrcp  | Speech-Language: en
+unimrcp  | Start-Input-Timers: true
+unimrcp  | No-Input-Timeout: 10000
+unimrcp  | Vendor-Specific-Parameters: engine=Xunfei;sessionId=16649c07-d64a-450d-816e-14f236ec9e61
+unimrcp  | Content-Length: 16
+unimrcp  |
+unimrcp  | builtin:grammar/
+unimrcp  | 2025-07-01 16:57:44:208376 139763579352640 [INFO]   Process RECOGNIZE Request <f53829d3df8c45c2@speechrecog> [24]
+unimrcp  | [kd-mrcp-asr] recoProxySetVadIntParam type = 5, value = 1
+unimrcp  | [kd-mrcp-asr] recoProxySetVadIntParam type = 0, value = 1
+unimrcp  | [kd-mrcp-asr] recoProxySetVadIntParam type = 1, value = 10000
+unimrcp  | 2025-07-01 16:57:44:208530 139763579352640 [INFO]   Process RECOGNIZE Response <f53829d3df8c45c2@speechrecog> [24]
+unimrcp  | 2025-07-01 16:57:44:208538 139763579352640 [INFO]   State Transition IDLE -> RECOGNIZING <f53829d3df8c45c2@speechrecog>
+unimrcp  | 2025-07-01 16:57:44:208614 139763185079872 [INFO]   Send MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:56658 [84 bytes]
+unimrcp  | MRCP/2.0 84 24 200 IN-PROGRESS
+unimrcp  | Channel-Identifier: f53829d3df8c45c2@speechrecog
+
+
+儿童免票政策
+老人免票政策
+游园须知
+请问颐和园的开门时间
+好的byebye
+
+fs-ai  | 2025-07-01 18:23:00.127128 97.13% [INFO] mrcp_client_session.c:498 (TTS-21) Raise App MRCP Response TTS-21 <68a1f046a64c4a1b>
+fs-ai  | EXECUTE [depth=2] sofia/external/1011@192.168.109.37 detect_speech(pause)
+fs-ai  | 2025-07-01 18:23:12.087140 96.83% [INFO] mrcp_client_connection.c:656 () Receive MRCPv2 Data 192.168.109.37:34252 <-> 192.168.109.37:1644 [122 bytes]
+fs-ai  | MRCP/2.0 122 SPEAK-COMPLETE 1 COMPLETE
+fs-ai  | Channel-Identifier: 68a1f046a64c4a1b@speechsynth
+fs-ai  | Completion-Cause: 000 normal
+fs-ai  |
+fs-ai  |
+fs-ai  | 2025-07-01 18:23:12.087140 96.83% [INFO] mrcp_client_session.c:514 (TTS-21) Raise App MRCP Event TTS-21 <68a1f046a64c4a1b>
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mrcp_client_session.c:385 (TTS-21) Receive App Request TTS-21 <68a1f046a64c4a1b> [1]
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mrcp_client_session.c:828 (TTS-21) Terminate Session TTS-21 <68a1f046a64c4a1b>
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mrcp_client_connection.c:480 (TTS-21) Remove Control Channel <68a1f046a64c4a1b@speechsynth> [0]
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mrcp_client_connection.c:407 () Close TCP/MRCPv2 Connection 192.168.109.37:34252 <-> 192.168.109.37:1644
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mrcp_sofiasip_client_agent.c:621 () Receive SIP Event [nua_r_bye] Status 200 OK [unimrcpserver-mrcp-v2]
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mrcp_sofiasip_client_agent.c:621 () Receive SIP Event [nua_i_state] Status 200 to BYE [unimrcpserver-mrcp-v2]
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [NOTICE] mrcp_sofiasip_client_agent.c:558 (TTS-21) SIP Call State TTS-21 [terminated]
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mrcp_client_session.c:207 (TTS-21) Session Terminated TTS-21 <68a1f046a64c4a1b>
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mpf_rtp_stream.c:537 () Close RTP Receiver 192.168.109.37:3042 <- 192.168.109.37:45198 [r:599 l:0 j:123 p:0 d:2 i:0]
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mpf_rtp_stream.c:418 () Remove RTP Session 192.168.109.37:3042
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mpf_rtp_stream.c:1231 () Generate RTCP RR [ssrc:2270849592 last_seq:599 j:123 lost:0 frac:0]
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mpf_rtp_stream.c:1405 () Send Compound RTCP Packet [BYE] [84 bytes] 192.168.109.37:3043 -> 192.168.109.37:45199
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [NOTICE] mrcp_client_connection.c:243 () Destroy TCP/MRCPv2 Connection 192.168.109.37:34252 <-> 192.168.109.37:1644
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mrcp_client.c:707 (TTS-21) Remove MRCP Handle TTS-21 <68a1f046a64c4a1b>
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [INFO] mrcp_client_session.c:453 (TTS-21) Raise App Response TTS-21 <68a1f046a64c4a1b> [1] SUCCESS [0]
+fs-ai  | 2025-07-01 18:23:12.147144 96.83% [NOTICE] mrcp_application.c:211 (TTS-21) Destroy MRCP Handle TTS-21
+fs-ai  | EXECUTE [depth=1] sofia/external/1011@192.168.109.37 detect_speech(resume)
+fs-ai  | EXECUTE [depth=1] sofia/external/1011@192.168.109.37 detect_speech(param start-input-timers true)
+fs-ai  | 2025-07-01 18:23:44.887155 97.77% [NOTICE] sofia.c:1065 Hangup sofia/external/1011@192.168.109.37 [CS_EXECUTE] [NORMAL_CLEARING]
+fs-ai  | 2025-07-01 18:23:44.907131 97.77% [NOTICE] switch_core_session.c:1762 Session 7 (sofia/external/1011@192.168.109.37) Ended
+fs-ai  | 2025-07-01 18:23:44.907131 97.77% [NOTICE] switch_core_session.c:1766 Close Channel sofia/external/1011@192.168.109.37 [CS_DESTROY]
+
+
+
+
+
+(base) [root@localhost cc]# docker compose logs -f unimrcp|grep "Ten vad uuid"
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] construction.
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] init buffer size[60]
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [2570]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected end of speech at [5350]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [12960]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected end of speech at [15680]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [79420]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected end of speech at [81090]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [86490]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected end of speech at [89670]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [93470]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected end of speech at [98070]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [115020]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected end of speech at [117570]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [118270]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected end of speech at [122550]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [125150]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected end of speech at [132770]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [133710]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected end of speech at [134790]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [136240]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected end of speech at [139380]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] detected begin of speech at [139710]ms
+unimrcp  | Ten vad uuid[82218b32-0ed2-4ddf-a22c-b86203470380] destruction.
+unimrcp  | Ten vad uuid[(null)] self thread exit.
+
+
+
+
+unimrcp  | 2025-07-01 14:59:12:823342 139897735259712 [INFO]   Process STOP Request <a7649a1008454f38@speechrecog> [32]
+unimrcp  | =====getFirstFrame ttsParam voiceId:, speed:0, voiceId:, pitch:0, volume:0
+unimrcp  | [kd-mrcp-tts][try to connect] Uri = ws://tts-api.xfyun.cn/v2/tts?date=Tue%2C+01+Jul+2025+14%3A59%3A12+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0ibE5iN1pQck0xcmgxanpsY040WlhCT2dLTEhKeG1HRzMxZ004bEN2MlUrVj0i
+unimrcp  | [kd-mrcp-tts] iflytekRequestParam::getCommonArgs appid = 65f4da90
+unimrcp  | =====getFirstFrame:{"common":{"app_id":"65f4da90"},"business":{"reg":"0","aue": "raw","tte":"UTF8","ttp":"cssml","vcn":"aisxping","speed": 0,"volume": 0,"pitch": 0,"auf":"audio/L16;rate=8000"},"data": {"status": 2,"text":"J3t0cmFjZUlkPW5vIHRyYWNlIGlkLGVuZ2luZT1YdW5mZWksdm9pY2VJZD14NF9saW5neGlhb3lpbmdfZW4sc3BlZWQ9NTUscGl0Y2g9NTAsdm9sdW1lPTUwLHNlc3Npb25JZD1lMjFhNjAwNC1hMTEyLTQwNmItYTYxZS1mNzE1ZmMzNjI3YjIsdmFkRW5kVGltZT0xNzUxMzUzMTUyLjIzODMxM33popDlkozlm63kvZzkuLrkuJbnlYzmlofljJbpgZfkuqflj4rlhajlm73ph43ngrnmlofniankv53miqTljZXkvY3vvIzmmK/kuK3ljY7msJHml4/nmoTmlofljJbnkbDlrp3jgILlnKjlj4Lop4LmuLjnjqnml7bvvIzor7fmgqjpgbXnhaflhazlm63muLjlm63pobvnn6Xlj4rmlofmmI7muLjlm63lgKHorq7vvIzmnZznu53noLTlnY/lj4rlvbHlk43popDlkozlm63pgZfkuqfkv53miqTnmoTooYzkuLrjgII="}}
+unimrcp  | Uri is ws://tts-api.xfyun.cn/v2/tts?date=Tue%2C+01+Jul+2025+14%3A59%3A12+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0ibE5iN1pQck0xcmgxanpsY040WlhCT2dLTEhKeG1HRzMxZ004bEN2MlUrVj0i
+unimrcp  | [kd-mrcp-tts] wsConnection::on_socket_init >>> hdl = 0x7f3c38000d50
+unimrcp  | ================query tcp v4 tts-api.xfyun.cn:80
+unimrcp  | 2025-07-01 14:59:12:826042 139897735259712 [INFO]   Process STOP Response <a7649a1008454f38@speechrecog> [32]
+unimrcp  | 2025-07-01 14:59:12:826069 139897735259712 [INFO]   State Transition RECOGNIZING -> IDLE <a7649a1008454f38@speechrecog>
+unimrcp  | 2025-07-01 14:59:12:827134 139897604134464 [INFO]   Send MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:44558 [110 bytes]
+unimrcp  | MRCP/2.0 110 32 200 COMPLETE
+unimrcp  | Channel-Identifier: a7649a1008454f38@speechrecog
+unimrcp  | Active-Request-Id-List: 31
+unimrcp  |
+unimrcp  |
+unimrcp  | [2025-07-01 14:59:12] [connect] [kd-mrcp-tts] Successful connection
+unimrcp  | [2025-07-01 14:59:12] [connect] WebSocket Connection 120.92.238.30:80 v-2 "WebSocket++/0.8.2" /v2/tts?date=Tue%2C+01+Jul+2025+14%3A59%3A12+GMT&host=tts-api.xfyun.cn&authorization=YXBpX2tleT0iYzQ2YmE5YWIxZjc5MzgzOWE2YzFiYmZkZTYxYjgxODQiLCBhbGdvcml0aG09ImhtYWMtc2hhMjU2IiwgaGVhZGVycz0iaG9zdCBkYXRlIHJlcXVlc3QtbGluZSIsIHNpZ25hdHVyZT0ibE5iN1pQck0xcmgxanpsY040WlhCT2dLTEhKeG1HRzMxZ004bEN2MlUrVj0i 101
+unimrcp  | [kd-mrcp-tts] wsConnection::on_open >>> hdl = 0x7f3c38000d50
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::speak >>>>>> out
+unimrcp  | [kd-mrcp-asr] wsConnection::on_close >>> hdl = 0x7f3c280014d0
+unimrcp  | [2025-07-01 14:59:13] [disconnect] Disconnect close local:[1000] remote:[1000]
+unimrcp  | [kd-mrcp-tts][tts end] sessionId = , traceId = , tts_duration = 1803.15, asr_tts_duration = 0
+unimrcp  | 2025-07-01 14:59:14:625333 139896790435392 [INFO]   [kd-mrcp-tts][tts cb close] sessionId = , traceId =
+unimrcp  | [2025-07-01 14:59:14] [control] Control frame received with opcode 8
+unimrcp  | [kd-mrcp-tts] wsConnection::on_close >>> hdl = 0x7f3c38000d50
+unimrcp  | [2025-07-01 14:59:15] [disconnect] Disconnect close local:[1001] remote:[1001]
+
+
+
+
+
+unimrcp  | [kd-mrcp-tts] ttsManager close
+unimrcp  | [kd-mrcp-tts] close, sessionId = no session id, traceId = no trace id, time = 2025-07-01 15:00:53:536491
+unimrcp  | [kd-mrcp-tts] iflytekTtsInst::close
+unimrcp  | [kd-mrcp-tts] ttsManager release
+unimrcp  | [kd-mrcp-tts] release sessionId = no session id, traceId = no trace id, time = 2025-07-01 15:00:53:550624
+unimrcp  | 2025-07-01 15:00:53:556800 139897735259712 [INFO]   Process SPEAK-COMPLETE Event <e5fc24fc1ecd451a@speechsynth> [1]
+unimrcp  | 2025-07-01 15:00:53:557473 139897735259712 [NOTICE] State Transition SPEAKING -> IDLE <e5fc24fc1ecd451a@speechsynth>
+unimrcp  | 2025-07-01 15:00:53:557899 139897604134464 [INFO]   Send MRCPv2 Data 192.168.109.37:1644 <-> 192.168.109.37:44558 [122 bytes]
+unimrcp  | MRCP/2.0 122 SPEAK-COMPLETE 1 COMPLETE
+
 
 
 // For TEN VAD
@@ -133,6 +468,20 @@ mrcp-deps
 // "silence_duration_ms": 500,
 // "vad_threshold": 0.5,
 // "hop_size_ms": 20,
+
+(base) [root@localhost cc]# docker compose logs -f unimrcp|grep "destruction"
+unimrcp  | Ten vad uuid[31c52505-5846-43ba-9503-4949ae8a674d] destruction.
+unimrcp  | Ten vad uuid[2dcbde72-7063-48e0-9ba5-e765c75175c1] destruction.
+unimrcp  | Ten vad uuid[e8961a1a-7620-4a37-90b5-6c548f1c3427] destruction.
+unimrcp  | Ten vad uuid[1cf4535c-c426-42f1-a748-9a05523b713e] destruction.
+unimrcp  | Ten vad uuid[a62fe1dc-70a6-4706-a8da-72f1c914ce87] destruction.
+
+(base) [root@localhost cc]# docker compose logs -f unimrcp|grep "construction"
+unimrcp  | Ten vad uuid[31c52505-5846-43ba-9503-4949ae8a674d] construction.
+unimrcp  | Ten vad uuid[2dcbde72-7063-48e0-9ba5-e765c75175c1] construction.
+unimrcp  | Ten vad uuid[e8961a1a-7620-4a37-90b5-6c548f1c3427] construction.
+unimrcp  | Ten vad uuid[1cf4535c-c426-42f1-a748-9a05523b713e] construction.
+unimrcp  | Ten vad uuid[a62fe1dc-70a6-4706-a8da-72f1c914ce87] construction.
 
 
 20250627
