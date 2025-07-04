@@ -125,6 +125,11 @@ mrcp-deps
 压测颐和园pre环境asr-proxy/TEN-VAD功能稳定性(200:5/10,10/10(47 msg loss))
 调研阿里asr实时识别websocket接口
 调研阿里asr实时识别C++ SDK
+搭建开发环境，尝试编译阿里asr实时识别C++ SDK demo
+
+
+分析阿里asr实时识别C++ SDK 3.2.1版本代码
+调研阿里实时语音识别Paraformer模型服务接口
 
 - FunASR:
 https://www.funasr.com/
