@@ -120,8 +120,76 @@ mrcp-deps
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
+
+20250704
+压测颐和园pre环境asr-proxy/TEN-VAD功能稳定性(200:5/10,10/10(47 msg loss))
+调研阿里asr实时识别websocket接口
+调研阿里asr实时识别C++ SDK
+
+- FunASR:
+https://www.funasr.com/
+
+- 阿里云百炼之模型体验中心:
+https://bailian.console.aliyun.com
+
+- 大模型服务平台百炼之语音识别-Paraformer:
+https://help.aliyun.com/zh/model-studio/paraformer-speech-recognition/?spm=a2c4g.11186623.0.preDoc.225954e0WyfjW4
+
+- 智能语音交互开发之实时语音识别:
+https://help.aliyun.com/zh/isi/developer-reference/real-time-speech-recognition/?spm=a2c4g.11186623.0.i4
+
+调用接口前，需配置环境变量，通过环境变量读取访问凭证。
+智能语音交互的AccessKey ID、AccessKey Secret和AppKey的环境变量名: NLS_AK_ENV、NLS_SK_ENV、NLS_APPKEY_ENV。
+
+
 20250703
 配置并调测颐和园pre环境VAD切句文件落地及外挂功能
+调研阿里asr一句话识别RESTful API
+调研阿里asr一句话识别C++ SDK
+排查颐和园pre环境asr丢字问题
+
+4
+200
+204
+153(200)
+357
+20
+
+
+
+#0  __pthread_kill_implementation (no_tid=0, signo=6, threadid=140013878617664) at ./nptl/pthread_kill.c:44
+#1  __pthread_kill_internal (signo=6, threadid=140013878617664) at ./nptl/pthread_kill.c:78
+#2  __GI___pthread_kill (threadid=140013878617664, signo=signo@entry=6) at ./nptl/pthread_kill.c:89
+#3  0x00007f57f3f92476 in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26
+#4  0x00007f57f3f787f3 in __GI_abort () at ./stdlib/abort.c:79
+#5  0x00007f57f31c5b9e in ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#6  0x00007f57f31d120c in ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#7  0x00007f57f31d1277 in std::terminate() () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#8  0x00007f57f31d1fa5 in __cxa_pure_virtual () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#9  0x00007f57e3edfd29 in recoProxy::processVadClose (this=<optimized out>) at /usr/include/c++/11/bits/shared_ptr_base.h:1295
+#10 cbProcessVadClose (pProxyInst=0x7f57b82126c0) at /work/knowdee/projects/kds/kd-unimrcp/third_party/asr-proxy/src/recoProxy/callback.h:25
+#11 0x00007f57e3fa5e20 in TenVadInst::run (this=0x7f57b8212be0) at /work/knowdee/projects/kds/kd-unimrcp/third_party/asr-proxy/src/vad/ten_vad_inst.cpp:86
+#12 0x00007f57f31ff253 in ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#13 0x00007f57f3fe4ac3 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:442
+#14 0x00007f57f4076850 in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:81
+
+
+
+#0  __pthread_kill_implementation (no_tid=0, signo=6, threadid=139725302109760) at ./nptl/pthread_kill.c:44
+#1  __pthread_kill_internal (signo=6, threadid=139725302109760) at ./nptl/pthread_kill.c:78
+#2  __GI___pthread_kill (threadid=139725302109760, signo=signo@entry=6) at ./nptl/pthread_kill.c:89
+#3  0x00007f14898c1476 in __GI_raise (sig=sig@entry=6) at ../sysdeps/posix/raise.c:26
+#4  0x00007f14898a77f3 in __GI_abort () at ./stdlib/abort.c:79
+#5  0x00007f1488af4b9e in ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#6  0x00007f1488b0020c in ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#7  0x00007f1488b00277 in std::terminate() () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#8  0x00007f1488b00fa5 in __cxa_pure_virtual () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#9  0x00007f14859e0d29 in recoProxy::processVadClose (this=<optimized out>) at /usr/include/c++/11/bits/shared_ptr_base.h:1295
+#10 cbProcessVadClose (pProxyInst=0x7f14500d57b0) at /work/knowdee/projects/kds/kd-unimrcp/third_party/asr-proxy/src/recoProxy/callback.h:25
+#11 0x00007f1485aa6e20 in TenVadInst::run (this=0x7f14500d5cd0) at /work/knowdee/projects/kds/kd-unimrcp/third_party/asr-proxy/src/vad/ten_vad_inst.cpp:86
+#12 0x00007f1488b2e253 in ?? () from /lib/x86_64-linux-gnu/libstdc++.so.6
+#13 0x00007f1489913ac3 in start_thread (arg=<optimized out>) at ./nptl/pthread_create.c:442
+#14 0x00007f14899a5850 in clone3 () at ../sysdeps/unix/sysv/linux/x86_64/clone3.S:81
 
 
 20250702
@@ -2504,7 +2572,7 @@ root/XcmG#CRM@250205
 运维监控系统日志：
 http://10.188.6.61:3000  账号admin 密码knowdee
 
-coredumpctl info
+coredumpctl info PID
 zstd -d core.zst -o core
 zstd -d /var/lib/systemd/coredump/core.freeswitch.0.0dafc15e3c7a456b98a64b2a790468af.828823.1749087104000000.zst -o core.pid
 
