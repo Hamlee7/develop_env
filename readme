@@ -120,6 +120,9 @@ mrcp-deps
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
+20250703
+配置并调测颐和园pre环境VAD切句文件落地及外挂功能
+
 
 20250702
 优化asr-proxy/TenVad模块代码
