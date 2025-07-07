@@ -120,6 +120,20 @@ mrcp-deps
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
+20250707
+修改asr-proxy相关语音文件落地功能
+调试asr-proxy相关语音文件落地的关闭功能
+构建并迭代kd-asr-proxy服务docker镜像版本
+测试kd-asr-proxy服务镜像新版本，推送徐工生产环境
+
+
+
+aws ecr get-login-password --region cn-north-1 | docker login --username AWS  --password-stdin  865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn
+docker tag kd-asr-proxy:0.2.4 865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn/knodi_asr_proxy:0.2.4
+docker push 865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn/knodi_asr_proxy:0.2.4
+docker pull 865677308458.dkr.ecr.cn-north-1.amazonaws.com.cn/knodi_asr_proxy:0.2.4
+
+
 
 20250704
 压测颐和园pre环境asr-proxy/TEN-VAD功能稳定性(200:5/10,10/10(47 msg loss))
