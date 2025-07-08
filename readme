@@ -120,11 +120,19 @@ mrcp-deps
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
+20250708
+研究阿里大模型实时asr websocket接口
+研究阿里大模型实时asr python sdk
+开通阿里相关账号api-key等测试准备事宜
+搭建和配置测试环境，测试阿里大模型实时asr python sdk demo
+
+
+
 20250707
 修改asr-proxy相关语音文件落地功能
 调试asr-proxy相关语音文件落地的关闭功能
 构建并迭代kd-asr-proxy服务docker镜像版本
-测试kd-asr-proxy服务镜像新版本，推送徐工生产环境
+测试kd-asr-proxy服务镜像新版本，打包上传徐工生产环境和uat测试环境
 
 
 
