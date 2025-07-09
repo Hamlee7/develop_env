@@ -120,6 +120,28 @@ mrcp-deps
 调研确认azure asr/tts支持zh_cn、zh_can、us_en
 调研livekit cloud架构
 
+
+
+ulimit -c unlimited   # 先允许生成 core 文件
+./kd-proxy            # 触发崩溃后生成 core 文件
+gdb ./kd-proxy core
+
+
+
+core dumped:
+Bus error               (core dumped)
+Aborted                 (core dumped)
+Segmentation fault      (core dumped)
+
+
+20250709
+排查徐工线上kd-asr-proxy服务重启问题
+分析徐工线上kd-asr-proxy服务http消息交互日志
+观测分析徐工线上kd-asr-proxy服务udp端口占用情况
+编译并更新kd-asr-proxy debug版本到uat环境，测试定位服务重启问题
+
+
+
 20250708
 研究阿里大模型实时asr websocket接口
 研究阿里大模型实时asr python sdk
@@ -2603,6 +2625,8 @@ coredumpctl info PID
 zstd -d core.zst -o core
 zstd -d /var/lib/systemd/coredump/core.freeswitch.0.0dafc15e3c7a456b98a64b2a790468af.828823.1749087104000000.zst -o core.pid
 
+
+echo "core.%e.%p" > /proc/sys/kernel/core_pattern
 
 var->_iPos:%d iTotal:%d iBeginPos:%d   iBeginTime:%d pOptions->_iSampleRatio:%d",
     __s=0x7f997a7fb8b0 "var->_iPos:80800 iTotal:8000 iBeginPos:72800   iBeginTime:4550
