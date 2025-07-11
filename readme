@@ -130,8 +130,15 @@ gdb ./kd-proxy core
 
 core dumped:
 Bus error               (core dumped)
-Aborted                 (core dumped)
-Segmentation fault      (core dumped)
+#Aborted                 (core dumped)
+#Segmentation fault      (core dumped)
+
+
+20250710
+测试定位kd-asr-proxy服务重启问题
+修复kd-asr-proxy高并发时端口绑定失败问题
+修复kd-asr-proxy多线程修改通话记录引发数据竞争问题
+编译调测kd-asr-proxy服务debug新版本
 
 
 20250709
