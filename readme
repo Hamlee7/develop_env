@@ -134,6 +134,13 @@ Bus error               (core dumped)
 #Segmentation fault      (core dumped)
 
 
+20250711
+搭建徐工uat坐席助手调测环境
+调试解决kd-asr-proxy服务Aborted问题
+调试解决kd-asr-proxy服务Segmentation fault问题
+调试解决kd-asr-proxy服务死锁问题
+
+
 20250710
 测试定位kd-asr-proxy服务重启问题
 修复kd-asr-proxy高并发时端口绑定失败问题
