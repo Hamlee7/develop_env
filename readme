@@ -139,11 +139,26 @@ TYrl@123!@#
 讯飞tts播报中断问题(大概率为网络异常导致中断)
 
 
-20250719
+20250723
+添加kd-asr-proxy asr识别结果情感标签功能
+测试推送kafka带情感标签的asr结果功能
+更新热力线上asr-proxy，支持讯飞结果融合处理功能，解决语音机器人抢答问题；
+
+
+20250722
+添加asr-proxy阿里asr识别结果情感标签功能
+修复阿里实时asr通话时coredump问题
+测试阿里大模型实时asr接口功能
+定位分析热力线上抢答、VAD切片等bad case问题
+
+
+- ALIYUN_API_KEY=sk-44d9f65a36684b04ab702dca9f6fce2c
+
+20250721
 集成阿里大模型实时asr功能模块
 编译调试阿里大模型实时asr功能模块及asr-proxy
-定位调测通话时asr-proxy coredump问题
-测试阿里大模型实时asr功能
+定位调测阿里asr通话时coredump问题
+定位分析太原热力正式环境asr丢句问题(bad case:1947214396214243328)
 
 
 徐工新VPN账号:
