@@ -139,10 +139,30 @@ TYrl@123!@#
 讯飞tts播报中断问题(大概率为网络异常导致中断)
 
 
+徐工asr:
+kd-asr-proxy:0.2.4——讯飞asr(服务存在重启和连不上问题导致asr结果丢失)
+kd-asr-proxy:0.2.5——讯飞asr, lenovo-vad处理
+plan emo-tag:
+kd-asr-proxy:阿里asr带句子级情感标签, 不需要vad处理
+
+
+太原热力asr:
+kd-unimrcp:0.9.1——讯飞asr(0-1-2), ten-vad处理
+kd-asr-proxy:0.2.5——讯飞asr, lenovo-vad处理
+
+
 20250723
+分析定位热力线上asr结果不全bad case问题
+更新升级热力线上asr-proxy，解决部分语音机器人抢答问题
 添加kd-asr-proxy asr识别结果情感标签功能
 测试推送kafka带情感标签的asr结果功能
-更新热力线上asr-proxy，支持讯飞结果融合处理功能，解决语音机器人抢答问题；
+
+20250723
+bad case analysis(asr结果不全):
+1947184059375448064
+发送讯飞语音正常但其返回结果不全(需要讯飞服务端深入分析该case)
+1947185886204555264/1947186339092918272
+语音卡顿可能导致讯飞返回结果不全
 
 
 20250722
