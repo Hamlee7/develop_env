@@ -150,12 +150,29 @@ kd-asr-proxy:阿里asr带句子级情感标签, 不需要vad处理
 kd-unimrcp:0.9.1——讯飞asr(0-1-2), ten-vad处理
 kd-asr-proxy:0.2.5——讯飞asr, lenovo-vad处理
 
+20250725
+优化kd-asr-proxy通过Http接口传参asr引擎参数解析功能
+优化kd-asr-proxy通过配置文件容错处理asr引擎参数逻辑
+修改阿里大模型asr python sdk demo脚本
+测试验证阿里大模型asr处理太原热力线上bad case语音
+
+
+1947979743158628352/1947991993013530624:用户侧语音太短
+1947984027665330176/1947990892864368640:讯飞无结果返回
+
+
+20250724
+排查解决kd-asr-proxy发送语音数据coredump问题
+定位解决kd-asr-proxy推送kafka结果失败问题
+定位热力线上环境闲聊两个字语音无asr结果问题(case:8352/0624)
+定位热力线上环境闲聊单个字语音无asr结果问题(case:0176/8640)
+
 
 20250723
 分析定位热力线上asr结果不全bad case问题
 更新升级热力线上asr-proxy，解决部分语音机器人抢答问题
 添加kd-asr-proxy asr识别结果情感标签功能
-测试推送kafka带情感标签的asr结果功能
+联调测试推送kafka带情感标签的asr结果功能
 
 20250723
 bad case analysis(asr结果不全):
@@ -171,7 +188,7 @@ bad case analysis(asr结果不全):
 测试阿里大模型实时asr接口功能
 定位分析热力线上抢答、VAD切片等bad case问题
 
-
+- ASRPROXY_ASR_ENGINE=Aliyun
 - ALIYUN_API_KEY=sk-44d9f65a36684b04ab702dca9f6fce2c
 
 20250721
