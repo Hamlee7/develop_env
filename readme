@@ -151,6 +151,13 @@ kd-unimrcp:0.9.1——讯飞asr(0-1-2), ten-vad处理
 kd-asr-proxy:0.2.5——讯飞asr, lenovo-vad处理
 
 20250725
+调研阿里tts CosyVoice模型接口
+调研阿里tts Sambert模型接口
+调研阿里Qwen-TTS 能力接口
+调研阿里实时Qwen-TTS能力接口
+
+
+20250725
 优化kd-asr-proxy通过Http接口传参asr引擎参数解析功能
 优化kd-asr-proxy通过配置文件容错处理asr引擎参数逻辑
 修改阿里大模型asr python sdk demo脚本
