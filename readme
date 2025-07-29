@@ -150,7 +150,14 @@ kd-asr-proxy:阿里asr带句子级情感标签, 不需要vad处理
 kd-unimrcp:0.9.1——讯飞asr(0-1-2), ten-vad处理
 kd-asr-proxy:0.2.5——讯飞asr, lenovo-vad处理
 
-20250725
+20250729
+整理kd-asr-proxy代码
+构建kd-asr-proxy服务docker镜像
+打包测试kd-asr-proxy镜像
+更新升级徐工uat环境asr服务
+
+
+20250728
 调研阿里tts CosyVoice模型接口
 调研阿里tts Sambert模型接口
 调研阿里Qwen-TTS 能力接口
