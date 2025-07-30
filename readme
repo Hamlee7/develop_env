@@ -150,6 +150,17 @@ kd-asr-proxy:阿里asr带句子级情感标签, 不需要vad处理
 kd-unimrcp:0.9.1——讯飞asr(0-1-2), ten-vad处理
 kd-asr-proxy:0.2.5——讯飞asr, lenovo-vad处理
 
+C:\Windows\System32\DriverStore\FileRepository
+C:\Users\lit\Documents\xwechat_files
+
+
+20250730
+分析徐工uat环境外呼bad case 629056
+排查徐工uat环境外呼fs日志
+排查徐工uat环境外呼mrcp日志
+排查徐工uat环境外呼asr日志
+
+
 20250729
 整理kd-asr-proxy代码
 构建kd-asr-proxy服务docker镜像
