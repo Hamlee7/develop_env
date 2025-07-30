@@ -906,6 +906,68 @@ docker pull inv987/sipp:3.7.3-ubuntu25.04
 --- livekit agent(python)
 
 
+专业技能
+精通C/C++，熟悉多线程、网络编程、性能优化、内存管理
+熟练掌握主流语音/自然语言处理算法及其工程实现
+深入理解ONNXRuntime、Eigen3、FastTokenizer、HNSWLib等AI推理与检索框架
+熟悉FreeSWITCH、MRCP、ASR、VAD、TTS等语音通信与处理系统
+熟悉主流云厂商语音服务（Lenovo、Azure、科大讯飞、阿里云等）API集成与优化
+熟悉Go、Python等多语言协作开发
+熟练掌握Linux服务器环境下的系统调优、故障排查与线上运维
+熟悉图像处理（GraphicsMagick）、深度学习模型部署与优化
+具备丰富的线上系统故障修复与高可用架构设计经验
+
+
+项目经验
+1. AIPC 小天智能助手
+image_embedding
+
+基于CLIP模型实现图像向量化与检索，支持ONNXRuntime高效推理
+使用Eigen3进行高性能矩阵运算，GraphicsMagick实现图像预处理
+集成FastTokenizer，提升文本处理效率
+负责整体C++工程架构设计与性能优化
+项目地址
+intent
+
+基于BERT模型实现意图识别，采用ONNXRuntime进行模型推理
+利用FastTokenizer和HNSWLib实现高效文本向量化与相似度检索
+负责C++端推理引擎开发与API封装
+项目地址
+ner
+
+基于UIE模型实现槽位抽取，支持多领域实体识别
+集成ONNXRuntime、FastTokenizer、HNSWLib，提升系统响应速度
+负责C++端整体实现与系统集成
+项目地址
+
+基于麒麟系统底层dbus接口实现打开打印机、调亮屏幕等一系列系统调用功能
+
+
+2. AI语音智能客服系统
+已上线系统：FreeSWITCH + MRCP + ASR + VAD + TTS
+
+主导系统架构设计与核心模块开发，支持多家主流语音引擎（Lenovo、Azure、科大讯飞、阿里云等）
+负责kd-unimrcp模块维护，修复线上FreeSWITCH/MRCP coredump崩溃、TTS播报无声/中断、ASR丢字丢句等关键bug
+优化ASR、TTS、VAD等模块的稳定性与性能，保障系统7*24小时高可用
+参与系统上线、运维、监控与故障应急响应
+预研系统：livekit/ten_framework
+
+参与livekit server（Go）、livekit sip（Go）、livekit agent（Python）等多语言协作开发
+负责语音通信链路、SIP协议、实时音视频处理等模块的技术预研与实现
+推动新技术在语音客服系统中的落地与应用
+其他经历
+多次主导线上系统疑难问题定位与修复，具备丰富的生产环境实战经验
+熟悉CI/CD、自动化测试、代码审查等现代软件工程流程
+具备良好的团队协作与跨部门沟通能力
+个人优势
+10年以上C/C++语音与AI研发经验，深度理解语音/NLP/图像等多模态AI技术
+具备大规模线上系统架构设计、性能优化与高可用保障能力
+善于解决复杂疑难问题，推动技术创新与落地
+
+
+
+
+
 20250619
 分析websocketpp源码on_message相关模块
 分析websocketpp源码on_close相关模块
