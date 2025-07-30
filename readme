@@ -883,14 +883,27 @@ docker pull inv987/sipp:3.7.3-ubuntu25.04
 编译调试asr-proxy ws相关日志输出
 测试asr-proxy讯飞接口调用
 
-image_embedding:
+
+- AIPC 小天智能助手
+-- image_embedding
 基于CLIP的图像向量化及其检索(ONNXRuntime, Eigen3, GraphicsMagick, FastTokenizer)[https://github.com/Hamlee7/image.git]
-intent:
+
+-- intent
 基于BERT的意图识别(ONNXRuntime, FastTokenizer, HNSWLib)[https://github.com/Hamlee7/intent.git]
-ner:
+
+-- ner
 基于UIE的槽位抽取(ONNXRuntime, FastTokenizer, HNSWLib)[https://github.com/Hamlee7/ner.git]
-kd-unimrcp:
-修复线上崩溃和无声、asr丢字、丢句等bug问题
+
+
+- AI语音智能客服系统
+-- 已上线系统freeswitch+mrcp+asr+vad+tts(lenovo/azure/iflytek/aliyun等主流引擎厂商)
+--- kd-unimrcp
+修复线上系统fs/mrcp coredump崩溃和tts播报无声、tts播报中断、asr丢字、丢句等bug问题
+
+-- 预研系统livekit/ten_framework:
+--- livekit server(go)
+--- livekit sip(go)
+--- livekit agent(python)
 
 
 20250619
